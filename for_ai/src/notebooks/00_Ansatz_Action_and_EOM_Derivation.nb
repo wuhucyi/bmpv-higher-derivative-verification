@@ -1,0 +1,1516 @@
+Notebook[
+ {Cell[CellGroupData[
+    {Cell["Four-Derivative Corrections to the Three-Charge BMPV Black Hole", 
+      "Title", ExpressionUUID -> "e8ce9e06-1b88-4c70-aa4d-66f8399f8b58"], 
+     Cell["Version-3 human notation guide. The archived equation and source Input cells are unchanged; the independent convention guard added below does not modify them. In the compact solution and verifier notebooks: x=r^2; q1,q2,q3 \
+are the harmonic parameters mu1,mu2,mu3, not normalized conserved charges; \
+jrot is the rotation parameter j; U1,U2,U3 are the electric corrections delta \
+u_I; B1,B2,B3 are the gauge-covariant fibre corrections; Om is delta omega; \
+Ft, Gr, and Sq are the temporal warp, radial warp, and squashing corrections; \
+P and S are delta p and delta s, where X1=exp(2p/3-s), X2=exp(2p/3+s), and \
+X3=exp(-4p/3). Physical quantities are Q_I=Pi mu_I/(4 G5) and J1=J2=Pi j/(4 \
+G5). See the report section 'Human-readable notation and result at a glance' \
+for the full dictionary.", "Text"], Cell["Package provenance. This is the \
+root construction notebook for the O(j) verification chain. Optional \
+project-path and cache-writing cells were removed; every definition needed by \
+the derivation is contained here. No external file is read when it is \
+evaluated.", "Text", ExpressionUUID -> 
+       "a234a4df-2b5e-46dc-825e-697c7cba9c4a"], 
+     Cell[CellGroupData[{Cell["Ungauged five-dimensional STU model in the \
+Riemann field-redefinition frame", "Subtitle", ExpressionUUID -> 
+          "09140e0b-066c-4d11-bb5e-be6cbccfb8f6"], Cell["Purpose. This \
+notebook combines the rotating BMPV ansatz with the complete \
+Riemann-containing standard-Weyl STU invariant. It keeps the three gauge \
+potentials general until the two-derivative BMPV background is imposed. The \
+calculation is organized as a first-order problem: the two-derivative \
+linearized operator acts on unknown corrections, while the four-derivative \
+invariant supplies a fixed source evaluated on the zeroth-order BMPV \
+background.", "Text", ExpressionUUID -> 
+          "6ad7bcb4-4963-4cbe-937b-3727dc7043ba"], Cell["Conventions. \
+Coordinates are {t,r,theta,phi,psi}, eta = d psi + cos(theta) d phi, and the \
+metric signature is mostly plus. The coupling vector lam = {lam1,lam2,lam3} \
+labels the three standard-Weyl STU gravity invariants. This is an ungauged \
+calculation: the AdS gauge coupling is set to zero from the beginning.", 
+         "Text", ExpressionUUID -> "687d7cdf-0cae-4055-9b11-02f03a5dbd1f"], 
+        Cell["Levi--Civita and chart orientation. In the oriented orthonormal frame, the flat-index symbol has epsilonLower[0,1,2,3,4]=+1 and epsilonUpper[0,1,2,3,4]=-1. The curved tensor is obtained with five vielbeins and includes their determinant. The BMPV base orientation is vol4=-(r^3/8) dr wedge sigma1 wedge sigma2 wedge sigma3, so the coordinate order (t,r,theta,phi,psi) reverses the physical orientation. Hence the curved components are epsilonLower[trthetaphipsi]=-Sqrt[-g] and epsilonUpper[trthetaphipsi]=+1/Sqrt[-g]. The historical epsSymbol=Normal[LeviCivitaTensor[5]] is the positive alternating coordinate density epsilonTilde=Sqrt[-g] epsilonUpper, exactly as required by the component action. No gauge-potential sign is reversed.", "Text"],
+        Cell[BoxData["alternatingCoordinateDensity=Normal[LeviCivitaTensor[5]]; frameEpsilonLowerOrdered=+1; frameEpsilonUpperOrdered=-1; coordinateOrientationSign=-1; coordinateEpsilonLowerSign=-1; coordinateEpsilonUpperSign=+1; actionArrayOrdered=alternatingCoordinateDensity[[1,2,3,4,5]]; leviCivitaConventionPass=TrueQ[{frameEpsilonLowerOrdered,frameEpsilonUpperOrdered,coordinateOrientationSign,coordinateEpsilonLowerSign,coordinateEpsilonUpperSign,actionArrayOrdered}=={1,-1,-1,-1,1,1}]; Print[<|\"FlatSymbolLower01234\"->frameEpsilonLowerOrdered,\"FlatSymbolUpper01234\"->frameEpsilonUpperOrdered,\"CurvedCoordinateLowerSign\"->coordinateEpsilonLowerSign,\"CurvedCoordinateUpperSign\"->coordinateEpsilonUpperSign,\"AlternatingDensity\"->actionArrayOrdered,\"Pass\"->leviCivitaConventionPass|>];"], "Input"],
+        Cell[CellGroupData[{Cell["1. Kernel setup and project paths", 
+            "Section", ExpressionUUID -> 
+             "ad8781b4-df7a-426b-a1a7-bb61fa6dda8d"], 
+           Cell[BoxData[RowBox[{RowBox[{"ClearAll", "[", "\"Global`*\"", 
+                 "]"}], ";", RowBox[{"$RecursionLimit", "=", "100000"}], ";", 
+               RowBox[{"$MaxExtraPrecision", "=", "10000"}], ";", RowBox[
+                {"dim", "=", "5"}], ";", RowBox[{"coords", "=", 
+                 RowBox[{"{", RowBox[{"t", ",", "r", ",", "theta", ",", 
+                     "phi", ",", "psi"}], "}"}]}], ";", RowBox[{"indexRange", 
+                 "=", RowBox[{"Range", "[", "dim", "]"}]}], ";"}]], "Input", 
+            CellLabel -> "In[27]:=", ExpressionUUID -> 
+             "320dfca3-6d10-4ec4-b21e-840949a6083e"]}, Open]], 
+        Cell[CellGroupData[
+          {Cell["2. General rotating cohomogeneity-one ansatz", "Section", 
+            ExpressionUUID -> "a906ec1c-ae37-474b-ab7c-96aa0dc36bc4"], 
+           Cell["The Hopf-fibre components vI(r) are independent of the \
+electric potentials uI(r). This is more general than imposing A^I = uI (dt + \
+omega eta) before variation and prevents the ansatz from deleting possible \
+four-derivative gauge corrections.", "Text", ExpressionUUID -> 
+             "b413042f-d341-44a7-a941-eae601449089"], 
+           Cell[BoxData[RowBox[{RowBox[{"dtCov", "=", RowBox[{"{", 
+                   RowBox[{"1", ",", "0", ",", "0", ",", "0", ",", "0"}], 
+                   "}"}]}], ";", RowBox[{"drCov", "=", RowBox[{"{", 
+                   RowBox[{"0", ",", "1", ",", "0", ",", "0", ",", "0"}], 
+                   "}"}]}], ";", RowBox[{"dThetaCov", "=", RowBox[
+                  {"{", RowBox[{"0", ",", "0", ",", "1", ",", "0", ",", 
+                     "0"}], "}"}]}], ";", RowBox[{"dPhiCov", "=", 
+                 RowBox[{"{", RowBox[{"0", ",", "0", ",", "0", ",", "1", ",", 
+                     "0"}], "}"}]}], ";", RowBox[{"etaCov", "=", 
+                 RowBox[{"{", RowBox[{"0", ",", "0", ",", "0", ",", 
+                     RowBox[{"Cos", "[", "theta", "]"}], ",", "1"}], "}"}]}], 
+               ";", RowBox[{"ThetaCov", "=", RowBox[{"dtCov", "+", 
+                   RowBox[{RowBox[{"omega", "[", "r", "]"}], " ", 
+                     "etaCov"}]}]}], ";", RowBox[{"gdd", "=", RowBox[
+                  {"Simplify", "[", RowBox[{RowBox[{RowBox[{"-", RowBox[
+                          {"Exp", "[", RowBox[{"2", " ", RowBox[{"f", "[", 
+                          "r", "]"}]}], "]"}]}], " ", RowBox[{"Outer", "[", 
+                         RowBox[{"Times", ",", "ThetaCov", ",", "ThetaCov"}], 
+                         "]"}]}], "+", RowBox[{RowBox[{"Exp", "[", RowBox[
+                          {"2", " ", RowBox[{"gr", "[", "r", "]"}]}], "]"}], 
+                       " ", RowBox[{"Outer", "[", RowBox[{"Times", ",", 
+                          "drCov", ",", "drCov"}], "]"}]}], "+", RowBox[
+                      {FractionBox["1", "4"], " ", RowBox[{"Exp", "[", 
+                         RowBox[{"2", " ", RowBox[{"hr", "[", "r", "]"}]}], 
+                         "]"}], " ", SuperscriptBox["r", "2"], " ", RowBox[
+                        {"(", RowBox[{RowBox[{"Outer", "[", RowBox[{"Times", 
+                          ",", "dThetaCov", ",", "dThetaCov"}], "]"}], "+", 
+                          RowBox[{SuperscriptBox[RowBox[{"Sin", "[", "theta", 
+                          "]"}], "2"], " ", RowBox[{"Outer", "[", RowBox[
+                          {"Times", ",", "dPhiCov", ",", "dPhiCov"}], 
+                          "]"}]}], "+", RowBox[{RowBox[{"Exp", "[", RowBox[
+                          {"2", " ", RowBox[{"squ", "[", "r", "]"}]}], "]"}], 
+                          " ", RowBox[{"Outer", "[", RowBox[{"Times", ",", 
+                          "etaCov", ",", "etaCov"}], "]"}]}]}], ")"}]}]}], 
+                   "]"}]}], ";", RowBox[{"guu", "=", RowBox[{"Simplify", "[", 
+                   TemplateBox[{"gdd"}, "Inverse"], "]"}]}], ";", RowBox[
+                {"sdetg", "=", RowBox[{"Simplify", "[", RowBox[
+                    {"PowerExpand", "[", SqrtBox[RowBox[{"-", RowBox[{"Det", 
+                          "[", "gdd", "]"}]}]], "]"}], "]"}]}], ";"}]], 
+            "Input", InitializationCell -> False, CellLabel -> "In[28]:=", 
+            ExpressionUUID -> "116932aa-6544-4e1a-841c-5818160817e9"], 
+           Cell[CellGroupData[{Cell[BoxData[RowBox[{RowBox[
+                   {"metricFunctions", "=", RowBox[{"{", RowBox[{"f", ",", 
+                        "gr", ",", "hr", ",", "squ", ",", "omega"}], "}"}]}], 
+                  ";", TagBox["gdd", Function[BoxForm`e$, MatrixForm[
+                     BoxForm`e$]]]}]], "Input", InitializationCell -> False, 
+               CellLabel -> "In[29]:=", ExpressionUUID -> 
+                "1596c683-11ec-430f-88af-2f01e3c5be5a"], Cell[BoxData[
+                RowBox[{"{", RowBox[{RowBox[{"{", RowBox[{RowBox[{"-", 
+                          SuperscriptBox["\[ExponentialE]", RowBox[{"2", " ", 
+                          RowBox[{"f", "[", "r", "]"}]}]]}], ",", "0", ",", 
+                        "0", ",", RowBox[{RowBox[{"-", SuperscriptBox[
+                          "\[ExponentialE]", RowBox[{"2", " ", RowBox[{"f", 
+                          "[", "r", "]"}]}]]}], " ", RowBox[{"Cos", "[", 
+                          "theta", "]"}], " ", RowBox[{"omega", "[", "r", 
+                          "]"}]}], ",", RowBox[{RowBox[{"-", SuperscriptBox[
+                          "\[ExponentialE]", RowBox[{"2", " ", RowBox[{"f", 
+                          "[", "r", "]"}]}]]}], " ", RowBox[{"omega", "[", 
+                          "r", "]"}]}]}], "}"}], ",", RowBox[{"{", RowBox[
+                       {"0", ",", SuperscriptBox["\[ExponentialE]", RowBox[
+                          {"2", " ", RowBox[{"gr", "[", "r", "]"}]}]], ",", 
+                        "0", ",", "0", ",", "0"}], "}"}], ",", RowBox[
+                     {"{", RowBox[{"0", ",", "0", ",", RowBox[{FractionBox[
+                          "1", "4"], " ", SuperscriptBox["\[ExponentialE]", 
+                          RowBox[{"2", " ", RowBox[{"hr", "[", "r", "]"}]}]], 
+                          " ", SuperscriptBox["r", "2"]}], ",", "0", ",", 
+                        "0"}], "}"}], ",", RowBox[{"{", RowBox[{RowBox[
+                         {RowBox[{"-", SuperscriptBox["\[ExponentialE]", 
+                          RowBox[{"2", " ", RowBox[{"f", "[", "r", 
+                          "]"}]}]]}], " ", RowBox[{"Cos", "[", "theta", 
+                          "]"}], " ", RowBox[{"omega", "[", "r", "]"}]}], 
+                        ",", "0", ",", "0", ",", RowBox[{RowBox[{RowBox[
+                          {"-", SuperscriptBox["\[ExponentialE]", RowBox[
+                          {"2", " ", RowBox[{"f", "[", "r", "]"}]}]]}], " ", 
+                          SuperscriptBox[RowBox[{"Cos", "[", "theta", "]"}], 
+                          "2"], " ", SuperscriptBox[RowBox[{"omega", "[", 
+                          "r", "]"}], "2"]}], "+", RowBox[{FractionBox["1", 
+                          "4"], " ", SuperscriptBox["\[ExponentialE]", 
+                          RowBox[{"2", " ", RowBox[{"hr", "[", "r", "]"}]}]], 
+                          " ", SuperscriptBox["r", "2"], " ", RowBox[{"(", 
+                          RowBox[{RowBox[{SuperscriptBox["\[ExponentialE]", 
+                          RowBox[{"2", " ", RowBox[{"squ", "[", "r", 
+                          "]"}]}]], " ", SuperscriptBox[RowBox[{"Cos", "[", 
+                          "theta", "]"}], "2"]}], "+", SuperscriptBox[RowBox[
+                          {"Sin", "[", "theta", "]"}], "2"]}], ")"}]}]}], 
+                        ",", RowBox[{FractionBox["1", "4"], " ", RowBox[
+                          {"Cos", "[", "theta", "]"}], " ", RowBox[{"(", 
+                          RowBox[{RowBox[{SuperscriptBox["\[ExponentialE]", 
+                          RowBox[{"2", " ", RowBox[{"(", RowBox[{RowBox[
+                          {"hr", "[", "r", "]"}], "+", RowBox[{"squ", "[", 
+                          "r", "]"}]}], ")"}]}]], " ", SuperscriptBox["r", 
+                          "2"]}], "-", RowBox[{"4", " ", SuperscriptBox[
+                          "\[ExponentialE]", RowBox[{"2", " ", RowBox[{"f", 
+                          "[", "r", "]"}]}]], " ", SuperscriptBox[RowBox[
+                          {"omega", "[", "r", "]"}], "2"]}]}], ")"}]}]}], 
+                      "}"}], ",", RowBox[{"{", RowBox[{RowBox[{RowBox[
+                          {"-", SuperscriptBox["\[ExponentialE]", RowBox[
+                          {"2", " ", RowBox[{"f", "[", "r", "]"}]}]]}], " ", 
+                          RowBox[{"omega", "[", "r", "]"}]}], ",", "0", ",", 
+                        "0", ",", RowBox[{FractionBox["1", "4"], " ", 
+                          RowBox[{"Cos", "[", "theta", "]"}], " ", RowBox[
+                          {"(", RowBox[{RowBox[{SuperscriptBox[
+                          "\[ExponentialE]", RowBox[{"2", " ", RowBox[{"(", 
+                          RowBox[{RowBox[{"hr", "[", "r", "]"}], "+", RowBox[
+                          {"squ", "[", "r", "]"}]}], ")"}]}]], " ", 
+                          SuperscriptBox["r", "2"]}], "-", RowBox[{"4", " ", 
+                          SuperscriptBox["\[ExponentialE]", RowBox[{"2", " ", 
+                          RowBox[{"f", "[", "r", "]"}]}]], " ", 
+                          SuperscriptBox[RowBox[{"omega", "[", "r", "]"}], 
+                          "2"]}]}], ")"}]}], ",", RowBox[{RowBox[{FractionBox[
+                          "1", "4"], " ", SuperscriptBox["\[ExponentialE]", 
+                          RowBox[{"2", " ", RowBox[{"(", RowBox[{RowBox[
+                          {"hr", "[", "r", "]"}], "+", RowBox[{"squ", "[", 
+                          "r", "]"}]}], ")"}]}]], " ", SuperscriptBox["r", 
+                          "2"]}], "-", RowBox[{SuperscriptBox[
+                          "\[ExponentialE]", RowBox[{"2", " ", RowBox[{"f", 
+                          "[", "r", "]"}]}]], " ", SuperscriptBox[RowBox[
+                          {"omega", "[", "r", "]"}], "2"]}]}]}], "}"}]}], 
+                  "}"}]], "Output", CellChangeTimes -> 
+                {3.993268099675424*^9}, CellLabel -> "Out[29]=", 
+               ExpressionUUID -> "5bb6054a-1268-422f-8409-7eeb992537cb"]}, 
+             Open]]}, Open]], Cell[CellGroupData[
+          {Cell["3. Gauge fields, scalars, and the BPS background", 
+            "Section", ExpressionUUID -> 
+             "1e609141-4ee8-4df6-88a7-370b8f16bc30"], 
+           Cell[BoxData[RowBox[{RowBox[{"gaugeElectric", "=", RowBox[
+                  {"{", RowBox[{"u1", ",", "u2", ",", "u3"}], "}"}]}], ";", 
+               RowBox[{"gaugeFibre", "=", RowBox[{"{", RowBox[{"v1", ",", 
+                     "v2", ",", "v3"}], "}"}]}], ";", RowBox[{"Avec", "=", 
+                 RowBox[{"Table", "[", RowBox[{RowBox[{RowBox[{RowBox[
+                          {RowBox[{"gaugeElectric", "\[LeftDoubleBracket]", 
+                          "i", "\[RightDoubleBracket]"}], "[", "r", "]"}], 
+                         " ", "dtCov"}], "+", RowBox[{RowBox[{RowBox[
+                          {"gaugeFibre", "\[LeftDoubleBracket]", "i", 
+                          "\[RightDoubleBracket]"}], "[", "r", "]"}], " ", 
+                         "etaCov"}]}], ",", RowBox[{"{", RowBox[{"i", ",", 
+                         "3"}], "}"}]}], "]"}]}], ";", RowBox[{"Fdd", "=", 
+                 RowBox[{"Table", "[", RowBox[{RowBox[{"Table", "[", 
+                       RowBox[{RowBox[{RowBox[{SubscriptBox["\[PartialD]", 
+                          RowBox[{"coords", "\[LeftDoubleBracket]", "mu", 
+                          "\[RightDoubleBracket]"}]], RowBox[{"Avec", 
+                          "\[LeftDoubleBracket]", RowBox[{"i", ",", "nu"}], 
+                          "\[RightDoubleBracket]"}]}], "-", RowBox[
+                          {SubscriptBox["\[PartialD]", RowBox[{"coords", 
+                          "\[LeftDoubleBracket]", "nu", 
+                          "\[RightDoubleBracket]"}]], RowBox[{"Avec", 
+                          "\[LeftDoubleBracket]", RowBox[{"i", ",", "mu"}], 
+                          "\[RightDoubleBracket]"}]}]}], ",", RowBox[{"{", 
+                          RowBox[{"mu", ",", "dim"}], "}"}], ",", RowBox[
+                          {"{", RowBox[{"nu", ",", "dim"}], "}"}]}], "]"}], 
+                     ",", RowBox[{"{", RowBox[{"i", ",", "3"}], "}"}]}], 
+                   "]"}]}], ";", RowBox[{"Xup", "=", RowBox[{"{", 
+                   RowBox[{RowBox[{"Exp", "[", RowBox[{FractionBox[RowBox[
+                          {"2", " ", RowBox[{"p", "[", "r", "]"}]}], "3"], 
+                         "-", RowBox[{"s", "[", "r", "]"}]}], "]"}], ",", 
+                     RowBox[{"Exp", "[", RowBox[{FractionBox[RowBox[{"2", 
+                          " ", RowBox[{"p", "[", "r", "]"}]}], "3"], "+", 
+                         RowBox[{"s", "[", "r", "]"}]}], "]"}], ",", 
+                     RowBox[{"Exp", "[", RowBox[{"-", FractionBox[RowBox[
+                          {"4", " ", RowBox[{"p", "[", "r", "]"}]}], "3"]}], 
+                       "]"}]}], "}"}]}], ";", RowBox[{"Xdown", "=", 
+                 RowBox[{"Table", "[", RowBox[{FractionBox["1", RowBox[
+                       {"3", " ", RowBox[{"Xup", "\[LeftDoubleBracket]", "i", 
+                          "\[RightDoubleBracket]"}]}]], ",", RowBox[
+                      {"{", RowBox[{"i", ",", "3"}], "}"}]}], "]"}]}], ";", 
+               RowBox[{"aMetric", "=", RowBox[{"DiagonalMatrix", "[", 
+                   RowBox[{"Table", "[", RowBox[{FractionBox["1", RowBox[
+                         {"3", " ", SuperscriptBox[RowBox[{"Xup", 
+                          "\[LeftDoubleBracket]", "i", 
+                          "\[RightDoubleBracket]"}], "2"]}]], ",", RowBox[
+                        {"{", RowBox[{"i", ",", "3"}], "}"}]}], "]"}], 
+                   "]"}]}], ";", RowBox[{"aInverse", "=", RowBox[{"Simplify", 
+                   "[", TemplateBox[{"aMetric"}, "Inverse"], "]"}]}], ";", 
+               RowBox[{"dXcov", "=", RowBox[{"Table", "[", RowBox[
+                    {RowBox[{"Table", "[", RowBox[{RowBox[{SubscriptBox[
+                          "\[PartialD]", RowBox[{"coords", 
+                          "\[LeftDoubleBracket]", "mu", 
+                          "\[RightDoubleBracket]"}]], RowBox[{"Xup", 
+                          "\[LeftDoubleBracket]", "i", 
+                          "\[RightDoubleBracket]"}]}], ",", RowBox[{"{", 
+                          RowBox[{"mu", ",", "dim"}], "}"}]}], "]"}], ",", 
+                     RowBox[{"{", RowBox[{"i", ",", "3"}], "}"}]}], "]"}]}], 
+               ";", RowBox[{"dXcon", "=", RowBox[{"Table", "[", RowBox[
+                    {RowBox[{"Simplify", "[", RowBox[{"guu", ".", RowBox[
+                          {"dXcov", "\[LeftDoubleBracket]", "i", 
+                          "\[RightDoubleBracket]"}]}], "]"}], ",", RowBox[
+                      {"{", RowBox[{"i", ",", "3"}], "}"}]}], "]"}]}], ";", 
+               RowBox[{"Fud", "=", RowBox[{"Table", "[", RowBox[
+                    {RowBox[{"Simplify", "[", RowBox[{"guu", ".", RowBox[
+                          {"Fdd", "\[LeftDoubleBracket]", "i", 
+                          "\[RightDoubleBracket]"}]}], "]"}], ",", RowBox[
+                      {"{", RowBox[{"i", ",", "3"}], "}"}]}], "]"}]}], ";", 
+               RowBox[{"Fdu", "=", RowBox[{"Table", "[", RowBox[
+                    {RowBox[{"Simplify", "[", RowBox[{RowBox[{"Fdd", 
+                          "\[LeftDoubleBracket]", "i", 
+                          "\[RightDoubleBracket]"}], ".", "guu"}], "]"}], 
+                     ",", RowBox[{"{", RowBox[{"i", ",", "3"}], "}"}]}], 
+                   "]"}]}], ";", RowBox[{"Fuu", "=", RowBox[{"Table", "[", 
+                   RowBox[{RowBox[{"Simplify", "[", RowBox[{"guu", ".", 
+                         RowBox[{"Fdd", "\[LeftDoubleBracket]", "i", 
+                          "\[RightDoubleBracket]"}], ".", "guu"}], "]"}], 
+                     ",", RowBox[{"{", RowBox[{"i", ",", "3"}], "}"}]}], 
+                   "]"}]}], ";", RowBox[{RowBox[{"Fdot", "[", RowBox[
+                    {"i_", ",", "j_"}], "]"}], ":=", RowBox[{"Simplify", "[", 
+                   RowBox[{"Total", "[", RowBox[{"Flatten", "[", RowBox[
+                        {RowBox[{"Fdd", "\[LeftDoubleBracket]", "i", 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"Fuu", 
+                          "\[LeftDoubleBracket]", "j", 
+                          "\[RightDoubleBracket]"}]}], "]"}], "]"}], "]"}]}], 
+               ";", RowBox[{RowBox[{"dXdot", "[", RowBox[{"i_", ",", "j_"}], 
+                   "]"}], ":=", RowBox[{"Simplify", "[", RowBox[
+                    {RowBox[{"dXcov", "\[LeftDoubleBracket]", "i", 
+                       "\[RightDoubleBracket]"}], ".", RowBox[{"dXcon", 
+                       "\[LeftDoubleBracket]", "j", 
+                       "\[RightDoubleBracket]"}]}], "]"}]}], ";"}]], "Input", 
+            InitializationCell -> False, CellLabel -> "In[30]:=", 
+            ExpressionUUID -> "30ab063c-2733-407a-bbe6-b00f16189381"], 
+           Cell[BoxData[RowBox[{RowBox[{RowBox[{"H1", "[", "x_", "]"}], ":=", 
+                 RowBox[{"1", "+", FractionBox["q1", SuperscriptBox["x", 
+                     "2"]]}]}], ";", RowBox[{RowBox[{"H2", "[", "x_", "]"}], 
+                 ":=", RowBox[{"1", "+", FractionBox["q2", SuperscriptBox[
+                     "x", "2"]]}]}], ";", RowBox[{RowBox[{"H3", "[", "x_", 
+                   "]"}], ":=", RowBox[{"1", "+", FractionBox["q3", 
+                    SuperscriptBox["x", "2"]]}]}], ";", RowBox[
+                {RowBox[{"Hprod", "[", "x_", "]"}], ":=", RowBox[
+                  {RowBox[{"H1", "[", "x", "]"}], " ", RowBox[{"H2", "[", 
+                     "x", "]"}], " ", RowBox[{"H3", "[", "x", "]"}]}]}], ";", 
+               RowBox[{RowBox[{"omega0", "[", "x_", "]"}], ":=", FractionBox[
+                  "jrot", RowBox[{"2", " ", SuperscriptBox["x", "2"]}]]}], 
+               ";", RowBox[{RowBox[{"f0", "[", "x_", "]"}], ":=", 
+                 RowBox[{RowBox[{"-", FractionBox["1", "3"]}], " ", 
+                   RowBox[{"Log", "[", RowBox[{"Hprod", "[", "x", "]"}], 
+                     "]"}]}]}], ";", RowBox[{RowBox[{"gr0", "[", "x_", "]"}], 
+                 ":=", RowBox[{FractionBox["1", "6"], " ", RowBox[{"Log", 
+                     "[", RowBox[{"Hprod", "[", "x", "]"}], "]"}]}]}], ";", 
+               RowBox[{RowBox[{"hr0", "[", "x_", "]"}], ":=", RowBox[
+                  {FractionBox["1", "6"], " ", RowBox[{"Log", "[", RowBox[
+                      {"Hprod", "[", "x", "]"}], "]"}]}]}], ";", RowBox[
+                {RowBox[{"squ0", "[", "x_", "]"}], ":=", "0"}], ";", RowBox[
+                {RowBox[{"p0", "[", "x_", "]"}], ":=", RowBox[
+                  {RowBox[{RowBox[{"-", FractionBox["1", "4"]}], " ", 
+                     RowBox[{"Log", "[", RowBox[{"H1", "[", "x", "]"}], 
+                       "]"}]}], "-", RowBox[{FractionBox["1", "4"], " ", 
+                     RowBox[{"Log", "[", RowBox[{"H2", "[", "x", "]"}], 
+                       "]"}]}], "+", RowBox[{FractionBox["1", "2"], " ", 
+                     RowBox[{"Log", "[", RowBox[{"H3", "[", "x", "]"}], 
+                       "]"}]}]}]}], ";", RowBox[{RowBox[{"s0", "[", "x_", 
+                   "]"}], ":=", RowBox[{RowBox[{FractionBox["1", "2"], " ", 
+                     RowBox[{"Log", "[", RowBox[{"H1", "[", "x", "]"}], 
+                       "]"}]}], "-", RowBox[{FractionBox["1", "2"], " ", 
+                     RowBox[{"Log", "[", RowBox[{"H2", "[", "x", "]"}], 
+                       "]"}]}]}]}], ";", RowBox[{RowBox[{"u10", "[", "x_", 
+                   "]"}], ":=", FractionBox["1", RowBox[{"H1", "[", "x", 
+                    "]"}]]}], ";", RowBox[{RowBox[{"u20", "[", "x_", "]"}], 
+                 ":=", FractionBox["1", RowBox[{"H2", "[", "x", "]"}]]}], 
+               ";", RowBox[{RowBox[{"u30", "[", "x_", "]"}], ":=", 
+                 FractionBox["1", RowBox[{"H3", "[", "x", "]"}]]}], ";", 
+               RowBox[{RowBox[{"v10", "[", "x_", "]"}], ":=", FractionBox[
+                  RowBox[{"omega0", "[", "x", "]"}], RowBox[{"H1", "[", "x", 
+                    "]"}]]}], ";", RowBox[{RowBox[{"v20", "[", "x_", "]"}], 
+                 ":=", FractionBox[RowBox[{"omega0", "[", "x", "]"}], 
+                  RowBox[{"H2", "[", "x", "]"}]]}], ";", RowBox[
+                {RowBox[{"v30", "[", "x_", "]"}], ":=", FractionBox[
+                  RowBox[{"omega0", "[", "x", "]"}], RowBox[{"H3", "[", "x", 
+                    "]"}]]}], ";", RowBox[{"backgroundFunctionRules", "=", 
+                 RowBox[{"{", RowBox[{RowBox[{"f", "\[Rule]", "f0"}], ",", 
+                     RowBox[{"gr", "\[Rule]", "gr0"}], ",", RowBox[{"hr", 
+                       "\[Rule]", "hr0"}], ",", RowBox[{"squ", "\[Rule]", 
+                       "squ0"}], ",", RowBox[{"omega", "\[Rule]", "omega0"}], 
+                     ",", RowBox[{"p", "\[Rule]", "p0"}], ",", RowBox[
+                      {"s", "\[Rule]", "s0"}], ",", RowBox[{"u1", "\[Rule]", 
+                       "u10"}], ",", RowBox[{"u2", "\[Rule]", "u20"}], ",", 
+                     RowBox[{"u3", "\[Rule]", "u30"}], ",", RowBox[{"v1", 
+                       "\[Rule]", "v10"}], ",", RowBox[{"v2", "\[Rule]", 
+                       "v20"}], ",", RowBox[{"v3", "\[Rule]", "v30"}]}], 
+                   "}"}]}], ";"}]], "Input", InitializationCell -> False, 
+            CellLabel -> "In[31]:=", ExpressionUUID -> 
+             "167bfb8b-7a26-47f9-b60f-1e433e39f61b"], 
+           Cell[CellGroupData[
+             {Cell["3.1 Curvature-free vector-invariant regression", 
+               "Subsection", ExpressionUUID -> 
+                "86f0ff04-2f4d-4219-8664-214a1b34a995"], Cell["This is a \
+diagnostic, not the gravity correction. On the BPS background the two \
+independent STU vector invariants must vanish. The rotation-dependent dTheta \
+contribution cancels in the differences of dressed field strengths.", "Text", 
+               ExpressionUUID -> "e96eb4e7-5dfe-4e86-b3dc-a42103b07f6d"], 
+              Cell[BoxData[RowBox[{RowBox[{"tFdd", "=", RowBox[{"Table", "[", 
+                      RowBox[{RowBox[{"Simplify", "[", FractionBox[RowBox[
+                          {"Fdd", "\[LeftDoubleBracket]", "i", 
+                          "\[RightDoubleBracket]"}], RowBox[{"Xup", 
+                          "\[LeftDoubleBracket]", "i", 
+                          "\[RightDoubleBracket]"}]], "]"}], ",", RowBox[
+                         {"{", RowBox[{"i", ",", "3"}], "}"}]}], "]"}]}], 
+                  ";", RowBox[{RowBox[{"vectorInvariantPair", "[", RowBox[
+                       {"i_", ",", "j_", ",", "prefactor_"}], "]"}], ":=", 
+                    RowBox[{"Module", "[", RowBox[{RowBox[{"{", RowBox[
+                          {"Vdd", ",", "Vud", ",", "Vsq", ",", "Vfour", ",", 
+                          "Pcov", ",", "Pcon", ",", "Psq", ",", "Vsqdd", ",", 
+                          "mixed"}], "}"}], ",", RowBox[{RowBox[{"Vdd", "=", 
+                          RowBox[{"Simplify", "[", RowBox[{RowBox[{"tFdd", 
+                          "\[LeftDoubleBracket]", "i", 
+                          "\[RightDoubleBracket]"}], "-", RowBox[{"tFdd", 
+                          "\[LeftDoubleBracket]", "j", 
+                          "\[RightDoubleBracket]"}]}], "]"}]}], ";", RowBox[
+                          {"Vud", "=", RowBox[{"Simplify", "[", RowBox[
+                          {"guu", ".", "Vdd"}], "]"}]}], ";", RowBox[{"Vsq", 
+                          "=", RowBox[{"Simplify", "[", RowBox[{"-", RowBox[
+                          {"Tr", "[", RowBox[{"Vud", ".", "Vud"}], "]"}]}], 
+                          "]"}]}], ";", RowBox[{"Vfour", "=", RowBox[
+                          {"Simplify", "[", RowBox[{"Tr", "[", RowBox[
+                          {"MatrixPower", "[", RowBox[{"Vud", ",", "4"}], 
+                          "]"}], "]"}], "]"}]}], ";", RowBox[{"Pcov", "=", 
+                          RowBox[{"Table", "[", RowBox[{RowBox[{SubscriptBox[
+                          "\[PartialD]", RowBox[{"coords", 
+                          "\[LeftDoubleBracket]", "mu", 
+                          "\[RightDoubleBracket]"}]], RowBox[{"Log", "[", 
+                          FractionBox[RowBox[{"Xup", "\[LeftDoubleBracket]", 
+                          "i", "\[RightDoubleBracket]"}], RowBox[{"Xup", 
+                          "\[LeftDoubleBracket]", "j", 
+                          "\[RightDoubleBracket]"}]], "]"}]}], ",", RowBox[
+                          {"{", RowBox[{"mu", ",", "dim"}], "}"}]}], "]"}]}], 
+                          ";", RowBox[{"Pcon", "=", RowBox[{"Simplify", "[", 
+                          RowBox[{"guu", ".", "Pcov"}], "]"}]}], ";", 
+                          RowBox[{"Psq", "=", RowBox[{"Simplify", "[", 
+                          RowBox[{"Pcov", ".", "Pcon"}], "]"}]}], ";", 
+                          RowBox[{"Vsqdd", "=", RowBox[{"Simplify", "[", 
+                          RowBox[{"-", RowBox[{"Vdd", ".", "guu", ".", 
+                          "Vdd"}]}], "]"}]}], ";", RowBox[{"mixed", "=", 
+                          RowBox[{"Simplify", "[", RowBox[{"Pcon", ".", 
+                          "Vsqdd", ".", "Pcon"}], "]"}]}], ";", RowBox[
+                          {"Simplify", "[", RowBox[{FractionBox["1", "24"], 
+                          " ", "prefactor", " ", RowBox[{"(", RowBox[
+                          {SuperscriptBox["Vsq", "2"], "-", RowBox[{"4", " ", 
+                          "Vfour"}], "+", RowBox[{"4", " ", "Vsq", " ", 
+                          "Psq"}], "-", RowBox[{"16", " ", "mixed"}], "-", 
+                          RowBox[{"4", " ", SuperscriptBox["Psq", "2"]}]}], 
+                          ")"}]}], "]"}]}]}], "]"}]}], ";", RowBox[
+                   {"lagVectorScalar", "=", RowBox[{"Simplify", "[", 
+                      RowBox[{RowBox[{"vectorInvariantPair", "[", RowBox[
+                          {"1", ",", "3", ",", RowBox[{"Xup", 
+                          "\[LeftDoubleBracket]", "3", 
+                          "\[RightDoubleBracket]"}]}], "]"}], "+", RowBox[
+                         {"vectorInvariantPair", "[", RowBox[{"2", ",", "3", 
+                          ",", RowBox[{"Xup", "\[LeftDoubleBracket]", "3", 
+                          "\[RightDoubleBracket]"}]}], "]"}]}], "]"}]}], 
+                  ";"}]], "Input", InitializationCell -> False, CellLabel -> 
+                "In[32]:=", ExpressionUUID -> 
+                "06491288-b543-420b-bc6f-72cae8804921"], Cell[CellGroupData[
+                {Cell["3.1.1 Fast algebraic regression", "Subsubsection", 
+                  ExpressionUUID -> "6dd5ad1c-9304-4f00-9c1d-3650d7d37347"], 
+                 Cell["This stage is always executed. It checks the BPS \
+algebraic cancellation without invoking the resource-heavy rotating tensor \
+simplification.", "Text", ExpressionUUID -> 
+                   "ea200ae9-4eb8-4880-8084-3c235aa75201"], Cell[
+                  CellGroupData[{Cell[BoxData[RowBox[{RowBox[
+                         {"vectorBPSAlgebraCheck", "=", RowBox[{"Expand", 
+                          "[", RowBox[{RowBox[{RowBox[{"(", RowBox[{RowBox[
+                          {"-", "2"}], " ", "z"}], ")"}], "^", "2"}], "-", 
+                          RowBox[{"4", " ", RowBox[{"(", RowBox[{"2", " ", 
+                          RowBox[{"z", "^", "2"}]}], ")"}]}], "+", RowBox[
+                          {"4", " ", RowBox[{"(", RowBox[{RowBox[{"-", "2"}], 
+                          " ", "z"}], ")"}], " ", "z"}], "-", RowBox[{"16", 
+                          " ", RowBox[{"(", RowBox[{"-", RowBox[{"z", "^", 
+                          "2"}]}], ")"}]}], "-", RowBox[{"4", " ", RowBox[
+                          {"z", "^", "2"}]}]}], "]"}]}], ";", " ", RowBox[
+                         {"vectorBPSAlgebraStatus", "=", RowBox[{"If", "[", 
+                          RowBox[{RowBox[{"TrueQ", "[", RowBox[
+                          {"vectorBPSAlgebraCheck", "===", "0"}], "]"}], ",", 
+                          "\"PASS\"", ",", "\"FAIL\""}], "]"}]}], ";", " ", 
+                        RowBox[{"<|", RowBox[{RowBox[{"\"Residual\"", "->", 
+                          "vectorBPSAlgebraCheck"}], ",", RowBox[
+                          {"\"Status\"", "->", "vectorBPSAlgebraStatus"}]}], 
+                          "|>"}]}]], "Input", CellLabel -> "In[33]:=", 
+                     ExpressionUUID -> 
+                      "110c75f2-2efe-4aaa-b84d-721a68e01d4e"], Cell[
+                     BoxData[RowBox[{"\[LeftAssociation]", RowBox[
+                         {RowBox[{"\"Residual\"", "\[Rule]", "0"}], ",", 
+                          RowBox[{"\"Status\"", "\[Rule]", "\"PASS\""}]}], 
+                        "\[RightAssociation]"}]], "Output", 
+                     CellChangeTimes -> {3.993268108578026*^9}, CellLabel -> 
+                      "Out[33]=", ExpressionUUID -> 
+                      "437e5994-8f97-48c6-8947-8f8b3cf83be0"]}, Open]]}, 
+                Open]], Cell[CellGroupData[{Cell[
+                  "3.1.2 Optional full rotating simplification", 
+                  "Subsubsection", ExpressionUUID -> 
+                   "7e04ba3b-b163-42d5-ac02-8a881fd38a29"], Cell["The full \
+rotating simplification is disabled by default because its runtime is machine \
+dependent. Set runResourceHeavyActionChecks=True and reevaluate this cell to \
+attempt it. A timeout is recorded as RESOURCE_BOUND, never as a passing \
+result.", "Text", ExpressionUUID -> "45fb4644-83ab-4f9b-8393-c3bfa8606729"], 
+                 Cell[CellGroupData[{Cell[BoxData[RowBox[{RowBox[{"If", "[", 
+                          RowBox[{RowBox[{"!", RowBox[{"ValueQ", "[", 
+                          "runResourceHeavyActionChecks", "]"}]}], ",", 
+                          RowBox[{"runResourceHeavyActionChecks", "=", 
+                          "False"}]}], "]"}], ";", " ", RowBox[
+                         {"fullRotatingVectorResult", "=", RowBox[{"If", "[", 
+                          RowBox[{RowBox[{"TrueQ", "[", 
+                          "runResourceHeavyActionChecks", "]"}], ",", RowBox[
+                          {"TimeConstrained", "[", RowBox[{RowBox[
+                          {"FullSimplify", "[", RowBox[{RowBox[
+                          {"PowerExpand", "[", RowBox[{"lagVectorScalar", 
+                          "/.", "backgroundFunctionRules"}], "]"}], ",", 
+                          RowBox[{"Assumptions", "->", RowBox[{"{", RowBox[
+                          {RowBox[{"r", ">", "0"}], ",", RowBox[{RowBox[
+                          {"H1", "[", "r", "]"}], ">", "0"}], ",", RowBox[
+                          {RowBox[{"H2", "[", "r", "]"}], ">", "0"}], ",", 
+                          RowBox[{RowBox[{"H3", "[", "r", "]"}], ">", 
+                          "0"}]}], "}"}]}]}], "]"}], ",", "120", ",", 
+                          "$Aborted"}], "]"}], ",", RowBox[{"Missing", "[", 
+                          RowBox[{"\"NotRun\"", ",", 
+                          "\"ResourceBoundByDefault\""}], "]"}]}], "]"}]}], 
+                        ";", " ", RowBox[{"fullRotatingVectorStatus", "=", 
+                          RowBox[{"Which", "[", RowBox[{RowBox[{"!", RowBox[
+                          {"TrueQ", "[", "runResourceHeavyActionChecks", 
+                          "]"}]}], ",", "\"SKIPPED/RESOURCE_BOUND\"", ",", 
+                          RowBox[{"fullRotatingVectorResult", "===", 
+                          "$Aborted"}], ",", "\"RESOURCE_BOUND\"", ",", 
+                          RowBox[{"TrueQ", "[", RowBox[{
+                          "fullRotatingVectorResult", "===", "0"}], "]"}], 
+                          ",", "\"PASS\"", ",", "True", ",", "\"FAIL\""}], 
+                          "]"}]}], ";", " ", RowBox[
+                         {"vectorInvariantStageRecord", "=", RowBox[{"<|", 
+                          RowBox[{RowBox[{"\"FastAlgebraicStatus\"", "->", 
+                          "vectorBPSAlgebraStatus"}], ",", RowBox[
+                          {"\"FullRotatingStatus\"", "->", 
+                          "fullRotatingVectorStatus"}], ",", RowBox[
+                          {"\"FullRotatingResult\"", "->", 
+                          "fullRotatingVectorResult"}]}], "|>"}]}], ";", " ", 
+                        "vectorInvariantStageRecord"}]], "Input", 
+                     CellLabel -> "In[34]:=", ExpressionUUID -> 
+                      "9447aa95-1602-4df3-9f9d-06d1896f9b80"], Cell[
+                     BoxData[RowBox[{"\[LeftAssociation]", RowBox[
+                         {RowBox[{"\"FastAlgebraicStatus\"", "\[Rule]", 
+                          "\"PASS\""}], ",", RowBox[
+                          {"\"FullRotatingStatus\"", "\[Rule]", 
+                          "\"SKIPPED/RESOURCE_BOUND\""}], ",", RowBox[
+                          {"\"FullRotatingResult\"", "\[Rule]", RowBox[
+                          {"Missing", "[", RowBox[{"\"NotRun\"", ",", 
+                          "\"ResourceBoundByDefault\""}], "]"}]}]}], 
+                        "\[RightAssociation]"}]], "Output", 
+                     CellChangeTimes -> {3.993268108609331*^9}, CellLabel -> 
+                      "Out[34]=", ExpressionUUID -> 
+                      "30aa4673-1c86-419b-8d44-3697c30fe91c"]}, Open]]}, 
+                Open]]}, Open]]}, Open]], Cell[CellGroupData[
+          {Cell["4. Curvature tensors", "Section", ExpressionUUID -> 
+             "b34a50bf-32a4-41e3-a020-c9a5bddead8d"], Cell["This section is \
+computationally expensive. Evaluate and cache it before constructing the \
+four-derivative source.", "Text", ExpressionUUID -> 
+             "bf5dac5b-e3e4-4d83-b2a7-9404d65b529a"], 
+           Cell[CellGroupData[{Cell[BoxData[RowBox[{RowBox[
+                   {"curvatureConstructionCode", "=", RowBox[{"HoldComplete", 
+                      "[", RowBox[{RowBox[{"GammaUdd", " ", "=", " ", 
+                          RowBox[{"Table", "[", RowBox[{RowBox[{"Simplify", 
+                          "[", RowBox[{RowBox[{"(", RowBox[{"1", "/", "2"}], 
+                          ")"}], "*", RowBox[{"Sum", "[", RowBox[{RowBox[
+                          {RowBox[{"guu", "[", RowBox[{"[", RowBox[{"mu", 
+                          ",", "aa"}], "]"}], "]"}], "*", RowBox[{"(", RowBox[
+                          {RowBox[{"D", "[", RowBox[{RowBox[{"gdd", "[", 
+                          RowBox[{"[", RowBox[{"aa", ",", "nu"}], "]"}], 
+                          "]"}], ",", " ", RowBox[{"coords", "[", RowBox[
+                          {"[", "rho", "]"}], "]"}]}], "]"}], " ", "+", " ", 
+                          RowBox[{"D", "[", RowBox[{RowBox[{"gdd", "[", 
+                          RowBox[{"[", RowBox[{"aa", ",", "rho"}], "]"}], 
+                          "]"}], ",", " ", RowBox[{"coords", "[", RowBox[
+                          {"[", "nu", "]"}], "]"}]}], "]"}], " ", "-", " ", 
+                          RowBox[{"D", "[", RowBox[{RowBox[{"gdd", "[", 
+                          RowBox[{"[", RowBox[{"nu", ",", "rho"}], "]"}], 
+                          "]"}], ",", " ", RowBox[{"coords", "[", RowBox[
+                          {"[", "aa", "]"}], "]"}]}], "]"}]}], ")"}]}], ",", 
+                          " ", RowBox[{"{", RowBox[{"aa", ",", " ", "dim"}], 
+                          "}"}]}], "]"}]}], "]"}], ",", " ", RowBox[{"{", 
+                          RowBox[{"mu", ",", " ", "dim"}], "}"}], ",", " ", 
+                          RowBox[{"{", RowBox[{"nu", ",", " ", "dim"}], 
+                          "}"}], ",", " ", RowBox[{"{", RowBox[{"rho", ",", 
+                          " ", "dim"}], "}"}]}], "]"}]}], ";", " ", RowBox[
+                         {"RiemUddd", " ", "=", " ", RowBox[{"Table", "[", 
+                          RowBox[{RowBox[{"Simplify", "[", RowBox[{RowBox[
+                          {"D", "[", RowBox[{RowBox[{"GammaUdd", "[", RowBox[
+                          {"[", RowBox[{"mu", ",", "nu", ",", "sig"}], "]"}], 
+                          "]"}], ",", " ", RowBox[{"coords", "[", RowBox[
+                          {"[", "rho", "]"}], "]"}]}], "]"}], " ", "-", " ", 
+                          RowBox[{"D", "[", RowBox[{RowBox[{"GammaUdd", "[", 
+                          RowBox[{"[", RowBox[{"mu", ",", "nu", ",", "rho"}], 
+                          "]"}], "]"}], ",", " ", RowBox[{"coords", "[", 
+                          RowBox[{"[", "sig", "]"}], "]"}]}], "]"}], " ", 
+                          "+", " ", RowBox[{"Sum", "[", RowBox[{RowBox[
+                          {RowBox[{RowBox[{"GammaUdd", "[", RowBox[{"[", 
+                          RowBox[{"mu", ",", "aa", ",", "rho"}], "]"}], 
+                          "]"}], "*", RowBox[{"GammaUdd", "[", RowBox[{"[", 
+                          RowBox[{"aa", ",", "nu", ",", "sig"}], "]"}], 
+                          "]"}]}], " ", "-", " ", RowBox[{RowBox[{"GammaUdd", 
+                          "[", RowBox[{"[", RowBox[{"mu", ",", "aa", ",", 
+                          "sig"}], "]"}], "]"}], "*", RowBox[{"GammaUdd", 
+                          "[", RowBox[{"[", RowBox[{"aa", ",", "nu", ",", 
+                          "rho"}], "]"}], "]"}]}]}], ",", " ", RowBox[{"{", 
+                          RowBox[{"aa", ",", " ", "dim"}], "}"}]}], "]"}]}], 
+                          "]"}], ",", " ", RowBox[{"{", RowBox[{"mu", ",", 
+                          " ", "dim"}], "}"}], ",", " ", RowBox[{"{", RowBox[
+                          {"nu", ",", " ", "dim"}], "}"}], ",", " ", RowBox[
+                          {"{", RowBox[{"rho", ",", " ", "dim"}], "}"}], ",", 
+                          " ", RowBox[{"{", RowBox[{"sig", ",", " ", "dim"}], 
+                          "}"}]}], "]"}]}], ";", " ", RowBox[{"RicciDD", " ", 
+                          "=", " ", RowBox[{"Table", "[", RowBox[{RowBox[
+                          {"Simplify", "[", RowBox[{"Sum", "[", RowBox[
+                          {RowBox[{"RiemUddd", "[", RowBox[{"[", RowBox[
+                          {"aa", ",", "mu", ",", "aa", ",", "nu"}], "]"}], 
+                          "]"}], ",", " ", RowBox[{"{", RowBox[{"aa", ",", 
+                          " ", "dim"}], "}"}]}], "]"}], "]"}], ",", " ", 
+                          RowBox[{"{", RowBox[{"mu", ",", " ", "dim"}], 
+                          "}"}], ",", " ", RowBox[{"{", RowBox[{"nu", ",", 
+                          " ", "dim"}], "}"}]}], "]"}]}], ";", " ", RowBox[
+                         {"Rscalar", " ", "=", " ", RowBox[{"Simplify", "[", 
+                          RowBox[{"Total", "[", RowBox[{"Flatten", "[", 
+                          RowBox[{"RicciDD", "*", RowBox[{"Transpose", "[", 
+                          "guu", "]"}]}], "]"}], "]"}], "]"}]}], ";", " ", 
+                        RowBox[{"RiemDDDD", " ", "=", " ", RowBox[{"Table", 
+                          "[", RowBox[{RowBox[{"Simplify", "[", RowBox[
+                          {"Sum", "[", RowBox[{RowBox[{RowBox[{"gdd", "[", 
+                          RowBox[{"[", RowBox[{"mu", ",", "aa"}], "]"}], 
+                          "]"}], "*", RowBox[{"RiemUddd", "[", RowBox[{"[", 
+                          RowBox[{"aa", ",", "nu", ",", "rho", ",", "sig"}], 
+                          "]"}], "]"}]}], ",", " ", RowBox[{"{", RowBox[
+                          {"aa", ",", " ", "dim"}], "}"}]}], "]"}], "]"}], 
+                          ",", " ", RowBox[{"{", RowBox[{"mu", ",", " ", 
+                          "dim"}], "}"}], ",", " ", RowBox[{"{", RowBox[
+                          {"nu", ",", " ", "dim"}], "}"}], ",", " ", RowBox[
+                          {"{", RowBox[{"rho", ",", " ", "dim"}], "}"}], ",", 
+                          " ", RowBox[{"{", RowBox[{"sig", ",", " ", "dim"}], 
+                          "}"}]}], "]"}]}], ";", " ", RowBox[{"pairMetricUU", 
+                          " ", "=", " ", RowBox[{"KroneckerProduct", "[", 
+                          RowBox[{"guu", ",", " ", "guu"}], "]"}]}], ";", 
+                        " ", RowBox[{"RiemPairDD", " ", "=", " ", RowBox[
+                          {"ArrayReshape", "[", RowBox[{"RiemDDDD", ",", " ", 
+                          RowBox[{"{", RowBox[{RowBox[{"dim", "^", "2"}], 
+                          ",", " ", RowBox[{"dim", "^", "2"}]}], "}"}]}], 
+                          "]"}]}], ";", " ", RowBox[{"RiemPairUU", " ", "=", 
+                          " ", RowBox[{"Simplify", "[", RowBox[
+                          {"pairMetricUU", " ", ".", " ", "RiemPairDD", " ", 
+                          ".", " ", "pairMetricUU"}], "]"}]}], ";", " ", 
+                        RowBox[{"Riemann2", " ", "=", " ", RowBox[
+                          {"Simplify", "[", RowBox[{"Total", "[", RowBox[
+                          {"Flatten", "[", RowBox[{"RiemPairDD", "*", 
+                          "RiemPairUU"}], "]"}], "]"}], "]"}]}], ";"}], " ", 
+                      "]"}]}], ";", " ", RowBox[
+                   {"curvatureConstructionResult", "=", RowBox[{"If", "[", 
+                      RowBox[{RowBox[{"TrueQ", "[", 
+                          "runResourceHeavyActionChecks", "]"}], ",", 
+                        RowBox[{"TimeConstrained", "[", RowBox[{RowBox[
+                          {"ReleaseHold", "[", "curvatureConstructionCode", 
+                          "]"}], ",", "900", ",", "$Aborted"}], "]"}], ",", 
+                        RowBox[{"Missing", "[", RowBox[{"\"NotRun\"", ",", 
+                          "\"ResourceBoundByDefault\""}], "]"}]}], "]"}]}], 
+                  ";", " ", RowBox[{"curvatureConstructionStatus", "=", 
+                    RowBox[{"Which", "[", RowBox[{RowBox[{"!", RowBox[
+                          {"TrueQ", "[", "runResourceHeavyActionChecks", 
+                          "]"}]}], ",", "\"SKIPPED/RESOURCE_BOUND\"", ",", 
+                        RowBox[{"curvatureConstructionResult", "===", 
+                          "$Aborted"}], ",", "\"RESOURCE_BOUND\"", ",", 
+                        RowBox[{"TrueQ", "[", RowBox[{RowBox[{RowBox[
+                          {"Dimensions", "[", "GammaUdd", "]"}], "==", 
+                          RowBox[{"{", RowBox[{"5", ",", "5", ",", "5"}], 
+                          "}"}]}], "&&", RowBox[{RowBox[{"Dimensions", "[", 
+                          "RiemUddd", "]"}], "==", RowBox[{"{", RowBox[{"5", 
+                          ",", "5", ",", "5", ",", "5"}], "}"}]}]}], "]"}], 
+                        ",", "\"PASS\"", ",", "True", ",", "\"FAIL\""}], 
+                      "]"}]}], ";", " ", RowBox[{"<|", RowBox[
+                     {RowBox[{"\"Stage\"", "->", "\"Curvature tensors\""}], 
+                      ",", RowBox[{"\"Status\"", "->", 
+                        "curvatureConstructionStatus"}]}], "|>"}]}]], 
+               "Input", CellLabel -> "In[35]:=", ExpressionUUID -> 
+                "8d97323a-6c10-4a76-8f1d-5ef2bd2c58d3"], Cell[BoxData[
+                RowBox[{"\[LeftAssociation]", RowBox[{RowBox[{"\"Stage\"", 
+                      "\[Rule]", "\"Curvature tensors\""}], ",", RowBox[
+                     {"\"Status\"", "\[Rule]", 
+                      "\"SKIPPED/RESOURCE_BOUND\""}]}], 
+                  "\[RightAssociation]"}]], "Output", CellChangeTimes -> 
+                {3.993268108624442*^9}, CellLabel -> "Out[35]=", 
+               ExpressionUUID -> "b6a522c1-5091-438f-8f22-de8d2b758653"]}, 
+             Open]]}, Open]], Cell[CellGroupData[
+          {Cell["5. Two-derivative STU reduced Lagrangian", "Section", 
+            ExpressionUUID -> "f64ab36b-83d1-41ae-83e2-a37f788641cf"], 
+           Cell[CellGroupData[{Cell[BoxData[RowBox[{RowBox[{"Cstu", "=", 
+                    RowBox[{"Table", "[", RowBox[{RowBox[{"If", "[", RowBox[
+                          {RowBox[{RowBox[{"Sort", "[", RowBox[{"{", RowBox[
+                          {"i", ",", "j", ",", "k"}], "}"}], "]"}], "===", 
+                          RowBox[{"{", RowBox[{"1", ",", "2", ",", "3"}], 
+                          "}"}]}], ",", RowBox[{"1", "/", "6"}], ",", "0"}], 
+                          "]"}], ",", RowBox[{"{", RowBox[{"i", ",", "3"}], 
+                          "}"}], ",", RowBox[{"{", RowBox[{"j", ",", "3"}], 
+                          "}"}], ",", RowBox[{"{", RowBox[{"k", ",", "3"}], 
+                          "}"}]}], "]"}]}], ";", " ", RowBox[{"epsSymbol", 
+                    "=", RowBox[{"Normal", "[", RowBox[{"LeviCivitaTensor", 
+                        "[", "dim", "]"}], "]"}]}], ";", " ", RowBox[
+                   {"twoDerivativeActionCode", "=", RowBox[{"HoldComplete", 
+                      "[", RowBox[{RowBox[{"Cstu", " ", "=", " ", RowBox[
+                          {"Table", "[", RowBox[{RowBox[{"If", "[", RowBox[
+                          {RowBox[{RowBox[{"Sort", "[", RowBox[{"{", RowBox[
+                          {"i", ",", " ", "j", ",", " ", "k"}], "}"}], "]"}], 
+                          " ", "===", " ", RowBox[{"{", RowBox[{"1", ",", 
+                          " ", "2", ",", " ", "3"}], "}"}]}], ",", " ", 
+                          RowBox[{"1", "/", "6"}], ",", " ", "0"}], "]"}], 
+                          ",", " ", RowBox[{"{", RowBox[{"i", ",", " ", 
+                          "3"}], "}"}], ",", " ", RowBox[{"{", RowBox[{"j", 
+                          ",", " ", "3"}], "}"}], ",", " ", RowBox[{"{", 
+                          RowBox[{"k", ",", " ", "3"}], "}"}]}], "]"}]}], 
+                        ";", " ", RowBox[{"epsSymbol", " ", "=", " ", 
+                          RowBox[{"Normal", "[", RowBox[{"LeviCivitaTensor", 
+                          "[", "dim", "]"}], "]"}]}], ";", " ", RowBox[
+                         {"lagCS2", " ", "=", " ", RowBox[{RowBox[{"(", 
+                          RowBox[{"1", "/", "4"}], ")"}], "*", RowBox[{"Sum", 
+                          "[", RowBox[{RowBox[{RowBox[{"Cstu", "[", RowBox[
+                          {"[", RowBox[{"i", ",", "jg", ",", "k"}], "]"}], 
+                          "]"}], "*", RowBox[{"epsSymbol", "[", RowBox[{"[", 
+                          RowBox[{"mu", ",", "nu", ",", "rho", ",", "sig", 
+                          ",", "al"}], "]"}], "]"}], "*", RowBox[{"Fdd", "[", 
+                          RowBox[{"[", RowBox[{"i", ",", "mu", ",", "nu"}], 
+                          "]"}], "]"}], "*", RowBox[{"Fdd", "[", RowBox[{"[", 
+                          RowBox[{"jg", ",", "rho", ",", "sig"}], "]"}], 
+                          "]"}], "*", RowBox[{"Avec", "[", RowBox[{"[", 
+                          RowBox[{"k", ",", "al"}], "]"}], "]"}]}], ",", " ", 
+                          RowBox[{"{", RowBox[{"i", ",", " ", "3"}], "}"}], 
+                          ",", " ", RowBox[{"{", RowBox[{"jg", ",", " ", 
+                          "3"}], "}"}], ",", " ", RowBox[{"{", RowBox[{"k", 
+                          ",", " ", "3"}], "}"}], ",", " ", RowBox[{"{", 
+                          RowBox[{"mu", ",", " ", "dim"}], "}"}], ",", " ", 
+                          RowBox[{"{", RowBox[{"nu", ",", " ", "dim"}], 
+                          "}"}], ",", " ", RowBox[{"{", RowBox[{"rho", ",", 
+                          " ", "dim"}], "}"}], ",", " ", RowBox[{"{", RowBox[
+                          {"sig", ",", " ", "dim"}], "}"}], ",", " ", RowBox[
+                          {"{", RowBox[{"al", ",", " ", "dim"}], "}"}]}], 
+                          "]"}]}]}], ";", " ", RowBox[{"lag2Density", " ", 
+                          "=", " ", RowBox[{"Simplify", "[", RowBox[
+                          {RowBox[{"sdetg", "*", RowBox[{"(", RowBox[
+                          {"Rscalar", " ", "-", " ", RowBox[{RowBox[{"(", 
+                          RowBox[{"3", "/", "2"}], ")"}], "*", RowBox[{"Sum", 
+                          "[", RowBox[{RowBox[{RowBox[{"aMetric", "[", RowBox[
+                          {"[", RowBox[{"i", ",", "jg"}], "]"}], "]"}], "*", 
+                          RowBox[{"dXdot", "[", RowBox[{"i", ",", " ", 
+                          "jg"}], "]"}]}], ",", " ", RowBox[{"{", RowBox[
+                          {"i", ",", " ", "3"}], "}"}], ",", " ", RowBox[
+                          {"{", RowBox[{"jg", ",", " ", "3"}], "}"}]}], 
+                          "]"}]}], " ", "-", " ", RowBox[{RowBox[{"(", RowBox[
+                          {"3", "/", "4"}], ")"}], "*", RowBox[{"Sum", "[", 
+                          RowBox[{RowBox[{RowBox[{"aMetric", "[", RowBox[
+                          {"[", RowBox[{"i", ",", "jg"}], "]"}], "]"}], "*", 
+                          RowBox[{"Fdot", "[", RowBox[{"i", ",", " ", "jg"}], 
+                          "]"}]}], ",", " ", RowBox[{"{", RowBox[{"i", ",", 
+                          " ", "3"}], "}"}], ",", " ", RowBox[{"{", RowBox[
+                          {"jg", ",", " ", "3"}], "}"}]}], "]"}]}]}], 
+                          ")"}]}], " ", "+", " ", "lagCS2"}], "]"}]}], ";"}], 
+                      " ", "]"}]}], ";", " ", RowBox[
+                   {"twoDerivativeActionResult", "=", RowBox[{"If", "[", 
+                      RowBox[{RowBox[{RowBox[{"TrueQ", "[", 
+                          "runResourceHeavyActionChecks", "]"}], "&&", 
+                          RowBox[{"curvatureConstructionStatus", "===", 
+                          "\"PASS\""}]}], ",", RowBox[{"TimeConstrained", 
+                          "[", RowBox[{RowBox[{"ReleaseHold", "[", 
+                          "twoDerivativeActionCode", "]"}], ",", "300", ",", 
+                          "$Aborted"}], "]"}], ",", RowBox[{"Missing", "[", 
+                          RowBox[{"\"NotRun\"", ",", 
+                          "\"ResourceBoundOrDependency\""}], "]"}]}], 
+                      "]"}]}], ";", " ", RowBox[{"twoDerivativeActionStatus", 
+                    "=", RowBox[{"Which", "[", RowBox[{RowBox[{"!", RowBox[
+                          {"TrueQ", "[", "runResourceHeavyActionChecks", 
+                          "]"}]}], ",", "\"SKIPPED/RESOURCE_BOUND\"", ",", 
+                        RowBox[{"curvatureConstructionStatus", "=!=", 
+                          "\"PASS\""}], ",", "\"SKIPPED/DEPENDENCY\"", ",", 
+                        RowBox[{"twoDerivativeActionResult", "===", 
+                          "$Aborted"}], ",", "\"RESOURCE_BOUND\"", ",", 
+                        RowBox[{"ValueQ", "[", "lag2Density", "]"}], ",", 
+                        "\"PASS\"", ",", "True", ",", "\"FAIL\""}], "]"}]}], 
+                  ";", " ", RowBox[{"<|", RowBox[{RowBox[{"\"Stage\"", "->", 
+                        "\"Two-derivative radial action\""}], ",", RowBox[
+                       {"\"Status\"", "->", "twoDerivativeActionStatus"}]}], 
+                    "|>"}]}]], "Input", CellLabel -> "In[36]:=", 
+               ExpressionUUID -> "b8b6fd50-9903-45fc-adba-e6721a105dea"], 
+              Cell[BoxData[RowBox[{"\[LeftAssociation]", RowBox[
+                   {RowBox[{"\"Stage\"", "\[Rule]", 
+                      "\"Two-derivative radial action\""}], ",", RowBox[
+                     {"\"Status\"", "\[Rule]", 
+                      "\"SKIPPED/RESOURCE_BOUND\""}]}], 
+                  "\[RightAssociation]"}]], "Output", CellChangeTimes -> 
+                {3.993268108637904*^9}, CellLabel -> "Out[36]=", 
+               ExpressionUUID -> "8dc6f50f-0212-4711-bf71-8f03a41198bf"]}, 
+             Open]]}, Open]], Cell[CellGroupData[
+          {Cell["6. Very-special-geometry tensors for the standard-Weyl \
+invariant", "Section", ExpressionUUID -> 
+             "df4c5123-52ed-40da-922b-0ea5d3f053c0"], Cell["The following \
+tensors implement the Riemann-basis formula quoted in \
+Superinvariant-final.tex. Symmetrization and antisymmetrization carry weight \
+one half.", "Text", ExpressionUUID -> 
+             "b8a06d1d-a651-4f71-b1e2-0a33ac43e1ec"], 
+           Cell[BoxData[RowBox[{RowBox[{"lam", "=", RowBox[{"{", RowBox[
+                    {"lam1", ",", "lam2", ",", "lam3"}], "}"}]}], ";", RowBox[
+                {"lamX", "=", RowBox[{"Simplify", "[", RowBox[{"lam", ".", 
+                     "Xup"}], "]"}]}], ";", RowBox[{RowBox[{"sym2", "[", 
+                   RowBox[{"a_", ",", "b_"}], "]"}], ":=", FractionBox[
+                  RowBox[{"a", "+", "b"}], "2"]}], ";", RowBox[
+                {RowBox[{"anti2", "[", RowBox[{"a_", ",", "b_"}], "]"}], 
+                 ":=", FractionBox[RowBox[{"a", "-", "b"}], "2"]}], ";", 
+               RowBox[{"Dcoef", "=", RowBox[{"Table", "[", RowBox[
+                    {RowBox[{"Simplify", "[", RowBox[{RowBox[{"3", " ", 
+                          RowBox[{"lam", "\[LeftDoubleBracket]", "i", 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"Xdown", 
+                          "\[LeftDoubleBracket]", "j", 
+                          "\[RightDoubleBracket]"}]}], "-", RowBox[
+                          {FractionBox["9", "2"], " ", "lamX", " ", RowBox[
+                          {"Xdown", "\[LeftDoubleBracket]", "i", 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"Xdown", 
+                          "\[LeftDoubleBracket]", "j", 
+                          "\[RightDoubleBracket]"}]}]}], "]"}], ",", 
+                     RowBox[{"{", RowBox[{"i", ",", "3"}], "}"}], ",", 
+                     RowBox[{"{", RowBox[{"j", ",", "3"}], "}"}]}], "]"}]}], 
+               ";", RowBox[{"Epcoef", "=", RowBox[{"Table", "[", RowBox[
+                    {RowBox[{"Simplify", "[", RowBox[{RowBox[{FractionBox[
+                          "1", "16"], " ", "lamX", " ", RowBox[{"(", RowBox[
+                          {RowBox[{"11", " ", RowBox[{"aMetric", 
+                          "\[LeftDoubleBracket]", RowBox[{"i", ",", "j"}], 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"aMetric", 
+                          "\[LeftDoubleBracket]", RowBox[{"k", ",", "l"}], 
+                          "\[RightDoubleBracket]"}]}], "-", RowBox[{"12", 
+                          " ", RowBox[{"aMetric", "\[LeftDoubleBracket]", 
+                          RowBox[{"i", ",", "k"}], "\[RightDoubleBracket]"}], 
+                          " ", RowBox[{"aMetric", "\[LeftDoubleBracket]", 
+                          RowBox[{"j", ",", "l"}], 
+                          "\[RightDoubleBracket]"}]}], "+", RowBox[{"18", 
+                          " ", RowBox[{"aMetric", "\[LeftDoubleBracket]", 
+                          RowBox[{"i", ",", "j"}], "\[RightDoubleBracket]"}], 
+                          " ", RowBox[{"Xdown", "\[LeftDoubleBracket]", "k", 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"Xdown", 
+                          "\[LeftDoubleBracket]", "l", 
+                          "\[RightDoubleBracket]"}]}], "+", RowBox[{"36", 
+                          " ", RowBox[{"aMetric", "\[LeftDoubleBracket]", 
+                          RowBox[{"i", ",", "k"}], "\[RightDoubleBracket]"}], 
+                          " ", RowBox[{"Xdown", "\[LeftDoubleBracket]", "j", 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"Xdown", 
+                          "\[LeftDoubleBracket]", "l", 
+                          "\[RightDoubleBracket]"}]}], "-", RowBox[{"81", 
+                          " ", RowBox[{"Xdown", "\[LeftDoubleBracket]", "i", 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"Xdown", 
+                          "\[LeftDoubleBracket]", "j", 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"Xdown", 
+                          "\[LeftDoubleBracket]", "k", 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"Xdown", 
+                          "\[LeftDoubleBracket]", "l", 
+                          "\[RightDoubleBracket]"}]}]}], ")"}]}], "+", 
+                         RowBox[{FractionBox["3", "2"], " ", RowBox[{"lam", 
+                          "\[LeftDoubleBracket]", "i", 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"sym2", 
+                          "[", RowBox[{RowBox[{RowBox[{"aMetric", 
+                          "\[LeftDoubleBracket]", RowBox[{"l", ",", "j"}], 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"Xdown", 
+                          "\[LeftDoubleBracket]", "k", 
+                          "\[RightDoubleBracket]"}]}], ",", RowBox[{RowBox[
+                          {"aMetric", "\[LeftDoubleBracket]", RowBox[{"l", 
+                          ",", "k"}], "\[RightDoubleBracket]"}], " ", RowBox[
+                          {"Xdown", "\[LeftDoubleBracket]", "j", 
+                          "\[RightDoubleBracket]"}]}]}], "]"}]}], "+", 
+                         RowBox[{FractionBox["3", "2"], " ", RowBox[
+                          {UnderoverscriptBox["\[Sum]", "m", "3"], RowBox[
+                          {UnderoverscriptBox["\[Sum]", "n", "3"], RowBox[
+                          {RowBox[{"lam", "\[LeftDoubleBracket]", "m", 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"aInverse", 
+                          "\[LeftDoubleBracket]", RowBox[{"m", ",", "n"}], 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"sym2", 
+                          "[", RowBox[{RowBox[{RowBox[{"Cstu", 
+                          "\[LeftDoubleBracket]", RowBox[{"n", ",", "i", ",", 
+                          "j"}], "\[RightDoubleBracket]"}], " ", RowBox[
+                          {"Xdown", "\[LeftDoubleBracket]", "k", 
+                          "\[RightDoubleBracket]"}]}], ",", RowBox[{RowBox[
+                          {"Cstu", "\[LeftDoubleBracket]", RowBox[{"n", ",", 
+                          "i", ",", "k"}], "\[RightDoubleBracket]"}], " ", 
+                          RowBox[{"Xdown", "\[LeftDoubleBracket]", "j", 
+                          "\[RightDoubleBracket]"}]}]}], "]"}], " ", RowBox[
+                          {"Xdown", "\[LeftDoubleBracket]", "l", 
+                          "\[RightDoubleBracket]"}]}]}]}]}]}], "]"}], ",", 
+                     RowBox[{"{", RowBox[{"i", ",", "3"}], "}"}], ",", 
+                     RowBox[{"{", RowBox[{"j", ",", "3"}], "}"}], ",", 
+                     RowBox[{"{", RowBox[{"k", ",", "3"}], "}"}], ",", 
+                     RowBox[{"{", RowBox[{"l", ",", "3"}], "}"}]}], "]"}]}], 
+               ";", RowBox[{"Etpcoef", "=", RowBox[{"Table", "[", 
+                   RowBox[{RowBox[{"Simplify", "[", RowBox[{RowBox[
+                          {FractionBox["1", "8"], " ", "lamX", " ", RowBox[
+                          {"(", RowBox[{RowBox[{RowBox[{"-", "24"}], " ", 
+                          RowBox[{"aMetric", "\[LeftDoubleBracket]", RowBox[
+                          {"i", ",", "j"}], "\[RightDoubleBracket]"}], " ", 
+                          RowBox[{"aMetric", "\[LeftDoubleBracket]", RowBox[
+                          {"k", ",", "l"}], "\[RightDoubleBracket]"}]}], "+", 
+                          RowBox[{"12", " ", RowBox[{"aMetric", 
+                          "\[LeftDoubleBracket]", RowBox[{"i", ",", "k"}], 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"aMetric", 
+                          "\[LeftDoubleBracket]", RowBox[{"j", ",", "l"}], 
+                          "\[RightDoubleBracket]"}]}], "-", RowBox[{"36", 
+                          " ", RowBox[{"aMetric", "\[LeftDoubleBracket]", 
+                          RowBox[{"i", ",", "k"}], "\[RightDoubleBracket]"}], 
+                          " ", RowBox[{"Xdown", "\[LeftDoubleBracket]", "j", 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"Xdown", 
+                          "\[LeftDoubleBracket]", "l", 
+                          "\[RightDoubleBracket]"}]}], "+", RowBox[{"81", 
+                          " ", RowBox[{"Xdown", "\[LeftDoubleBracket]", "i", 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"Xdown", 
+                          "\[LeftDoubleBracket]", "j", 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"Xdown", 
+                          "\[LeftDoubleBracket]", "k", 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"Xdown", 
+                          "\[LeftDoubleBracket]", "l", 
+                          "\[RightDoubleBracket]"}]}]}], ")"}]}], "-", 
+                         RowBox[{"6", " ", RowBox[{"lam", 
+                          "\[LeftDoubleBracket]", "i", 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"aMetric", 
+                          "\[LeftDoubleBracket]", RowBox[{"k", ",", "l"}], 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"Xdown", 
+                          "\[LeftDoubleBracket]", "j", 
+                          "\[RightDoubleBracket]"}]}], "-", RowBox[
+                          {FractionBox["3", "2"], " ", RowBox[{"lam", 
+                          "\[LeftDoubleBracket]", "i", 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"aMetric", 
+                          "\[LeftDoubleBracket]", RowBox[{"j", ",", "l"}], 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"Xdown", 
+                          "\[LeftDoubleBracket]", "k", 
+                          "\[RightDoubleBracket]"}]}], "-", RowBox[
+                          {FractionBox["3", "2"], " ", RowBox[
+                          {UnderoverscriptBox["\[Sum]", "m", "3"], RowBox[
+                          {UnderoverscriptBox["\[Sum]", "n", "3"], RowBox[
+                          {RowBox[{"lam", "\[LeftDoubleBracket]", "m", 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"aInverse", 
+                          "\[LeftDoubleBracket]", RowBox[{"m", ",", "n"}], 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"Cstu", 
+                          "\[LeftDoubleBracket]", RowBox[{"n", ",", "i", ",", 
+                          "k"}], "\[RightDoubleBracket]"}], " ", RowBox[
+                          {"Xdown", "\[LeftDoubleBracket]", "j", 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"Xdown", 
+                          "\[LeftDoubleBracket]", "l", 
+                          "\[RightDoubleBracket]"}]}]}]}]}]}], "]"}], ",", 
+                     RowBox[{"{", RowBox[{"i", ",", "3"}], "}"}], ",", 
+                     RowBox[{"{", RowBox[{"j", ",", "3"}], "}"}], ",", 
+                     RowBox[{"{", RowBox[{"k", ",", "3"}], "}"}], ",", 
+                     RowBox[{"{", RowBox[{"l", ",", "3"}], "}"}]}], "]"}]}], 
+               ";", RowBox[{"Ipcoef", "=", RowBox[{"Table", "[", RowBox[
+                    {RowBox[{"Simplify", "[", RowBox[{FractionBox["3", "4"], 
+                         " ", "lamX", " ", RowBox[{"(", RowBox[{RowBox[
+                          {"5", " ", RowBox[{"aMetric", 
+                          "\[LeftDoubleBracket]", RowBox[{"i", ",", "j"}], 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"aMetric", 
+                          "\[LeftDoubleBracket]", RowBox[{"k", ",", "l"}], 
+                          "\[RightDoubleBracket]"}]}], "-", RowBox[{"4", " ", 
+                          RowBox[{"aMetric", "\[LeftDoubleBracket]", RowBox[
+                          {"i", ",", "k"}], "\[RightDoubleBracket]"}], " ", 
+                          RowBox[{"aMetric", "\[LeftDoubleBracket]", RowBox[
+                          {"j", ",", "l"}], "\[RightDoubleBracket]"}]}]}], 
+                          ")"}]}], "]"}], ",", RowBox[{"{", RowBox[{"i", ",", 
+                         "3"}], "}"}], ",", RowBox[{"{", RowBox[{"j", ",", 
+                         "3"}], "}"}], ",", RowBox[{"{", RowBox[{"k", ",", 
+                         "3"}], "}"}], ",", RowBox[{"{", RowBox[{"l", ",", 
+                         "3"}], "}"}]}], "]"}]}], ";", RowBox[{"Hpcoef", "=", 
+                 RowBox[{"Table", "[", RowBox[{RowBox[{"Simplify", "[", 
+                       RowBox[{RowBox[{FractionBox["3", "4"], " ", "lamX", 
+                          " ", RowBox[{"(", RowBox[{RowBox[{"3", " ", RowBox[
+                          {"aMetric", "\[LeftDoubleBracket]", RowBox[{"i", 
+                          ",", "j"}], "\[RightDoubleBracket]"}], " ", RowBox[
+                          {"aMetric", "\[LeftDoubleBracket]", RowBox[{"k", 
+                          ",", "l"}], "\[RightDoubleBracket]"}]}], "-", 
+                          RowBox[{"8", " ", RowBox[{"aMetric", 
+                          "\[LeftDoubleBracket]", RowBox[{"i", ",", "k"}], 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"aMetric", 
+                          "\[LeftDoubleBracket]", RowBox[{"j", ",", "l"}], 
+                          "\[RightDoubleBracket]"}]}], "+", RowBox[{"3", " ", 
+                          RowBox[{"aMetric", "\[LeftDoubleBracket]", RowBox[
+                          {"i", ",", "j"}], "\[RightDoubleBracket]"}], " ", 
+                          RowBox[{"Xdown", "\[LeftDoubleBracket]", "k", 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"Xdown", 
+                          "\[LeftDoubleBracket]", "l", 
+                          "\[RightDoubleBracket]"}]}]}], ")"}]}], "+", 
+                         RowBox[{"3", " ", RowBox[{"lam", 
+                          "\[LeftDoubleBracket]", "i", 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"aMetric", 
+                          "\[LeftDoubleBracket]", RowBox[{"j", ",", "l"}], 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"Xdown", 
+                          "\[LeftDoubleBracket]", "k", 
+                          "\[RightDoubleBracket]"}]}], "-", RowBox[
+                          {FractionBox["3", "2"], " ", RowBox[{"lam", 
+                          "\[LeftDoubleBracket]", "k", 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"aMetric", 
+                          "\[LeftDoubleBracket]", RowBox[{"i", ",", "j"}], 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"Xdown", 
+                          "\[LeftDoubleBracket]", "l", 
+                          "\[RightDoubleBracket]"}]}], "-", RowBox[
+                          {FractionBox["3", "2"], " ", RowBox[
+                          {UnderoverscriptBox["\[Sum]", "m", "3"], RowBox[
+                          {UnderoverscriptBox["\[Sum]", "n", "3"], RowBox[
+                          {RowBox[{"lam", "\[LeftDoubleBracket]", "m", 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"aInverse", 
+                          "\[LeftDoubleBracket]", RowBox[{"m", ",", "n"}], 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"Cstu", 
+                          "\[LeftDoubleBracket]", RowBox[{"n", ",", "i", ",", 
+                          "j"}], "\[RightDoubleBracket]"}], " ", RowBox[
+                          {"Xdown", "\[LeftDoubleBracket]", "k", 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"Xdown", 
+                          "\[LeftDoubleBracket]", "l", 
+                          "\[RightDoubleBracket]"}]}]}]}]}]}], "]"}], ",", 
+                     RowBox[{"{", RowBox[{"i", ",", "3"}], "}"}], ",", 
+                     RowBox[{"{", RowBox[{"j", ",", "3"}], "}"}], ",", 
+                     RowBox[{"{", RowBox[{"k", ",", "3"}], "}"}], ",", 
+                     RowBox[{"{", RowBox[{"l", ",", "3"}], "}"}]}], "]"}]}], 
+               ";", RowBox[{"Htpcoef", "=", RowBox[{"Table", "[", 
+                   RowBox[{RowBox[{"Simplify", "[", RowBox[{RowBox[{"lamX", 
+                          " ", RowBox[{"(", RowBox[{RowBox[{RowBox[{"-", 
+                          "6"}], " ", RowBox[{"aMetric", 
+                          "\[LeftDoubleBracket]", RowBox[{"i", ",", "j"}], 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"aMetric", 
+                          "\[LeftDoubleBracket]", RowBox[{"k", ",", "l"}], 
+                          "\[RightDoubleBracket]"}]}], "+", RowBox[{"6", " ", 
+                          RowBox[{"aMetric", "\[LeftDoubleBracket]", RowBox[
+                          {"i", ",", "k"}], "\[RightDoubleBracket]"}], " ", 
+                          RowBox[{"aMetric", "\[LeftDoubleBracket]", RowBox[
+                          {"j", ",", "l"}], "\[RightDoubleBracket]"}]}], "+", 
+                          RowBox[{"12", " ", RowBox[{"aMetric", 
+                          "\[LeftDoubleBracket]", RowBox[{"i", ",", "l"}], 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"aMetric", 
+                          "\[LeftDoubleBracket]", RowBox[{"j", ",", "k"}], 
+                          "\[RightDoubleBracket]"}]}]}], ")"}]}], "-", 
+                         RowBox[{"12", " ", RowBox[{"lam", 
+                          "\[LeftDoubleBracket]", "i", 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"anti2", 
+                          "[", RowBox[{RowBox[{RowBox[{"aMetric", 
+                          "\[LeftDoubleBracket]", RowBox[{"j", ",", "k"}], 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"Xdown", 
+                          "\[LeftDoubleBracket]", "l", 
+                          "\[RightDoubleBracket]"}]}], ",", RowBox[{RowBox[
+                          {"aMetric", "\[LeftDoubleBracket]", RowBox[{"j", 
+                          ",", "l"}], "\[RightDoubleBracket]"}], " ", RowBox[
+                          {"Xdown", "\[LeftDoubleBracket]", "k", 
+                          "\[RightDoubleBracket]"}]}]}], "]"}]}], "-", 
+                         RowBox[{"6", " ", RowBox[{"lam", 
+                          "\[LeftDoubleBracket]", "k", 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"aMetric", 
+                          "\[LeftDoubleBracket]", RowBox[{"i", ",", "j"}], 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"Xdown", 
+                          "\[LeftDoubleBracket]", "l", 
+                          "\[RightDoubleBracket]"}]}]}], "]"}], ",", 
+                     RowBox[{"{", RowBox[{"i", ",", "3"}], "}"}], ",", 
+                     RowBox[{"{", RowBox[{"j", ",", "3"}], "}"}], ",", 
+                     RowBox[{"{", RowBox[{"k", ",", "3"}], "}"}], ",", 
+                     RowBox[{"{", RowBox[{"l", ",", "3"}], "}"}]}], "]"}]}], 
+               ";", RowBox[{"Wpcoef", "=", RowBox[{"Table", "[", RowBox[
+                    {RowBox[{"Simplify", "[", RowBox[{RowBox[{FractionBox[
+                          "3", "2"], " ", "lamX", " ", RowBox[{"(", RowBox[
+                          {RowBox[{"4", " ", RowBox[{"aMetric", 
+                          "\[LeftDoubleBracket]", RowBox[{"i", ",", "j"}], 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"aMetric", 
+                          "\[LeftDoubleBracket]", RowBox[{"k", ",", "l"}], 
+                          "\[RightDoubleBracket]"}]}], "-", RowBox[{"3", " ", 
+                          RowBox[{"aMetric", "\[LeftDoubleBracket]", RowBox[
+                          {"k", ",", "l"}], "\[RightDoubleBracket]"}], " ", 
+                          RowBox[{"Xdown", "\[LeftDoubleBracket]", "i", 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"Xdown", 
+                          "\[LeftDoubleBracket]", "j", 
+                          "\[RightDoubleBracket]"}]}]}], ")"}]}], "+", 
+                         RowBox[{FractionBox["3", "2"], " ", RowBox[{"lam", 
+                          "\[LeftDoubleBracket]", "i", 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"aMetric", 
+                          "\[LeftDoubleBracket]", RowBox[{"j", ",", "l"}], 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"Xdown", 
+                          "\[LeftDoubleBracket]", "k", 
+                          "\[RightDoubleBracket]"}]}], "-", RowBox[
+                          {FractionBox["9", "2"], " ", RowBox[{"lam", 
+                          "\[LeftDoubleBracket]", "j", 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"aMetric", 
+                          "\[LeftDoubleBracket]", RowBox[{"i", ",", "l"}], 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"Xdown", 
+                          "\[LeftDoubleBracket]", "k", 
+                          "\[RightDoubleBracket]"}]}], "-", RowBox[
+                          {FractionBox["3", "2"], " ", RowBox[{"lam", 
+                          "\[LeftDoubleBracket]", "j", 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"aMetric", 
+                          "\[LeftDoubleBracket]", RowBox[{"k", ",", "l"}], 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"Xdown", 
+                          "\[LeftDoubleBracket]", "i", 
+                          "\[RightDoubleBracket]"}]}], "+", RowBox[{"3", " ", 
+                          RowBox[{"lam", "\[LeftDoubleBracket]", "l", 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"aMetric", 
+                          "\[LeftDoubleBracket]", RowBox[{"i", ",", "j"}], 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"Xdown", 
+                          "\[LeftDoubleBracket]", "k", 
+                          "\[RightDoubleBracket]"}]}], "-", RowBox[{"3", " ", 
+                          RowBox[{UnderoverscriptBox["\[Sum]", "m", "3"], 
+                          RowBox[{UnderoverscriptBox["\[Sum]", "n", "3"], 
+                          RowBox[{RowBox[{"lam", "\[LeftDoubleBracket]", "m", 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"aInverse", 
+                          "\[LeftDoubleBracket]", RowBox[{"m", ",", "n"}], 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"Cstu", 
+                          "\[LeftDoubleBracket]", RowBox[{"n", ",", "j", ",", 
+                          "l"}], "\[RightDoubleBracket]"}], " ", RowBox[
+                          {"Xdown", "\[LeftDoubleBracket]", "i", 
+                          "\[RightDoubleBracket]"}], " ", RowBox[{"Xdown", 
+                          "\[LeftDoubleBracket]", "k", 
+                          "\[RightDoubleBracket]"}]}]}]}]}]}], "]"}], ",", 
+                     RowBox[{"{", RowBox[{"i", ",", "3"}], "}"}], ",", 
+                     RowBox[{"{", RowBox[{"j", ",", "3"}], "}"}], ",", 
+                     RowBox[{"{", RowBox[{"k", ",", "3"}], "}"}], ",", 
+                     RowBox[{"{", RowBox[{"l", ",", "3"}], "}"}]}], "]"}]}], 
+               ";"}]], "Input", InitializationCell -> False, 
+            CellLabel -> "In[37]:=", ExpressionUUID -> 
+             "0fd33500-edac-42fe-ac8c-c7a938980899"]}, Open]], 
+        Cell[CellGroupData[
+          {Cell["7. Complete Riemann-containing gravity invariant", 
+            "Section", ExpressionUUID -> 
+             "1a0617d6-ccbb-4bd9-8747-469ff107b89f"], Cell["The parity-even \
+and parity-odd completion terms are kept together. Do not retain only the \
+bare Riemann-squared monomial.", "Text", ExpressionUUID -> 
+             "3507d6f4-6da8-4472-945b-b51ab012ca9a"], 
+           Cell[CellGroupData[{Cell[BoxData[RowBox[{RowBox[
+                   {"fourDerivativeInvariantCode", "=", RowBox[
+                     {"HoldComplete", "[", RowBox[{RowBox[{RowBox[{"RFF", 
+                          "[", RowBox[{"i_", ",", " ", "j_"}], "]"}], " ", 
+                          ":=", " ", RowBox[{"Simplify", "[", RowBox[
+                          {RowBox[{"Flatten", "[", RowBox[{"Fuu", "[", RowBox[
+                          {"[", "i", "]"}], "]"}], "]"}], " ", ".", " ", 
+                          "RiemPairDD", " ", ".", " ", RowBox[{"Flatten", 
+                          "[", RowBox[{"Fuu", "[", RowBox[{"[", "j", "]"}], 
+                          "]"}], "]"}]}], "]"}]}], ";", " ", RowBox[
+                         {RowBox[{"Fchain4", "[", RowBox[{"i_", ",", " ", 
+                          "j_", ",", " ", "k_", ",", " ", "l_"}], "]"}], " ", 
+                          ":=", " ", RowBox[{"Simplify", "[", RowBox[{"Sum", 
+                          "[", RowBox[{RowBox[{RowBox[{"Fdd", "[", RowBox[
+                          {"[", RowBox[{"i", ",", "mu", ",", "nu"}], "]"}], 
+                          "]"}], "*", RowBox[{"Fuu", "[", RowBox[{"[", RowBox[
+                          {"j", ",", "nu", ",", "rho"}], "]"}], "]"}], "*", 
+                          RowBox[{"Fdd", "[", RowBox[{"[", RowBox[{"k", ",", 
+                          "rho", ",", "sig"}], "]"}], "]"}], "*", RowBox[
+                          {"Fuu", "[", RowBox[{"[", RowBox[{"l", ",", "sig", 
+                          ",", "mu"}], "]"}], "]"}]}], ",", " ", RowBox[
+                          {"{", RowBox[{"mu", ",", " ", "dim"}], "}"}], ",", 
+                          " ", RowBox[{"{", RowBox[{"nu", ",", " ", "dim"}], 
+                          "}"}], ",", " ", RowBox[{"{", RowBox[{"rho", ",", 
+                          " ", "dim"}], "}"}], ",", " ", RowBox[{"{", RowBox[
+                          {"sig", ",", " ", "dim"}], "}"}]}], "]"}], "]"}]}], 
+                        ";", " ", RowBox[{RowBox[{"dXFchain", "[", RowBox[
+                          {"i_", ",", " ", "j_", ",", " ", "k_", ",", " ", 
+                          "l_"}], "]"}], " ", ":=", " ", RowBox[{"Simplify", 
+                          "[", RowBox[{"Sum", "[", RowBox[{RowBox[{RowBox[
+                          {"dXcov", "[", RowBox[{"[", RowBox[{"i", ",", 
+                          "mu"}], "]"}], "]"}], "*", RowBox[{"dXcon", "[", 
+                          RowBox[{"[", RowBox[{"j", ",", "nu"}], "]"}], 
+                          "]"}], "*", RowBox[{"Fuu", "[", RowBox[{"[", RowBox[
+                          {"k", ",", "mu", ",", "rho"}], "]"}], "]"}], "*", 
+                          RowBox[{"Fdd", "[", RowBox[{"[", RowBox[{"l", ",", 
+                          "nu", ",", "rho"}], "]"}], "]"}]}], ",", " ", 
+                          RowBox[{"{", RowBox[{"mu", ",", " ", "dim"}], 
+                          "}"}], ",", " ", RowBox[{"{", RowBox[{"nu", ",", 
+                          " ", "dim"}], "}"}], ",", " ", RowBox[{"{", RowBox[
+                          {"rho", ",", " ", "dim"}], "}"}]}], "]"}], "]"}]}], 
+                        ";", " ", RowBox[{"epsU", " ", "=", " ", RowBox[
+                          {"epsSymbol", "/", "sdetg"}]}], ";", " ", RowBox[
+                         {RowBox[{"Wcontract", "[", RowBox[{"i_", ",", " ", 
+                          "j_", ",", " ", "k_", ",", " ", "l_"}], "]"}], " ", 
+                          ":=", " ", RowBox[{"Simplify", "[", RowBox[{"Sum", 
+                          "[", RowBox[{RowBox[{RowBox[{"epsU", "[", RowBox[
+                          {"[", RowBox[{"mu", ",", "nu", ",", "rho", ",", 
+                          "sig", ",", "al"}], "]"}], "]"}], "*", RowBox[
+                          {"Fdd", "[", RowBox[{"[", RowBox[{"i", ",", "mu", 
+                          ",", "nu"}], "]"}], "]"}], "*", RowBox[{"Fdu", "[", 
+                          RowBox[{"[", RowBox[{"j", ",", "rho", ",", "be"}], 
+                          "]"}], "]"}], "*", RowBox[{"Fdd", "[", RowBox[{"[", 
+                          RowBox[{"k", ",", "sig", ",", "be"}], "]"}], "]"}], 
+                          "*", RowBox[{"dXcov", "[", RowBox[{"[", RowBox[
+                          {"l", ",", "al"}], "]"}], "]"}]}], ",", " ", RowBox[
+                          {"{", RowBox[{"mu", ",", " ", "dim"}], "}"}], ",", 
+                          " ", RowBox[{"{", RowBox[{"nu", ",", " ", "dim"}], 
+                          "}"}], ",", " ", RowBox[{"{", RowBox[{"rho", ",", 
+                          " ", "dim"}], "}"}], ",", " ", RowBox[{"{", RowBox[
+                          {"sig", ",", " ", "dim"}], "}"}], ",", " ", RowBox[
+                          {"{", RowBox[{"al", ",", " ", "dim"}], "}"}], ",", 
+                          " ", RowBox[{"{", RowBox[{"be", ",", " ", "dim"}], 
+                          "}"}]}], "]"}], "]"}]}], ";", " ", RowBox[
+                         {"RiemRightRaised", " ", "=", " ", RowBox[
+                          {"Simplify", "[", RowBox[{"RiemPairDD", " ", ".", 
+                          " ", "pairMetricUU"}], "]"}]}], ";", " ", RowBox[
+                         {"RRpair", " ", "=", " ", RowBox[{"Simplify", "[", 
+                          RowBox[{"RiemPairDD", " ", ".", " ", RowBox[
+                          {"Transpose", "[", "RiemRightRaised", "]"}]}], 
+                          "]"}]}], ";", " ", RowBox[{RowBox[{"pairIndex", 
+                          "[", RowBox[{"a_", ",", " ", "b_"}], "]"}], " ", 
+                          ":=", " ", RowBox[{RowBox[{RowBox[{"(", RowBox[
+                          {"a", " ", "-", " ", "1"}], ")"}], "*", "dim"}], 
+                          " ", "+", " ", "b"}]}], ";", " ", RowBox[
+                         {RowBox[{"ARR", "[", "i_", "]"}], " ", ":=", " ", 
+                          RowBox[{"Simplify", "[", RowBox[{RowBox[{"(", 
+                          RowBox[{"1", "/", "2"}], ")"}], "*", RowBox[{"Sum", 
+                          "[", RowBox[{RowBox[{RowBox[{"epsU", "[", RowBox[
+                          {"[", RowBox[{"mu", ",", "nu", ",", "rho", ",", 
+                          "sig", ",", "al"}], "]"}], "]"}], "*", RowBox[
+                          {"RRpair", "[", RowBox[{"[", RowBox[{RowBox[
+                          {"pairIndex", "[", RowBox[{"mu", ",", " ", "nu"}], 
+                          "]"}], ",", RowBox[{"pairIndex", "[", RowBox[
+                          {"rho", ",", " ", "sig"}], "]"}]}], "]"}], "]"}], 
+                          "*", RowBox[{"Avec", "[", RowBox[{"[", RowBox[{"i", 
+                          ",", "al"}], "]"}], "]"}]}], ",", " ", RowBox[
+                          {"{", RowBox[{"mu", ",", " ", "dim"}], "}"}], ",", 
+                          " ", RowBox[{"{", RowBox[{"nu", ",", " ", "dim"}], 
+                          "}"}], ",", " ", RowBox[{"{", RowBox[{"rho", ",", 
+                          " ", "dim"}], "}"}], ",", " ", RowBox[{"{", RowBox[
+                          {"sig", ",", " ", "dim"}], "}"}], ",", " ", RowBox[
+                          {"{", RowBox[{"al", ",", " ", "dim"}], "}"}]}], 
+                          "]"}]}], "]"}]}], ";", " ", RowBox[
+                         {"lag4GravityScalar", " ", "=", " ", RowBox[
+                          {"Simplify", "[", RowBox[{RowBox[{"lamX", "*", 
+                          "Riemann2"}], " ", "+", " ", RowBox[{"Sum", "[", 
+                          RowBox[{RowBox[{RowBox[{"Dcoef", "[", RowBox[{"[", 
+                          RowBox[{"i", ",", "j"}], "]"}], "]"}], "*", RowBox[
+                          {"RFF", "[", RowBox[{"i", ",", " ", "j"}], "]"}]}], 
+                          ",", " ", RowBox[{"{", RowBox[{"i", ",", " ", 
+                          "3"}], "}"}], ",", " ", RowBox[{"{", RowBox[{"j", 
+                          ",", " ", "3"}], "}"}]}], "]"}], " ", "+", " ", 
+                          RowBox[{"Sum", "[", RowBox[{RowBox[{RowBox[
+                          {"Ipcoef", "[", RowBox[{"[", RowBox[{"i", ",", "j", 
+                          ",", "k", ",", "l"}], "]"}], "]"}], "*", RowBox[
+                          {"dXdot", "[", RowBox[{"i", ",", " ", "j"}], "]"}], 
+                          "*", RowBox[{"dXdot", "[", RowBox[{"k", ",", " ", 
+                          "l"}], "]"}]}], ",", " ", RowBox[{"{", RowBox[{"i", 
+                          ",", " ", "3"}], "}"}], ",", " ", RowBox[{"{", 
+                          RowBox[{"j", ",", " ", "3"}], "}"}], ",", " ", 
+                          RowBox[{"{", RowBox[{"k", ",", " ", "3"}], "}"}], 
+                          ",", " ", RowBox[{"{", RowBox[{"l", ",", " ", 
+                          "3"}], "}"}]}], "]"}], " ", "+", " ", RowBox[
+                          {"Sum", "[", RowBox[{RowBox[{RowBox[{"Epcoef", "[", 
+                          RowBox[{"[", RowBox[{"i", ",", "j", ",", "k", ",", 
+                          "l"}], "]"}], "]"}], "*", RowBox[{"Fdot", "[", 
+                          RowBox[{"i", ",", " ", "j"}], "]"}], "*", RowBox[
+                          {"Fdot", "[", RowBox[{"k", ",", " ", "l"}], 
+                          "]"}]}], ",", " ", RowBox[{"{", RowBox[{"i", ",", 
+                          " ", "3"}], "}"}], ",", " ", RowBox[{"{", RowBox[
+                          {"j", ",", " ", "3"}], "}"}], ",", " ", RowBox[
+                          {"{", RowBox[{"k", ",", " ", "3"}], "}"}], ",", 
+                          " ", RowBox[{"{", RowBox[{"l", ",", " ", "3"}], 
+                          "}"}]}], "]"}], " ", "+", " ", RowBox[{"Sum", "[", 
+                          RowBox[{RowBox[{RowBox[{"Etpcoef", "[", RowBox[
+                          {"[", RowBox[{"i", ",", "j", ",", "k", ",", "l"}], 
+                          "]"}], "]"}], "*", RowBox[{"Fchain4", "[", RowBox[
+                          {"i", ",", " ", "j", ",", " ", "k", ",", " ", 
+                          "l"}], "]"}]}], ",", " ", RowBox[{"{", RowBox[{"i", 
+                          ",", " ", "3"}], "}"}], ",", " ", RowBox[{"{", 
+                          RowBox[{"j", ",", " ", "3"}], "}"}], ",", " ", 
+                          RowBox[{"{", RowBox[{"k", ",", " ", "3"}], "}"}], 
+                          ",", " ", RowBox[{"{", RowBox[{"l", ",", " ", 
+                          "3"}], "}"}]}], "]"}], " ", "+", " ", RowBox[
+                          {"Sum", "[", RowBox[{RowBox[{RowBox[{"Hpcoef", "[", 
+                          RowBox[{"[", RowBox[{"i", ",", "j", ",", "k", ",", 
+                          "l"}], "]"}], "]"}], "*", RowBox[{"dXdot", "[", 
+                          RowBox[{"i", ",", " ", "j"}], "]"}], "*", RowBox[
+                          {"Fdot", "[", RowBox[{"k", ",", " ", "l"}], 
+                          "]"}]}], ",", " ", RowBox[{"{", RowBox[{"i", ",", 
+                          " ", "3"}], "}"}], ",", " ", RowBox[{"{", RowBox[
+                          {"j", ",", " ", "3"}], "}"}], ",", " ", RowBox[
+                          {"{", RowBox[{"k", ",", " ", "3"}], "}"}], ",", 
+                          " ", RowBox[{"{", RowBox[{"l", ",", " ", "3"}], 
+                          "}"}]}], "]"}], " ", "+", " ", RowBox[{"Sum", "[", 
+                          RowBox[{RowBox[{RowBox[{"Htpcoef", "[", RowBox[
+                          {"[", RowBox[{"i", ",", "j", ",", "k", ",", "l"}], 
+                          "]"}], "]"}], "*", RowBox[{"dXFchain", "[", RowBox[
+                          {"i", ",", " ", "j", ",", " ", "k", ",", " ", 
+                          "l"}], "]"}]}], ",", " ", RowBox[{"{", RowBox[{"i", 
+                          ",", " ", "3"}], "}"}], ",", " ", RowBox[{"{", 
+                          RowBox[{"j", ",", " ", "3"}], "}"}], ",", " ", 
+                          RowBox[{"{", RowBox[{"k", ",", " ", "3"}], "}"}], 
+                          ",", " ", RowBox[{"{", RowBox[{"l", ",", " ", 
+                          "3"}], "}"}]}], "]"}], " ", "+", " ", RowBox[
+                          {"Sum", "[", RowBox[{RowBox[{RowBox[{"Wpcoef", "[", 
+                          RowBox[{"[", RowBox[{"i", ",", "j", ",", "k", ",", 
+                          "l"}], "]"}], "]"}], "*", RowBox[{"Wcontract", "[", 
+                          RowBox[{"i", ",", " ", "j", ",", " ", "k", ",", 
+                          " ", "l"}], "]"}]}], ",", " ", RowBox[{"{", RowBox[
+                          {"i", ",", " ", "3"}], "}"}], ",", " ", RowBox[
+                          {"{", RowBox[{"j", ",", " ", "3"}], "}"}], ",", 
+                          " ", RowBox[{"{", RowBox[{"k", ",", " ", "3"}], 
+                          "}"}], ",", " ", RowBox[{"{", RowBox[{"l", ",", 
+                          " ", "3"}], "}"}]}], "]"}], " ", "+", " ", RowBox[
+                          {"Sum", "[", RowBox[{RowBox[{RowBox[{"lam", "[", 
+                          RowBox[{"[", "i", "]"}], "]"}], "*", RowBox[{"ARR", 
+                          "[", "i", "]"}]}], ",", " ", RowBox[{"{", RowBox[
+                          {"i", ",", " ", "3"}], "}"}]}], "]"}]}], "]"}]}], 
+                        ";", " ", RowBox[{"lag4GravityDensity", " ", "=", 
+                          " ", RowBox[{"Simplify", "[", RowBox[{"sdetg", "*", 
+                          "lag4GravityScalar"}], "]"}]}], ";"}], " ", 
+                      "]"}]}], ";", " ", RowBox[
+                   {"fourDerivativeInvariantResult", "=", RowBox[{"If", "[", 
+                      RowBox[{RowBox[{RowBox[{"TrueQ", "[", 
+                          "runResourceHeavyActionChecks", "]"}], "&&", 
+                          RowBox[{"curvatureConstructionStatus", "===", 
+                          "\"PASS\""}]}], ",", RowBox[{"TimeConstrained", 
+                          "[", RowBox[{RowBox[{"ReleaseHold", "[", 
+                          "fourDerivativeInvariantCode", "]"}], ",", "900", 
+                          ",", "$Aborted"}], "]"}], ",", RowBox[{"Missing", 
+                          "[", RowBox[{"\"NotRun\"", ",", 
+                          "\"ResourceBoundOrDependency\""}], "]"}]}], 
+                      "]"}]}], ";", " ", RowBox[
+                   {"fourDerivativeInvariantStatus", "=", RowBox[{"Which", 
+                      "[", RowBox[{RowBox[{"!", RowBox[{"TrueQ", "[", 
+                          "runResourceHeavyActionChecks", "]"}]}], ",", 
+                        "\"SKIPPED/RESOURCE_BOUND\"", ",", RowBox[
+                         {"curvatureConstructionStatus", "=!=", "\"PASS\""}], 
+                        ",", "\"SKIPPED/DEPENDENCY\"", ",", RowBox[
+                         {"fourDerivativeInvariantResult", "===", 
+                          "$Aborted"}], ",", "\"RESOURCE_BOUND\"", ",", 
+                        RowBox[{"ValueQ", "[", "lag4GravityDensity", "]"}], 
+                        ",", "\"PASS\"", ",", "True", ",", "\"FAIL\""}], 
+                      "]"}]}], ";", " ", RowBox[{"<|", RowBox[
+                     {RowBox[{"\"Stage\"", "->", 
+                        "\"Complete four-derivative invariant density\""}], 
+                      ",", RowBox[{"\"Status\"", "->", 
+                        "fourDerivativeInvariantStatus"}]}], "|>"}]}]], 
+               "Input", CellLabel -> "In[38]:=", ExpressionUUID -> 
+                "d6d89373-6b81-464b-b6f5-d6248e6d3841"], Cell[BoxData[
+                RowBox[{"\[LeftAssociation]", RowBox[{RowBox[{"\"Stage\"", 
+                      "\[Rule]", 
+                      "\"Complete four-derivative invariant density\""}], 
+                    ",", RowBox[{"\"Status\"", "\[Rule]", 
+                      "\"SKIPPED/RESOURCE_BOUND\""}]}], 
+                  "\[RightAssociation]"}]], "Output", CellChangeTimes -> 
+                {3.993268110185371*^9}, CellLabel -> "Out[38]=", 
+               ExpressionUUID -> "d27a488a-f727-4f3f-b3d0-b7d0e93cbe02"]}, 
+             Open]]}, Open]], Cell[CellGroupData[
+          {Cell["8. First-order expansion and reduced equations", "Section", 
+            ExpressionUUID -> "9fb363fc-f33e-41bb-a010-281497f30ed2"], 
+           Cell["The unknown correction functions are independent. Coordinate \
+and U(1) gauge freedom should be fixed only after the equations have been \
+generated.", "Text", ExpressionUUID -> 
+             "dd36be60-9853-48f5-a2ba-c5ef8a9c1978"], 
+           Cell[BoxData[RowBox[{RowBox[{"fields", "=", RowBox[{"{", 
+                   RowBox[{"u1", ",", "u2", ",", "u3", ",", "v1", ",", "v2", 
+                     ",", "v3", ",", "p", ",", "s", ",", "f", ",", "gr", ",", 
+                     "hr", ",", "squ", ",", "omega"}], "}"}]}], ";", RowBox[
+                {"corrections", "=", RowBox[{"{", RowBox[{"du1", ",", "du2", 
+                     ",", "du3", ",", "dv1", ",", "dv2", ",", "dv3", ",", 
+                     "dp", ",", "ds", ",", "df", ",", "dgr", ",", "dhr", ",", 
+                     "dsqu", ",", "domega"}], "}"}]}], ";", RowBox[
+                {"backgrounds", "=", RowBox[{"{", RowBox[{"u10", ",", "u20", 
+                     ",", "u30", ",", "v10", ",", "v20", ",", "v30", ",", 
+                     "p0", ",", "s0", ",", "f0", ",", "gr0", ",", "hr0", ",", 
+                     "squ0", ",", "omega0"}], "}"}]}], ";", RowBox[
+                {"perturbationRules", "=", RowBox[{"Table", "[", RowBox[
+                    {RowBox[{RowBox[{"fields", "\[LeftDoubleBracket]", "i", 
+                         "\[RightDoubleBracket]"}], "\[Rule]", RowBox[
+                        {"Function", "[", RowBox[{RowBox[{"{", "x", "}"}], 
+                          ",", RowBox[{RowBox[{RowBox[{"backgrounds", 
+                          "\[LeftDoubleBracket]", "i", 
+                          "\[RightDoubleBracket]"}], "[", "x", "]"}], "+", 
+                          RowBox[{"alpha4", " ", RowBox[{RowBox[
+                          {"corrections", "\[LeftDoubleBracket]", "i", 
+                          "\[RightDoubleBracket]"}], "[", "x", "]"}]}]}]}], 
+                         "]"}]}], ",", RowBox[{"{", RowBox[{"i", ",", 
+                         RowBox[{"Length", "[", "fields", "]"}]}], "}"}]}], 
+                   "]"}]}], ";", RowBox[{RowBox[{"euler1D", "[", RowBox[
+                    {"lag_", ",", "field_Symbol", ",", RowBox[{"maxOrder_", 
+                       ":", "4"}]}], "]"}], ":=", RowBox[{"Simplify", "[", 
+                   RowBox[{UnderoverscriptBox["\[Sum]", RowBox[{"n", "=", 
+                        "0"}], "maxOrder"], RowBox[{SuperscriptBox[RowBox[
+                         {"(", RowBox[{"-", "1"}], ")"}], "n"], " ", 
+                       RowBox[{SubscriptBox["\[PartialD]", RowBox[{"{", 
+                          RowBox[{"r", ",", "n"}], "}"}]], RowBox[
+                          {SubscriptBox["\[PartialD]", RowBox[{SuperscriptBox[
+                          "field", TagBox[RowBox[{"(", "n", ")"}], 
+                          Derivative], MultilineFunction -> None], "[", "r", 
+                          "]"}]], "lag"}]}]}]}], "]"}]}], ";", RowBox[
+                {RowBox[{"linearCoefficient", "[", "expr_", "]"}], ":=", 
+                 RowBox[{"Simplify", "[", RowBox[{"SeriesCoefficient", "[", 
+                     RowBox[{RowBox[{"expr", "/.", "\[VeryThinSpace]", 
+                         "perturbationRules"}], ",", RowBox[{"{", RowBox[
+                          {"alpha4", ",", "0", ",", "1"}], "}"}]}], "]"}], 
+                   "]"}]}], ";", RowBox[{RowBox[{"backgroundValue", "[", 
+                   "expr_", "]"}], ":=", RowBox[{"Simplify", "[", 
+                   RowBox[{"expr", "/.", "\[VeryThinSpace]", 
+                     "backgroundFunctionRules"}], "]"}]}], ";"}]], "Input", 
+            InitializationCell -> False, CellLabel -> "In[39]:=", 
+            ExpressionUUID -> "3ae69bad-ee40-40ac-abab-09b0d09605bd"], 
+           Cell[CellGroupData[
+             {Cell["8.1 Homogeneous operator from the two-derivative theory", 
+               "Subsection", ExpressionUUID -> 
+                "f0a2ae2d-839c-4fc9-8ddf-1989f9d15c59"], Cell[BoxData[
+                RowBox[{RowBox[{RowBox[{"homogeneousEOM", "[", 
+                      "field_Symbol", "]"}], ":=", RowBox[
+                     {"linearCoefficient", "[", RowBox[{"euler1D", "[", 
+                        RowBox[{"lag2Density", ",", "field", ",", "2"}], 
+                        "]"}], "]"}]}], ";"}]], "Input", 
+               InitializationCell -> False, CellLabel -> "In[40]:=", 
+               ExpressionUUID -> "28c6112a-db49-4add-ac62-914590bc8a25"]}, 
+             Open]], Cell[CellGroupData[
+             {Cell["8.2 Inhomogeneous source from the gravity invariant", 
+               "Subsection", ExpressionUUID -> 
+                "74de465f-0374-4fc7-bd2c-5ecfbd6ed1ab"], Cell[BoxData[
+                RowBox[{RowBox[{"lam3Only", "=", RowBox[{"{", RowBox[
+                       {RowBox[{"lam1", "\[Rule]", "0"}], ",", RowBox[
+                         {"lam2", "\[Rule]", "0"}], ",", RowBox[{"lam3", 
+                          "\[Rule]", "1"}]}], "}"}]}], ";", RowBox[
+                   {"lam2Only", "=", RowBox[{"{", RowBox[{RowBox[{"lam1", 
+                          "\[Rule]", "0"}], ",", RowBox[{"lam2", "\[Rule]", 
+                          "1"}], ",", RowBox[{"lam3", "\[Rule]", "0"}]}], 
+                      "}"}]}], ";", RowBox[{"lam1Only", "=", RowBox[
+                     {"{", RowBox[{RowBox[{"lam1", "\[Rule]", "1"}], ",", 
+                        RowBox[{"lam2", "\[Rule]", "0"}], ",", RowBox[
+                         {"lam3", "\[Rule]", "0"}]}], "}"}]}], ";", 
+                  RowBox[{RowBox[{"gravitySource", "[", RowBox[
+                       {"field_Symbol", ",", "sectorRules_List"}], "]"}], 
+                    ":=", RowBox[{"Simplify", "[", RowBox[{RowBox[
+                         {"backgroundValue", "[", RowBox[{"euler1D", "[", 
+                          RowBox[{RowBox[{"lag4GravityDensity", "/.", 
+                          "\[VeryThinSpace]", "sectorRules"}], ",", "field", 
+                          ",", "4"}], "]"}], "]"}], ",", RowBox[
+                         {"Assumptions", "\[Rule]", RowBox[{"{", RowBox[
+                          {RowBox[{"r", ">", "0"}], ",", RowBox[{RowBox[
+                          {"H1", "[", "r", "]"}], ">", "0"}], ",", RowBox[
+                          {RowBox[{"H2", "[", "r", "]"}], ">", "0"}], ",", 
+                          RowBox[{RowBox[{"H3", "[", "r", "]"}], ">", 
+                          "0"}]}], "}"}]}]}], "]"}]}], ";"}]], "Input", 
+               InitializationCell -> False, CellLabel -> "In[41]:=", 
+               ExpressionUUID -> "09c62b4b-7651-4725-8add-1f808b1f3909"]}, 
+             Open]], Cell[CellGroupData[{Cell["8.3 Corrected radial system", 
+               "Subsection", ExpressionUUID -> 
+                "fbc0cc02-8e43-4031-a7f1-dc0eb533775b"], Cell[BoxData[
+                RowBox[{RowBox[{RowBox[{"correctedEquation", "[", RowBox[
+                       {"field_Symbol", ",", "sectorRules_List"}], "]"}], 
+                    ":=", RowBox[{RowBox[{RowBox[{"homogeneousEOM", "[", 
+                          "field", "]"}], "+", RowBox[{"gravitySource", "[", 
+                          RowBox[{"field", ",", "sectorRules"}], "]"}]}], 
+                      "\[Equal]", "0"}]}], ";"}]], "Input", 
+               InitializationCell -> False, CellLabel -> "In[42]:=", 
+               ExpressionUUID -> "e480c13d-2a63-4120-b725-93c75ebc10b7"]}, 
+             Open]]}, Open]], Cell[CellGroupData[
+          {Cell["9. Required consistency checks", "Section", 
+            ExpressionUUID -> "4e1f715f-8d52-436f-a2de-18dac18a8919"], 
+           Cell["Check A: setting jrot -> 0 must reproduce the static \
+three-charge STU source. Check B: the curvature-free vector invariant must \
+remain zero on the rotating BPS background. Check C: q1 -> q2 must agree with \
+the C112 truncation. Check D: q1 -> q2 -> q3 must reduce to the \
+minimal-supergravity BMPV sector. Check E: the final solution must be \
+asymptotically flat and regular at the horizon after fixing physical charges \
+and angular momentum.", "Text", ExpressionUUID -> 
+             "c7815732-9338-44f2-97d8-97b118196f2c"], 
+           Cell[BoxData[RowBox[{RowBox[{"staticLimitRules", "=", 
+                 RowBox[{"{", RowBox[{"jrot", "\[Rule]", "0"}], "}"}]}], ";", 
+               RowBox[{"twoEqualChargeRules", "=", RowBox[{"{", RowBox[
+                    {"q2", "\[Rule]", "q1"}], "}"}]}], ";", RowBox[
+                {"equalChargeRules", "=", RowBox[{"{", RowBox[
+                    {RowBox[{"q2", "\[Rule]", "q1"}], ",", RowBox[{"q3", 
+                       "\[Rule]", "q1"}]}], "}"}]}], ";"}]], "Input", 
+            InitializationCell -> False, CellLabel -> "In[43]:=", 
+            ExpressionUUID -> "5a7db1a7-e778-46b8-84b0-ee874aca03fa"]}, 
+          Open]], Cell[CellGroupData[{Cell["10. Notes on interpretation", 
+            "Section", ExpressionUUID -> 
+             "edbc1491-08e6-4bb2-b7fc-e8cfe7437d9e"], Cell["A vanishing \
+curvature-free vector invariant does not permit deleting the F^4 monomials \
+that belong to the supersymmetric Riemann/Weyl-squared gravity invariant. The \
+latter must be varied as one complete package. The present notebook therefore \
+retains all Riemann-F^2, quartic field-strength, scalar-gradient, and mixed \
+Chern-Simons completion terms.", "Text", ExpressionUUID -> 
+             "19aaad09-dae8-4cfc-9a91-fc1cd9c00831"], 
+           Cell["For publication-quality confidence, compare the reduced \
+equations with at least a subset of covariant field equations. Symmetry \
+reduction is efficient, but a covariant check guards against equations in \
+non-singlet sectors that are absent from the reduced action.", "Text", 
+            ExpressionUUID -> "6dc0ddc3-dd7a-4be8-8c40-8bc9e54be542"], 
+           Cell["End of generated notebook", "Text", ExpressionUUID -> 
+             "d5567d56-d495-4db2-98f4-9ead767fc574"]}, Open]], 
+        Cell[CellGroupData[
+          {Cell["10. Executable stage ledger and evidence boundary", 
+            "Section", ExpressionUUID -> 
+             "3b3321db-4771-49ab-80ac-d0d5cd345a0e"], Cell["The cells above \
+construct the geometry, action densities, invariant coefficients, and \
+Euler-Lagrange operators. They do not execute the full four-derivative \
+variation for all thirteen fields by default. That downstream equation \
+archive is notebook 01; a true substitution verifier is notebook 12.", 
+            "Text", ExpressionUUID -> 
+             "3cf07410-bb55-4350-80d5-1680fabb3ebd"], 
+           Cell[CellGroupData[{Cell[BoxData[RowBox[{RowBox[
+                   {"lightGeometryStagePass", "=", RowBox[{"TrueQ", "[", 
+                      RowBox[{RowBox[{RowBox[{"Dimensions", "[", "gdd", 
+                          "]"}], "==", RowBox[{"{", RowBox[{"5", ",", "5"}], 
+                          "}"}]}], "&&", RowBox[{RowBox[{"Dimensions", "[", 
+                          "guu", "]"}], "==", RowBox[{"{", RowBox[{"5", ",", 
+                          "5"}], "}"}]}], "&&", RowBox[{RowBox[{"Dimensions", 
+                          "[", "Fdd", "]"}], "==", RowBox[{"{", RowBox[
+                          {"3", ",", "5", ",", "5"}], "}"}]}]}], "]"}]}], 
+                  ";", " ", RowBox[{"operatorDefinitionStagePass", "=", 
+                    RowBox[{"TrueQ", "[", RowBox[{RowBox[{RowBox[{"Length", 
+                          "[", RowBox[{"DownValues", "[", "euler1D", "]"}], 
+                          "]"}], ">", "0"}], "&&", RowBox[{RowBox[{"Length", 
+                          "[", RowBox[{"DownValues", "[", "homogeneousEOM", 
+                          "]"}], "]"}], ">", "0"}], "&&", RowBox[{RowBox[
+                          {"Length", "[", RowBox[{"DownValues", "[", 
+                          "gravitySource", "]"}], "]"}], ">", "0"}], "&&", 
+                        RowBox[{RowBox[{"Length", "[", RowBox[{"DownValues", 
+                          "[", "correctedEquation", "]"}], "]"}], ">", 
+                          "0"}]}], "]"}]}], ";", " ", RowBox[
+                   {"actionStageLedger", "=", RowBox[{"<|", RowBox[
+                       {RowBox[{"\"LightGeometryAndMatterConstruction\"", 
+                          "->", RowBox[{"If", "[", RowBox[
+                          {"lightGeometryStagePass", ",", "\"PASS\"", ",", 
+                          "\"FAIL\""}], "]"}]}], ",", RowBox[
+                         {"\"InvariantCoefficientTables\"", "->", RowBox[
+                          {"If", "[", RowBox[{RowBox[{RowBox[{"Length", "[", 
+                          RowBox[{"Dimensions", "[", "Epcoef", "]"}], "]"}], 
+                          "==", "4"}], ",", "\"PASS\"", ",", "\"FAIL\""}], 
+                          "]"}]}], ",", RowBox[
+                         {"\"FastVectorBPSRegression\"", "->", 
+                          "vectorBPSAlgebraStatus"}], ",", RowBox[
+                         {"\"OptionalFullRotatingVectorSimplification\"", 
+                          "->", "fullRotatingVectorStatus"}], ",", RowBox[
+                         {"\"CurvatureTensorConstruction\"", "->", 
+                          "curvatureConstructionStatus"}], ",", RowBox[
+                         {"\"TwoDerivativeRadialActionConstruction\"", "->", 
+                          "twoDerivativeActionStatus"}], ",", RowBox[
+                         {"\"FourDerivativeInvariantDensityConstruction\"", 
+                          "->", "fourDerivativeInvariantStatus"}], ",", 
+                        RowBox[{"\"EulerLagrangeOperatorDefinitions\"", "->", 
+                          RowBox[{"If", "[", RowBox[
+                          {"operatorDefinitionStagePass", ",", "\"PASS\"", 
+                          ",", "\"FAIL\""}], "]"}]}], ",", RowBox[
+                         {"\"FullActionVariationToAll13EOM\"", "->", 
+                          "\"SKIPPED/RESOURCE_BOUND\""}], ",", RowBox[
+                         {"\"DownstreamLiteralEquationArchive\"", "->", 
+                          "\"Notebook 01\""}], ",", RowBox[
+                         {"\"TrueFromEOMRotationVerifier\"", "->", 
+                          "\"Notebook 12\""}]}], "|>"}]}], ";", " ", 
+                  "actionStageLedger"}]], "Input", CellLabel -> "In[44]:=", 
+               ExpressionUUID -> "1310c449-f987-4c99-a8c0-097c0da2a8c8"], 
+              Cell[BoxData[RowBox[{"\[LeftAssociation]", RowBox[
+                   {RowBox[{"\"LightGeometryAndMatterConstruction\"", 
+                      "\[Rule]", "\"PASS\""}], ",", RowBox[
+                     {"\"InvariantCoefficientTables\"", "\[Rule]", 
+                      "\"PASS\""}], ",", RowBox[
+                     {"\"FastVectorBPSRegression\"", "\[Rule]", "\"PASS\""}], 
+                    ",", RowBox[
+                     {"\"OptionalFullRotatingVectorSimplification\"", 
+                      "\[Rule]", "\"SKIPPED/RESOURCE_BOUND\""}], ",", 
+                    RowBox[{"\"CurvatureTensorConstruction\"", "\[Rule]", 
+                      "\"SKIPPED/RESOURCE_BOUND\""}], ",", RowBox[
+                     {"\"TwoDerivativeRadialActionConstruction\"", "\[Rule]", 
+                      "\"SKIPPED/RESOURCE_BOUND\""}], ",", RowBox[
+                     {"\"FourDerivativeInvariantDensityConstruction\"", 
+                      "\[Rule]", "\"SKIPPED/RESOURCE_BOUND\""}], ",", 
+                    RowBox[{"\"EulerLagrangeOperatorDefinitions\"", 
+                      "\[Rule]", "\"PASS\""}], ",", RowBox[
+                     {"\"FullActionVariationToAll13EOM\"", "\[Rule]", 
+                      "\"SKIPPED/RESOURCE_BOUND\""}], ",", RowBox[
+                     {"\"DownstreamLiteralEquationArchive\"", "\[Rule]", 
+                      "\"Notebook 01\""}], ",", RowBox[
+                     {"\"TrueFromEOMRotationVerifier\"", "\[Rule]", 
+                      "\"Notebook 12\""}]}], "\[RightAssociation]"}]], 
+               "Output", CellChangeTimes -> {3.993268110213314*^9}, 
+               CellLabel -> "Out[44]=", ExpressionUUID -> 
+                "e4dfafd2-ddc1-478f-a5ba-0e5171658fb4"]}, Open]]}, Open]]}, 
+       Open]]}, Open]]}, WindowSize -> {808, 762}, 
+ WindowMargins -> {{352, Automatic}, {Automatic, 50}}, 
+ WindowTitle -> "BMPV Gravity Correction", 
+ TaggingRules -> <|"Project" -> "BMPVFourDerivative", 
+   "Generated" -> "2026-07-14T21:17:01"|>, 
+ FrontEndVersion -> 
+  "14.1 for Mac OS X ARM (64-bit) (July 16, 2024)", 
+ StyleDefinitions -> "Default.nb", ExpressionUUID -> 
+  "8676075a-cf09-45b4-acbb-fe233b69c764"]

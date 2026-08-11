@@ -1,0 +1,89 @@
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_BEGIN"
+"FILE_BASENAME=""20_Direct_5D_Wald_Tachikawa_Entropy.nb"
+"FILE_ABSOLUTE_PATH=""[LOCAL_HOME]/Documents/Codex/2026-07-12/https-www-overleaf-com-project-65577187a96876076df0bcd6/work/package_v3_staging/notebooks/20_Direct_5D_Wald_Tachikawa_Entropy.nb"
+"KERNEL=""14.1.0 for Mac OS X ARM (64-bit) (July 16, 2024)"
+"START_UTC=""2026-07-19T10:24:51"
+"BYTES="11848
+"SHA256=""006c97df392f4ddc58e56e814f3a1904afc0030ceb4197716c4ced54216bd1a3"
+"PARSE_PASS="True
+"INPUT_CELL_COUNT="8
+"PASS_EXPRESSION=""TrueQ[Global`FullEvalPass]"
+"CELL_"1"_BEGIN"
+<|"FlatSymbolLower01234" -> 1, "FlatSymbolUpper01234" -> -1, "CurvedCoordinateLowerSign" -> -1, "CurvedCoordinateUpperSign" -> 1, "AlternatingDensity" -> 1, "Pass" -> True|>
+"CELL_"1"_SECONDS="0.001458
+"CELL_"1"_RESULT_PASS="True
+"CELL_"1"_MESSAGE_COUNT="0
+"CELL_"1"_RESULT_HEAD="Symbol
+"CELL_"1"_RESULT_LEAF_COUNT="1
+"CELL_"1"_RESULT_SHORT=""Short[Null, 12]"
+"CELL_"1"_END"
+"CELL_"2"_BEGIN"
+"CELL_"2"_SECONDS="0.002415
+"CELL_"2"_RESULT_PASS="True
+"CELL_"2"_MESSAGE_COUNT="0
+"CELL_"2"_RESULT_HEAD="Symbol
+"CELL_"2"_RESULT_LEAF_COUNT="1
+"CELL_"2"_RESULT_SHORT=""Short[Null, 12]"
+"CELL_"2"_END"
+"CELL_"3"_BEGIN"
+"CELL_"3"_SECONDS="0.007514
+"CELL_"3"_RESULT_PASS="True
+"CELL_"3"_MESSAGE_COUNT="0
+"CELL_"3"_RESULT_HEAD="Symbol
+"CELL_"3"_RESULT_LEAF_COUNT="1
+"CELL_"3"_RESULT_SHORT=""Short[Null, 12]"
+"CELL_"3"_END"
+"CELL_"4"_BEGIN"
+"CELL_"4"_SECONDS="1.596943
+"CELL_"4"_RESULT_PASS="True
+"CELL_"4"_MESSAGE_COUNT="0
+"CELL_"4"_RESULT_HEAD="Association
+"CELL_"4"_RESULT_LEAF_COUNT="97
+"CELL_"4"_RESULT_SHORT=""Short[<|\"AreaRelative\" -> (-4*(2*j^4 - 7*j^2*mu1*mu2*mu3 + 4*mu1^2*mu2^2*mu3^2))/(mu1*mu2*mu3^2*(j^2 - mu1*mu2*mu3)), \"Expected\" -> (4*(2*j^4 - 7*j^2*mu1*mu2*mu3 + 4*mu1^2*mu2^2*mu3^2))/(mu1*mu2*mu3^2*(-j^2 + mu1*mu2*mu3)), \"Pass\" -> True|>, 12]"
+"CELL_"4"_END"
+"CELL_"5"_BEGIN"
+"CELL_"5"_SECONDS="0.389211
+"CELL_"5"_RESULT_PASS="True
+"CELL_"5"_MESSAGE_COUNT="0
+"CELL_"5"_RESULT_HEAD="Association
+"CELL_"5"_RESULT_LEAF_COUNT="121
+"CELL_"5"_RESULT_SHORT=""Short[<|\"AdaptedR0101\" -> (-3*j^2 + 4*mu1*mu2*mu3)/(mu1*mu2*mu3)^(4/3), \"AdaptedF01\" -> {(-2*mu2*mu3*Sqrt[mu1*mu2*mu3*(-j^2 + mu1*mu2*mu3)])/(mu1*mu2*mu3)^(11/6), (-2*mu1*mu3*Sqrt[mu1*mu2*mu3*(-j^2 + mu1*mu2*mu3)])/(mu1*mu2*mu3)^(11/6), (-2*mu1*mu2*Sqrt[mu1*mu2*mu3*(-j^2 + mu1*mu2*mu3)])/(mu1*mu2*mu3)^(11/6)}, \"Kernel\" -> mu3^(-1), \"KernelPass\" -> True, \"EntropyRelative\" -> -4/mu3|>, 12]"
+"CELL_"5"_END"
+"CELL_"6"_BEGIN"
+"CELL_"6"_SECONDS="0.129139
+"CELL_"6"_RESULT_PASS="True
+"CELL_"6"_MESSAGE_COUNT="0
+"CELL_"6"_RESULT_HEAD="Association
+"CELL_"6"_RESULT_LEAF_COUNT="89
+"CELL_"6"_RESULT_SHORT=""Short[<|\"GammaNormal\" -> (j*Sqrt[-j^2 + mu1*mu2*mu3])/(2*mu1*mu2*mu3), \"IntegralGammaWedgeF3\" -> (4*j^2*Sqrt[-j^2 + mu1*mu2*mu3]*Pi^2)/(mu1*mu2*mu3^2), \"EntropyRelative\" -> (8*j^2)/(mu1*mu2*mu3^2), \"Expected\" -> (8*j^2)/(mu1*mu2*mu3^2), \"Pass\" -> True|>, 12]"
+"CELL_"6"_END"
+"CELL_"7"_BEGIN"
+"CELL_"7"_SECONDS="0.145261
+"CELL_"7"_RESULT_PASS="True
+"CELL_"7"_MESSAGE_COUNT="0
+"CELL_"7"_RESULT_HEAD="Association
+"CELL_"7"_RESULT_LEAF_COUNT="148
+"CELL_"7"_RESULT_SHORT=""Short[<|\"AreaRelative\" -> (-4*(2*j^4 - 7*j^2*mu1*mu2*mu3 + 4*mu1^2*mu2^2*mu3^2))/(mu1*mu2*mu3^2*(j^2 - mu1*mu2*mu3)), \"CovariantRelative\" -> -4/mu3, \"ChernSimonsRelative\" -> (8*j^2)/(mu1*mu2*mu3^2), \"SurfaceRelative\" -> (4*(2*j^2 - mu1*mu2*mu3))/(mu1*mu2*mu3^2), \"TotalRelative\" -> (4*(-4*j^2 + 3*mu1*mu2*mu3))/(mu3*(-j^2 + mu1*mu2*mu3)), \"TotalExpected\" -> (4*(-4*j^2 + 3*mu1*mu2*mu3))/(mu3*(-j^2 + mu1*mu2*mu3)), \"TotalPass\" -> True, \"HeteroticAlphaPrimePass\" -> True, \"StaticPass\" -> True|>, 12]"
+"CELL_"7"_END"
+"CELL_"8"_BEGIN"
+"CELL_"8"_SECONDS="0.000114
+"CELL_"8"_RESULT_PASS="True
+"CELL_"8"_MESSAGE_COUNT="0
+"CELL_"8"_RESULT_HEAD="Association
+"CELL_"8"_RESULT_LEAF_COUNT="13
+"CELL_"8"_RESULT_SHORT=""Short[<|\"ProofLedger\" -> <|\"LeviCivitaAndChartOrientation\" -> True, \"AreaFromCorrectedMetric\" -> True, \"HorizonBoostCovariantKernel\" -> True, \"MixedChernSimonsNormalBundle\" -> True, \"TotalEntropy\" -> True, \"HeteroticNormalization\" -> True, \"StaticLimit\" -> True, \"OrderInLambda3\" -> 1, \"RotationDependence\" -> \"exact in j for DeltaH>0\"|>, \"FINAL_PASS\" -> True, \"FULL_EVAL_PASS\" -> True|>, 12]"
+"CELL_"8"_END"
+"RESULT_FAILURE_COUNT="0
+"RESULT_FAILURE_INDICES="InputForm[{}]
+"MESSAGE_CELL_COUNT="0
+"MESSAGE_CELL_INDICES="InputForm[{}]
+"MESSAGE_TOTAL_COUNT="0
+"CELL_SECONDS="InputForm[{0.001458, 0.002415, 0.007514, 1.596943, 0.389211, 0.129139, 0.145261, 0.000114}]
+"CELL_SECONDS_TOTAL="2.272055
+"GLOBAL_FinalPass="InputForm[True]
+"DECLARED_PASS_VALUE="InputForm[True]
+"CELL_EVALUATION_PASS="True
+"END_UTC=""2026-07-19T10:24:56"
+"TOTAL_WALL_SECONDS="5.458965`7.188655303344051
+"FRESH_KERNEL_FINAL_PASS="True
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_END"

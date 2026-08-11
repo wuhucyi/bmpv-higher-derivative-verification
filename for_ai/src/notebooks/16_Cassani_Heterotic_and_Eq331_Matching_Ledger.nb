@@ -1,0 +1,193 @@
+Notebook[{Cell["Cassani invariant and rotating heterotic comparison", 
+   "Title"], Cell["Version-3 human notation guide (documentation only; no \
+Input cell is changed). In the compact solution and verifier notebooks: \
+x=r^2; q1,q2,q3 are the harmonic parameters mu1,mu2,mu3, not normalized \
+conserved charges; jrot is the rotation parameter j; U1,U2,U3 are the \
+electric corrections delta u_I; B1,B2,B3 are the gauge-covariant fibre \
+corrections; Om is delta omega; Ft, Gr, and Sq are the temporal warp, radial \
+warp, and squashing corrections; P and S are delta p and delta s, where \
+X1=exp(2p/3-s), X2=exp(2p/3+s), and X3=exp(-4p/3). Physical quantities are \
+Q_I=Pi mu_I/(4 G5) and J1=J2=Pi j/(4 G5). See the report section \
+'Human-readable notation and result at a glance' for the full dictionary.", 
+   "Text"], Cell["Exact source matching, Eq. (3.31), and the remaining \
+field-map qualification", "Subtitle"], Cell["This standalone notebook \
+verifies the algebraic matching ledger for the single lambda3 standard-Weyl \
+STU invariant used by the BMPV calculation. The three lambda_I couplings are \
+independent; no cyclic sum is required. For the heterotic gravitational and \
+mixed-Chern--Simons sector the choice is lambda1=lambda2=0 and \
+lambda3=alphaPrime/8.", "Text"], Cell["The full heterotic invariant differs \
+from the single standard-Weyl invariant by two curvature-free \
+vector-multiplet invariants. The exact rotating BPS identity below proves \
+that their values and first variations vanish, so the two theories have the \
+same first-order EOM source on the rotating two-derivative background. The \
+complete corrected ten-to-five-dimensional field map remains conditional.", 
+   "Text"], Cell["1. Rotating dressed-field identity", "Section"], 
+  Cell[BoxData["ClearAll[\"Global`*\"]; $HistoryLength=0;"], "Input"], 
+  Cell[BoxData["hprod = h1 h2 h3;\nfTildeI = hprod^(-1/3) {-1, 0, \
+1};\nfTildeJ = hprod^(-1/3) {0, -1, 1};\ndressedDifference = Simplify[fTildeI \
+- fTildeJ];\nexpectedDifference = hprod^(-1/3) {-1, 1, \
+0};\ndThetaCancellation = TrueQ[dressedDifference[[3]] === \
+0];\ndressedIdentityPass = TrueQ[dressedDifference === \
+expectedDifference];\n\n(* XI/XJ=HJ/HI, hence d log(XI/XJ)=-d log(HI)+d \
+log(HJ).\n   With e0=hprod^(-1/3) Theta, this is\n     FtildeI-FtildeJ = d \
+log(XI/XJ) wedge e0. *)\nscalarGradientCoefficients = {-1, \
+1};\nbpsRelationPass = TrueQ[\n  Take[dressedDifference, 2] === hprod^(-1/3) \
+scalarGradientCoefficients];\n\n(* \
+---------------------------------------------------------------------- \
+*)\ndressedChecks=<|\"DressedFieldIdentityExactInTheta\"->dressedIdentityPass\
+,\"DThetaCancels\"->dThetaCancellation,\"LocalBPSRelation\"->bpsRelationPass|\
+>; dressedChecks"], "Input"], Cell["Expected exact output:", "Text"], 
+  Cell[BoxData["<|\"DressedFieldIdentityExactInTheta\" -> True, \
+\"DThetaCancels\" -> True, \"LocalBPSRelation\" -> True|>"], "Output"], 
+  Cell["For A^I=H_I^(-1) Theta and X^I=H^(1/3)/H_I, the dTheta term cancels \
+in Ftilde^I-Ftilde^J. No form of Theta or of the rotation one-form is \
+assumed, so the statement is exact in j.", "Text"], 
+  Cell["2. Vector invariant and its first variation", "Section"], 
+  Cell["In a five-dimensional orthonormal frame let K be the dressed \
+field-strength difference and p=d log(X^I/X^J). The curvature-free invariant \
+is V=(K^2)^2-4 K^4+4 K^2 p^2-16 (K^2)_ab p^a p^b-4(p^2)^2. The substitution \
+K=plus or minus e0 wedge p must annihilate V and every first derivative with \
+respect to K and p.", "Text"], Cell[BoxData["dim = 5;\neta = \
+DiagonalMatrix[{-1, 1, 1, 1, 1}];\nfvars = Association@Flatten@Table[{aa, bb} \
+->\n    Symbol[\"f\" <> ToString[aa] <> ToString[bb]],\n  {aa, 0, dim - 1}, \
+{bb, aa + 1, dim - 1}];\np = Array[pp, dim, 0];\nfdd = ConstantArray[0, {dim, \
+dim}];\nKeyValueMap[(fdd[[#1[[1]] + 1, #1[[2]] + 1]] = #2;\n    fdd[[#1[[2]] \
++ 1, #1[[1]] + 1]] = -#2) &, fvars];\nfuu = eta . fdd . eta;\nfdu = fdd . \
+eta;\nf2 = Expand[Total[Flatten[fdd fuu]]];\nf4 = Expand[Tr[MatrixPower[fdu, \
+4]]];\npup = eta . p;\np2 = Expand[p . pup];\nf2dd = Simplify[fdd . eta . \
+Transpose[fdd]];\nf2pp = Expand[pup . f2dd . pup];\nvectorInvariant = \
+Expand[\n  f2^2 - 4 f4 + 4 f2 p2 - 16 f2pp - 4 p2^2];\nbpsRules = \
+Join[{p[[1]] -> 0},\n  Table[fvars[{0, ii}] -> p[[ii + 1]], {ii, 1, dim - \
+1}],\n  Flatten@Table[fvars[{ii, jj}] -> 0,\n    {ii, 1, dim - 1}, {jj, ii + \
+1, dim - 1}]];\nvectorValue = Factor[vectorInvariant /. \
+bpsRules];\nvectorGradientF = Factor[(D[vectorInvariant, #] /. bpsRules)] & \
+/@\n  Values[fvars];\nvectorGradientP = Factor[(D[vectorInvariant, #] /. \
+bpsRules)] & /@ p;\nvectorValuePass = TrueQ[vectorValue === \
+0];\nvectorFirstVariationPass = TrueQ[\n  And @@ (PossibleZeroQ /@ \
+Join[vectorGradientF, vectorGradientP])];\n\n(* \
+---------------------------------------------------------------------- \
+*)\nvectorChecks=<|\"VectorInvariantValueZero\"->vectorValuePass,\"VectorInva\
+riantFirstVariationZero\"->vectorFirstVariationPass|>; vectorChecks"], 
+   "Input"], Cell["Expected exact output:", "Text"], 
+  Cell[BoxData["<|\"VectorInvariantValueZero\" -> True, \
+\"VectorInvariantFirstVariationZero\" -> True|>"], "Output"], 
+  Cell["3. Raw Kaluza--Klein/Weyl dictionary", "Section"], 
+  Cell["Before higher-derivative field redefinitions, reduction of the \
+ten-dimensional string-frame metric and the ordinary five-dimensional Weyl \
+rescaling give the STU Einstein-frame warp factors and scalars.", "Text"], 
+  Cell[BoxData["e2phi5 = z0/Sqrt[zp zm];\nweylFactor = e2phi5^(-2/3); (* \
+g_E=e^(-4 phi5/3) g_string *)\ntimeCoefficient = PowerExpand[weylFactor/(zp \
+zm)];\nbaseCoefficient = PowerExpand[weylFactor z0];\nmetricMapPass = \
+TrueQ[\n  Simplify[timeCoefficient == (zp zm z0)^(-2/3),\n    Assumptions -> \
+{zp > 0, zm > 0, z0 > 0}] &&\n  Simplify[baseCoefficient == (zp zm \
+z0)^(1/3),\n    Assumptions -> {zp > 0, zm > 0, z0 > 0}]];\n\nsigma5 = \
+Log[zp/zm]/2;\nphi5 = Log[e2phi5]/2;\nx1 = PowerExpand[Exp[2 phi5/3 - \
+sigma5]];\nx2 = PowerExpand[Exp[2 phi5/3 + sigma5]];\nx3 = PowerExpand[Exp[-4 \
+phi5/3]];\nscalarMapPass = TrueQ[\n  FullSimplify[{x1, x2, x3} ==\n    {(zp \
+zm z0)^(1/3)/zp, (zp zm z0)^(1/3)/zm,\n      (zp zm z0)^(1/3)/z0},\n    \
+Assumptions -> {zp > 0, zm > 0, z0 > 0}]];\n\n(* \
+---------------------------------------------------------------------- \
+*)\nmapChecks=<|\"RawEinsteinMetricMap\"->metricMapPass,\"RawSTUScalarMap\"->\
+scalarMapPass|>; mapChecks"], "Input"], Cell["Expected exact output:", 
+   "Text"], 
+  Cell[BoxData[
+    "<|\"RawEinsteinMetricMap\" -> True, \"RawSTUScalarMap\" -> True|>"], 
+   "Output"], Cell["4. Exact audit of arXiv:2606.31987 Eq. (3.31)", 
+   "Section"], Cell["The correction profiles f0, fW, and fPlus are \
+substituted into the two Bianchi ODEs and the Einstein ODE. The correct \
+angular function is W=a/(2 r^2)+alphaPrime fW. The printed extra constant 1 \
+conflicts with the paper's own ansatz and asymptotic boundary condition and \
+is therefore treated as a source typo.", "Text"], 
+  Cell[BoxData["f0[r_] := q0^2/(r^2 (r^2 + q0)^2);\nfW[r_] := a q0/(r^2 (r^2 \
++ q0)^2);\nfPlus[r_] := -2/(r^2 (r^2 + q0) (r^2 + qm)) *\n  (qp qm - 2 \
+a^2/(r^2 + q0));\nassumptions = {r > 0, q0 > 0, qm > 0};\nbianchi0Residual = \
+FullSimplify[\n  D[f0[r], {r, 2}] + 3/r D[f0[r], r] -\n    24 q0^2/(r^2 + \
+q0)^4, Assumptions -> assumptions];\nbianchiWResidual = FullSimplify[\n  -r \
+(r^2 + qm) D[fW[r], {r, 2}] -\n    (r^2 + 3 qm) D[fW[r], r] + 4 r fW[r] +\n   \
+ 8 a q0 r (q0 + 3 qm + 4 r^2)/(r^2 + q0)^4,\n  Assumptions -> \
+assumptions];\neinsteinRhs =\n  -16 qm qp r^3 (q0^2 + q0 qm + qm^2 +\n      3 \
+(q0 + qm) r^2 + 3 r^4)/\n    ((q0 + r^2)^3 (qm + r^2)^3) +\n   32 a^2 r^3 \
+(q0^2 + 2 q0 qm + 3 qm^2 +\n      4 (q0 + 2 qm) r^2 + 6 r^4)/\n    ((q0 + \
+r^2)^4 (qm + r^2)^3);\neinsteinPlusResidual = FullSimplify[\n  D[r^3 \
+D[fPlus[r], r], r] - einsteinRhs,\n  Assumptions -> \
+assumptions];\nprofileODEPass = TrueQ[\n  {bianchi0Residual, \
+bianchiWResidual, einsteinPlusResidual} === {0, 0, 0}];\nprofileNoTailPass = \
+TrueQ[FullSimplify[{\n    Limit[r^2 f0[r], r -> Infinity],\n    Limit[r^2 \
+fW[r], r -> Infinity],\n    Limit[r^2 fPlus[r], r -> Infinity]},\n   \
+Assumptions -> {q0 > 0, qm > 0}] === {0, 0, 0}];\n\nwCorrect[r_] := a/(2 r^2) \
++ alpha fW[r];\nwPrinted[r_] := 1 + a/(2 r^2) + alpha fW[r];\nwTypoPass = \
+TrueQ[\n  Limit[wCorrect[r], r -> Infinity] === 0 &&\n  Limit[r^2 \
+wCorrect[r], r -> Infinity] === a/2 &&\n  Limit[wPrinted[r], r -> Infinity] \
+=== \
+1];\nrotationDegrees={Exponent[Numerator[Together[f0[r]]],a],Exponent[Numerat\
+or[Together[fW[r]]],a],Exponent[Numerator[Together[fPlus[r]]],a]}; \
+eq331Details=<|\"BianchiZ0Residual\"->bianchi0Residual,\"BianchiWResidual\"->\
+bianchiWResidual,\"EinsteinZPlusResidual\"->einsteinPlusResidual,\"ScaledInfi\
+nityLimits\"->{Limit[r^2 f0[r],r->Infinity],Limit[r^2 \
+fW[r],r->Infinity],Limit[r^2 \
+fPlus[r],r->Infinity]},\"RotationDegreesInF0FWFPlus\"->rotationDegrees,\"Corr\
+ectedWBoundaryData\"->{Limit[wCorrect[r],r->Infinity],Limit[r^2 \
+wCorrect[r],r->Infinity]},\"PrintedWInfinityLimit\"->Limit[wPrinted[r],r->Inf\
+inity],\"Eq331ProfileODEs\"->profileODEPass,\"Eq331NoChargeRotationTail\"->pr\
+ofileNoTailPass,\"Eq331PrintedWConstantIsTypo\"->wTypoPass|>; eq331Details"], 
+   "Input"], Cell["Expected exact output:", "Text"], 
+  Cell[BoxData["<|\"BianchiZ0Residual\" -> 0, \"BianchiWResidual\" -> 0, \
+\"EinsteinZPlusResidual\" -> 0, \"ScaledInfinityLimits\" -> {0, 0, 0}, \
+\"RotationDegreesInF0FWFPlus\" -> {0, 1, 2}, \"CorrectedWBoundaryData\" -> \
+{0, a/2}, \"PrintedWInfinityLimit\" -> 1, \"Eq331ProfileODEs\" -> True, \
+\"Eq331NoChargeRotationTail\" -> True, \"Eq331PrintedWConstantIsTypo\" -> \
+True|>"], "Output"], Cell["5. Complete exact/conditional ledger", "Section"], 
+  Cell[BoxData["checks = <|\n  \"DressedFieldIdentityExactInTheta\" -> \
+dressedIdentityPass,\n  \"DThetaCancels\" -> dThetaCancellation,\n  \
+\"LocalBPSRelation\" -> bpsRelationPass,\n  \"VectorInvariantValueZero\" -> \
+vectorValuePass,\n  \"VectorInvariantFirstVariationZero\" -> \
+vectorFirstVariationPass,\n  \"RawEinsteinMetricMap\" -> metricMapPass,\n  \
+\"RawSTUScalarMap\" -> scalarMapPass,\n  \"Eq331ProfileODEs\" -> \
+profileODEPass,\n  \"Eq331NoChargeRotationTail\" -> profileNoTailPass,\n  \
+\"Eq331PrintedWConstantIsTypo\" -> wTypoPass\n  |>;\n\nreport = <|\n  \
+\"Checks\" -> checks,\n  \"AllChecksTrue\" -> TrueQ[And @@ Values[checks]],\n \
+ \"SourceConventionParameterDictionary\" ->\n    {q1 -> qp, q2 -> qm, q3 -> \
+q0, jrot -> a, x -> r^2},\n  \
+\"CassaniCouplingChoiceForHeteroticGravityInvariant\" ->\n    {lambda1 -> 0, \
+lambda2 -> 0, lambda3 -> alphaPrime/8},\n  \"ExactClaim\" ->\n    \"The \
+heterotic-minus-standard-Weyl vector-invariant source vanishes on the \
+rotating two-derivative BPS background, without expanding Theta or j.\",\n  \
+\"ConditionalClaim\" ->\n    \"Field-by-field equality of corrected solutions \
+requires the unperformed rotating higher-derivative 10D-to-5D reduction, \
+dualization, and field redefinitions.\"\n  \
+|>;\nexpectedChecks=<|\"DressedFieldIdentityExactInTheta\" -> True, \
+\"DThetaCancels\" -> True, \"LocalBPSRelation\" -> True, \
+\"VectorInvariantValueZero\" -> True, \"VectorInvariantFirstVariationZero\" \
+-> True, \"RawEinsteinMetricMap\" -> True, \"RawSTUScalarMap\" -> True, \
+\"Eq331ProfileODEs\" -> True, \"Eq331NoChargeRotationTail\" -> True, \
+\"Eq331PrintedWConstantIsTypo\" -> True|>; \
+lagrangianLedger=<|\"ProjectInvariant\"->\"single independent Cassani \
+standard-Weyl lambda3 invariant in the Riemann \
+frame\",\"IndependentCouplings\"->{lambda1,lambda2,lambda3},\"HeteroticGravit\
+yChoice\"->{lambda1->0,lambda2->0,lambda3->alphaPrime/8},\"ExtraVectorInvaria\
+nts\"->\"two curvature-free invariants; value and first variation vanish on \
+rotating BPS\",\"OnlyConditionalItem\"->\"complete corrected 10D-to-5D \
+field-by-field map\"|>; \
+<|\"Checks\"->checks,\"AllChecksTrue\"->report[\"AllChecksTrue\"],\"Lagrangia\
+nLedger\"->lagrangianLedger|>"], "Input"], Cell["Expected ten named checks:", 
+   "Text"], Cell[BoxData["<|\"DressedFieldIdentityExactInTheta\" -> True, \
+\"DThetaCancels\" -> True, \"LocalBPSRelation\" -> True, \
+\"VectorInvariantValueZero\" -> True, \"VectorInvariantFirstVariationZero\" \
+-> True, \"RawEinsteinMetricMap\" -> True, \"RawSTUScalarMap\" -> True, \
+\"Eq331ProfileODEs\" -> True, \"Eq331NoChargeRotationTail\" -> True, \
+\"Eq331PrintedWConstantIsTypo\" -> True|>"], "Output"], 
+  Cell[BoxData["notebook16FinalPass=TrueQ[checks===expectedChecks&&report[\"A\
+llChecksTrue\"]]; notebook16FinalPass"], "Input"], 
+  Cell["Expected exact final output:", "Text"], 
+  Cell[BoxData["True"], "Output"], Cell["6. Claim boundary", "Section"], 
+  Cell["Exact: the project action is the independent Cassani lambda3 \
+standard-Weyl invariant in the stated Riemann frame; the heterotic \
+gravitational normalization selects lambda3=alphaPrime/8; the two extra \
+vector invariants have zero source on rotating BPS; and the corrected Eq. \
+(3.31) profiles solve the displayed ten-dimensional ODEs with no asymptotic \
+charge or rotation tail. Conditional: identifying each corrected \
+ten-dimensional string-frame field with the package's five-dimensional \
+Einstein/Riemann-frame field requires the rotating higher-derivative \
+reduction, corrected dualization, field redefinitions, and radial-gauge map."\
+, "Text"]}, WindowTitle -> "Cassani and heterotic matching ledger", 
+ StyleDefinitions -> "Default.nb"]

@@ -1,0 +1,111 @@
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_BEGIN"
+"FILE_BASENAME=""13_Generic_Static_UnequalCharge_Exact_Certificate.nb"
+"FILE_ABSOLUTE_PATH=""[LOCAL_HOME]/Documents/Codex/2026-07-12/https-www-overleaf-com-project-65577187a96876076df0bcd6/work/package_v4_staging/notebooks/13_Generic_Static_UnequalCharge_Exact_Certificate.nb"
+"KERNEL=""14.1.0 for Mac OS X ARM (64-bit) (July 16, 2024)"
+"START_UTC=""2026-07-20T06:37:11"
+"BYTES="14154393
+"SHA256=""208760ff7c0fd9f689ae4b4aca6e9265dbc1a9c4d4b4adbbf612e46d2f0e0403"
+"PARSE_PASS="True
+"INPUT_CELL_COUNT="11
+"PASS_EXPRESSION=""staticFinalPass"
+"CELL_"1"_BEGIN"
+"CELL_"1"_SECONDS="0.003114
+"CELL_"1"_RESULT_PASS="True
+"CELL_"1"_MESSAGE_COUNT="0
+"CELL_"1"_RESULT_HEAD="List
+"CELL_"1"_RESULT_LEAF_COUNT="14
+"CELL_"1"_RESULT_SHORT=""Short[{\"u1\", \"u2\", \"u3\", \"v1\", \"v2\", \"v3\", \"p\", \"s\", \"f\", \"gr\", \"hr\", \"squ\", \"omega\"}, 12]"
+"CELL_"1"_END"
+"CELL_"2"_BEGIN"
+"CELL_"2"_SECONDS="0.000967
+"CELL_"2"_RESULT_PASS="True
+"CELL_"2"_MESSAGE_COUNT="0
+"CELL_"2"_RESULT_HEAD="Integer
+"CELL_"2"_RESULT_LEAF_COUNT="1
+"CELL_"2"_RESULT_SHORT=""Short[12, 12]"
+"CELL_"2"_END"
+"CELL_"3"_BEGIN"
+"CELL_"3"_SECONDS="0.016502
+"CELL_"3"_RESULT_PASS="True
+"CELL_"3"_MESSAGE_COUNT="0
+"CELL_"3"_RESULT_HEAD="List
+"CELL_"3"_RESULT_LEAF_COUNT="14
+"CELL_"3"_RESULT_SHORT=""Short[{\"u1\", \"u2\", \"u3\", \"v1\", \"v2\", \"v3\", \"p\", \"s\", \"f\", \"gr\", \"hr\", \"squ\", \"omega\"}, 12]"
+"CELL_"3"_END"
+"CELL_"4"_BEGIN"
+"CELL_"4"_SECONDS="8.025077
+"CELL_"4"_RESULT_PASS="True
+"CELL_"4"_MESSAGE_COUNT="0
+"CELL_"4"_RESULT_HEAD="List
+"CELL_"4"_RESULT_LEAF_COUNT="14
+"CELL_"4"_RESULT_SHORT=""Short[{\"u1\", \"u2\", \"u3\", \"v1\", \"v2\", \"v3\", \"p\", \"s\", \"f\", \"gr\", \"hr\", \"squ\", \"omega\"}, 12]"
+"CELL_"4"_END"
+"CELL_"5"_BEGIN"
+"CELL_"5"_SECONDS="8.579221
+"CELL_"5"_RESULT_PASS="True
+"CELL_"5"_MESSAGE_COUNT="0
+"CELL_"5"_RESULT_HEAD="Symbol
+"CELL_"5"_RESULT_LEAF_COUNT="1
+"CELL_"5"_RESULT_SHORT=""Short[True, 12]"
+"CELL_"5"_END"
+"CELL_"6"_BEGIN"
+"CELL_"6"_SECONDS="0.090506
+"CELL_"6"_RESULT_PASS="True
+"CELL_"6"_MESSAGE_COUNT="0
+"CELL_"6"_RESULT_HEAD="Association
+"CELL_"6"_RESULT_LEAF_COUNT="17
+"CELL_"6"_RESULT_SHORT=""Short[<|\"FunctionChecks\" -> <|U1 -> True, U2 -> True, U3 -> True, B1 -> True, B2 -> True, B3 -> True, P -> True, S -> True, Ft -> True, Gr -> True, K -> True, Om -> True|>, \"dhrGaugeFix\" -> True, \"PositiveDenominatorForm\" -> True, \"AllPass\" -> True|>, 12]"
+"CELL_"6"_END"
+"CELL_"7"_BEGIN"
+"CELL_"7"_SECONDS="0.000406
+"CELL_"7"_RESULT_PASS="True
+"CELL_"7"_MESSAGE_COUNT="0
+"CELL_"7"_RESULT_HEAD="Symbol
+"CELL_"7"_RESULT_LEAF_COUNT="1
+"CELL_"7"_RESULT_SHORT=""Short[Null, 12]"
+"CELL_"7"_END"
+"CELL_"8"_BEGIN"
+"CELL_"8"_SECONDS="31.609139
+"CELL_"8"_RESULT_PASS="True
+"CELL_"8"_MESSAGE_COUNT="0
+"CELL_"8"_RESULT_HEAD="Association
+"CELL_"8"_RESULT_LEAF_COUNT="14
+"CELL_"8"_RESULT_SHORT=""Short[<|\"u1\" -> True, \"u2\" -> True, \"u3\" -> True, \"v1\" -> True, \"v2\" -> True, \"v3\" -> True, \"p\" -> True, \"s\" -> True, \"f\" -> True, \"gr\" -> True, \"hr\" -> True, \"squ\" -> True, \"omega\" -> True|>, 12]"
+"CELL_"8"_END"
+"CELL_"9"_BEGIN"
+"CELL_"9"_SECONDS="0.000149
+"CELL_"9"_RESULT_PASS="True
+"CELL_"9"_MESSAGE_COUNT="0
+"CELL_"9"_RESULT_HEAD="Association
+"CELL_"9"_RESULT_LEAF_COUNT="200
+"CELL_"9"_RESULT_SHORT=""Short[<|\"Denominators\" -> <|\"u1\" -> 9*(q1 + x)^3*(q2 + x)^4*(q3 + x)^4, \"u2\" -> 9*(q1 + x)^4*(q2 + x)^3*(q3 + x)^4, \"u3\" -> 9*(q1 + x)^3*(q2 + x)^3*(q3 + x)^4, \"v1\" -> 1, \"v2\" -> 1, \"v3\" -> 1, \"p\" -> 27*(q1 + x)^4*(q2 + x)^4*(q3 + x)^5, \"s\" -> 9*(q1 + x)^4*(q2 + x)^4*(q3 + x)^4, \"f\" -> 9*(q1 + x)^4*(q2 + x)^4*(q3 + x)^5, \"gr\" -> 9*(q1 + x)^4*(q2 + x)^4*(q3 + x)^5, \"hr\" -> 3*(q1 + x)^4*(q2 + x)^4*(q3 + x)^5, \"squ\" -> 9*(q1 + x)^4*(q2 + x)^4*(q3 + x)^5, \"omega\" -> 1|>, \"LeafCounts\" -> <|\"u1\" -> {854, 854}, \"u2\" -> {854, 854}, \"u3\" -> {636, 636}, \"v1\" -> {1, 1}, \"v2\" -> {1, 1}, \"v3\" -> {1, 1}, \"p\" -> {1335, 1335}, \"s\" -> {768, 777}, \"f\" -> {1313, 1313}, \"gr\" -> {1328, 1328}, \"hr\" -> {1346, 1346}, \"squ\" -> {1346, 1346}, \"omega\" -> {1, 1}|>, \"ExpectedDataPass\" -> True|>, 12]"
+"CELL_"9"_END"
+"CELL_"10"_BEGIN"
+"CELL_"10"_SECONDS="0.000088
+"CELL_"10"_RESULT_PASS="True
+"CELL_"10"_MESSAGE_COUNT="0
+"CELL_"10"_RESULT_HEAD="Association
+"CELL_"10"_RESULT_LEAF_COUNT="9
+"CELL_"10"_RESULT_SHORT=""Short[<|\"Verdict\" -> <|\"LiteralHashPass\" -> True, \"GaugeMapPass\" -> True, \"RationalMemberCount\" -> 13, \"PolynomialNumeratorCount\" -> 13, \"ExactZeroCount\" -> 13, \"ExpectedDenominatorAndLeafDataPass\" -> True|>, \"FINAL_PASS\" -> True|>, 12]"
+"CELL_"10"_END"
+"CELL_"11"_BEGIN"
+"CELL_"11"_SECONDS="7.*^-6
+"CELL_"11"_RESULT_PASS="True
+"CELL_"11"_MESSAGE_COUNT="0
+"CELL_"11"_RESULT_HEAD="Symbol
+"CELL_"11"_RESULT_LEAF_COUNT="1
+"CELL_"11"_RESULT_SHORT=""Short[True, 12]"
+"CELL_"11"_END"
+"RESULT_FAILURE_COUNT="0
+"RESULT_FAILURE_INDICES="InputForm[{}]
+"MESSAGE_CELL_COUNT="0
+"MESSAGE_CELL_INDICES="InputForm[{}]
+"MESSAGE_TOTAL_COUNT="0
+"CELL_SECONDS="InputForm[{0.003114, 0.000967, 0.016502, 8.025077, 8.579221, 0.090506, 0.000406, 31.609139, 0.000149, 0.000088, 7.*^-6}]
+"CELL_SECONDS_TOTAL="48.325176
+"DECLARED_PASS_VALUE="InputForm[True]
+"CELL_EVALUATION_PASS="True
+"END_UTC=""2026-07-20T06:38:01"
+"TOTAL_WALL_SECONDS="50.127014`8.151616828530997
+"FRESH_KERNEL_FINAL_PASS="True
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_END"

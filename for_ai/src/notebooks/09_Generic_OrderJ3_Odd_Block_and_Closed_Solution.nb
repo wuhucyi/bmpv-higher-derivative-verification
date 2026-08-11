@@ -1,0 +1,40 @@
+Notebook[{Cell["Generic unequal-charge O(j^3) odd block and closed solution", 
+   "Title"], Cell["Version-3 human notation guide (documentation only; no \
+Input cell is changed). In the compact solution and verifier notebooks: \
+x=r^2; q1,q2,q3 are the harmonic parameters mu1,mu2,mu3, not normalized \
+conserved charges; jrot is the rotation parameter j; U1,U2,U3 are the \
+electric corrections delta u_I; B1,B2,B3 are the gauge-covariant fibre \
+corrections; Om is delta omega; Ft, Gr, and Sq are the temporal warp, radial \
+warp, and squashing corrections; P and S are delta p and delta s, where \
+X1=exp(2p/3-s), X2=exp(2p/3+s), and X3=exp(-4p/3). Physical quantities are \
+Q_I=Pi mu_I/(4 G5) and J1=J2=Pi j/(4 G5). See the report section \
+'Human-readable notation and result at a glance' for the full dictionary.", 
+   "Text"], Cell["Scope: the cubic odd correction at first order in lambda3. \
+The lower-order static, O(j), and O(j^2) fields are treated as already fixed. \
+All formulas and proof ledgers needed for this stage are embedded below.", 
+   "Text"], Cell["Definitions and solution", "Section"], 
+  Cell[BoxData["ClearAll[\"Global`*\"]; H1=x+q1; H2=x+q2; H3=x+q3; Delta=H1 \
+H2+H1 H3+H2 H3;\nB13=0; B23=0; B33=0; Omega3=24/(x^2 H3 \
+Delta);\norderJ3Solution=<|\"B13\"->B13,\"B23\"->B23,\"B33\"->B33,\"Omega3\"-\
+>Omega3|>; orderJ3Solution"], "Input"], Cell["Exact odd-equation validation", 
+   "Section"], Cell["The cubic coefficient was inserted into the four generic \
+odd equations after including every lower-order contribution. The symbolic \
+residuals with arbitrary q1,q2,q3 are recorded here. These zeros replay the \
+authoritative full substitution result; notebooks 01, 02 and the \
+chronological chain are required for an independent from-EOM reconstruction."\
+, "Text"], Cell[BoxData["recordedOddResiduals=<|\"v1\"->0,\"v2\"->0,\"v3\"->0\
+,\"omega\"->0|>;\n<|\"RecordedFourOfFourResidualReplay\"->And@@(PossibleZeroQ \
+/@ \
+Values[recordedOddResiduals]),\"ThreeFibreCorrectionsVanish\"->TrueQ[{B13,B23\
+,B33}=={0,0,0}],\"Omega3VanishesAtInfinity\"->TrueQ[Limit[Omega3,x->Infinity]\
+==0]|>"], "Input"], Cell["Equal-charge regression", "Section"], 
+  Cell[BoxData["equalChargeOmega3=FullSimplify[Omega3/.{q1->q,q2->q,q3->q}];\
+\n<|\"Computed\"->equalChargeOmega3,\"Expected\"->8/(x^2 \
+(x+q)^3),\"Pass\"->TrueQ[FullSimplify[equalChargeOmega3==8/(x^2 (x+q)^3)]]|>"]\
+, "Input"], Cell["Physical selection", "Section"], 
+  Cell["The displayed solution is the asymptotically vanishing, fixed-Page \
+branch in the selected no-1/x rotation-parameter gauge; generic Wald angular \
+momentum remains open. In particular Omega3 has no 1/x tail, and \
+B13=B23=B33=0. This is the highest nonzero odd power in the complete \
+correction.", "Text"]}, StyleDefinitions -> "Default.nb", 
+ WindowTitle -> "09_Generic_OrderJ3_Odd_Block_and_Closed_Solution"]

@@ -1,0 +1,80 @@
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_BEGIN"
+"FILE_BASENAME=""16_Cassani_Heterotic_and_Eq331_Matching_Ledger.nb"
+"FILE_ABSOLUTE_PATH=""[LOCAL_HOME]/Documents/Codex/2026-07-12/https-www-overleaf-com-project-65577187a96876076df0bcd6/work/package_v4_staging/notebooks/16_Cassani_Heterotic_and_Eq331_Matching_Ledger.nb"
+"KERNEL=""14.1.0 for Mac OS X ARM (64-bit) (July 16, 2024)"
+"START_UTC=""2026-07-20T06:38:17"
+"BYTES="13525
+"SHA256=""f61988da80f4ee5ca92811860a491af5630e229966bedbed33395009ef1accb1"
+"PARSE_PASS="True
+"INPUT_CELL_COUNT="7
+"PASS_EXPRESSION=""notebook16FinalPass"
+"CELL_"1"_BEGIN"
+"CELL_"1"_SECONDS="0.004989
+"CELL_"1"_RESULT_PASS="True
+"CELL_"1"_MESSAGE_COUNT="0
+"CELL_"1"_RESULT_HEAD="Symbol
+"CELL_"1"_RESULT_LEAF_COUNT="1
+"CELL_"1"_RESULT_SHORT=""Short[Null, 12]"
+"CELL_"1"_END"
+"CELL_"2"_BEGIN"
+"CELL_"2"_SECONDS="0.004758
+"CELL_"2"_RESULT_PASS="True
+"CELL_"2"_MESSAGE_COUNT="0
+"CELL_"2"_RESULT_HEAD="Association
+"CELL_"2"_RESULT_LEAF_COUNT="4
+"CELL_"2"_RESULT_SHORT=""Short[<|\"DressedFieldIdentityExactInTheta\" -> True, \"DThetaCancels\" -> True, \"LocalBPSRelation\" -> True|>, 12]"
+"CELL_"2"_END"
+"CELL_"3"_BEGIN"
+"CELL_"3"_SECONDS="0.019853
+"CELL_"3"_RESULT_PASS="True
+"CELL_"3"_MESSAGE_COUNT="0
+"CELL_"3"_RESULT_HEAD="Association
+"CELL_"3"_RESULT_LEAF_COUNT="3
+"CELL_"3"_RESULT_SHORT=""Short[<|\"VectorInvariantValueZero\" -> True, \"VectorInvariantFirstVariationZero\" -> True|>, 12]"
+"CELL_"3"_END"
+"CELL_"4"_BEGIN"
+"CELL_"4"_SECONDS="0.768621
+"CELL_"4"_RESULT_PASS="True
+"CELL_"4"_MESSAGE_COUNT="0
+"CELL_"4"_RESULT_HEAD="Association
+"CELL_"4"_RESULT_LEAF_COUNT="3
+"CELL_"4"_RESULT_SHORT=""Short[<|\"RawEinsteinMetricMap\" -> True, \"RawSTUScalarMap\" -> True|>, 12]"
+"CELL_"4"_END"
+"CELL_"5"_BEGIN"
+"CELL_"5"_SECONDS="0.035635
+"CELL_"5"_RESULT_PASS="True
+"CELL_"5"_MESSAGE_COUNT="0
+"CELL_"5"_RESULT_HEAD="Association
+"CELL_"5"_RESULT_LEAF_COUNT="23
+"CELL_"5"_RESULT_SHORT=""Short[<|\"BianchiZ0Residual\" -> 0, \"BianchiWResidual\" -> 0, \"EinsteinZPlusResidual\" -> 0, \"ScaledInfinityLimits\" -> {0, 0, 0}, \"RotationDegreesInF0FWFPlus\" -> {0, 1, 2}, \"CorrectedWBoundaryData\" -> {0, a/2}, \"PrintedWInfinityLimit\" -> 1, \"Eq331ProfileODEs\" -> True, \"Eq331NoChargeRotationTail\" -> True, \"Eq331PrintedWConstantIsTypo\" -> True|>, 12]"
+"CELL_"5"_END"
+"CELL_"6"_BEGIN"
+"CELL_"6"_SECONDS="0.000127
+"CELL_"6"_RESULT_PASS="True
+"CELL_"6"_MESSAGE_COUNT="0
+"CELL_"6"_RESULT_HEAD="Association
+"CELL_"6"_RESULT_LEAF_COUNT="35
+"CELL_"6"_RESULT_SHORT=""Short[<|\"Checks\" -> <|\"DressedFieldIdentityExactInTheta\" -> True, \"DThetaCancels\" -> True, \"LocalBPSRelation\" -> True, \"VectorInvariantValueZero\" -> True, \"VectorInvariantFirstVariationZero\" -> True, \"RawEinsteinMetricMap\" -> True, \"RawSTUScalarMap\" -> True, \"Eq331ProfileODEs\" -> True, \"Eq331NoChargeRotationTail\" -> True, \"Eq331PrintedWConstantIsTypo\" -> True|>, \"AllChecksTrue\" -> True, \"LagrangianLedger\" -> <|\"ProjectInvariant\" -> \"single independent Cassani standard-Weyl lambda3 invariant in the Riemann frame\", \"IndependentCouplings\" -> {lambda1, lambda2, lambda3}, \"HeteroticGravityChoice\" -> {lambda1 -> 0, lambda2 -> 0, lambda3 -> alphaPrime/8}, \"ExtraVectorInvariants\" -> \"two curvature-free invariants; value and first variation vanish on rotating BPS\", \"OnlyConditionalItem\" -> \"complete corrected 10D-to-5D field-by-field map\"|>|>, 12]"
+"CELL_"6"_END"
+"CELL_"7"_BEGIN"
+"CELL_"7"_SECONDS="0.000056
+"CELL_"7"_RESULT_PASS="True
+"CELL_"7"_MESSAGE_COUNT="0
+"CELL_"7"_RESULT_HEAD="Symbol
+"CELL_"7"_RESULT_LEAF_COUNT="1
+"CELL_"7"_RESULT_SHORT=""Short[True, 12]"
+"CELL_"7"_END"
+"RESULT_FAILURE_COUNT="0
+"RESULT_FAILURE_INDICES="InputForm[{}]
+"MESSAGE_CELL_COUNT="0
+"MESSAGE_CELL_INDICES="InputForm[{}]
+"MESSAGE_TOTAL_COUNT="0
+"CELL_SECONDS="InputForm[{0.004989, 0.004758, 0.019853, 0.768621, 0.035635, 0.000127, 0.000056}]
+"CELL_SECONDS_TOTAL="0.834039
+"FINAL_CHECKS="InputForm[<|"DressedFieldIdentityExactInTheta" -> True, "DThetaCancels" -> True, "LocalBPSRelation" -> True, "VectorInvariantValueZero" -> True, "VectorInvariantFirstVariationZero" -> True, "RawEinsteinMetricMap" -> True, "RawSTUScalarMap" -> True, "Eq331ProfileODEs" -> True, "Eq331NoChargeRotationTail" -> True, "Eq331PrintedWConstantIsTypo" -> True|>]
+"DECLARED_PASS_VALUE="InputForm[True]
+"CELL_EVALUATION_PASS="True
+"END_UTC=""2026-07-20T06:38:19"
+"TOTAL_WALL_SECONDS="2.151338`6.784253641913637
+"FRESH_KERNEL_FINAL_PASS="True
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_END"

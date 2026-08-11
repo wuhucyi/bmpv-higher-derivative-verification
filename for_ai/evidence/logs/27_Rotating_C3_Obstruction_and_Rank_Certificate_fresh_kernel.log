@@ -1,0 +1,43 @@
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_BEGIN"
+"FILE_BASENAME=""27_Rotating_C3_Obstruction_and_Rank_Certificate.nb"
+"FILE_ABSOLUTE_PATH=""[LOCAL_HOME]/Documents/Codex/2026-07-12/https-www-overleaf-com-project-65577187a96876076df0bcd6/work/package_v3_staging/notebooks/27_Rotating_C3_Obstruction_and_Rank_Certificate.nb"
+"KERNEL=""14.1.0 for Mac OS X ARM (64-bit) (July 16, 2024)"
+"START_UTC=""2026-07-19T10:25:20"
+"BYTES="18337
+"SHA256=""f3038e81dc4bb57e35a2f8824c8b6bb37468ab1f1d48144518b072530c415024"
+"PARSE_PASS="True
+"INPUT_CELL_COUNT="1
+"PASS_EXPRESSION=""TrueQ[Global`finalPass]"
+"CELL_"1"_BEGIN"
+"FULL_CHAIN_RESIDUAL_AT_R2 = "InputForm[{0, 0, -38054/47544651, 61340/30255687, 0, 0, 0, 0, 0, -22478/30255687}]
+"FULL_CHAIN_CLOSURE_RESIDUAL_AT_R2 = "46775306/5752902771
+"NONZERO_RESIDUAL_TRIPLES = "InputForm[{{1, 2, 5}, {1, 3, 4}, {3, 4, 5}}]
+"RANK_CERTIFICATES = "InputForm[<|"UntiedRawPlusMap" -> <|"EquationCount" -> 17, "VariableCount" -> 26, "CoefficientRank" -> 14, "AugmentedRank" -> 14, "Consistent" -> True, "SolutionDimension" -> 12|>, "Eq331TiedProfiles" -> <|"EquationCount" -> 17, "VariableCount" -> 18, "CoefficientRank" -> 12, "AugmentedRank" -> 13, "Consistent" -> False, "SolutionDimension" -> "INCONSISTENT"|>, "Eq331PhysicalProfiles" -> <|"EquationCount" -> 17, "VariableCount" -> 14, "CoefficientRank" -> 11, "AugmentedRank" -> 12, "Consistent" -> False, "SolutionDimension" -> "INCONSISTENT"|>, "WrongStageFreePredualScalar" -> <|"EquationCount" -> 17, "VariableCount" -> 15, "CoefficientRank" -> 12, "AugmentedRank" -> 13, "Consistent" -> False, "SolutionDimension" -> "INCONSISTENT"|>, "WrongStageFixedPredualScalar" -> <|"EquationCount" -> 17, "VariableCount" -> 14, "CoefficientRank" -> 11, "AugmentedRank" -> 12, "Consistent" -> False, "SolutionDimension" -> "INCONSISTENT"|>|>]
+"STAGE_ANNOTATIONS = "InputForm[<|"StaticTorsionFreeHAnchor" -> "PASS in the independently rerun inverse-h regression", "RotatingTorsionFreeHAnchor" -> "FAIL in the independently rerun inverse-h regression", "ScalarStage" -> "the corrected scalar term is postdual and leaves the predual h input unchanged"|>]
+"RAW_RECONSTRUCTION_ANNOTATIONS = "InputForm[<|"RawMetricLeading" -> "PASS", "RawMetricCorrection" -> "PASS", "RotatingRawClosureSum" -> "PASS", "StaticRawFieldSum" -> "PASS"|>]
+"INTERPRETATION = ""untied raw fitting is nonphysical because repeated appearances of each Eq. (3.31) primitive profile must inherit one common coefficient"
+"LOCALIZATION_BOUNDARY = ""the predual rotating chain lacks at least one rotation-dependent tensor structure; the present data do not localize it uniquely to raw hGeom"
+"LEDGER = "InputForm[<|"FrameEpsilonConvention" -> True, "OrientationReversingChart" -> True, "PositiveEq41ThirdPotential" -> True, "FinalActionMinusDualityStatic" -> True, "FullChainClosureObstructionNonzero" -> True, "OnlyExpectedResidualTriples" -> True, "FourPrimitiveProfiles" -> True, "ThreeDescendantsPerProfile" -> True, "TwelveDistinctRawDescendants" -> True, "UntiedDiagnosticRank14EqualsAugmented14" -> True, "UntiedDiagnosticDimension12" -> True, "TiedProfileInconsistencyRank12To13" -> True, "PhysicalProfileInconsistencyRank11To12" -> True, "WrongStageFreeScalarStillInconsistent" -> True, "WrongStageFixedScalarStillInconsistent" -> True|>]
+"FINAL_PASS = "True
+"CELL_"1"_SECONDS="0.022807
+"CELL_"1"_RESULT_PASS="True
+"CELL_"1"_MESSAGE_COUNT="0
+"CELL_"1"_RESULT_HEAD="Symbol
+"CELL_"1"_RESULT_LEAF_COUNT="1
+"CELL_"1"_RESULT_SHORT=""Short[Null, 12]"
+"CELL_"1"_END"
+"RESULT_FAILURE_COUNT="0
+"RESULT_FAILURE_INDICES="InputForm[{}]
+"MESSAGE_CELL_COUNT="0
+"MESSAGE_CELL_INDICES="InputForm[{}]
+"MESSAGE_TOTAL_COUNT="0
+"CELL_SECONDS="InputForm[{0.022807}]
+"CELL_SECONDS_TOTAL="0.022807
+"FINAL_LEDGER="InputForm[<|"FrameEpsilonConvention" -> True, "OrientationReversingChart" -> True, "PositiveEq41ThirdPotential" -> True, "FinalActionMinusDualityStatic" -> True, "FullChainClosureObstructionNonzero" -> True, "OnlyExpectedResidualTriples" -> True, "FourPrimitiveProfiles" -> True, "ThreeDescendantsPerProfile" -> True, "TwelveDistinctRawDescendants" -> True, "UntiedDiagnosticRank14EqualsAugmented14" -> True, "UntiedDiagnosticDimension12" -> True, "TiedProfileInconsistencyRank12To13" -> True, "PhysicalProfileInconsistencyRank11To12" -> True, "WrongStageFreeScalarStillInconsistent" -> True, "WrongStageFixedScalarStillInconsistent" -> True|>]
+"GLOBAL_finalPass="InputForm[True]
+"DECLARED_PASS_VALUE="InputForm[True]
+"CELL_EVALUATION_PASS="True
+"END_UTC=""2026-07-19T10:25:24"
+"TOTAL_WALL_SECONDS="3.646571`7.0134296673412475
+"FRESH_KERNEL_FINAL_PASS="True
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_END"

@@ -1,0 +1,206 @@
+Notebook[{Cell["Appendix-B boundary-current no-go", "Title"], 
+  Cell[
+   "Corrected generic source-side certificate for the rotating third vector", 
+   "Subtitle"], Cell["Purpose and reading order", "Section"], 
+  Cell["This notebook asks a narrow source-side question: can the boundary \
+currents printed in Appendix B.1 through B.4 generate the closed rotating \
+third-vector shift verified at solution level in notebook 31? It first \
+records the published boundary-current structures, then evaluates the only \
+explicitly h-dependent current on the generic rotating source. The \
+independently known shift is introduced only after that source calculation as \
+a nonzero comparison guard.", "Text"], 
+  Cell["Published Appendix-B formula ledger", "Section"], 
+  Cell["The executable ledger is anchored to main-v2.tex lines 907, 922, 933, \
+and 945. In the boundary terms at lines 907, 922, and 933, Appendix B.1 \
+through B.3 use the unprimed plain covariant derivative D and have no \
+explicit h. Line 945, Appendix B.4, contains the only explicit h-dependent \
+boundary current, proportional to h Fplus Fplus. Therefore there is no \
+independent-h torsion-sign branch to add to B.1 through B.3. The symbolic \
+ledger checks these statements before any black-hole substitution.", "Text"], 
+  Cell["Genuine B.4 no-go", "Section"], Cell["On the generic leading rotating \
+source, Fplus has only the components (t,r), (r,phi), and (r,psi). It is \
+decomposable, so all five components of Fplus wedge Fplus vanish. An \
+arbitrary linear Hodge map sends this zero four-form to the zero one-form. \
+Direct contraction with the physical horizontal three-form independently \
+gives J_mu=h^(alpha beta gamma) Fplus_(alpha mu) Fplus_(beta gamma)=0 in \
+every component. The required closed potential shift is generically nonzero, \
+so the actual Appendix-B.4 current cannot generate it.", "Text"], 
+  Cell["Other displayed source-side mechanisms", "Section"], 
+  Cell["Three additional generic tests prevent algebraic profile recognition \
+from being mistaken for a derivation. The printed corrected-KK scalar \
+contains a static term together with the desired rotation term, so \
+multiplying the leading potential introduces forbidden static contamination. \
+The determinant of Delta C with d_r C0 is nonzero, ruling out both a radial \
+pullback and the displayed postdual direction. Finally, closure, rotation \
+parity, static vanishing, and charge-preserving falloff hold for an arbitrary \
+two-constant family; these kinematic requirements cannot select the needed \
+coefficients.", "Text"], Cell["Scope", "Section"], 
+  Cell["This notebook does not derive Delta C. It rejects the genuine \
+Appendix-B.4 boundary current and the other displayed mechanisms tested here \
+as complete universal source-side origins of that shift. It does not prove \
+that no larger covariant field-redefinition basis exists. The exact \
+solution-level map remains verified, while its universal off-shell \
+source-side coefficients remain unproved.", "Text"], 
+  Cell["Complete machine calculation", "Section"], 
+  Cell[BoxData["ClearAll[\"Global`*\"];\n$HistoryLength = 0;\n$Assumptions = \
+r > 0 && qminus > 0 && qplus > 0 && qzero > 0 &&\n  0 < theta < Pi && \
+Element[a, Reals];\n\ncanonical[e_] := Factor[Cancel[Together[PowerExpand[\n  \
+TrigFactor[e /. Cos[theta]^2 -> 1 - Sin[theta]^2]]]]];\n\n(* Source-formula \
+ledger.  These four entries transcribe only the tensor\n   structures inside \
+the total divergences on lines 907, 922, 933 and 945\n   of main-v2.tex \
+(Appendix B.1--B.4).  Dplain denotes the unprimed plain\n   covariant \
+derivative printed there; DplusTorsion is deliberately absent. \
+*)\nappendixBoundaryFormulas = <|\n  \"B.1_line907\" -> {\n    Fminus[alpha, \
+beta, aa] P[gamma, cc, aa]\n      Fplus[beta, gamma, cc],\n    Fminus[alpha, \
+beta, aa]\n      Dplain[alpha, Fminus[beta, mu, aa]]},\n  \"B.2_line922\" -> \
+{\n    Fplus[beta, gamma, aa] P[delta, aa, bb]\n      Fminus[beta, delta, \
+bb],\n    Fplus[beta, gamma, aa]\n      Dplain[gamma, Fplus[alpha, beta, \
+aa]]},\n  \"B.3_line933\" -> {\n    P[beta, aa, bb] Dplain[alpha, P[beta, aa, \
+bb]],\n    P[alpha, aa, bb] Fplus[mu, nu, aa] Fminus[mu, nu, bb]},\n  \
+\"B.4_line945\" -> {\n    h[alpha, beta, gamma] Fplus[alpha, delta, aa]\n     \
+ Fplus[beta, gamma, aa]}\n|>;\nb123 = \
+Values[KeyTake[appendixBoundaryFormulas,\n  {\"B.1_line907\", \
+\"B.2_line922\", \"B.3_line933\"}]];\nb4 = \
+appendixBoundaryFormulas[\"B.4_line945\"];\nsourceFormulaChecks = <|\n  \
+\"FourAnchoredAppendixEntriesPresent\" ->\n    \
+Sort[Keys[appendixBoundaryFormulas]] ===\n      Sort[{\"B.1_line907\", \
+\"B.2_line922\", \"B.3_line933\",\n        \"B.4_line945\"}],\n  \
+\"B1ThroughB3ContainPlainD\" ->\n    And @@ (!FreeQ[#, _Dplain] & /@ b123),\n \
+ \"B1ThroughB3HaveNoExplicitH\" -> FreeQ[b123, _h],\n  \"B4HasExplicitH\" -> \
+!FreeQ[b4, _h],\n  \"NoTorsionfulDerivativeInBoundaryLedger\" ->\n    \
+FreeQ[appendixBoundaryFormulas, _DplusTorsion],\n  \"OnlyB4HasExplicitH\" \
+->\n    FreeQ[b123, _h] && !FreeQ[b4, _h]\n|>;\n\n(* Generic leading rotating \
+heterotic source. *)\ncoords = {t, r, theta, phi, psi};\nn = \
+Length[coords];\ndm = r^2 + qminus;\ndp = r^2 + qplus;\nd0 = r^2 + qzero;\nhm \
+= dm/r^2;\nhp = dp/r^2;\nh0 = d0/r^2;\nw0 = a/(2 r^2);\nthetaOne = {1, 0, 0, \
+w0 Cos[theta], w0};\ndOne[v_] := Table[\n  D[v[[j]], coords[[i]]] - D[v[[i]], \
+coords[[j]]],\n  {i, n}, {j, n}];\nfMomentum = dOne[thetaOne/hp];\nfWinding = \
+dOne[-thetaOne/hm];\nsigma = Log[hp/hm]/2;\nfPlus = FullSimplify[\n  \
+Exp[sigma] fMomentum + Exp[-sigma] fWinding,\n  Assumptions -> \
+$Assumptions];\n\n(* Fplus is decomposable.  Its five independent four-form \
+components vanish.\n   A Hodge star is linear, so an arbitrary star matrix \
+sends this zero\n   four-form to the zero one-form. *)\npfaffian4[f_, {i_, \
+j_, k_, l_}] := canonical[\n  f[[i, j]] f[[k, l]] - f[[i, k]] f[[j, l]] +\n   \
+f[[i, l]] f[[j, k]]];\nquadruples = Subsets[Range[n], {4}];\nfPlusWedgeSquare \
+= pfaffian4[fPlus, #] & /@ quadruples;\nstarMatrix = Array[starEntry, {n, \
+Length[quadruples]}];\nstarFplusWedgeSquare = canonical /@ \
+(starMatrix.fPlusWedgeSquare);\n\n(* Leading string-frame metric and physical \
+horizontal three-form. *)\ng = ConstantArray[0, {n, n}];\ng[[1, 1]] = -1/(hp \
+hm);\ng[[2, 2]] = h0;\ng[[3, 3]] = h0 r^2/4;\ng[[4, 4]] = h0 r^2/4 - w0^2 \
+Cos[theta]^2/(hp hm);\ng[[5, 5]] = h0 r^2/4 - w0^2/(hp hm);\ng[[4, 5]] = \
+g[[5, 4]] = h0 r^2 Cos[theta]/4 -\n  w0^2 Cos[theta]/(hp hm);\ng[[1, 4]] = \
+g[[4, 1]] = -w0 Cos[theta]/(hp hm);\ng[[1, 5]] = g[[5, 1]] = -w0/(hp hm);\ngi \
+= FullSimplify[Inverse[g], Assumptions -> $Assumptions];\n\nomegaOne = {0, 0, \
+0, w0 Cos[theta], w0};\ndOmega = dOne[omegaOne];\nmagnetic[i_, j_, k_] := \
+If[\n  Sort[{i, j, k}] === {3, 4, 5},\n  Signature[{i, j, k}] qzero \
+Sin[theta]/4, 0];\nwedgeTwoOne[q_, v_, i_, j_, k_] :=\n  q[[i, j]] v[[k]] + \
+q[[j, k]] v[[i]] + q[[k, i]] v[[j]];\nhDown = Table[FullSimplify[\n  \
+-magnetic[i, j, k] +\n   wedgeTwoOne[dOmega, thetaOne, i, j, k]/(hp hm),\n  \
+Assumptions -> $Assumptions],\n  {i, n}, {j, n}, {k, n}];\nhUp = \
+Table[FullSimplify[Sum[\n  gi[[i, p]] gi[[j, q]] gi[[k, s]] hDown[[p, q, \
+s]],\n  {p, n}, {q, n}, {s, n}], Assumptions -> $Assumptions],\n  {i, n}, {j, \
+n}, {k, n}];\n\n(* The only explicitly h-dependent Appendix-B boundary \
+current, from B.4. *)\njB4 = Table[canonical[Sum[\n  hUp[[aa, bb, cc]] \
+fPlus[[aa, mu]] fPlus[[bb, cc]],\n  {aa, n}, {bb, n}, {cc, n}]], {mu, \
+n}];\n\n(* Only after the source current is complete, introduce the \
+independently\n   known exact solution-level shift as a nonzero comparison \
+guard. *)\nshiftT = canonical[a^2 r^2/(2 dm dp d0^3)];\nshiftW = canonical[\n \
+ a (a^2 - qzero dm dp)/(4 dm dp d0^3)];\nrequiredShift = {shiftT, 0, 0, \
+shiftW Cos[theta], shiftW};\n\n(* Further generic exclusions of the displayed \
+source-side mechanisms. *)\nu0 = r^2/d0;\nv0 = canonical[u0 w0];\nc0Profiles \
+= {u0, v0};\ntStatic = canonical[-qminus qplus/(dm dp d0)];\ntRotation = \
+canonical[2 a^2/(dm dp d0^2)];\ntKK = canonical[tStatic + tRotation];\nw1 = \
+canonical[a qzero/(r^2 d0^2)];\nprofileForm = canonical /@\n  (u0/4 \
+{tRotation, w0 tRotation - w1});\nprofileResidual = canonical /@ ({shiftT, \
+shiftW} - profileForm);\n\n(* The printed corrected-KK scalar contains \
+tStatic+tRotation. *)\nprintedKKCandidate = canonical /@ (tKK \
+c0Profiles/4);\nkkStaticContamination = canonical /@ (printedKKCandidate /. a \
+-> 0);\nkkCandidateResidual = canonical /@\n  (printedKKCandidate - {shiftT, \
+shiftW});\n\n(* Radial pullbacks and the displayed postdual term point along \
+d_r C0. *)\nc0Prime = canonical /@ D[c0Profiles, r];\ndirectionDeterminant = \
+canonical[\n  shiftW c0Prime[[1]] - shiftT \
+c0Prime[[2]]];\nexpectedDirectionDeterminant = canonical[\n  a r (a^2 d0 - \
+qzero^2 dm dp)/(2 dm dp d0^5)];\nphi0 = Log[h0^2/(hp hm)]/4;\ngRR = \
+1/h0;\npostDirection = canonical /@ (-c0Prime gRR D[phi0, \
+r]);\npostDirectionDeterminant = canonical[\n  shiftW postDirection[[1]] - \
+shiftT postDirection[[2]]];\n\n(* Closure, parity and fast falloff leave an \
+arbitrary two-constant family. *)\nshiftFieldProfiles = canonical /@\n  \
+{-D[shiftT, r], D[shiftW, r], -shiftW};\nshiftClosure = canonical[\n  \
+D[shiftFieldProfiles[[3]], r] + shiftFieldProfiles[[2]]];\nfamilyC = \
+canonical /@ (ca u0 tRotation {1, w0} +\n  cb u0 w1 {0, 1});\nfamilyField = \
+canonical /@\n  {-D[familyC[[1]], r], D[familyC[[2]], r], \
+-familyC[[2]]};\nfamilyClosure = canonical[\n  D[familyField[[3]], r] + \
+familyField[[2]]];\nfamilyStatic = canonical /@ (familyC /. a -> \
+0);\nfamilyParity = canonical /@ {\n  (familyC[[1]] /. a -> -a) - \
+familyC[[1]],\n  (familyC[[2]] /. a -> -a) + \
+familyC[[2]]};\nfamilyFastFalloff = Block[{\n   $Assumptions = qminus > 0 && \
+qplus > 0 && qzero > 0 &&\n    Element[{a, ca, cb}, Reals]},\n  \
+PossibleZeroQ[canonical[\n    Limit[r^5 familyC[[1]], r -> Infinity]]] &&\n   \
+PossibleZeroQ[canonical[\n    Limit[r^5 familyC[[2]], r -> \
+Infinity]]]];\n\nb4Checks = <|\n  \"FplusWedgeSquareVanishes\" ->\n    And @@ \
+(PossibleZeroQ /@ fPlusWedgeSquare),\n  \"StarFplusWedgeSquareVanishes\" ->\n \
+   And @@ (PossibleZeroQ /@ starFplusWedgeSquare),\n  \
+\"PhysicalB4CurrentVanishes\" ->\n    And @@ (PossibleZeroQ /@ jB4),\n  \
+\"RequiredShiftIsNotIdenticallyZero\" ->\n    !And @@ (PossibleZeroQ /@ \
+requiredShift),\n  \"B4CannotGenerateRequiredShift\" ->\n    And @@ \
+(PossibleZeroQ /@ jB4) &&\n     !And @@ (PossibleZeroQ /@ \
+requiredShift)\n|>;\nsourceOriginChecks = <|\n  \"RawProfileRecognition\" \
+->\n    And @@ (PossibleZeroQ /@ profileResidual),\n  \
+\"PrintedKKCandidateHasStaticContamination\" ->\n    Or @@ (!PossibleZeroQ[#] \
+& /@ kkStaticContamination),\n  \"PrintedKKCandidateDoesNotEqualShift\" ->\n  \
+  Or @@ (!PossibleZeroQ[#] & /@ kkCandidateResidual),\n  \
+\"CoordinateDirectionDeterminantFormula\" ->\n    PossibleZeroQ[canonical[\n  \
+    directionDeterminant - expectedDirectionDeterminant]],\n  \
+\"NotRadialCoordinateDirection\" ->\n    \
+!PossibleZeroQ[directionDeterminant],\n  \"NotDisplayedPostdualDirection\" \
+->\n    !PossibleZeroQ[postDirectionDeterminant],\n  \
+\"ShiftFieldIsClosedAndNontrivial\" ->\n    PossibleZeroQ[shiftClosure] &&\n  \
+   Or @@ (!PossibleZeroQ[#] & /@ shiftFieldProfiles),\n  \
+\"RawProfileFamilyAlwaysClosed\" ->\n    PossibleZeroQ[familyClosure],\n  \
+\"RawProfileFamilyAlwaysStaticVanishing\" ->\n    And @@ (PossibleZeroQ /@ \
+familyStatic),\n  \"RawProfileFamilyAlwaysHasRotationParity\" ->\n    And @@ \
+(PossibleZeroQ /@ familyParity),\n  \
+\"RawProfileFamilyAlwaysChargePreservingFalloff\" ->\n    \
+familyFastFalloff\n|>;\nchecks = Join[sourceFormulaChecks, b4Checks, \
+sourceOriginChecks];\nfinalPass = And @@ \
+Values[checks];\n\nPrint[\"APPENDIX_B_SOURCE_FORMULA_LEDGER=\",\n  \
+InputForm[appendixBoundaryFormulas]];\nPrint[\"APPENDIX_B_SOURCE_FORMULA_CHEC\
+KS=\",\n  \
+InputForm[sourceFormulaChecks]];\nPrint[\"APPENDIX_B4_FPLUS_COMPONENTS=\", \
+InputForm[DeleteCases[\n  Flatten[Table[If[i < j && !PossibleZeroQ[fPlus[[i, \
+j]]],\n    {i, j, canonical[fPlus[[i, j]]]}, Nothing],\n    {i, n}, {j, n}], \
+1], Nothing]]];\nPrint[\"APPENDIX_B4_FPLUS_WEDGE_SQUARE=\", InputForm[\n  \
+AssociationThread[quadruples, \
+fPlusWedgeSquare]]];\nPrint[\"APPENDIX_B4_STAR_FPLUS_WEDGE_SQUARE=\",\n  \
+InputForm[starFplusWedgeSquare]];\nPrint[\"APPENDIX_B4_PHYSICAL_CURRENT=\", \
+InputForm[jB4]];\nPrint[\"APPENDIX_B4_REQUIRED_SHIFT=\", \
+InputForm[requiredShift]];\nPrint[\"APPENDIX_B4_CHECKS=\", \
+InputForm[b4Checks]];\nPrint[\"SOURCE_ORIGIN_PROFILE_RESIDUAL=\", \
+InputForm[profileResidual]];\nPrint[\"SOURCE_ORIGIN_KK_STATIC_CONTAMINATION=\
+\",\n  \
+InputForm[kkStaticContamination]];\nPrint[\"SOURCE_ORIGIN_KK_CANDIDATE_RESIDU\
+AL=\",\n  \
+InputForm[kkCandidateResidual]];\nPrint[\"SOURCE_ORIGIN_COORDINATE_DIRECTION_\
+DETERMINANT=\",\n  \
+InputForm[directionDeterminant]];\nPrint[\"SOURCE_ORIGIN_POSTDUAL_DIRECTION_D\
+ETERMINANT=\",\n  \
+InputForm[postDirectionDeterminant]];\nPrint[\"SOURCE_ORIGIN_SHIFT_FIELD_PROF\
+ILES=\",\n  \
+InputForm[shiftFieldProfiles]];\nPrint[\"SOURCE_ORIGIN_SHIFT_CLOSURE=\", \
+InputForm[shiftClosure]];\nPrint[\"SOURCE_ORIGIN_UNDERDETERMINED_FAMILY=\", \
+InputForm[familyC]];\nPrint[\"SOURCE_ORIGIN_FAMILY_CLOSURE=\", \
+InputForm[familyClosure]];\nPrint[\"SOURCE_ORIGIN_CHECKS=\", \
+InputForm[sourceOriginChecks]];\nPrint[\"APPENDIX_B_BOUNDARY_NO_GO_CHECKS=\", \
+InputForm[checks]];\nPrint[\"APPENDIX_B_BOUNDARY_NO_GO_FINAL_PASS=\", \
+finalPass];\nfinalPass;"], "Input", InitializationCell -> True], 
+  Cell["Expected result", "Section"], Cell["A fresh kernel must return an \
+all-True source-formula ledger: B.1 through B.3 contain plain D and no \
+explicit h, B.4 contains explicit h, and no torsionful derivative occurs in \
+the boundary-current ledger. It must then print five zero Fplus-wedge-Fplus \
+components, a zero starred one-form, a zero physical B.4 current, and a \
+generically nonzero required shift. The corrected-KK contamination and both \
+direction determinants must be nonzero, while the profile and closure \
+residuals vanish and the arbitrary ca,cb family survives. The combined ledger \
+and APPENDIX_B_BOUNDARY_NO_GO_FINAL_PASS must be True.", "Text"]}, 
+ WindowTitle -> "Corrected Appendix-B boundary-current no-go", 
+ StyleDefinitions -> "Default.nb"]

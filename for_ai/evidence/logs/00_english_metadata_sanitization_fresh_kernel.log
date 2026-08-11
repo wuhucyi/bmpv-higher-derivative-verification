@@ -1,0 +1,25 @@
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_BEGIN"
+"FILE_BASENAME=""00_Ansatz_Action_and_EOM_Derivation.nb"
+"FILE_ABSOLUTE_PATH=""[LOCAL_REPOSITORY]/src/notebooks/00_Ansatz_Action_and_EOM_Derivation.nb"
+"KERNEL=""14.1.0 for Mac OS X ARM (64-bit) (July 16, 2024)"
+"START_UTC=""2026-08-10T13:34:36"
+"BYTES="110444
+"SHA256=""f2ae71455d9a58f40da7d6ddd1b74735a5f23ca8260f5944ceea5ea50ce0cfea"
+"PARSE_PASS="True
+"INPUT_CELL_COUNT="19
+"SANITIZATION_SCOPE=""FrontEndVersion date localization only"
+"PRE_SANITIZATION_SHA256=""4c33882fb93efd5f8387105e477d4300a193b965d2fa4a902304f6a9de84858c"
+"INPUT_CELLS_IDENTICAL_TO_PRE_SANITIZATION_COPY="True
+"ONLY_EXPECTED_METADATA_REPLACEMENT="True
+"RESULT_FAILURE_COUNT="0
+"RESULT_FAILURE_INDICES="InputForm[{}]
+"MESSAGE_CELL_COUNT="0
+"MESSAGE_CELL_INDICES="InputForm[{}]
+"CELL_SECONDS="InputForm[{0.05594, 0.039197, 0.996385, 0.000261, 1.964859, 0.001056, 19.803892, 0.001439, 0.000537, 0.002089, 0.00182, 2.247596, 0.004523, 0.001496, 0.000141, 0.000769, 0.000199, 0.000217, 0.001029}]
+"CELL_SECONDS_TOTAL="25.124445
+"FINAL_ACTION_STAGE_LEDGER="InputForm[<|"LightGeometryAndMatterConstruction" -> "PASS", "InvariantCoefficientTables" -> "PASS", "FastVectorBPSRegression" -> "PASS", "OptionalFullRotatingVectorSimplification" -> "SKIPPED/RESOURCE_BOUND", "CurvatureTensorConstruction" -> "SKIPPED/RESOURCE_BOUND", "TwoDerivativeRadialActionConstruction" -> "SKIPPED/RESOURCE_BOUND", "FourDerivativeInvariantDensityConstruction" -> "SKIPPED/RESOURCE_BOUND", "EulerLagrangeOperatorDefinitions" -> "PASS", "FullActionVariationToAll13EOM" -> "SKIPPED/RESOURCE_BOUND", "DownstreamLiteralEquationArchive" -> "Notebook 01", "TrueFromEOMRotationVerifier" -> "Notebook 12"|>]
+"DECLARED_PASS_VALUE="InputForm[True]
+"CELL_EVALUATION_PASS="True
+"END_UTC=""2026-08-10T13:35:20"
+"FRESH_KERNEL_FINAL_PASS="True
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_END"

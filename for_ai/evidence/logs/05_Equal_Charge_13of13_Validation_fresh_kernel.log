@@ -1,0 +1,63 @@
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_BEGIN"
+"FILE_BASENAME=""05_Equal_Charge_13of13_Validation.nb"
+"FILE_ABSOLUTE_PATH=""[LOCAL_HOME]/Documents/Codex/2026-07-12/https-www-overleaf-com-project-65577187a96876076df0bcd6/work/package_v4_staging/notebooks/05_Equal_Charge_13of13_Validation.nb"
+"KERNEL=""14.1.0 for Mac OS X ARM (64-bit) (July 16, 2024)"
+"START_UTC=""2026-07-20T06:25:42"
+"BYTES="17364
+"SHA256=""cfd5b848de3bd039e5ca134a9f5cc24e6fd73433cc069c2cedaa5eb7f5223f6d"
+"PARSE_PASS="True
+"INPUT_CELL_COUNT="5
+"PASS_EXPRESSION=""True"
+"CELL_"1"_BEGIN"
+"CELL_"1"_SECONDS="0.003804
+"CELL_"1"_RESULT_PASS="True
+"CELL_"1"_MESSAGE_COUNT="0
+"CELL_"1"_RESULT_HEAD="Association
+"CELL_"1"_RESULT_LEAF_COUNT="576
+"CELL_"1"_RESULT_SHORT=""Short[<|\"AllThirteenOriginalReducedEquationsPass\" -> True, \"EquationPasses\" -> <|\"u1\" -> True, \"u2\" -> True, \"u3\" -> True, \"v1\" -> True, \"v2\" -> True, \"v3\" -> True, \"p\" -> True, \"s\" -> True, \"f\" -> True, \"gr\" -> True, \"hr\" -> True, \"squ\" -> True, \"omega\" -> True|>, \"Residuals\" -> <|\"u1\" -> 0, \"u2\" -> 0, \"u3\" -> 0, \"v1\" -> 0, \"v2\" -> 0, \"v3\" -> 0, \"p\" -> 0, \"s\" -> 0, \"f\" -> 0, \"gr\" -> 0, \"hr\" -> 0, \"squ\" -> 0, \"omega\" -> 0|>, \"Solution\" -> <|\"Gauge\" -> \"dhr=0; adapted B_I variables; fixed Page charges\", \"EqualCharges\" -> {q1 -> q, q2 -> q, q3 -> q}, \"Us\" -> (-4*jrot^2*(12*q + 7*x))/(3*(q + x)^5) - (8*(4*q^3 - 3*q^2*x))/(3*(q + x)^4), \"Ud\" -> (-20*jrot^2*x)/(q + x)^5 + (24*q^2*x)/(q + x)^4, \"Bs\" -> (-22*jrot*q)/(q + x)^3, \"Bd\" -> (-6*jrot*q)/(q + x)^3, \"U1\" -> (-4*jrot^2*(12*q + 7*x))/(3*(q + x)^5) - (8*(4*q^3 - 3*q^2*x))/(3*(q + x)^4) + ((-20*jrot^2*x)/(q + x)^5 + (24*q^2*x)/(q + x)^4)/3, \"U2\" -> (-4*jrot^2*(12*q + 7*x))/(3*(q + x)^5) - (8*(4*q^3 - 3*q^2*x))/(3*(q + x)^4) + ((-20*jrot^2*x)/(q + x)^5 + (24*q^2*x)/(q + x)^4)/3, \"U3\" -> (-4*jrot^2*(12*q + 7*x))/(3*(q + x)^5) - (8*(4*q^3 - 3*q^2*x))/(3*(q + x)^4) - (2*((-20*jrot^2*x)/(q + x)^5 + (24*q^2*x)/(q + x)^4))/3, \"B1\" -> (-24*jrot*q)/(q + x)^3, \"B2\" -> (-24*jrot*q)/(q + x)^3, \"B3\" -> (-18*jrot*q)/(q + x)^3, \"P\" -> (-4*jrot^2)/(q + x)^4 + (6*q^2)/(q + x)^3, \"S\" -> 0, \"Ft\" -> (-8*jrot^2)/(q + x)^4 - (16*jrot^2)/(x*(q + x)^3) - (4*q^2*(8*q + 5*x))/(3*x*(q + x)^3), \"Gr\" -> (16*q^2*(2*q + 3*x))/(3*x*(q + x)^3) + (16*jrot^2*(q + 4*x))/(x*(q + x)^4), \"K\" -> 0, \"Om\" -> (8*jrot^3)/(x^2*(q + x)^3) + (8*jrot*q*(2*q + 9*x))/(3*x^2*(q + x)^2)|>, \"BoundaryLimits\" -> <|\"Infinity\" -> <|\"Us\" -> 0, \"Ud\" -> 0, \"Bs\" -> 0, \"Bd\" -> 0, \"U1\" -> 0, \"U2\" -> 0, \"U3\" -> 0, \"B1\" -> 0, \"B2\" -> 0, \"B3\" -> 0, \"P\" -> 0, \"S\" -> 0, \"Ft\" -> 0, \"Gr\" -> 0, \"K\" -> 0, \"Om\" -> 0|>, \"HorizonScaled\" -> <|\"xFt\" -> (-48*jrot^2*q - 32*q^4)/(3*q^4), \"xGr\" -> (48*jrot^2*q + 32*q^4)/(3*q^4), \"x2Om\" -> (24*jrot^3 + 16*jrot*q^3)/(3*q^3)|>|>|>, 12]"
+"CELL_"1"_END"
+"CELL_"2"_BEGIN"
+"CELL_"2"_SECONDS="0.000204
+"CELL_"2"_RESULT_PASS="True
+"CELL_"2"_MESSAGE_COUNT="0
+"CELL_"2"_RESULT_HEAD="Association
+"CELL_"2"_RESULT_LEAF_COUNT="30
+"CELL_"2"_RESULT_SHORT=""Short[<|\"AllThirteenPass\" -> True, \"EquationPasses\" -> <|\"u1\" -> True, \"u2\" -> True, \"u3\" -> True, \"v1\" -> True, \"v2\" -> True, \"v3\" -> True, \"p\" -> True, \"s\" -> True, \"f\" -> True, \"gr\" -> True, \"hr\" -> True, \"squ\" -> True, \"omega\" -> True|>, \"Residuals\" -> <|\"u1\" -> 0, \"u2\" -> 0, \"u3\" -> 0, \"v1\" -> 0, \"v2\" -> 0, \"v3\" -> 0, \"p\" -> 0, \"s\" -> 0, \"f\" -> 0, \"gr\" -> 0, \"hr\" -> 0, \"squ\" -> 0, \"omega\" -> 0|>|>, 12]"
+"CELL_"2"_END"
+"CELL_"3"_BEGIN"
+"CELL_"3"_SECONDS="0.000218
+"CELL_"3"_RESULT_PASS="True
+"CELL_"3"_MESSAGE_COUNT="0
+"CELL_"3"_RESULT_HEAD="Symbol
+"CELL_"3"_RESULT_LEAF_COUNT="1
+"CELL_"3"_RESULT_SHORT=""Short[True, 12]"
+"CELL_"3"_END"
+"CELL_"4"_BEGIN"
+"CELL_"4"_SECONDS="0.000026
+"CELL_"4"_RESULT_PASS="True
+"CELL_"4"_MESSAGE_COUNT="0
+"CELL_"4"_RESULT_HEAD="Association
+"CELL_"4"_RESULT_LEAF_COUNT="470
+"CELL_"4"_RESULT_SHORT=""Short[<|\"Gauge\" -> \"dhr=0; adapted B_I variables; fixed Page charges\", \"EqualCharges\" -> {q1 -> q, q2 -> q, q3 -> q}, \"Us\" -> (-4*jrot^2*(12*q + 7*x))/(3*(q + x)^5) - (8*(4*q^3 - 3*q^2*x))/(3*(q + x)^4), \"Ud\" -> (-20*jrot^2*x)/(q + x)^5 + (24*q^2*x)/(q + x)^4, \"Bs\" -> (-22*jrot*q)/(q + x)^3, \"Bd\" -> (-6*jrot*q)/(q + x)^3, \"U1\" -> (-4*jrot^2*(12*q + 7*x))/(3*(q + x)^5) - (8*(4*q^3 - 3*q^2*x))/(3*(q + x)^4) + ((-20*jrot^2*x)/(q + x)^5 + (24*q^2*x)/(q + x)^4)/3, \"U2\" -> (-4*jrot^2*(12*q + 7*x))/(3*(q + x)^5) - (8*(4*q^3 - 3*q^2*x))/(3*(q + x)^4) + ((-20*jrot^2*x)/(q + x)^5 + (24*q^2*x)/(q + x)^4)/3, \"U3\" -> (-4*jrot^2*(12*q + 7*x))/(3*(q + x)^5) - (8*(4*q^3 - 3*q^2*x))/(3*(q + x)^4) - (2*((-20*jrot^2*x)/(q + x)^5 + (24*q^2*x)/(q + x)^4))/3, \"B1\" -> (-24*jrot*q)/(q + x)^3, \"B2\" -> (-24*jrot*q)/(q + x)^3, \"B3\" -> (-18*jrot*q)/(q + x)^3, \"P\" -> (-4*jrot^2)/(q + x)^4 + (6*q^2)/(q + x)^3, \"S\" -> 0, \"Ft\" -> (-8*jrot^2)/(q + x)^4 - (16*jrot^2)/(x*(q + x)^3) - (4*q^2*(8*q + 5*x))/(3*x*(q + x)^3), \"Gr\" -> (16*q^2*(2*q + 3*x))/(3*x*(q + x)^3) + (16*jrot^2*(q + 4*x))/(x*(q + x)^4), \"K\" -> 0, \"Om\" -> (8*jrot^3)/(x^2*(q + x)^3) + (8*jrot*q*(2*q + 9*x))/(3*x^2*(q + x)^2)|>, 12]"
+"CELL_"4"_END"
+"CELL_"5"_BEGIN"
+"CELL_"5"_SECONDS="0.000019
+"CELL_"5"_RESULT_PASS="True
+"CELL_"5"_MESSAGE_COUNT="0
+"CELL_"5"_RESULT_HEAD="Association
+"CELL_"5"_RESULT_LEAF_COUNT="76
+"CELL_"5"_RESULT_SHORT=""Short[<|\"Infinity\" -> <|\"Us\" -> 0, \"Ud\" -> 0, \"Bs\" -> 0, \"Bd\" -> 0, \"U1\" -> 0, \"U2\" -> 0, \"U3\" -> 0, \"B1\" -> 0, \"B2\" -> 0, \"B3\" -> 0, \"P\" -> 0, \"S\" -> 0, \"Ft\" -> 0, \"Gr\" -> 0, \"K\" -> 0, \"Om\" -> 0|>, \"HorizonScaled\" -> <|\"xFt\" -> (-48*jrot^2*q - 32*q^4)/(3*q^4), \"xGr\" -> (48*jrot^2*q + 32*q^4)/(3*q^4), \"x2Om\" -> (24*jrot^3 + 16*jrot*q^3)/(3*q^3)|>|>, 12]"
+"CELL_"5"_END"
+"RESULT_FAILURE_COUNT="0
+"RESULT_FAILURE_INDICES="InputForm[{}]
+"MESSAGE_CELL_COUNT="0
+"MESSAGE_CELL_INDICES="InputForm[{}]
+"MESSAGE_TOTAL_COUNT="0
+"CELL_SECONDS="InputForm[{0.003804, 0.000204, 0.000218, 0.000026, 0.000019}]
+"CELL_SECONDS_TOTAL="0.0042710000000000005
+"DECLARED_PASS_VALUE="InputForm[True]
+"CELL_EVALUATION_PASS="True
+"END_UTC=""2026-07-20T06:25:44"
+"TOTAL_WALL_SECONDS="1.274222`6.55679009259086
+"FRESH_KERNEL_FINAL_PASS="True
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_END"

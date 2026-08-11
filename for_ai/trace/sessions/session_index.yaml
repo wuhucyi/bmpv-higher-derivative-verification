@@ -1,0 +1,7 @@
+schema_version: 1
+session_policy: "Curated phase index; not a verbatim chat transcript."
+sessions:
+  - {id: S01, title: "Problem recovery and explicit equations", trace_nodes: [T01, T02], outputs: [NB00, NB01, NB02]}
+  - {id: S02, title: "Benchmarks and generic rotation hierarchy", trace_nodes: [T03, T04, T05, T06, T07], outputs: [NB04, NB05, NB06, NB08, NB09, NB10, NB11, NB12, NB13]}
+  - {id: S03, title: "Conventions, coordinates, charges, and entropy", trace_nodes: [T08, T09, T10], outputs: [NB00A, NB07, NB14, NB15, NB17, NB18, NB20, NB21, NB28, NB29]}
+  - {id: S04, title: "Heterotic-to-STU field map and scope boundary", trace_nodes: [T11, T12, T13], outputs: [NB19, NB22, NB23, NB24, NB25, NB26, NB27, NB30, NB31, NB32]}

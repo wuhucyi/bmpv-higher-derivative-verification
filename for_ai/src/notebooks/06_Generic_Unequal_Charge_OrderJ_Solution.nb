@@ -1,0 +1,244 @@
+Notebook[{Cell["Generic Unequal-Charge Solution through O(j)", "Title"], 
+  Cell["Version-3 human notation guide (documentation only; no Input cell is \
+changed). In the compact solution and verifier notebooks: x=r^2; q1,q2,q3 are \
+the harmonic parameters mu1,mu2,mu3, not normalized conserved charges; jrot \
+is the rotation parameter j; U1,U2,U3 are the electric corrections delta u_I; \
+B1,B2,B3 are the gauge-covariant fibre corrections; Om is delta omega; Ft, \
+Gr, and Sq are the temporal warp, radial warp, and squashing corrections; P \
+and S are delta p and delta s, where X1=exp(2p/3-s), X2=exp(2p/3+s), and \
+X3=exp(-4p/3). Physical quantities are Q_I=Pi mu_I/(4 G5) and J1=J2=Pi j/(4 \
+G5). See the report section 'Human-readable notation and result at a glance' \
+for the full dictionary.", "Text"], Cell["Inheritance: notebooks 00-03 \
+construct and reduce the equations; notebooks 04-05 validate the equal-charge \
+benchmark. This notebook embeds the generic unequal-charge rational solution \
+and its complete order-j residual ledger. Notebook 12 is the final literal \
+from-EOM verifier.", "Text"], Cell["1. Embedded exact rational solution", 
+   "Section"], Cell[BoxData[RowBox[{"genericOrderJSolutionEvidence", "=", 
+      RowBox[{"\[LeftAssociation]", RowBox[
+         {RowBox[{"\"Status\"", "\[Rule]", "\"EXACT_GENERIC_SOLUTION\""}], 
+          ",", RowBox[{"\"Solution\"", "\[Rule]", 
+            RowBox[{"\[LeftAssociation]", RowBox[{RowBox[{"\"Gauge\"", 
+                  "\[Rule]", "\"dhr=0; fixed Page charges; fixed angular \
+first-integral constant\""}], ",", RowBox[{"\"OrderInRotation\"", "\[Rule]", 
+                  "1"}], ",", RowBox[{"\"b11\"", "\[Rule]", RowBox[
+                   {"-", FractionBox[RowBox[{"2", " ", RowBox[{"(", RowBox[
+                          {RowBox[{"36", " ", "q1", " ", "q2", " ", "q3"}], 
+                          "+", RowBox[{"14", " ", "q1", " ", "q2", " ", 
+                          "x"}], "+", RowBox[{"29", " ", "q1", " ", "q3", 
+                          " ", "x"}], "+", RowBox[{"29", " ", "q2", " ", 
+                          "q3", " ", "x"}], "+", RowBox[{"7", " ", "q1", " ", 
+                          SuperscriptBox["x", "2"]}], "+", RowBox[{"7", " ", 
+                          "q2", " ", SuperscriptBox["x", "2"]}], "+", RowBox[
+                          {"22", " ", "q3", " ", SuperscriptBox["x", 
+                          "2"]}]}], ")"}]}], RowBox[{"3", " ", SuperscriptBox[
+                        RowBox[{"(", RowBox[{"q1", "+", "x"}], ")"}], "2"], 
+                       " ", RowBox[{"(", RowBox[{"q2", "+", "x"}], ")"}], 
+                       " ", SuperscriptBox[RowBox[{"(", RowBox[{"q3", "+", 
+                          "x"}], ")"}], "2"]}]]}]}], ",", RowBox[{"\"b21\"", 
+                  "\[Rule]", RowBox[{"-", FractionBox[RowBox[{"2", " ", 
+                       RowBox[{"(", RowBox[{RowBox[{"36", " ", "q1", " ", 
+                          "q2", " ", "q3"}], "+", RowBox[{"14", " ", "q1", 
+                          " ", "q2", " ", "x"}], "+", RowBox[{"29", " ", 
+                          "q1", " ", "q3", " ", "x"}], "+", RowBox[{"29", 
+                          " ", "q2", " ", "q3", " ", "x"}], "+", RowBox[
+                          {"7", " ", "q1", " ", SuperscriptBox["x", "2"]}], 
+                          "+", RowBox[{"7", " ", "q2", " ", SuperscriptBox[
+                          "x", "2"]}], "+", RowBox[{"22", " ", "q3", " ", 
+                          SuperscriptBox["x", "2"]}]}], ")"}]}], RowBox[
+                      {"3", " ", RowBox[{"(", RowBox[{"q1", "+", "x"}], 
+                         ")"}], " ", SuperscriptBox[RowBox[{"(", RowBox[
+                          {"q2", "+", "x"}], ")"}], "2"], " ", SuperscriptBox[
+                        RowBox[{"(", RowBox[{"q3", "+", "x"}], ")"}], 
+                        "2"]}]]}]}], ",", RowBox[{"\"b31\"", "\[Rule]", 
+                  RowBox[{"-", FractionBox[RowBox[{"2", " ", RowBox[{"(", 
+                         RowBox[{RowBox[{"27", " ", "q1", " ", "q2", " ", 
+                          "q3"}], "+", RowBox[{"8", " ", "q1", " ", "q2", 
+                          " ", "x"}], "+", RowBox[{"23", " ", "q1", " ", 
+                          "q3", " ", "x"}], "+", RowBox[{"23", " ", "q2", 
+                          " ", "q3", " ", "x"}], "+", RowBox[{"4", " ", "q1", 
+                          " ", SuperscriptBox["x", "2"]}], "+", RowBox[
+                          {"4", " ", "q2", " ", SuperscriptBox["x", "2"]}], 
+                          "+", RowBox[{"19", " ", "q3", " ", SuperscriptBox[
+                          "x", "2"]}]}], ")"}]}], RowBox[{"3", " ", RowBox[
+                        {"(", RowBox[{"q1", "+", "x"}], ")"}], " ", RowBox[
+                        {"(", RowBox[{"q2", "+", "x"}], ")"}], " ", 
+                       SuperscriptBox[RowBox[{"(", RowBox[{"q3", "+", "x"}], 
+                          ")"}], "3"]}]]}]}], ",", RowBox[{"\"om1\"", 
+                  "\[Rule]", FractionBox[RowBox[{"4", " ", RowBox[{"(", 
+                       RowBox[{RowBox[{"12", " ", SuperscriptBox["q1", "2"], 
+                          " ", SuperscriptBox["q2", "2"], " ", SuperscriptBox[
+                          "q3", "2"]}], "+", RowBox[{"22", " ", 
+                          SuperscriptBox["q1", "2"], " ", SuperscriptBox[
+                          "q2", "2"], " ", "q3", " ", "x"}], "+", RowBox[
+                          {"40", " ", SuperscriptBox["q1", "2"], " ", "q2", 
+                          " ", SuperscriptBox["q3", "2"], " ", "x"}], "+", 
+                         RowBox[{"40", " ", "q1", " ", SuperscriptBox["q2", 
+                          "2"], " ", SuperscriptBox["q3", "2"], " ", "x"}], 
+                         "+", RowBox[{"6", " ", SuperscriptBox["q1", "2"], 
+                          " ", SuperscriptBox["q2", "2"], " ", SuperscriptBox[
+                          "x", "2"]}], "+", RowBox[{"63", " ", SuperscriptBox[
+                          "q1", "2"], " ", "q2", " ", "q3", " ", 
+                          SuperscriptBox["x", "2"]}], "+", RowBox[{"63", " ", 
+                          "q1", " ", SuperscriptBox["q2", "2"], " ", "q3", 
+                          " ", SuperscriptBox["x", "2"]}], "+", RowBox[
+                          {"27", " ", SuperscriptBox["q1", "2"], " ", 
+                          SuperscriptBox["q3", "2"], " ", SuperscriptBox["x", 
+                          "2"]}], "+", RowBox[{"102", " ", "q1", " ", "q2", 
+                          " ", SuperscriptBox["q3", "2"], " ", SuperscriptBox[
+                          "x", "2"]}], "+", RowBox[{"27", " ", SuperscriptBox[
+                          "q2", "2"], " ", SuperscriptBox["q3", "2"], " ", 
+                          SuperscriptBox["x", "2"]}], "+", RowBox[{"15", " ", 
+                          SuperscriptBox["q1", "2"], " ", "q2", " ", 
+                          SuperscriptBox["x", "3"]}], "+", RowBox[{"15", " ", 
+                          "q1", " ", SuperscriptBox["q2", "2"], " ", 
+                          SuperscriptBox["x", "3"]}], "+", RowBox[{"39", " ", 
+                          SuperscriptBox["q1", "2"], " ", "q3", " ", 
+                          SuperscriptBox["x", "3"]}], "+", RowBox[{"144", 
+                          " ", "q1", " ", "q2", " ", "q3", " ", 
+                          SuperscriptBox["x", "3"]}], "+", RowBox[{"39", " ", 
+                          SuperscriptBox["q2", "2"], " ", "q3", " ", 
+                          SuperscriptBox["x", "3"]}], "+", RowBox[{"60", " ", 
+                          "q1", " ", SuperscriptBox["q3", "2"], " ", 
+                          SuperscriptBox["x", "3"]}], "+", RowBox[{"60", " ", 
+                          "q2", " ", SuperscriptBox["q3", "2"], " ", 
+                          SuperscriptBox["x", "3"]}], "+", RowBox[{"8", " ", 
+                          SuperscriptBox["q1", "2"], " ", SuperscriptBox["x", 
+                          "4"]}], "+", RowBox[{"26", " ", "q1", " ", "q2", 
+                          " ", SuperscriptBox["x", "4"]}], "+", RowBox[
+                          {"8", " ", SuperscriptBox["q2", "2"], " ", 
+                          SuperscriptBox["x", "4"]}], "+", RowBox[{"77", " ", 
+                          "q1", " ", "q3", " ", SuperscriptBox["x", "4"]}], 
+                         "+", RowBox[{"77", " ", "q2", " ", "q3", " ", 
+                          SuperscriptBox["x", "4"]}], "+", RowBox[{"32", " ", 
+                          SuperscriptBox["q3", "2"], " ", SuperscriptBox["x", 
+                          "4"]}], "+", RowBox[{"9", " ", "q1", " ", 
+                          SuperscriptBox["x", "5"]}], "+", RowBox[{"9", " ", 
+                          "q2", " ", SuperscriptBox["x", "5"]}], "+", 
+                         RowBox[{"36", " ", "q3", " ", SuperscriptBox["x", 
+                          "5"]}]}], ")"}]}], RowBox[{"3", " ", SuperscriptBox[
+                      "x", "2"], " ", RowBox[{"(", RowBox[{"q1", "+", "x"}], 
+                       ")"}], " ", RowBox[{"(", RowBox[{"q2", "+", "x"}], 
+                       ")"}], " ", SuperscriptBox[RowBox[{"(", RowBox[
+                         {"q3", "+", "x"}], ")"}], "2"], " ", RowBox[
+                      {"(", RowBox[{RowBox[{"q1", " ", "q2"}], "+", RowBox[
+                          {"q1", " ", "q3"}], "+", RowBox[{"q2", " ", "q3"}], 
+                         "+", RowBox[{"2", " ", "q1", " ", "x"}], "+", 
+                         RowBox[{"2", " ", "q2", " ", "x"}], "+", RowBox[
+                          {"2", " ", "q3", " ", "x"}], "+", RowBox[{"3", " ", 
+                          SuperscriptBox["x", "2"]}]}], ")"}]}]]}], ",", 
+                RowBox[{"\"cJ1\"", "\[Rule]", "0"}]}], 
+              "\[RightAssociation]"}]}], ",", RowBox[{"\"EquationPasses\"", 
+            "\[Rule]", RowBox[{"\[LeftAssociation]", RowBox[{RowBox[
+                 {"\"v1\"", "\[Rule]", "True"}], ",", RowBox[{"\"v2\"", 
+                  "\[Rule]", "True"}], ",", RowBox[{"\"v3\"", "\[Rule]", 
+                  "True"}], ",", RowBox[{"\"omega\"", "\[Rule]", "True"}]}], 
+              "\[RightAssociation]"}]}], ",", 
+          RowBox[{"\"AllFourEquationsPass\"", "\[Rule]", "True"}], ",", 
+          RowBox[{"\"SampleQ234Pass\"", "\[Rule]", "True"}], ",", 
+          RowBox[{"\"EqualChargePass\"", "\[Rule]", "True"}], ",", 
+          RowBox[{"\"NoOneOverXRotationTail\"", "\[Rule]", "True"}], ",", 
+          RowBox[{"\"HorizonData\"", "\[Rule]", RowBox[
+             {"{", RowBox[{RowBox[{"-", FractionBox["24", RowBox[{"q1", " ", 
+                     "q3"}]]}], ",", RowBox[{"-", FractionBox["24", 
+                   RowBox[{"q2", " ", "q3"}]]}], ",", RowBox[{"-", 
+                  FractionBox["18", SuperscriptBox["q3", "2"]]}], ",", 
+                FractionBox[RowBox[{"16", " ", "q1", " ", "q2"}], 
+                 RowBox[{RowBox[{"q1", " ", "q2"}], "+", RowBox[{"q1", " ", 
+                     "q3"}], "+", RowBox[{"q2", " ", "q3"}]}]]}], "}"}]}], 
+          ",", RowBox[{"\"InfinityX3Data\"", "\[Rule]", 
+            RowBox[{"{", RowBox[{RowBox[{FractionBox["1", "3"], " ", 
+                  RowBox[{"(", RowBox[{RowBox[{RowBox[{"-", "14"}], " ", 
+                        "q1"}], "-", RowBox[{"14", " ", "q2"}], "-", 
+                      RowBox[{"44", " ", "q3"}]}], ")"}]}], ",", 
+                RowBox[{FractionBox["1", "3"], " ", RowBox[{"(", RowBox[
+                     {RowBox[{RowBox[{"-", "14"}], " ", "q1"}], "-", 
+                      RowBox[{"14", " ", "q2"}], "-", RowBox[{"44", " ", 
+                        "q3"}]}], ")"}]}], ",", RowBox[{FractionBox["1", 
+                   "3"], " ", RowBox[{"(", RowBox[{RowBox[{RowBox[{"-", 
+                          "8"}], " ", "q1"}], "-", RowBox[{"8", " ", "q2"}], 
+                      "-", RowBox[{"38", " ", "q3"}]}], ")"}]}], ",", 
+                RowBox[{FractionBox["1", "9"], " ", RowBox[{"(", RowBox[
+                     {RowBox[{"36", " ", "q1"}], "+", RowBox[{"36", " ", 
+                        "q2"}], "+", RowBox[{"144", " ", "q3"}]}], ")"}]}]}], 
+              "}"}]}], ",", RowBox[{"\"Residuals\"", "\[Rule]", 
+            RowBox[{"\[LeftAssociation]", RowBox[{RowBox[{"\"v1\"", 
+                  "\[Rule]", "0"}], ",", RowBox[{"\"v2\"", "\[Rule]", "0"}], 
+                ",", RowBox[{"\"v3\"", "\[Rule]", "0"}], ",", RowBox[
+                 {"\"omega\"", "\[Rule]", "0"}]}], 
+              "\[RightAssociation]"}]}]}], "\[RightAssociation]"}]}]], 
+   "Input"], Cell[BoxData[RowBox[{"genericOrderJSolutionEvidence", "[", 
+      "\"Solution\"", "]"}]], "Input"], 
+  Cell["2. Thirteen-equation validation through first order in rotation", 
+   "Section"], Cell[BoxData[RowBox[{"genericOrderJValidationEvidence", "=", 
+      RowBox[{"\[LeftAssociation]", RowBox[
+         {RowBox[{"\"EvenEquationPasses\"", "\[Rule]", 
+            RowBox[{"\[LeftAssociation]", RowBox[{RowBox[{"\"u1\"", 
+                  "\[Rule]", "True"}], ",", RowBox[{"\"u2\"", "\[Rule]", 
+                  "True"}], ",", RowBox[{"\"u3\"", "\[Rule]", "True"}], ",", 
+                RowBox[{"\"p\"", "\[Rule]", "True"}], ",", RowBox[
+                 {"\"s\"", "\[Rule]", "True"}], ",", RowBox[{"\"f\"", 
+                  "\[Rule]", "True"}], ",", RowBox[{"\"gr\"", "\[Rule]", 
+                  "True"}], ",", RowBox[{"\"hr\"", "\[Rule]", "True"}], ",", 
+                RowBox[{"\"squ\"", "\[Rule]", "True"}]}], 
+              "\[RightAssociation]"}]}], ",", 
+          RowBox[{"\"AllNineEvenEquationsPass\"", "\[Rule]", "True"}], ",", 
+          RowBox[{"\"AllFourOddEquationsPass\"", "\[Rule]", "True"}], ",", 
+          RowBox[{"\"AllThirteenOrderJEquationsPass\"", "\[Rule]", "True"}], 
+          ",", RowBox[{"\"Residuals\"", "\[Rule]", 
+            RowBox[{"\[LeftAssociation]", RowBox[{RowBox[{"\"u1\"", 
+                  "\[Rule]", "0"}], ",", RowBox[{"\"u2\"", "\[Rule]", "0"}], 
+                ",", RowBox[{"\"u3\"", "\[Rule]", "0"}], ",", RowBox[
+                 {"\"p\"", "\[Rule]", "0"}], ",", RowBox[{"\"s\"", "\[Rule]", 
+                  "0"}], ",", RowBox[{"\"f\"", "\[Rule]", "0"}], ",", 
+                RowBox[{"\"gr\"", "\[Rule]", "0"}], ",", RowBox[{"\"hr\"", 
+                  "\[Rule]", "0"}], ",", RowBox[{"\"squ\"", "\[Rule]", 
+                  "0"}]}], "\[RightAssociation]"}]}]}], 
+        "\[RightAssociation]"}]}]], "Input"], 
+  Cell[BoxData[RowBox[{"Association", "[", 
+      RowBox[{RowBox[{"\"Status\"", "\[Rule]", 
+          RowBox[{"genericOrderJSolutionEvidence", "[", "\"Status\"", 
+            "]"}]}], ",", RowBox[{"\"FourOddEquationsPass\"", "\[Rule]", 
+          RowBox[{"genericOrderJSolutionEvidence", "[", 
+            "\"AllFourEquationsPass\"", "]"}]}], ",", 
+        RowBox[{"\"NineEvenParityEquationsPass\"", "\[Rule]", 
+          RowBox[{"genericOrderJValidationEvidence", "[", 
+            "\"AllNineEvenEquationsPass\"", "]"}]}], ",", 
+        RowBox[{"\"AllThirteenOrderJEquationsPass\"", "\[Rule]", 
+          RowBox[{"genericOrderJValidationEvidence", "[", 
+            "\"AllThirteenOrderJEquationsPass\"", "]"}]}], ",", 
+        RowBox[{"\"NoOneOverXRotationTail\"", "\[Rule]", 
+          RowBox[{"genericOrderJSolutionEvidence", "[", 
+            "\"NoOneOverXRotationTail\"", "]"}]}]}], "]"}]], "Input"], 
+  Cell[BoxData[RowBox[{RowBox[{"TrueQ", "[", 
+        RowBox[{"genericOrderJSolutionEvidence", "[", 
+          "\"AllFourEquationsPass\"", "]"}], "]"}], "&&", 
+      RowBox[{"TrueQ", "[", RowBox[{"genericOrderJValidationEvidence", "[", 
+          "\"AllNineEvenEquationsPass\"", "]"}], "]"}], "&&", 
+      RowBox[{"TrueQ", "[", RowBox[{"genericOrderJValidationEvidence", "[", 
+          "\"AllFourOddEquationsPass\"", "]"}], "]"}], "&&", 
+      RowBox[{"TrueQ", "[", RowBox[{"genericOrderJValidationEvidence", "[", 
+          "\"AllThirteenOrderJEquationsPass\"", "]"}], "]"}], "&&", 
+      RowBox[{"And", "@@", RowBox[
+         {RowBox[{"(", RowBox[{RowBox[{"#1", "===", "0"}], "&"}], ")"}], 
+          "/@", RowBox[{"Values", "[", RowBox[
+             {"genericOrderJSolutionEvidence", "[", "\"Residuals\"", "]"}], 
+            "]"}]}]}], "&&", RowBox[{"And", "@@", 
+        RowBox[{RowBox[{"(", RowBox[{RowBox[{"#1", "===", "0"}], "&"}], 
+            ")"}], "/@", RowBox[{"Values", "[", RowBox[
+             {"genericOrderJValidationEvidence", "[", "\"Residuals\"", "]"}], 
+            "]"}]}]}]}]], "Input"], Cell["3. Horizon and asymptotic data", 
+   "Section"], Cell[BoxData[RowBox[{"Association", "[", 
+      RowBox[{RowBox[{"\"HorizonData\"", "\[Rule]", 
+          RowBox[{"genericOrderJSolutionEvidence", "[", "\"HorizonData\"", 
+            "]"}]}], ",", RowBox[{"\"InfinityX3Data\"", "\[Rule]", 
+          RowBox[{"genericOrderJSolutionEvidence", "[", "\"InfinityX3Data\"", 
+            "]"}]}], ",", RowBox[{"\"NoOneOverXRotationTail\"", "\[Rule]", 
+          RowBox[{"genericOrderJSolutionEvidence", "[", 
+            "\"NoOneOverXRotationTail\"", "]"}]}], ",", 
+        RowBox[{"\"EqualChargeRegressionPass\"", "\[Rule]", 
+          RowBox[{"genericOrderJSolutionEvidence", "[", 
+            "\"EqualChargePass\"", "]"}]}]}], "]"}]], "Input"], 
+  Cell["The nine even equations have zero O(j) coefficient by exact rotation \
+parity; the four odd equations vanish by direct substitution. This proves the \
+generic unequal-charge solution through O(j), not at O(j^2) or beyond.", 
+   "Text"]}, WindowTitle -> "Generic unequal-charge O(j) solution"]

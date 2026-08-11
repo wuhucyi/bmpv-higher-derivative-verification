@@ -1,0 +1,66 @@
+schema_version: 1
+artifact_version: "5"
+perturbative_order: "O(lambda3); O(lambda3^2) discarded"
+rotation_scope: "stationary equal-angular-momentum BMPV ansatz"
+charge_scope: "three arbitrary unequal positive charges"
+
+integrity:
+  repository_notebooks: 32
+  archive_only_notebooks: 2
+  assigned_logs: 34
+  canonical_logs_with_terminal_pass: 34
+
+exact_results:
+  equations:
+    independent_radial_equations: 13
+    form: "E2_linear[delta fields] + E4_source[background] = 0"
+  static:
+    generic_unequal_charge_residuals: "13/13 exact zero"
+  equal_charge:
+    rotating_residuals: "13/13 exact zero"
+  generic_rotation:
+    parity_even_terminal_degree: 2
+    parity_odd_terminal_degree: 3
+    maximum_residual_source_degree: 8
+    residual_coefficients_through_bound: "exact zero"
+  physical_normalization:
+    electric_charges: "Q_I = pi mu_I/(4 G_5)"
+    angular_momenta: "J_1 = J_2 = pi j/(4 G_5)"
+  regularity:
+    domain: "mu_I > 0 and j^2 < mu_1 mu_2 mu_3"
+    result: "regular at O(lambda3)"
+  entropy:
+    product_definition: "P = mu_1 mu_2 mu_3"
+    expression: >-
+      S = [pi^2/(2 G_5)] sqrt(P-j^2)
+      [1 + 4 lambda3 (3P-4j^2)/(mu_3(P-j^2))]
+      + O(lambda3^2)
+    independent_reconstruction: "exact agreement"
+    ensemble: "fixed physical Page charges"
+  curvature_free_vector_invariants:
+    invariant_values: "exact zero on the rotating BPS background"
+    relevant_first_variations: "exact zero"
+    direct_wald_riemann_derivative: "absent"
+  coordinates:
+    generic_static_forward_map_residuals: "exact zero"
+    generic_static_inverse_map_residuals: "exact zero"
+  conventions:
+    flat_lower_symbol_01234: 1
+    flat_upper_symbol_01234: -1
+    v1_sign_reversal_required: false
+  field_map:
+    rotating_scalar_generic_residual: "exact zero"
+    raw_duality_arbitrary_profile_residual: "exact zero"
+    raw_bianchi_residual: "exact zero"
+    final_third_vector_generic_component_residuals: "exact zero"
+    final_third_vector_bianchi_residual: "exact zero"
+    historical_three_form_first_closure: "exact nonzero witness retained"
+    displayed_source_remaining_parameter_dimension: 2
+    universal_offshell_map: "not established"
+
+claim_status_counts:
+  established: 11
+  established_with_scope: 9
+  rejected_route: 1
+  not_established: 1
+  note: "Counts are recomputed by validate_level1.rb; this field is audited."

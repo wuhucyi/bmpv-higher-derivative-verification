@@ -1,0 +1,49 @@
+# Operating-system and editor files
+.DS_Store
+._*
+*~
+*.swp
+*.swo
+.idea/
+.vscode/
+
+# TeX build products (curated PDFs may be committed explicitly)
+*.aux
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+*.xdv
+
+# Curated fresh-kernel evidence is part of the artifact.
+!for_ai/evidence/logs/*.log
+
+# Mathematica transient and proprietary cache files
+*.mx
+*.m
+*.wl
+*.wls
+*.paclet
+.Mathematica/
+
+# Local archives and large staging artifacts
+*.tar
+*.tar.gz
+*.tgz
+*.zip
+*.7z
+*.part
+
+# Secrets and machine-local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Local provenance that may contain absolute paths
+local-*.txt
+private-*.md

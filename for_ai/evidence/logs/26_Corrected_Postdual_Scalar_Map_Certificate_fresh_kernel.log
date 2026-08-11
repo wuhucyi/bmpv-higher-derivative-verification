@@ -1,0 +1,41 @@
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_BEGIN"
+"FILE_BASENAME=""26_Corrected_Postdual_Scalar_Map_Certificate.nb"
+"FILE_ABSOLUTE_PATH=""[LOCAL_HOME]/Documents/Codex/2026-07-12/https-www-overleaf-com-project-65577187a96876076df0bcd6/work/package_v4_staging/notebooks/26_Corrected_Postdual_Scalar_Map_Certificate.nb"
+"KERNEL=""14.1.0 for Mac OS X ARM (64-bit) (July 16, 2024)"
+"START_UTC=""2026-07-20T06:43:20"
+"BYTES="8844
+"SHA256=""6c3c92eb28cc604f87d5666b48e4b013c761f67e2f276052af9e16983ce02c3e"
+"PARSE_PASS="True
+"INPUT_CELL_COUNT="1
+"PASS_EXPRESSION=""finalPass"
+"CELL_"1"_BEGIN"
+"STATIC_DISPLAYED_RESIDUAL = "InputForm[ls^2/(32*h3)]
+"POSTDUAL_REPAIR_ALPHA = "InputForm[-1/32*ls^2/h3]
+"CORRECTED_INSIDE_DELTA2_FMINUS_COEFFICIENT = "-1/4
+"ROTATING_CERTIFICATES = "InputForm[<|{3, 5, 7, 1} -> <|"UncorrectedSourceMinusTarget" -> (1545 + 1049*r^2 + 230*r^4 + 16*r^6)/(2*(3 + r^2)^2*(5 + r^2)^2*(7 + r^2)^2), "PostdualFminusRepairOver64" -> -1/2*(1545 + 1049*r^2 + 230*r^4 + 16*r^6)/((3 + r^2)^2*(5 + r^2)^2*(7 + r^2)^2), "RepairThetaIndependent" -> True, "CorrectedResidual" -> 0|>, {2, 3, 5, 1} -> <|"UncorrectedSourceMinusTarget" -> (672 + 704*r^2 + 237*r^4 + 25*r^6)/(8*(2 + r^2)^2*(3 + r^2)^2*(5 + r^2)^2), "PostdualFminusRepairOver64" -> -1/8*(672 + 704*r^2 + 237*r^4 + 25*r^6)/((2 + r^2)^2*(3 + r^2)^2*(5 + r^2)^2), "RepairThetaIndependent" -> True, "CorrectedResidual" -> 0|>, {4, 7, 9, 2} -> <|"UncorrectedSourceMinusTarget" -> (27328 + 13872*r^2 + 2289*r^4 + 121*r^6)/(8*(4 + r^2)^2*(7 + r^2)^2*(9 + r^2)^2), "PostdualFminusRepairOver64" -> -1/8*(27328 + 13872*r^2 + 2289*r^4 + 121*r^6)/((4 + r^2)^2*(7 + r^2)^2*(9 + r^2)^2), "RepairThetaIndependent" -> True, "CorrectedResidual" -> 0|>, {1, 6, 8, 3/2} -> <|"UncorrectedSourceMinusTarget" -> (1044 + 1362*r^2 + 542*r^4 + 49*r^6)/(8*(1 + r^2)^2*(6 + r^2)^2*(8 + r^2)^2), "PostdualFminusRepairOver64" -> -1/8*(1044 + 1362*r^2 + 542*r^4 + 49*r^6)/((1 + r^2)^2*(6 + r^2)^2*(8 + r^2)^2), "RepairThetaIndependent" -> True, "CorrectedResidual" -> 0|>, {5, 8, 11, -2} -> <|"UncorrectedSourceMinusTarget" -> (69120 + 28864*r^2 + 3907*r^4 + 169*r^6)/(8*(5 + r^2)^2*(8 + r^2)^2*(11 + r^2)^2), "PostdualFminusRepairOver64" -> -1/8*(69120 + 28864*r^2 + 3907*r^4 + 169*r^6)/((5 + r^2)^2*(8 + r^2)^2*(11 + r^2)^2), "RepairThetaIndependent" -> True, "CorrectedResidual" -> 0|>|>]
+"EVIDENCE_LEVEL = ""generic static symbolic proof plus five rotating rational-parameter certificates exact in r; no arbitrary-charge rotating symbolic proof claimed"
+"STAGE_STATEMENT = ""the repair is in the second postdual scalar map and is not inserted into the raw or predual scalar"
+"LEDGER = "InputForm[<|"DisplayedResidualIsLsSquaredOver32H3" -> True, "WeightedFminusIdentity" -> True, "CorrectedFinalScalar" -> True, "CorrectedFminusCoefficientIsMinusOneQuarter" -> True, "Lambda3ToAlphaPrimeConventionApplied" -> True, "Notebook11POver8EqualsPublishedFinalSol" -> True, "AuditPointResidual" -> True, "OriginalResidualFormula" -> True, "FiveCorrectedResidualsExactInR" -> True, "FiveLeadingFieldContractionsThetaIndependent" -> True, "SampleCount" -> True|>]
+"FINAL_PASS = "True
+"CELL_"1"_SECONDS="0.60056
+"CELL_"1"_RESULT_PASS="True
+"CELL_"1"_MESSAGE_COUNT="0
+"CELL_"1"_RESULT_HEAD="Symbol
+"CELL_"1"_RESULT_LEAF_COUNT="1
+"CELL_"1"_RESULT_SHORT=""Short[Null, 12]"
+"CELL_"1"_END"
+"RESULT_FAILURE_COUNT="0
+"RESULT_FAILURE_INDICES="InputForm[{}]
+"MESSAGE_CELL_COUNT="0
+"MESSAGE_CELL_INDICES="InputForm[{}]
+"MESSAGE_TOTAL_COUNT="0
+"CELL_SECONDS="InputForm[{0.60056}]
+"CELL_SECONDS_TOTAL="0.60056
+"FINAL_LEDGER="InputForm[<|"DisplayedResidualIsLsSquaredOver32H3" -> True, "WeightedFminusIdentity" -> True, "CorrectedFinalScalar" -> True, "CorrectedFminusCoefficientIsMinusOneQuarter" -> True, "Lambda3ToAlphaPrimeConventionApplied" -> True, "Notebook11POver8EqualsPublishedFinalSol" -> True, "AuditPointResidual" -> True, "OriginalResidualFormula" -> True, "FiveCorrectedResidualsExactInR" -> True, "FiveLeadingFieldContractionsThetaIndependent" -> True, "SampleCount" -> True|>]
+"GLOBAL_finalPass="InputForm[True]
+"DECLARED_PASS_VALUE="InputForm[True]
+"CELL_EVALUATION_PASS="True
+"END_UTC=""2026-07-20T06:43:22"
+"TOTAL_WALL_SECONDS="1.874196`6.724360000147712
+"FRESH_KERNEL_FINAL_PASS="True
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_END"

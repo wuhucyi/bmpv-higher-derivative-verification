@@ -1,0 +1,528 @@
+Notebook[{Cell["Generic unequal-charge horizon regularity", "Title"], 
+  Cell["Version-3 human notation guide (documentation only; no Input cell is \
+changed). In the compact solution and verifier notebooks: x=r^2; q1,q2,q3 are \
+the harmonic parameters mu1,mu2,mu3, not normalized conserved charges; jrot \
+is the rotation parameter j; U1,U2,U3 are the electric corrections delta u_I; \
+B1,B2,B3 are the gauge-covariant fibre corrections; Om is delta omega; Ft, \
+Gr, and Sq are the temporal warp, radial warp, and squashing corrections; P \
+and S are delta p and delta s, where X1=exp(2p/3-s), X2=exp(2p/3+s), and \
+X3=exp(-4p/3). Physical quantities are Q_I=Pi mu_I/(4 G5) and J1=J2=Pi j/(4 \
+G5). See the report section 'Human-readable notation and result at a glance' \
+for the full dictionary.", "Text"], 
+  Cell["Exact in rotation at first order in lambda3", "Subtitle"], 
+  Cell["This notebook is a standalone human-verification certificate for the \
+corrected BMPV horizon. It embeds the complete exact-in-j solution and \
+constructs the horizon-centering shift, ingoing co-rotating metric, scalar \
+invariants, regular gauge-frame components, and gauge-invariant contractions. \
+It reads no external file.", "Text"], Cell["Assumptions: q1,q2,q3 are \
+positive and the strict BMPV gap q1 q2 q3-jrot^2 is positive. The result is \
+perturbative in lambda3 and is not uniform at the zero-area bound.", "Text"], 
+  Cell["1. Embedded exact solution", "Section"], 
+  Cell[BoxData["ClearAll[\"Global`*\"]; $HistoryLength=0; \
+$RecursionLimit=300000; $MaxExtraPrecision=10000;"], "Input"], 
+  Cell[BoxData["solution=<|\"Gauge\" -> \"dhr=0; areal x=r^2; fixed Page \
+charges; fixed physical J\", \"OrderInLambda3\" -> 1, \"RotationDependence\" \
+-> \"exact finite polynomial through jrot^3\", \"U1\" -> \
+(8*(-12*q1^3*q2^3*q3^2 + 2*q1^3*q2^3*q3*x - 28*q1^3*q2^2*q3^2*x - \
+16*q1^2*q2^3*q3^2*x + 4*q1^3*q2^3*x^2 + 13*q1^3*q2^2*q3*x^2 + \
+17*q1^2*q2^3*q3*x^2 - 27*q1^3*q2*q3^2*x^2 - 32*q1^2*q2^2*q3^2*x^2 - \
+5*q1*q2^3*q3^2*x^2 + 12*q1^3*q2^2*x^3 + 12*q1^2*q2^3*x^3 + 8*q1^3*q2*q3*x^3 + \
+62*q1^2*q2^2*q3*x^3 + 14*q1*q2^3*q3*x^3 - 10*q1^3*q3^2*x^3 - \
+32*q1^2*q2*q3^2*x^3 - 8*q1*q2^2*q3^2*x^3 + 2*q2^3*q3^2*x^3 + 7*q1^3*q2*x^4 + \
+34*q1^2*q2^2*x^4 + 7*q1*q2^3*x^4 - q1^3*q3*x^4 + 47*q1^2*q2*q3*x^4 + \
+41*q1*q2^2*q3*x^4 + 5*q2^3*q3*x^4 - 13*q1^2*q3^2*x^4 - 12*q1*q2*q3^2*x^4 + \
+5*q2^2*q3^2*x^4 + 22*q1^2*q2*x^5 + 16*q1*q2^2*x^5 + 2*q2^3*x^5 + \
+8*q1^2*q3*x^5 + 24*q1*q2*q3*x^5 + 10*q2^2*q3*x^5 - 6*q1*q3^2*x^5 + \
+2*q2*q3^2*x^5 + 3*q1^2*x^6 + 6*q1*q2*x^6 + 3*q2^2*x^6 + 3*q1*q3*x^6 + \
+3*q2*q3*x^6))/(3*(q1 + x)^3*(q2 + x)^2*(q3 + x)^2*(q1*q2 + q1*q3 + q2*q3 + \
+2*q1*x + 2*q2*x + 2*q3*x + 3*x^2)) - (16*jrot^2*(3*q1*q2*q3 + (4*q1*q2 + \
+4*q1*q3 + q2*q3)*x + (5*q1 + 2*q2 + 2*q3)*x^2 + 3*x^3))/((q1 + x)^2*(q2 + \
+x)*(q3 + x)^2*((q1 + x)*(q2 + x) + (q1 + x)*(q3 + x) + (q2 + x)*(q3 + x))), \
+\"U2\" -> (8*(-12*q1^3*q2^3*q3^2 + 2*q1^3*q2^3*q3*x - 16*q1^3*q2^2*q3^2*x - \
+28*q1^2*q2^3*q3^2*x + 4*q1^3*q2^3*x^2 + 17*q1^3*q2^2*q3*x^2 + \
+13*q1^2*q2^3*q3*x^2 - 5*q1^3*q2*q3^2*x^2 - 32*q1^2*q2^2*q3^2*x^2 - \
+27*q1*q2^3*q3^2*x^2 + 12*q1^3*q2^2*x^3 + 12*q1^2*q2^3*x^3 + 14*q1^3*q2*q3*x^3 \
++ 62*q1^2*q2^2*q3*x^3 + 8*q1*q2^3*q3*x^3 + 2*q1^3*q3^2*x^3 - \
+8*q1^2*q2*q3^2*x^3 - 32*q1*q2^2*q3^2*x^3 - 10*q2^3*q3^2*x^3 + 7*q1^3*q2*x^4 + \
+34*q1^2*q2^2*x^4 + 7*q1*q2^3*x^4 + 5*q1^3*q3*x^4 + 41*q1^2*q2*q3*x^4 + \
+47*q1*q2^2*q3*x^4 - q2^3*q3*x^4 + 5*q1^2*q3^2*x^4 - 12*q1*q2*q3^2*x^4 - \
+13*q2^2*q3^2*x^4 + 2*q1^3*x^5 + 16*q1^2*q2*x^5 + 22*q1*q2^2*x^5 + \
+10*q1^2*q3*x^5 + 24*q1*q2*q3*x^5 + 8*q2^2*q3*x^5 + 2*q1*q3^2*x^5 - \
+6*q2*q3^2*x^5 + 3*q1^2*x^6 + 6*q1*q2*x^6 + 3*q2^2*x^6 + 3*q1*q3*x^6 + \
+3*q2*q3*x^6))/(3*(q1 + x)^2*(q2 + x)^3*(q3 + x)^2*(q1*q2 + q1*q3 + q2*q3 + \
+2*q1*x + 2*q2*x + 2*q3*x + 3*x^2)) - (16*jrot^2*(3*q1*q2*q3 + (4*q1*q2 + \
+q1*q3 + 4*q2*q3)*x + (2*q1 + 5*q2 + 2*q3)*x^2 + 3*x^3))/((q1 + x)*(q2 + \
+x)^2*(q3 + x)^2*((q1 + x)*(q2 + x) + (q1 + x)*(q3 + x) + (q2 + x)*(q3 + x))), \
+\"U3\" -> (-8*q3*(12*q1^2*q2^2*q3^2 + 7*q1^2*q2^2*q3*x + 25*q1^2*q2*q3^2*x + \
+25*q1*q2^2*q3^2*x + 2*q1^2*q2^2*x^2 + 16*q1^2*q2*q3*x^2 + 16*q1*q2^2*q3*x^2 + \
+14*q1^2*q3^2*x^2 + 46*q1*q2*q3^2*x^2 + 14*q2^2*q3^2*x^2 + 5*q1^2*q2*x^3 + \
+5*q1*q2^2*x^3 + 11*q1^2*q3*x^3 + 24*q1*q2*q3*x^3 + 11*q2^2*q3*x^3 + \
+23*q1*q3^2*x^3 + 23*q2*q3^2*x^3 + 4*q1^2*x^4 + 6*q1*q2*x^4 + 4*q2^2*x^4 + \
+12*q1*q3*x^4 + 12*q2*q3*x^4 + 10*q3^2*x^4 + 3*q1*x^5 + 3*q2*x^5 + \
+3*q3*x^5))/(3*(q1 + x)*(q2 + x)*(q3 + x)^4*(q1*q2 + q1*q3 + q2*q3 + 2*q1*x + \
+2*q2*x + 2*q3*x + 3*x^2)) + (4*jrot^2*(-12*q1*q2*q3 + (q1*q2 - 11*(q1 + \
+q2)*q3)*x + 2*(q1 + q2 - 5*q3)*x^2 + 3*x^3))/((q1 + x)*(q2 + x)*(q3 + \
+x)^3*((q1 + x)*(q2 + x) + (q1 + x)*(q3 + x) + (q2 + x)*(q3 + x))), \"B1\" -> \
+(-2*jrot*(36*q1*q2*q3 + 14*q1*q2*x + 29*q1*q3*x + 29*q2*q3*x + 7*q1*x^2 + \
+7*q2*x^2 + 22*q3*x^2))/(3*(q1 + x)^2*(q2 + x)*(q3 + x)^2), \"B2\" -> \
+(-2*jrot*(36*q1*q2*q3 + 14*q1*q2*x + 29*q1*q3*x + 29*q2*q3*x + 7*q1*x^2 + \
+7*q2*x^2 + 22*q3*x^2))/(3*(q1 + x)*(q2 + x)^2*(q3 + x)^2), \"B3\" -> \
+(-2*jrot*(27*q1*q2*q3 + 8*q1*q2*x + 23*q1*q3*x + 23*q2*q3*x + 4*q1*x^2 + \
+4*q2*x^2 + 19*q3*x^2))/(3*(q1 + x)*(q2 + x)*(q3 + x)^3), \"P\" -> \
+(2*(-15*q1^3*q2^3*q3^2 + 21*q1^3*q2^2*q3^3 + 21*q1^2*q2^3*q3^3 + \
+4*q1^3*q2^3*q3*x - 10*q1^3*q2^2*q3^2*x - 10*q1^2*q2^3*q3^2*x + \
+34*q1^3*q2*q3^3*x + 110*q1^2*q2^2*q3^3*x + 34*q1*q2^3*q3^3*x + \
+4*q1^3*q2^3*x^2 + 26*q1^3*q2^2*q3*x^2 + 26*q1^2*q2^3*q3*x^2 + \
+2*q1^3*q2*q3^2*x^2 + 45*q1^2*q2^2*q3^2*x^2 + 2*q1*q2^3*q3^2*x^2 + \
+16*q1^3*q3^3*x^2 + 134*q1^2*q2*q3^3*x^2 + 134*q1*q2^2*q3^3*x^2 + \
+16*q2^3*q3^3*x^2 + 12*q1^3*q2^2*x^3 + 12*q1^2*q2^3*x^3 + 18*q1^3*q2*q3*x^3 + \
+108*q1^2*q2^2*q3*x^3 + 18*q1*q2^3*q3*x^3 + 6*q1^3*q3^2*x^3 + \
+54*q1^2*q2*q3^2*x^3 + 54*q1*q2^2*q3^2*x^3 + 6*q2^3*q3^2*x^3 + \
+54*q1^2*q3^3*x^3 + 144*q1*q2*q3^3*x^3 + 54*q2^2*q3^3*x^3 + 5*q1^3*q2*x^4 + \
+38*q1^2*q2^2*x^4 + 5*q1*q2^3*x^4 + 5*q1^3*q3*x^4 + 75*q1^2*q2*q3*x^4 + \
+75*q1*q2^2*q3*x^4 + 5*q2^3*q3*x^4 + 26*q1^2*q3^2*x^4 + 39*q1*q2*q3^2*x^4 + \
+26*q2^2*q3^2*x^4 + 53*q1*q3^3*x^4 + 53*q2*q3^3*x^4 + 20*q1^2*q2*x^5 + \
+20*q1*q2^2*x^5 + 20*q1^2*q3*x^5 + 36*q1*q2*q3*x^5 + 20*q2^2*q3*x^5 + \
+14*q1*q3^2*x^5 + 14*q2*q3^2*x^5 + 18*q3^3*x^5 + 3*q1^2*x^6 + 6*q1*q2*x^6 + \
+3*q2^2*x^6 + 6*q1*q3*x^6 + 6*q2*q3*x^6 + 3*q3^2*x^6))/(3*(q1 + x)^2*(q2 + \
+x)^2*(q3 + x)^3*(q1*q2 + q1*q3 + q2*q3 + 2*q1*x + 2*q2*x + 2*q3*x + 3*x^2)) - \
+(4*jrot^2*(7*q1*q2 - 2*(q1 + q2)*q3 + (5*(q1 + q2) - 4*q3)*x + 3*x^2))/((q1 + \
+x)*(q2 + x)*(q3 + x)^2*((q1 + x)*(q2 + x) + (q1 + x)*(q3 + x) + (q2 + x)*(q3 \
++ x))), \"S\" -> (8*(q1 - q2)*(6*q1^2*q2^2*q3^2 + 2*q1^2*q2^2*q3*x + \
+11*q1^2*q2*q3^2*x + 11*q1*q2^2*q3^2*x + 3*q1^2*q2*q3*x^2 + 3*q1*q2^2*q3*x^2 + \
+6*q1^2*q3^2*x^2 + 18*q1*q2*q3^2*x^2 + 6*q2^2*q3^2*x^2 + 3*q1^2*q3*x^3 + \
+3*q2^2*q3*x^3 + 9*q1*q3^2*x^3 + 9*q2*q3^2*x^3 + q1^2*x^4 - 2*q1*q2*x^4 + \
+q2^2*x^4 + q1*q3*x^4 + q2*q3*x^4 + 4*q3^2*x^4))/(3*(q1 + x)^2*(q2 + x)^2*(q3 \
++ x)^2*(q1*q2 + q1*q3 + q2*q3 + 2*q1*x + 2*q2*x + 2*q3*x + 3*x^2)) - \
+(24*jrot^2*(-q1 + q2))/((q1 + x)*(q2 + x)*(q3 + x)*((q1 + x)*(q2 + x) + (q1 + \
+x)*(q3 + x) + (q2 + x)*(q3 + x))), \"Ft\" -> (-4*(24*q1^3*q2^3*q3^3 + \
+29*q1^3*q2^3*q3^2*x + 65*q1^3*q2^2*q3^3*x + 65*q1^2*q2^3*q3^3*x + \
+4*q1^3*q2^3*q3*x^2 + 74*q1^3*q2^2*q3^2*x^2 + 74*q1^2*q2^3*q3^2*x^2 + \
+64*q1^3*q2*q3^3*x^2 + 170*q1^2*q2^2*q3^3*x^2 + 64*q1*q2^3*q3^3*x^2 + \
+6*q1^3*q2^2*q3*x^3 + 6*q1^2*q2^3*q3*x^3 + 78*q1^3*q2*q3^2*x^3 + \
+165*q1^2*q2^2*q3^2*x^3 + 78*q1*q2^3*q3^2*x^3 + 24*q1^3*q3^3*x^3 + \
+162*q1^2*q2*q3^3*x^3 + 162*q1*q2^2*q3^3*x^3 + 24*q2^3*q3^3*x^3 + \
+16*q1^3*q2*q3*x^4 - 24*q1^2*q2^2*q3*x^4 + 16*q1*q2^3*q3*x^4 + \
+36*q1^3*q3^2*x^4 + 156*q1^2*q2*q3^2*x^4 + 156*q1*q2^2*q3^2*x^4 + \
+36*q2^3*q3^2*x^4 + 60*q1^2*q3^3*x^4 + 148*q1*q2*q3^3*x^4 + 60*q2^2*q3^3*x^4 + \
+5*q1^3*q2*x^5 - 10*q1^2*q2^2*x^5 + 5*q1*q2^3*x^5 + 17*q1^3*q3*x^5 - \
+21*q1^2*q2*q3*x^5 - 21*q1*q2^2*q3*x^5 + 17*q2^3*q3*x^5 + 74*q1^2*q3^2*x^5 + \
+123*q1*q2*q3^2*x^5 + 74*q2^2*q3^2*x^5 + 53*q1*q3^3*x^5 + 53*q2*q3^3*x^5 + \
+6*q1^3*x^6 - 6*q1^2*q2*x^6 - 6*q1*q2^2*x^6 + 6*q2^3*x^6 + 18*q1^2*q3*x^6 - \
+48*q1*q2*q3*x^6 + 18*q2^2*q3*x^6 + 54*q1*q3^2*x^6 + 54*q2*q3^2*x^6 + \
+18*q3^3*x^6 + 7*q1^2*x^7 - 14*q1*q2*x^7 + 7*q2^2*x^7 - 2*q1*q3*x^7 - \
+2*q2*q3*x^7 + 19*q3^2*x^7))/(3*x*(q1 + x)^2*(q2 + x)^2*(q3 + x)^3*(q1*q2 + \
+q1*q3 + q2*q3 + 2*q1*x + 2*q2*x + 2*q3*x + 3*x^2)) - (8*jrot^2*(6*q1*q2*q3 + \
+7*(q1*q2 + q1*q3 + q2*q3)*x + 8*(q1 + q2 + q3)*x^2 + 9*x^3))/(x*(q1 + x)*(q2 \
++ x)*(q3 + x)^2*((q1 + x)*(q2 + x) + (q1 + x)*(q3 + x) + (q2 + x)*(q3 + x))), \
+\"Gr\" -> (8*(36*q1^4*q2^4*q3^3 + 36*q1^4*q2^3*q3^4 + 36*q1^3*q2^4*q3^4 + \
+90*q1^4*q2^4*q3^2*x + 288*q1^4*q2^3*q3^3*x + 288*q1^3*q2^4*q3^3*x + \
+54*q1^4*q2^2*q3^4*x + 252*q1^3*q2^3*q3^4*x + 54*q1^2*q2^4*q3^4*x + \
+6*q1^4*q2^4*q3*x^2 + 471*q1^4*q2^3*q3^2*x^2 + 471*q1^3*q2^4*q3^2*x^2 + \
+504*q1^4*q2^2*q3^3*x^2 + 1644*q1^3*q2^3*q3^3*x^2 + 504*q1^2*q2^4*q3^3*x^2 + \
+3*q1^4*q2*q3^4*x^2 + 357*q1^3*q2^2*q3^4*x^2 + 357*q1^2*q2^3*q3^4*x^2 + \
+3*q1*q2^4*q3^4*x^2 - 4*q1^4*q2^4*x^3 + 23*q1^4*q2^3*q3*x^3 + \
+23*q1^3*q2^4*q3*x^3 + 744*q1^4*q2^2*q3^2*x^3 + 2286*q1^3*q2^3*q3^2*x^3 + \
+744*q1^2*q2^4*q3^2*x^3 + 311*q1^4*q2*q3^3*x^3 + 2721*q1^3*q2^2*q3^3*x^3 + \
+2721*q1^2*q2^3*q3^3*x^3 + 311*q1*q2^4*q3^3*x^3 - 10*q1^4*q3^4*x^3 + \
+122*q1^3*q2*q3^4*x^3 + 480*q1^2*q2^2*q3^4*x^3 + 122*q1*q2^3*q3^4*x^3 - \
+10*q2^4*q3^4*x^3 - 20*q1^4*q2^3*x^4 - 20*q1^3*q2^4*x^4 - 9*q1^4*q2^2*q3*x^4 + \
+112*q1^3*q2^3*q3*x^4 - 9*q1^2*q2^4*q3*x^4 + 486*q1^4*q2*q3^2*x^4 + \
+3597*q1^3*q2^2*q3^2*x^4 + 3597*q1^2*q2^3*q3^2*x^4 + 486*q1*q2^4*q3^2*x^4 + \
+79*q1^4*q3^3*x^4 + 1786*q1^3*q2*q3^3*x^4 + 4386*q1^2*q2^2*q3^3*x^4 + \
+1786*q1*q2^3*q3^3*x^4 + 79*q2^4*q3^3*x^4 + q1^3*q3^4*x^4 + \
+147*q1^2*q2*q3^4*x^4 + 147*q1*q2^2*q3^4*x^4 + q2^3*q3^4*x^4 - \
+39*q1^4*q2^2*x^5 - 78*q1^3*q2^3*x^5 - 39*q1^2*q2^4*x^5 - 18*q1^4*q2*q3*x^5 + \
+45*q1^3*q2^2*q3*x^5 + 45*q1^2*q2^3*q3*x^5 - 18*q1*q2^4*q3*x^5 + \
+153*q1^4*q3^2*x^5 + 2472*q1^3*q2*q3^2*x^5 + 5544*q1^2*q2^2*q3^2*x^5 + \
+2472*q1*q2^3*q3^2*x^5 + 153*q2^4*q3^2*x^5 + 501*q1^3*q3^3*x^5 + \
+2859*q1^2*q2*q3^3*x^5 + 2859*q1*q2^2*q3^3*x^5 + 501*q2^3*q3^3*x^5 - \
+24*q1*q2*q3^4*x^5 - 20*q1^4*q2*x^6 - 132*q1^3*q2^2*x^6 - 132*q1^2*q2^3*x^6 - \
+20*q1*q2^4*x^6 + 28*q1^4*q3*x^6 + 58*q1^3*q2*q3*x^6 - 186*q1^2*q2^2*q3*x^6 + \
+58*q1*q2^3*q3*x^6 + 28*q2^4*q3*x^6 + 810*q1^3*q3^2*x^6 + \
+3723*q1^2*q2*q3^2*x^6 + 3723*q1*q2^2*q3^2*x^6 + 810*q2^3*q3^2*x^6 + \
+810*q1^2*q3^3*x^6 + 1792*q1*q2*q3^3*x^6 + 810*q2^2*q3^3*x^6 - 32*q1*q3^4*x^6 \
+- 32*q2*q3^4*x^6 + 8*q1^4*x^7 - 46*q1^3*q2*x^7 - 240*q1^2*q2^2*x^7 - \
+46*q1*q2^3*x^7 + 8*q2^4*x^7 + 182*q1^3*q3*x^7 - 177*q1^2*q2*q3*x^7 - \
+177*q1*q2^2*q3*x^7 + 182*q2^3*q3*x^7 + 1212*q1^2*q3^2*x^7 + \
+2322*q1*q2*q3^2*x^7 + 1212*q2^2*q3^2*x^7 + 488*q1*q3^3*x^7 + 488*q2*q3^3*x^7 \
+- 16*q3^4*x^7 + 48*q1^3*x^8 - 132*q1^2*q2*x^8 - 132*q1*q2^2*x^8 + 48*q2^3*x^8 \
++ 183*q1^2*q3*x^8 - 324*q1*q2*q3*x^8 + 183*q2^2*q3*x^8 + 705*q1*q3^2*x^8 + \
+705*q2*q3^2*x^8 + 120*q3^3*x^8 + 45*q1^2*x^9 - 126*q1*q2*x^9 + 45*q2^2*x^9 + \
+9*q1*q3*x^9 + 9*q2*q3*x^9 + 180*q3^2*x^9))/(9*x*(q1 + x)^2*(q2 + x)^2*(q3 + \
+x)^3*(q1*q2 + q1*q3 + q2*q3 + 2*q1*x + 2*q2*x + 2*q3*x + 3*x^2)^2) + \
+(48*jrot^2*(q3*(q1*q2 + q1*q3 + q2*q3) + 2*(q1*q2 + 3*(q1 + q2)*q3 + \
+2*q3^2)*x + 3*(2*(q1 + q2) + 5*q3)*x^2 + 12*x^3))/(x*(q3 + x)^2*((q1 + x)*(q2 \
++ x) + (q1 + x)*(q3 + x) + (q2 + x)*(q3 + x))^2), \"K\" -> 0, \"Om\" -> \
+(4*jrot*(12*q1^2*q2^2*q3^2 + 22*q1^2*q2^2*q3*x + 40*q1^2*q2*q3^2*x + \
+40*q1*q2^2*q3^2*x + 6*q1^2*q2^2*x^2 + 63*q1^2*q2*q3*x^2 + 63*q1*q2^2*q3*x^2 + \
+27*q1^2*q3^2*x^2 + 102*q1*q2*q3^2*x^2 + 27*q2^2*q3^2*x^2 + 15*q1^2*q2*x^3 + \
+15*q1*q2^2*x^3 + 39*q1^2*q3*x^3 + 144*q1*q2*q3*x^3 + 39*q2^2*q3*x^3 + \
+60*q1*q3^2*x^3 + 60*q2*q3^2*x^3 + 8*q1^2*x^4 + 26*q1*q2*x^4 + 8*q2^2*x^4 + \
+77*q1*q3*x^4 + 77*q2*q3*x^4 + 32*q3^2*x^4 + 9*q1*x^5 + 9*q2*x^5 + \
+36*q3*x^5))/(3*x^2*(q1 + x)*(q2 + x)*(q3 + x)^2*(q1*q2 + q1*q3 + q2*q3 + \
+2*q1*x + 2*q2*x + 2*q3*x + 3*x^2)) + (24*jrot^3)/(x^2*(q3 + x)*((q1 + x)*(q2 \
++ x) + (q1 + x)*(q3 + x) + (q2 + x)*(q3 + x)))|>; \
+expectedSolutionHash=87917841096888066536316283450638828428508162348999200778\
+969128396913264002714; \
+solutionHashPass=TrueQ[Hash[solution,\"SHA256\"]===expectedSolutionHash]; \
+solutionHashPass"], "Input"], Cell["Expected exact output:", "Text"], 
+  Cell[BoxData["True"], "Output"], 
+  Cell["2. Center the corrected horizon and construct regular fields", 
+   "Section"], Cell["The raw 1/x poles in the temporal and radial metric \
+corrections and the 1/x^2 pole in the angular correction represent one common \
+displacement of the perturbative horizon. The transformation x_old=x+lambda3 \
+xShift centers it before the ingoing coordinate transformation is \
+constructed. Every limit below is evaluated symbolically from the embedded \
+solution.", "Text"], Cell[BoxData["assumptions = q1 > 0 && q2 > 0 && q3 > 0 \
+&& x > 0 &&\n  jrot^2 < q1 q2 q3;\nhorizonAssumptions = q1 > 0 && q2 > 0 && \
+q3 > 0 &&\n  jrot^2 < q1 q2 q3;\n\nsafeLimit[expr_] := FullSimplify[\n  \
+Limit[Together[expr], x -> 0, Direction -> \"FromAbove\"],\n  \
+horizonAssumptions];\nfiniteQ[expr_] := FreeQ[expr,\n  _DirectedInfinity | \
+Indeterminate | ComplexInfinity];\nzeroQ[expr_] := \
+TrueQ[FullSimplify[Together[expr],\n    horizonAssumptions] === 0];\n\nqprod \
+= q1 q2 q3;\ne2 = q1 q2 + q1 q3 + q2 q3;\nh = (x + q1) (x + q2) (x + \
+q3);\nrOneSixth = h^(1/6);\nrOneThird = h^(1/3);\n\n(* Background metric in \
+the x=r^2 coordinate. *)\na0 = x/rOneThird;\nbx0 = rOneSixth/(2 x);\nc0 = \
+rOneSixth/2;\nomega0 = jrot/(2 x);\nd0 = Together[c0^2 - a0^2 \
+omega0^2];\n\nft = solution[\"Ft\"];\ngr = solution[\"Gr\"];\nk = \
+solution[\"K\"];\nom = solution[\"Om\"];\n\n(* The raw poles are one common \
+perturbative horizon shift.  Center the\n   horizon by x_old=x+lambda3 xShift \
+before constructing ingoing coordinates.\n   The radial coefficient x below \
+denotes the centered coordinate. *)\nxShift = FullSimplify[-safeLimit[x ft], \
+horizonAssumptions];\nshiftPoleChecks = <|\n  \"-xFtEqualsShift\" -> \
+zeroQ[-safeLimit[x ft] - xShift],\n  \"xGrEqualsShift\" -> zeroQ[safeLimit[x \
+gr] - xShift],\n  \"x2OmEqualsjShiftOver2\" ->\n    zeroQ[safeLimit[x^2 om] - \
+jrot xShift/2]|>;\n\nftCentered = Together[ft + xShift D[Log[a0], \
+x]];\nbxCentered = Together[gr + xShift D[Log[bx0], x]];\nbaseCentered = \
+Together[xShift D[Log[c0], x]];\nfibreCentered = Together[baseCentered + \
+k];\nomCentered = Together[om + xShift D[omega0, x]];\n\n(* First-order \
+correction of D=g_eta_eta=c^2-a^2 omega^2 in the centered\n   radial \
+coordinate. *)\nd1 = Together[2 c0^2 fibreCentered -\n   2 a0^2 (omega0^2 \
+ftCentered + omega0 omCentered)];\nh0 = Together[a0^2 omega0];\nh1 = \
+Together[a0^2 (omCentered + 2 ftCentered omega0)];\n\ncenteredHorizon = <|\n  \
+\"Ft\" -> safeLimit[ftCentered],\n  \"Bx\" -> safeLimit[bxCentered],\n  \
+\"Base\" -> safeLimit[baseCentered],\n  \"Fibre\" -> \
+safeLimit[fibreCentered],\n  \"OmOverOmega0\" -> \
+safeLimit[omCentered/omega0],\n  \"D1\" -> safeLimit[d1],\n  \"H1\" -> \
+safeLimit[h1]|>;\n\nrawPoleCancellations = <|\n  \"ShiftPoleChecks\" -> \
+shiftPoleChecks,\n  \"FtCentered\" -> finiteQ[centeredHorizon[\"Ft\"]],\n  \
+\"BxCentered\" -> finiteQ[centeredHorizon[\"Bx\"]],\n  \"BaseCentered\" -> \
+finiteQ[centeredHorizon[\"Base\"]],\n  \"OmCenteredOverOmega0\" -> \
+finiteQ[centeredHorizon[\"OmOverOmega0\"]],\n  \"D1Finite\" -> \
+finiteQ[centeredHorizon[\"D1\"]],\n  \"H1Finite\" -> \
+finiteQ[centeredHorizon[\"H1\"]]|>;\nPrint[\"[horizon 2/7] horizon shift and \
+centered pole cancellations: \",\n  rawPoleCancellations];\n\n(* Horizon \
+generator chi=d_t+lambda3 OmegaH1 d_psi. *)\nomegaH1 = \
+FullSimplify[centeredHorizon[\"H1\"] / safeLimit[d0],\n  \
+horizonAssumptions];\n\n(* Choose the future-horizon sign.  With eps=-1, g_vx \
+is positive. *)\neps = -1;\ntPrime0 = eps bx0 Sqrt[d0]/(a0 c0);\npsiPrime0 = \
+eps a0 bx0 omega0/(c0 Sqrt[d0]);\ntPrime1 = Together[tPrime0 (bxCentered + \
+d1/(2 d0) -\n   ftCentered - fibreCentered)];\npsiPrime1 = Together[psiPrime0 \
+(\n   ftCentered + bxCentered + omCentered/omega0 - fibreCentered -\n   d1/(2 \
+d0))];\n\n(* Ingoing co-rotating metric coefficients, coefficientwise in \
+lambda3. *)\ngvx0 = Together[-eps a0 bx0 c0/Sqrt[d0]];\ngvx1 = Together[gvx0 \
+(ftCentered + bxCentered + fibreCentered -\n   d1/(2 d0))];\ngvv0 = \
+Together[-a0^2];\ngvv1 = Together[-2 a0^2 ftCentered - 2 omegaH1 h0];\ngveta0 \
+= Together[-h0];\ngveta1 = Together[-h1 + omegaH1 d0];\nbase0 = \
+Together[c0^2];\nbase1 = Together[2 c0^2 baseCentered];\n\n(* Direct \
+generator limits from the transformed expressions.  These are not\n   \
+inferred from expected BPS behavior. *)\nchiSq0H = safeLimit[gvv0];\nchiSq1H \
+= safeLimit[gvv1];\nchiEta0H = safeLimit[gveta0];\nchiEta1H = \
+safeLimit[gveta1];\nchiSq0SlopeH = safeLimit[D[gvv0, x]];\nchiSq1SlopeH = \
+safeLimit[D[gvv1, x]];\n\nmetricPieces = <|\n  \"g_vx_0\" -> gvx0, \"g_vx_1\" \
+-> gvx1,\n  \"g_vv_0\" -> gvv0, \"g_vv_1\" -> gvv1,\n  \"g_veta_0\" -> \
+gveta0, \"g_veta_1\" -> gveta1,\n  \"D_0\" -> d0, \"D_1\" -> d1,\n  \
+\"base_0\" -> base0, \"base_1\" -> base1|>;\nd0H = (qprod - jrot^2)/(4 \
+qprod^(2/3));\nbase0H = qprod^(1/3)/4;\ngvx0H = qprod^(1/3)/(2 Sqrt[qprod - \
+jrot^2]);\ngvx1H = FullSimplify[gvx0H (\n   centeredHorizon[\"Ft\"] + \
+centeredHorizon[\"Bx\"] +\n   centeredHorizon[\"Fibre\"] - \
+centeredHorizon[\"D1\"]/(2 d0H)),\n  \
+horizonAssumptions];\nmetricHorizonLimits = <|\n  \"g_vx_0\" -> gvx0H, \
+\"g_vx_1\" -> gvx1H,\n  \"g_vv_0\" -> chiSq0H, \"g_vv_1\" -> chiSq1H,\n  \
+\"g_veta_0\" -> chiEta0H, \"g_veta_1\" -> chiEta1H,\n  \"D_0\" -> d0H, \
+\"D_1\" -> centeredHorizon[\"D1\"],\n  \"base_0\" -> base0H,\n  \"base_1\" -> \
+2 base0H centeredHorizon[\"Base\"]|>;\n(* Every metric coefficient is built \
+algebraically from rational centered\n   corrections, h^(1/6), and \
+Sqrt[h-jrot^2].  Under the strict gap these\n   generators are real analytic \
+at x=0.  Therefore finite exact limits plus\n   absence of Log/branch objects \
+is a stronger and cheaper C-infinity\n   certificate than separately \
+expanding many very large second derivatives. *)\nmetricAnalyticStructure = \
+AssociationMap[\n  Function[key, finiteQ[metricHorizonLimits[key]] &&\n    \
+FreeQ[metricPieces[key], Log | ConditionalExpression | Piecewise]],\n  \
+Keys[metricPieces]];\nmetricC2Finite = \
+metricAnalyticStructure;\nmetricDerivativeLimits =\n  \"Implied finite to \
+every order by the analytic-generator certificate\";\nPrint[\"[horizon 3/7] \
+transformed metric analytic limits: \",\n  \
+metricAnalyticStructure];\n\ndet3H0 = FullSimplify[-gvx0H^2 d0H, \
+horizonAssumptions];\ndet3H1 = FullSimplify[-2 gvx0H gvx1H d0H -\n  gvx0H^2 \
+centeredHorizon[\"D1\"], horizonAssumptions];\ndet3BackgroundNonzero = \
+TrueQ[FullSimplify[det3H0 != 0,\n  horizonAssumptions]];\n\ngeneratorChecks = \
+<|\n  \"OmegaH1\" -> omegaH1,\n  \"chiSquaredAtHorizonOrder0\" -> chiSq0H,\n  \
+\"chiSquaredAtHorizonOrder1\" -> chiSq1H,\n  \"chiDotEtaAtHorizonOrder0\" -> \
+chiEta0H,\n  \"chiDotEtaAtHorizonOrder1\" -> chiEta1H,\n  \
+\"chiSquaredSlopeAtHorizonOrder0\" -> chiSq0SlopeH,\n  \
+\"chiSquaredSlopeAtHorizonOrder1\" -> chiSq1SlopeH,\n  \
+\"SurfaceGravityCoefficient\" -> FullSimplify[\n    -chiSq1SlopeH/(2 gvx0H), \
+horizonAssumptions]|>;\n\n(* Pole orders relevant to integrating the \
+coordinate transformation. *)\ncoordinatePoleData = <|\n  \"x2_tPrime0\" -> \
+eps Sqrt[qprod - jrot^2]/2,\n  \"x_psiPrime0\" -> eps jrot \
+qprod^(1/3)/Sqrt[qprod - jrot^2],\n  \"x2_tPrime1\" -> FullSimplify[\n    eps \
+Sqrt[qprod - jrot^2]/2 (\n      centeredHorizon[\"Bx\"] + \
+centeredHorizon[\"D1\"]/(2 d0H) -\n      centeredHorizon[\"Ft\"] - \
+centeredHorizon[\"Fibre\"]),\n    horizonAssumptions],\n  \"x_psiPrime1\" -> \
+FullSimplify[\n    eps jrot qprod^(1/3)/Sqrt[qprod - jrot^2] (\n      \
+centeredHorizon[\"Ft\"] + centeredHorizon[\"Bx\"] +\n      \
+centeredHorizon[\"OmOverOmega0\"] - centeredHorizon[\"Fibre\"] -\n      \
+centeredHorizon[\"D1\"]/(2 d0H)), horizonAssumptions],\n  \
+\"tPrime0LogResidue\" -> eps e2/(4 Sqrt[qprod - jrot^2]),\n  \
+\"psiPrime0LogResidue\" ->\n    eps jrot qprod^(1/3)/Sqrt[qprod - \
+jrot^2]|>;\nPrint[\"[horizon 4/7] ingoing coordinate pole data \
+complete\"];\n\n(* Physical STU scalars and their radial kinetic \
+contractions. *)\npCorr = solution[\"P\"];\nsCorr = solution[\"S\"];\nx0 = \
+{rOneThird/(x + q1), rOneThird/(x + q2),\n  rOneThird/(x + q3)};\ndLogX = {2 \
+pCorr/3 - sCorr, 2 pCorr/3 + sCorr, -4 pCorr/3};\nx1Raw = Together /@ (x0 \
+dLogX);\nx1 = MapThread[Together[#1 + xShift D[#2, x]] &, {x1Raw, \
+x0}];\nscalarHorizon = <|\n  \"X0\" -> (safeLimit /@ x0),\n  \"X1\" -> \
+(safeLimit /@ x1)|>;\ngxx0 = Together[1/bx0^2];\ngxx1 = Together[-2 \
+bxCentered/bx0^2];\nscalarKinetic0 = Table[Together[gxx0 D[x0[[i]], x] \
+D[x0[[j]], x]],\n  {i, 3}, {j, 3}];\nscalarKinetic1 = Table[Together[\n   \
+gxx1 D[x0[[i]], x] D[x0[[j]], x] +\n   gxx0 (D[x1[[i]], x] D[x0[[j]], x] +\n  \
+   D[x0[[i]], x] D[x1[[j]], x])], {i, 3}, {j, 3}];\nscalarKineticHorizon = \
+<|\n  \"Order0\" -> Map[safeLimit, scalarKinetic0, {2}],\n  \"Order1\" -> \
+Map[safeLimit, scalarKinetic1, {2}]|>;\nPrint[\"[horizon 5/7] scalar values \
+and kinetic invariants complete\"];\n\n(* Gauge fields in a regular \
+orthonormal frame.  BI is the adapted fibre\n   correction, so \
+A^I=(u0+lambda3 UI)(dt+omega eta)+lambda3 BI eta. *)\nu0 = {x/(x + q1), x/(x \
++ q2), x/(x + q3)};\nu1Raw = Lookup[solution, {\"U1\", \"U2\", \"U3\"}];\nu1 \
+= MapThread[Together[#1 + xShift D[#2, x]] &, {u1Raw, u0}];\nb1 = \
+Lookup[solution, {\"B1\", \"B2\", \"B3\"}];\neFrame0 = \
+Table[Together[D[u0[[i]], x]/(a0 bx0)], {i, 3}];\neFrame1 = \
+Table[Together[(D[u1[[i]], x] -\n    D[u0[[i]], x] (ftCentered + \
+bxCentered))/(a0 bx0)], {i, 3}];\nmFrame0 = Table[Together[u0[[i]] D[omega0, \
+x]/(bx0 c0)], {i, 3}];\nmFrame1 = Table[Together[(u1[[i]] D[omega0, x] +\n    \
+u0[[i]] D[omCentered, x] + D[b1[[i]], x] -\n    u0[[i]] D[omega0, x] \
+(bxCentered + fibreCentered))/(bx0 c0)],\n  {i, 3}];\nnFrame0 = \
+Table[Together[-u0[[i]] omega0/c0^2], {i, 3}];\nnFrame1 = \
+Table[Together[-(u1[[i]] omega0 +\n    u0[[i]] omCentered + b1[[i]] -\n    2 \
+baseCentered u0[[i]] omega0)/c0^2], {i, 3}];\n\ngaugeFrameHorizon = <|\n  \
+\"E0\" -> (safeLimit /@ eFrame0),\n  \"E1\" -> (safeLimit /@ eFrame1),\n  \
+\"M0\" -> (safeLimit /@ mFrame0),\n  \"M1\" -> (safeLimit /@ mFrame1),\n  \
+\"N0\" -> (safeLimit /@ nFrame0),\n  \"N1\" -> (safeLimit /@ \
+nFrame1)|>;\nPrint[\"[horizon 6a/7] gauge frame component limits \
+complete\"];\n\nfDot0 = Table[Together[2 (-eFrame0[[i]] eFrame0[[j]] +\n    \
+mFrame0[[i]] mFrame0[[j]] + nFrame0[[i]] nFrame0[[j]])],\n  {i, 3}, {j, \
+3}];\nfDot1 = Table[Together[2 (-(eFrame1[[i]] eFrame0[[j]] +\n       \
+eFrame0[[i]] eFrame1[[j]]) +\n    mFrame1[[i]] mFrame0[[j]] + mFrame0[[i]] \
+mFrame1[[j]] +\n    nFrame1[[i]] nFrame0[[j]] + nFrame0[[i]] \
+nFrame1[[j]])],\n  {i, 3}, {j, 3}];\ngaugeInvariantHorizon = <|\n  \
+\"FI.FJOrder0\" -> Map[safeLimit, fDot0, {2}],\n  \"FI.FJOrder1\" -> \
+Map[safeLimit, fDot1, {2}]|>;\nPrint[\"[horizon 6b/7] gauge invariant matrix \
+limits complete\"];\n\n(* The fibre potential is finite.  Any remaining A_x \
+is a one-variable\n   radial component and is removed locally by \
+Lambda_I(x)=-Integral A_x dx. *)\nv1 = Table[Together[u1[[i]] omega0 + \
+u0[[i]] omCentered + b1[[i]]],\n  {i, 3}];\nchiPotential1 = \
+Table[Together[u1[[i]] + omegaH1 u0[[i]] omega0],\n  {i, \
+3}];\ngaugePotentialHorizon = <|\n  \"xTimesFibreCorrection\" -> (safeLimit \
+/@ (x v1)),\n  \"FibreCorrection\" -> (safeLimit /@ v1),\n  \
+\"ChiPotentialOrder1\" -> (safeLimit /@ chiPotential1),\n  \
+\"RadialComponentRemoval\" ->\n    \"A_x^I is locally exact and removed by \
+Lambda_I(x)=-Integrate[A_x^I,x]\"|>;\n\nallGaugeFrameFinite = And @@ (finiteQ \
+/@ Flatten[Values[gaugeFrameHorizon]]);\nallGaugeInvariantsFinite = And @@\n  \
+(finiteQ /@ Flatten[Values[gaugeInvariantHorizon]]);\nallScalarFinite = And \
+@@ (finiteQ /@ Flatten[Values[scalarHorizon]]) &&\n  And @@ (finiteQ /@ \
+Flatten[Values[scalarKineticHorizon]]);\nPrint[\"[horizon 7/7] assembling \
+report\"];\n\nreport = <|\n  \"Scope\" -> \"generic q1,q2,q3; exact in jrot; \
+coefficient of lambda3\",\n  \"Assumptions\" -> horizonAssumptions,\n  \
+\"HorizonCentering\" -> <|\n    \"Transformation\" -> \"x_old=x+lambda3 \
+xShift\",\n    \"xShift\" -> xShift,\n    \"PoleChecks\" -> \
+shiftPoleChecks,\n    \"CenteredMetricCorrections\" -> <|\n      \
+\"deltaLogA\" -> ftCentered, \"deltaLogBx\" -> bxCentered,\n      \
+\"deltaLogBase\" -> baseCentered,\n      \"deltaLogFibre\" -> \
+fibreCentered,\n      \"deltaOmega\" -> omCentered|>|>,\n  \
+\"CoordinateTransformation\" -> <|\n    \"DifferentialForm\" -> {\n      \
+\"dt=dv+(tPrime0+lambda3 tPrime1) dx\",\n      \"eta=etaHat+lambda3 OmegaH1 \
+dv+(psiPrime0+lambda3 psiPrime1) dx\"},\n    \"FutureHorizonSign\" -> eps,\n  \
+  \"tPrime0\" -> tPrime0, \"psiPrime0\" -> psiPrime0,\n    \"tPrime1\" -> \
+tPrime1, \"psiPrime1\" -> psiPrime1,\n    \"PoleData\" -> \
+coordinatePoleData|>,\n  \"RawPoleCancellations\" -> rawPoleCancellations,\n  \
+\"MetricHorizonLimits\" -> metricHorizonLimits,\n  \
+\"MetricDerivativeCertificate\" -> metricDerivativeLimits,\n  \
+\"MetricAnalyticStructure\" -> metricAnalyticStructure,\n  \"MetricC2Finite\" \
+-> metricC2Finite,\n  \"AllMetricC2Finite\" -> And @@ \
+Values[metricC2Finite],\n  \"HorizonBlockDeterminant\" -> <|\n    \"Order0\" \
+-> det3H0, \"Order1\" -> det3H1,\n    \"BackgroundNonzero\" -> \
+det3BackgroundNonzero|>,\n  \"HorizonGenerator\" -> generatorChecks,\n  \
+\"Scalars\" -> <|\"HorizonValues\" -> scalarHorizon,\n    \
+\"KineticContractions\" -> scalarKineticHorizon,\n    \"AllFinite\" -> \
+allScalarFinite|>,\n  \"GaugeFields\" -> <|\"FrameComponents\" -> \
+gaugeFrameHorizon,\n    \"AllFrameComponentsFinite\" -> \
+allGaugeFrameFinite,\n    \"InvariantContractions\" -> \
+gaugeInvariantHorizon,\n    \"AllInvariantContractionsFinite\" -> \
+allGaugeInvariantsFinite,\n    \"Potentials\" -> gaugePotentialHorizon|>,\n  \
+\"RegularityDomain\" -> <|\n    \"Background\" -> \"qI>0 and jrot^2<q1 q2 \
+q3\",\n    \"PerturbativeQualification\" ->\n      \"For fixed positive gap \
+q1 q2 q3-jrot^2, lambda3 must be small enough that the corrected D and \
+determinant do not change sign; the audit is not uniform at the zero-area \
+bound.\"|>,\n  \"LogBranchClassification\" -> <|\n    \"PhysicalFields\" -> \
+\"All correction functions are rational in x; no physical log branch \
+occurs.\",\n    \"CoordinateLogs\" ->\n      \"Integrating the displayed pole \
+terms produces standard horizon logs; they occur only in t(v,x) and \
+psi(chi,v,x).\",\n    \"GaugeLogs\" ->\n      \"A divergent/logarithmic \
+radial potential is locally removable because it is a pure A_x^I dx \
+component; F^I and FI.FJ are finite.\"|>,\n  \"Verdict\" -> <|\n    \
+\"MetricRegularToFirstOrder\" -> (And @@ Values[metricC2Finite] &&\n      \
+det3BackgroundNonzero && And @@ Values[shiftPoleChecks]),\n    \
+\"ScalarInvariantsFinite\" -> allScalarFinite,\n    \"GaugeInvariantsFinite\" \
+-> allGaugeInvariantsFinite,\n    \"GeneratorConditionsPass\" -> And @@ \
+(zeroQ /@ {\n      generatorChecks[\"chiSquaredAtHorizonOrder0\"],\n      \
+generatorChecks[\"chiSquaredAtHorizonOrder1\"],\n      \
+generatorChecks[\"chiDotEtaAtHorizonOrder0\"],\n      \
+generatorChecks[\"chiDotEtaAtHorizonOrder1\"],\n      \
+generatorChecks[\"chiSquaredSlopeAtHorizonOrder0\"],\n      \
+generatorChecks[\"chiSquaredSlopeAtHorizonOrder1\"],\n      \
+generatorChecks[\"SurfaceGravityCoefficient\"]})|>|>;\n\n"], "Input"], 
+  Cell["3. Exact horizon limits", "Section"], 
+  Cell[BoxData["computedLimits=<|\"xShift\"->report[\"HorizonCentering\"][\"x\
+Shift\"],\"Metric\"->report[\"MetricHorizonLimits\"],\"Generator\"->report[\"\
+HorizonGenerator\"],\"Scalars\"->report[\"Scalars\"][\"HorizonValues\"],\"Sca\
+larKinetic\"->report[\"Scalars\"][\"KineticContractions\"],\"GaugeFrame\"->re\
+port[\"GaugeFields\"][\"FrameComponents\"],\"GaugeInvariants\"->report[\"Gaug\
+eFields\"][\"InvariantContractions\"],\"GaugePotentials\"->report[\"GaugeFiel\
+ds\"][\"Potentials\"],\"CoordinatePoleData\"->report[\"CoordinateTransformati\
+on\"][\"PoleData\"]|>;\nexpectedLimits=<|\"xShift\" -> (16*(3*jrot^2 + \
+2*q1*q2*q3))/(q3*(q2*q3 + q1*(q2 + q3))), \"Metric\" -> <|\"g_vx_0\" -> \
+(q1*q2*q3)^(1/3)/(2*Sqrt[-jrot^2 + q1*q2*q3]), \"g_vx_1\" -> \
+(q1*q2*(16*jrot^2*q1*q2*q3*(q1^2*q2^2 + 4*q1*q2*(q1 + q2)*q3 + (2*q1 + \
+q2)*(q1 + 2*q2)*q3^2) + 8*jrot^4*(-4*q1^2*q2^2 - 11*q1*q2*(q1 + q2)*q3 - \
+(q1^2 + 8*q1*q2 + q2^2)*q3^2) + 2*q1^2*q2^2*q3^2*(9*q1^2*q2^2 + 14*q1*q2*(q1 \
++ q2)*q3 - (11*q1^2 + 6*q1*q2 + 11*q2^2)*q3^2)))/((q1*q2*q3)^(5/3)*(-jrot^2 + \
+q1*q2*q3)^(3/2)*(q2*q3 + q1*(q2 + q3))^2), \"g_vv_0\" -> 0, \"g_vv_1\" -> 0, \
+\"g_veta_0\" -> 0, \"g_veta_1\" -> 0, \"D_0\" -> (-jrot^2 + \
+q1*q2*q3)/(4*(q1*q2*q3)^(2/3)), \"D_1\" -> (q1*q2*(36*jrot^4 - \
+50*jrot^2*q1*q2*q3 + 8*q1^2*q2^2*q3^2))/(3*(q1*q2*q3)^(8/3)), \"base_0\" -> \
+(q1*q2*q3)^(1/3)/4, \"base_1\" -> (4*(q1*q2*q3)^(1/3)*((3*jrot^2)/(q1*q2) + \
+2*q3))/(3*q3^2)|>, \"Generator\" -> <|\"OmegaH1\" -> 0, \
+\"chiSquaredAtHorizonOrder0\" -> 0, \"chiSquaredAtHorizonOrder1\" -> 0, \
+\"chiDotEtaAtHorizonOrder0\" -> 0, \"chiDotEtaAtHorizonOrder1\" -> 0, \
+\"chiSquaredSlopeAtHorizonOrder0\" -> 0, \"chiSquaredSlopeAtHorizonOrder1\" \
+-> 0, \"SurfaceGravityCoefficient\" -> 0|>, \"Scalars\" -> <|\"X0\" -> \
+{((q2*q3)/q1^2)^(1/3), ((q1*q3)/q2^2)^(1/3), ((q1*q2)/q3^2)^(1/3)}, \"X1\" -> \
+{(4*q2*(-2*jrot^2 + 3*q1*q2*q3))/(3*(q1*q2*q3)^(5/3)), (4*q1*(-2*jrot^2 + \
+3*q1*q2*q3))/(3*(q1*q2*q3)^(5/3)), (8*(2*jrot^2 - \
+3*q1*q2*q3))/(3*q3^2*(q1*q2*q3)^(2/3))}|>, \"ScalarKinetic\" -> <|\"Order0\" \
+-> {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}}, \"Order1\" -> {{0, 0, 0}, {0, 0, 0}, \
+{0, 0, 0}}|>, \"GaugeFrame\" -> <|\"E0\" -> {2*((q2*q3)/q1^5)^(1/6), \
+2*((q1*q3)/q2^5)^(1/6), 2*((q1*q2)/q3^5)^(1/6)}, \"E1\" -> \
+{(200*q2)/(3*(q1*q2*q3)^(5/6)), (200*q1)/(3*(q1*q2*q3)^(5/6)), (8*(15*jrot^2 \
++ 7*q1*q2*q3))/(3*q3^2*(q1*q2*q3)^(5/6))}, \"M0\" -> \
+{(-2*jrot)/(q1^4*q2*q3)^(1/3), (-2*jrot)/(q1*q2^4*q3)^(1/3), \
+(-2*jrot)/(q1*q2*q3^4)^(1/3)}, \"M1\" -> {(32*q2*(6*jrot^3 - \
+13*jrot*q1*q2*q3))/(3*(q1*q2*q3)^(7/3)), (32*q1*(6*jrot^3 - \
+13*jrot*q1*q2*q3))/(3*(q1*q2*q3)^(7/3)), (8*(9*jrot^3 - \
+34*jrot*q1*q2*q3))/(3*q3^2*(q1*q2*q3)^(4/3))}, \"N0\" -> \
+{(-2*jrot)/(q1^4*q2*q3)^(1/3), (-2*jrot)/(q1*q2^4*q3)^(1/3), \
+(-2*jrot)/(q1*q2*q3^4)^(1/3)}, \"N1\" -> {(32*q2*(6*jrot^3 - \
+jrot*q1*q2*q3))/(3*(q1*q2*q3)^(7/3)), (32*q1*(6*jrot^3 - \
+jrot*q1*q2*q3))/(3*(q1*q2*q3)^(7/3)), (8*(9*jrot^3 + \
+5*jrot*q1*q2*q3))/(3*q3^2*(q1*q2*q3)^(4/3))}|>, \"GaugeInvariants\" -> \
+<|\"FI.FJOrder0\" -> {{(-8*(-2*jrot^2 + q1*q2*q3))/(q1^2*(q1*q2*q3)^(2/3)), \
+(-8*q3*(-2*jrot^2 + q1*q2*q3))/(q1*q2*q3)^(5/3), (-8*q2*(-2*jrot^2 + \
+q1*q2*q3))/(q1*q2*q3)^(5/3)}, {(-8*q3*(-2*jrot^2 + \
+q1*q2*q3))/(q1*q2*q3)^(5/3), (-8*(-2*jrot^2 + \
+q1*q2*q3))/(q2^2*(q1*q2*q3)^(2/3)), (-8*q1*(-2*jrot^2 + \
+q1*q2*q3))/(q1*q2*q3)^(5/3)}, {(-8*q2*(-2*jrot^2 + \
+q1*q2*q3))/(q1*q2*q3)^(5/3), (-8*q1*(-2*jrot^2 + q1*q2*q3))/(q1*q2*q3)^(5/3), \
+(-8*(-2*jrot^2 + q1*q2*q3))/(q3^2*(q1*q2*q3)^(2/3))}}, \"FI.FJOrder1\" -> \
+{{(-64*q2*(48*jrot^4 - 56*jrot^2*q1*q2*q3 + \
+25*q1^2*q2^2*q3^2))/(3*q1*(q1*q2*q3)^(8/3)), (-64*(48*jrot^4 - \
+56*jrot^2*q1*q2*q3 + 25*q1^2*q2^2*q3^2))/(3*(q1*q2*q3)^(8/3)), \
+(-64*q2*(33*jrot^4 - 35*jrot^2*q1*q2*q3 + \
+16*q1^2*q2^2*q3^2))/(3*q3*(q1*q2*q3)^(8/3))}, {(-64*(48*jrot^4 - \
+56*jrot^2*q1*q2*q3 + 25*q1^2*q2^2*q3^2))/(3*(q1*q2*q3)^(8/3)), \
+(-64*q1*(48*jrot^4 - 56*jrot^2*q1*q2*q3 + \
+25*q1^2*q2^2*q3^2))/(3*q2*(q1*q2*q3)^(8/3)), (-64*q1*(33*jrot^4 - \
+35*jrot^2*q1*q2*q3 + 16*q1^2*q2^2*q3^2))/(3*q3*(q1*q2*q3)^(8/3))}, \
+{(-64*q2*(33*jrot^4 - 35*jrot^2*q1*q2*q3 + \
+16*q1^2*q2^2*q3^2))/(3*q3*(q1*q2*q3)^(8/3)), (-64*q1*(33*jrot^4 - \
+35*jrot^2*q1*q2*q3 + 16*q1^2*q2^2*q3^2))/(3*q3*(q1*q2*q3)^(8/3)), \
+(-64*(18*jrot^4 - 14*jrot^2*q1*q2*q3 + \
+7*q1^2*q2^2*q3^2))/(3*q3^3*(q1*q2*q3)^(5/3))}}|>, \"GaugePotentials\" -> \
+<|\"xTimesFibreCorrection\" -> {0, 0, 0}, \"FibreCorrection\" -> {(-8*(jrot^3 \
+- jrot*q1*q2*q3))/(q1^2*q2*q3^2), (-8*(jrot^3 - \
+jrot*q1*q2*q3))/(q1*q2^2*q3^2), (2*(jrot^3 + jrot*q1*q2*q3))/(q1*q2*q3^3)}, \
+\"ChiPotentialOrder1\" -> {0, 0, 0}, \"RadialComponentRemoval\" -> \"A_x^I is \
+locally exact and removed by Lambda_I(x)=-Integrate[A_x^I,x]\"|>, \
+\"CoordinatePoleData\" -> <|\"x2_tPrime0\" -> -1/2*Sqrt[-jrot^2 + q1*q2*q3], \
+\"x_psiPrime0\" -> -((jrot*(q1*q2*q3)^(1/3))/Sqrt[-jrot^2 + q1*q2*q3]), \
+\"x2_tPrime1\" -> (-72*jrot^4*(q1*q2 + 3*(q1 + q2)*q3 + 2*q3^2) + \
+2*q1*q2*q3^2*(43*q1^2*q2^2 + 74*q1*q2*(q1 + q2)*q3 + (-17*q1^2 + 14*q1*q2 - \
+17*q2^2)*q3^2) + 8*jrot^2*q3*(-(q1^2*q2^2) + 10*q1*q2*(q1 + q2)*q3 + (5*q1^2 \
++ 16*q1*q2 + 5*q2^2)*q3^2))/(3*q3^2*Sqrt[-jrot^2 + q1*q2*q3]*(q2*q3 + q1*(q2 \
++ q3))^2), \"x_psiPrime1\" -> (4*jrot*q1*q2*(4*jrot^2 - \
+5*q1*q2*q3))/((q1*q2*q3)^(2/3)*(-jrot^2 + q1*q2*q3)^(3/2)), \
+\"tPrime0LogResidue\" -> -1/4*(q1*q2 + q1*q3 + q2*q3)/Sqrt[-jrot^2 + \
+q1*q2*q3], \"psiPrime0LogResidue\" -> -((jrot*(q1*q2*q3)^(1/3))/Sqrt[-jrot^2 \
++ q1*q2*q3])|>|>;\nexactLimitsPass=TrueQ[computedLimits===expectedLimits]; \
+<|\"xShift\"->computedLimits[\"xShift\"],\"MetricLeafCount\"->LeafCount[compu\
+tedLimits[\"Metric\"]],\"ScalarLeafCount\"->LeafCount[computedLimits[\"Scalar\
+s\"]],\"GaugeInvariantLeafCount\"->LeafCount[computedLimits[\"GaugeInvariants\
+\"]],\"ExactLimitsPass\"->exactLimitsPass|>"], "Input"], 
+  Cell["Expected exact digest:", "Text"], 
+  Cell[BoxData["<|\"xShift\" -> (16*(3*jrot^2 + 2*q1*q2*q3))/(q3*(q2*q3 + \
+q1*(q2 + q3))), \"MetricLeafCount\" -> 295, \"ScalarLeafCount\" -> 107, \
+\"GaugeInvariantLeafCount\" -> 564, \"ExactLimitsPass\" -> True|>"], 
+   "Output"], Cell["4. Regularity and extremality certificate", "Section"], 
+  Cell[BoxData["computedSummary=<|\"RawPoleCancellations\"->rawPoleCancellati\
+ons,\"AllMetricC2Finite\"->report[\"AllMetricC2Finite\"],\"DeterminantBackgro\
+undNonzero\"->det3BackgroundNonzero,\"OmegaH1\"->omegaH1,\"GeneratorChecks\"-\
+>generatorChecks,\"AllScalarFinite\"->allScalarFinite,\"AllGaugeFrameFinite\"\
+->allGaugeFrameFinite,\"AllGaugeInvariantsFinite\"->allGaugeInvariantsFinite,\
+\"Verdict\"->report[\"Verdict\"]|>;\nexpectedSummary=<|\"RawPoleCancellations\
+\" -> <|\"ShiftPoleChecks\" -> <|\"-xFtEqualsShift\" -> True, \
+\"xGrEqualsShift\" -> True, \"x2OmEqualsjShiftOver2\" -> True|>, \
+\"FtCentered\" -> True, \"BxCentered\" -> True, \"BaseCentered\" -> True, \
+\"OmCenteredOverOmega0\" -> True, \"D1Finite\" -> True, \"H1Finite\" -> \
+True|>, \"AllMetricC2Finite\" -> True, \"DeterminantBackgroundNonzero\" -> \
+True, \"OmegaH1\" -> 0, \"GeneratorChecks\" -> <|\"OmegaH1\" -> 0, \
+\"chiSquaredAtHorizonOrder0\" -> 0, \"chiSquaredAtHorizonOrder1\" -> 0, \
+\"chiDotEtaAtHorizonOrder0\" -> 0, \"chiDotEtaAtHorizonOrder1\" -> 0, \
+\"chiSquaredSlopeAtHorizonOrder0\" -> 0, \"chiSquaredSlopeAtHorizonOrder1\" \
+-> 0, \"SurfaceGravityCoefficient\" -> 0|>, \"AllScalarFinite\" -> True, \
+\"AllGaugeFrameFinite\" -> True, \"AllGaugeInvariantsFinite\" -> True, \
+\"Verdict\" -> <|\"MetricRegularToFirstOrder\" -> True, \
+\"ScalarInvariantsFinite\" -> True, \"GaugeInvariantsFinite\" -> True, \
+\"GeneratorConditionsPass\" -> \
+True|>|>;\nsummaryPass=TrueQ[computedSummary===expectedSummary]; \
+computedSummary"], "Input"], Cell["Expected exact output:", "Text"], 
+  Cell[BoxData["<|\"RawPoleCancellations\" -> <|\"ShiftPoleChecks\" -> \
+<|\"-xFtEqualsShift\" -> True, \"xGrEqualsShift\" -> True, \
+\"x2OmEqualsjShiftOver2\" -> True|>, \"FtCentered\" -> True, \"BxCentered\" \
+-> True, \"BaseCentered\" -> True, \"OmCenteredOverOmega0\" -> True, \
+\"D1Finite\" -> True, \"H1Finite\" -> True|>, \"AllMetricC2Finite\" -> True, \
+\"DeterminantBackgroundNonzero\" -> True, \"OmegaH1\" -> 0, \
+\"GeneratorChecks\" -> <|\"OmegaH1\" -> 0, \"chiSquaredAtHorizonOrder0\" -> \
+0, \"chiSquaredAtHorizonOrder1\" -> 0, \"chiDotEtaAtHorizonOrder0\" -> 0, \
+\"chiDotEtaAtHorizonOrder1\" -> 0, \"chiSquaredSlopeAtHorizonOrder0\" -> 0, \
+\"chiSquaredSlopeAtHorizonOrder1\" -> 0, \"SurfaceGravityCoefficient\" -> \
+0|>, \"AllScalarFinite\" -> True, \"AllGaugeFrameFinite\" -> True, \
+\"AllGaugeInvariantsFinite\" -> True, \"Verdict\" -> \
+<|\"MetricRegularToFirstOrder\" -> True, \"ScalarInvariantsFinite\" -> True, \
+\"GaugeInvariantsFinite\" -> True, \"GeneratorConditionsPass\" -> True|>|>"], 
+   "Output"], Cell[BoxData["notebook15FinalPass=TrueQ[solutionHashPass&&exact\
+LimitsPass&&summaryPass&&And@@Values[report[\"Verdict\"]]]; \
+notebook15FinalPass"], "Input"], Cell["Expected exact final output:", 
+   "Text"], Cell[BoxData["True"], "Output"], Cell["5. Interpretation", 
+   "Section"], Cell["The centered shift is 16(3 jrot^2+2 q1 q2 q3)/(q3(q1 \
+q2+q1 q3+q2 q3)). All transformed metric coefficients have analytic \
+generators at the horizon; scalar kinetic contractions, gauge-frame \
+components, and F^I.F^J are finite. The horizon generator obeys \
+chi^2=chi.eta=d_x chi^2=0 through first order, while Omega_H^(1)=0 and \
+kappa^(1)=0. Coordinate logarithms are the standard ingoing-coordinate logs; \
+any radial gauge-potential logarithm is locally pure gauge and does not occur \
+in F^I or its invariants.", "Text"], 
+  Cell["6. Remaining field-map qualification", "Section"], 
+  Cell["This five-dimensional regularity proof does not by itself establish \
+the complete higher-derivative map to every ten-dimensional heterotic \
+string-frame field.", "Text"]}, WindowTitle -> 
+  "Generic exact-in-j horizon regularity", StyleDefinitions -> "Default.nb"]

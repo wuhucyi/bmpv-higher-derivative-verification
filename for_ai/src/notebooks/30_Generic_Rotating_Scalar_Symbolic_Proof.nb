@@ -1,0 +1,161 @@
+Notebook[{Cell["Generic rotating scalar symbolic proof", "Title"], 
+  Cell[
+   "Arbitrary unequal charges and exact rotation at first order in \
+alphaPrime", "Subtitle"], Cell["Purpose and reading order", "Section"], 
+  Cell["This notebook replaces the five rotating parameter samples in Section \
+14.7 by one direct symbolic proof. It first defines the leading rotating STU \
+background, then reconstructs the raw heterotic corrections and every \
+scalar/metric field redefinition, derives the radial pullback from the \
+angular metric component, and only at the final step compares with the \
+embedded exact five-dimensional scalar target. No numerical charge or radius \
+substitution is used.", "Text"], Cell["Conventions", "Section"], 
+  Cell["The coordinate order is (t,r,theta,phi,psi), \
+sigma3=dpsi+cos(theta)dphi, alphaPrime=8 lambda3, and the target coefficient \
+P is embedded below. The corrected postdual scalar contribution is exp(-8 \
+phi/3) (Fminus)^2/64 at the coefficient-of-alphaPrime level.", "Text"], 
+  Cell["Compact identity", "Section"], Cell["With Dminus=r^2+qminus, \
+Dplus=r^2+qplus, Dzero=r^2+qzero and A=(qminus+qplus) r^2+2 qminus qplus, the \
+uncorrected source-minus-target residual is R=A^2/(8 Dminus^2 Dplus^2 \
+Dzero)-a^2/(Dminus Dplus Dzero^2). The notebook derives exp(-8 phi0/3) \
+(Fminus)^2/64=-R directly from the leading metric and field strength, in \
+addition to running the complete source-to-target chain.", "Text"], 
+  Cell["Complete machine calculation", "Section"], 
+  Cell[BoxData["ClearAll[\"Global`*\"];\n$HistoryLength = 0;\n$Assumptions = \
+r > 0 && qminus > 0 && qplus > 0 && qzero > 0 && 0 < theta < Pi && Element[a, \
+Reals];\ncoords5 = {t, r, theta, phi, psi}; n5 = 5;\nhplus = 1 + qplus/r^2; \
+hminus = 1 + qminus/r^2; hzero = 1 + qzero/r^2;\nw0 = a/(2 r^2); theta5 = {1, \
+0, 0, w0 Cos[theta], w0};\ng5 = ConstantArray[0, {n5, n5}];\ng5[[1,1]] = \
+-1/(hplus hminus); g5[[2,2]] = hzero; g5[[3,3]] = hzero r^2/4;\ng5[[4,4]] = \
+hzero r^2/4 - w0^2 Cos[theta]^2/(hplus hminus);\ng5[[5,5]] = hzero r^2/4 - \
+w0^2/(hplus hminus);\ng5[[4,5]] = g5[[5,4]] = hzero r^2 Cos[theta]/4 - w0^2 \
+Cos[theta]/(hplus hminus);\ng5[[1,4]] = g5[[4,1]] = -w0 Cos[theta]/(hplus \
+hminus);\ng5[[1,5]] = g5[[5,1]] = -w0/(hplus hminus);\ng5inv = \
+FullSimplify[Inverse[g5]];\ndOne5[v_] := Table[D[v[[j]], coords5[[i]]] - \
+D[v[[i]], coords5[[j]]], {i,n5},{j,n5}];\nAvec5 = theta5/hplus; Bvec5 = \
+-theta5/hminus;\nF5 = FullSimplify[dOne5[Avec5]]; G5 = \
+FullSimplify[dOne5[Bvec5]];\nsigma = Log[hplus/hminus]/2;\nFplus = \
+FullSimplify[Exp[sigma] F5 + Exp[-sigma] G5];\nFminus = \
+FullSimplify[Exp[sigma] F5 - Exp[-sigma] G5];\nomegaVector5 = {0,0,0,w0 \
+Cos[theta],w0}; dOmega0 = FullSimplify[dOne5[omegaVector5]];\nwedge21[q_,v_] \
+:= Table[q[[i,j]] v[[k]] + q[[j,k]] v[[i]] + q[[k,i]] v[[j]], \
+{i,n5},{j,n5},{k,n5}];\nhMagnetic5 = Table[If[Sort[{i,j,k}] === {3,4,5}, \
+Signature[{i,j,k}] Signature[{3,4,5}] D[hzero,r] r^3 Sin[theta]/8, 0], \
+{i,n5},{j,n5},{k,n5}];\nhMapped5 = FullSimplify[-hMagnetic5 + \
+wedge21[dOmega0,theta5]/(hplus hminus)];\ntarget = <|\"P\" -> \
+(2*(-15*q1^3*q2^3*q3^2 + 21*q1^3*q2^2*q3^3 + 21*q1^2*q2^3*q3^3 + \
+4*q1^3*q2^3*q3*x - 10*q1^3*q2^2*q3^2*x - 10*q1^2*q2^3*q3^2*x + \
+34*q1^3*q2*q3^3*x + 110*q1^2*q2^2*q3^3*x + 34*q1*q2^3*q3^3*x + \
+4*q1^3*q2^3*x^2 + 26*q1^3*q2^2*q3*x^2 + 26*q1^2*q2^3*q3*x^2 + \
+2*q1^3*q2*q3^2*x^2 + 45*q1^2*q2^2*q3^2*x^2 + 2*q1*q2^3*q3^2*x^2 + \
+16*q1^3*q3^3*x^2 + 134*q1^2*q2*q3^3*x^2 + 134*q1*q2^2*q3^3*x^2 + \
+16*q2^3*q3^3*x^2 + 12*q1^3*q2^2*x^3 + 12*q1^2*q2^3*x^3 + 18*q1^3*q2*q3*x^3 + \
+108*q1^2*q2^2*q3*x^3 + 18*q1*q2^3*q3*x^3 + 6*q1^3*q3^2*x^3 + \
+54*q1^2*q2*q3^2*x^3 + 54*q1*q2^2*q3^2*x^3 + 6*q2^3*q3^2*x^3 + \
+54*q1^2*q3^3*x^3 + 144*q1*q2*q3^3*x^3 + 54*q2^2*q3^3*x^3 + 5*q1^3*q2*x^4 + \
+38*q1^2*q2^2*x^4 + 5*q1*q2^3*x^4 + 5*q1^3*q3*x^4 + 75*q1^2*q2*q3*x^4 + \
+75*q1*q2^2*q3*x^4 + 5*q2^3*q3*x^4 + 26*q1^2*q3^2*x^4 + 39*q1*q2*q3^2*x^4 + \
+26*q2^2*q3^2*x^4 + 53*q1*q3^3*x^4 + 53*q2*q3^3*x^4 + 20*q1^2*q2*x^5 + \
+20*q1*q2^2*x^5 + 20*q1^2*q3*x^5 + 36*q1*q2*q3*x^5 + 20*q2^2*q3*x^5 + \
+14*q1*q3^2*x^5 + 14*q2*q3^2*x^5 + 18*q3^3*x^5 + 3*q1^2*x^6 + 6*q1*q2*x^6 + \
+3*q2^2*x^6 + 6*q1*q3*x^6 + 6*q2*q3*x^6 + 3*q3^2*x^6))/(3*(q1 + x)^2*(q2 + \
+x)^2*(q3 + x)^3*(q1*q2 + q1*q3 + q2*q3 + 2*q1*x + 2*q2*x + 2*q3*x + 3*x^2)) - \
+(4*jrot^2*(7*q1*q2 - 2*(q1 + q2)*q3 + (5*(q1 + q2) - 4*q3)*x + 3*x^2))/((q1 + \
+x)*(q2 + x)*(q3 + x)^2*((q1 + x)*(q2 + x) + (q1 + x)*(q3 + x) + (q2 + x)*(q3 \
++ x)))|>;\n\ncanonical[e_] := \
+Factor[Cancel[Together[PowerExpand[TrigExpand[\n   e /. Csc[theta]^2 -> 1 + \
+Cot[theta]^2]]]]];\nouter[u_, v_] := Table[u[[i]] v[[j]], {i, n5}, {j, \
+n5}];\ntwoSqLocal[two_, inv_] := Sum[two[[mu, nu]] inv[[mu, aa]]\n    \
+inv[[nu, bb]] two[[aa, bb]],\n   {mu, n5}, {nu, n5}, {aa, n5}, {bb, \
+n5}];\n\nauditGenericParameters[{qmv_, qpv_, q0v_, av_}] := Module[\n  \
+{rules, gs, gsi, hpv, hmv, h0v, th5, w0v, fp, fm, sig,\n   hlead, z0, zp, w1, \
+trotv, ep, thFull, gRaw, gRaw1, fmMix, fpMix,\n   gDelta1, hOne, h2DD, fm2, \
+fp2, ds, ds2, h2, phi0v, phiRaw,\n   phiTor, c0, f0, f0sqS, f0DD, dG1, dP1, \
+gR1, pR1, fac,\n   gE0v, gEiv, dph, dph2, dsg, dsg2, fpsqE, fmsqE, f0sqE,\n   \
+dG2, dP2, weightedFm, gFinal, pFinal, hr0v, dhr, xi,\n   pTargetAreal, \
+pTargetIso, residual, uncorrectedResidual,\n   correctionIdentity},\n  rules \
+= {qminus -> qmv, qplus -> qpv, qzero -> q0v, a -> av};\n  gs = g5 /. rules; \
+gsi = g5inv /. rules;\n  hpv = hplus /. rules; hmv = hminus /. rules; h0v = \
+hzero /. rules;\n  th5 = theta5 /. rules; w0v = w0 /. rules;\n  fp = Fplus /. \
+rules; fm = Fminus /. rules; sig = sigma /. rules;\n  hlead = hMapped5 /. \
+rules;\n\n  z0 = q0v^2/(r^2 (r^2 + q0v)^2);\n  zp = -2 (qpv qmv - 2 av^2/(r^2 \
++ q0v))/\n    (r^2 (r^2 + q0v) (r^2 + qmv));\n  w1 = av q0v/(r^2 (r^2 + \
+q0v)^2);\n  trotv = -(qpv qmv - 2 av^2/(r^2 + q0v))/\n    ((r^2 + qpv) (r^2 + \
+qmv) (r^2 + q0v));\n  thFull = {1, 0, 0, (w0v + ep w1) Cos[theta], w0v + ep \
+w1};\n  gRaw = Table[((h0v + ep z0)/h0v)\n      (gs[[i, j]] + th5[[i]] \
+th5[[j]]/(hpv hmv)) -\n      thFull[[i]] thFull[[j]]/((hpv + ep zp) hmv),\n   \
+ {i, n5}, {j, n5}];\n  gRaw1 = Coefficient[Normal@Series[gRaw, {ep, 0, 1}], \
+ep];\n  fmMix = fm.gsi; fpMix = fp.gsi;\n  gDelta1 = Table[Sum[fm[[mu, lam]] \
+fmMix[[nu, lam]] +\n       fp[[mu, lam]] fpMix[[nu, lam]], {lam, n5}] +\n     \
+4 D[sig, coords5[[mu]]] D[sig, coords5[[nu]]],\n    {mu, n5}, {nu, n5}];\n  \
+hOne = Table[Sum[gsi[[nu, p]] gsi[[rho, q]] hlead[[mu, p, q]],\n      {p, \
+n5}, {q, n5}], {mu, n5}, {nu, n5}, {rho, n5}];\n  h2DD = Table[Sum[hlead[[mu, \
+rho, lam]] hOne[[nu, rho, lam]],\n      {rho, n5}, {lam, n5}], {mu, n5}, {nu, \
+n5}];\n  fm2 = twoSqLocal[fm, gsi]; fp2 = twoSqLocal[fp, gsi];\n  ds = \
+Table[D[sig, coords5[[i]]], {i, n5}];\n  ds2 = ds.gsi.ds;\n  h2 = \
+Sum[hlead[[i, j, k]] gsi[[i, p]] gsi[[j, q]] gsi[[k, s]]\n      hlead[[p, q, \
+s]],\n    {i, n5}, {j, n5}, {k, n5}, {p, n5}, {q, n5}, {s, n5}];\n  phi0v = \
+Log[h0v^2/(hpv hmv)]/4;\n  phiRaw = z0/(2 h0v) - trotv/2;\n  phiTor = phiRaw \
++ (fm2 + fp2)/32 + ds2/8 + h2/32;\n\n  c0 = th5/h0v; f0 = dOne5[c0];\n  f0sqS \
+= twoSqLocal[f0, gsi];\n  f0DD = Table[Sum[f0[[mu, rho]] gsi[[rho, ss]] \
+f0[[nu, ss]],\n      {rho, n5}, {ss, n5}], {mu, n5}, {nu, n5}];\n  dG1 = \
+Exp[4 phi0v] (4 f0DD - f0sqS gs)/2;\n  dP1 = -Exp[4 phi0v] f0sqS/8;\n  gR1 = \
+gRaw1 + (gDelta1 + h2DD)/8 + dG1/8;\n  pR1 = phiTor + dP1/8;\n  fac = Exp[-4 \
+phi0v/3];\n  gE0v = fac gs; gEiv = Inverse[gE0v];\n  dph = Table[D[phi0v, \
+coords5[[i]]], {i, n5}];\n  dph2 = dph.gEiv.dph;\n  dsg = ds; dsg2 = \
+dsg.gEiv.dsg;\n  fpsqE = twoSqLocal[fp, gEiv]; fmsqE = twoSqLocal[fm, \
+gEiv];\n  f0sqE = twoSqLocal[f0, gEiv];\n  dG2 = Table[80/9 Exp[-4 phi0v/3]\n \
+      (dph[[mu]] dph[[nu]] - dph2 gE0v[[mu, nu]]/5) +\n      Exp[-8 phi0v/3] \
+(fpsqE + fmsqE) gE0v[[mu, nu]]/9 -\n      4 Exp[4 phi0v/3] f0sqE gE0v[[mu, \
+nu]]/9,\n    {mu, n5}, {nu, n5}];\n  dP2 = -3 Exp[-8 phi0v/3] (fpsqE + \
+fmsqE)/8 +\n    9 Exp[4 phi0v/3] f0sqE/8 -\n    Exp[-4 phi0v/3] (4 dph2/3 + \
+dsg2);\n  weightedFm = Exp[-8 phi0v/3] fmsqE;\n  gFinal = fac (gR1 - 4 pR1 \
+gs/3) + dG2/8;\n  pFinal = pR1 + dP2/8 + weightedFm/64;\n\n  hr0v = Log[4 \
+gE0v[[3, 3]]/r^2]/2;\n  dhr = gFinal[[3, 3]]/(2 gE0v[[3, 3]]);\n  xi = \
+canonical[-dhr/(D[hr0v, r] + 1/r)];\n  pTargetAreal = target[\"P\"] /. {q1 -> \
+qpv, q2 -> qmv,\n      q3 -> q0v, jrot -> av, x -> r^2};\n  pTargetIso = \
+pTargetAreal/8 - xi D[phi0v, r];\n  residual = canonical[pFinal - \
+pTargetIso];\n  uncorrectedResidual = canonical[pFinal - weightedFm/64 - \
+pTargetIso];\n  correctionIdentity = canonical[uncorrectedResidual + \
+weightedFm/64];\n  <|\"Parameters\" -> {qmv, qpv, q0v, av}, \"XiAlpha\" -> \
+xi,\n    \"CorrectedResidual\" -> residual,\n    \"CorrectedPass\" -> \
+PossibleZeroQ[residual],\n    \"UncorrectedResidual\" -> \
+uncorrectedResidual,\n    \"WeightedFminusSquareOver64\" -> \
+canonical[weightedFm/64],\n    \"ResidualPlusCovariantRepair\" -> \
+correctionIdentity,\n    \"RepairIdentityPass\" -> \
+PossibleZeroQ[correctionIdentity]|>\n  \
+];\n\nPrint[\"GENERIC_FULL_CHAIN_BEGIN\"];\ntiming = AbsoluteTiming[\n  \
+result = auditGenericParameters[{qminus, qplus, qzero, \
+a}];\n];\nPrint[\"GENERIC_FULL_CHAIN_SECONDS=\", \
+InputForm[timing[[1]]]];\nPrint[\"GENERIC_CORRECTED_RESIDUAL=\", \
+InputForm[result[\"CorrectedResidual\"]]];\nPrint[\"GENERIC_CORRECTED_PASS=\"\
+, \
+InputForm[result[\"CorrectedPass\"]]];\nPrint[\"GENERIC_UNCORRECTED_RESIDUAL=\
+\", \
+InputForm[result[\"UncorrectedResidual\"]]];\nPrint[\"GENERIC_WEIGHTED_FMINUS\
+_OVER64=\", \
+InputForm[result[\"WeightedFminusSquareOver64\"]]];\nPrint[\"GENERIC_REPAIR_I\
+DENTITY=\", \
+InputForm[result[\"ResidualPlusCovariantRepair\"]]];\nPrint[\"GENERIC_REPAIR_\
+PASS=\", InputForm[result[\"RepairIdentityPass\"]]];\nPrint[\"GENERIC_XI=\", \
+InputForm[result[\"XiAlpha\"]]];\nPrint[\"GENERIC_FULL_CHAIN_END\"];\ndmProof \
+= r^2 + qminus; dpProof = r^2 + qplus; d0Proof = r^2 + qzero;\naProof = \
+(qminus + qplus) r^2 + 2 qminus qplus;\ncompactR = canonical[aProof^2/(8 \
+dmProof^2 dpProof^2 d0Proof) - a^2/(dmProof dpProof \
+d0Proof^2)];\ncompactUncorrectedResidual = \
+canonical[result[\"UncorrectedResidual\"] - \
+compactR];\ncompactWeightedResidual = \
+canonical[result[\"WeightedFminusSquareOver64\"] + \
+compactR];\nPrint[\"GENERIC_COMPACT_UNCORRECTED_R=\", \
+InputForm[compactR]];\nPrint[\"GENERIC_COMPACT_UNCORRECTED_IDENTITY=\", \
+InputForm[compactUncorrectedResidual]];\nPrint[\"GENERIC_COMPACT_WEIGHTED_IDE\
+NTITY=\", InputForm[compactWeightedResidual]];\nfinalPass = \
+TrueQ[result[\"CorrectedPass\"]] && TrueQ[result[\"RepairIdentityPass\"]] && \
+PossibleZeroQ[compactUncorrectedResidual] && \
+PossibleZeroQ[compactWeightedResidual];\nPrint[\"GENERIC_SCALAR_FINAL_PASS=\"\
+, finalPass];\nfinalPass;"], "Input", InitializationCell -> True], 
+  Cell["Expected result", "Section"], Cell["A fresh kernel must return \
+GENERIC_CORRECTED_RESIDUAL=0, GENERIC_REPAIR_IDENTITY=0, both compact \
+identity residuals equal to zero, and GENERIC_SCALAR_FINAL_PASS=True. The \
+uncorrected residual is retained to show exactly what the corrected postdual \
+term cancels.", "Text"]}, WindowTitle -> 
+  "Generic rotating scalar symbolic proof", StyleDefinitions -> "Default.nb"]

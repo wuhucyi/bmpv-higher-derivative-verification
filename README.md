@@ -1,54 +1,59 @@
-# BMPV higher-derivative solution: research supplement
+# BMPV higher-derivative verification
 
-> **Private review draft — do not distribute, cite, archive publicly, or enable a public GitHub release.**
+> **Private author-review draft. Do not distribute, cite, archive publicly, or
+> create a public release.**
 
-This repository is a proposed supplement to *BMPV black holes in higher-derivative supergravity*. It connects the current manuscript, the human-verification report, the computational record, and claim-level evidence. It is intended for discussion among the authors before any arXiv or public release.
+This repository is a compact research supplement for the first-order
+four-derivative correction to the generic three-charge BMPV black hole. It is
+organized for two audiences and deliberately does not contain either the
+current article source or the historical source paper.
 
-All repository-facing prose, filenames, notebook comments, notebook metadata, and validation records are maintained in English. Mathematical notation, bibliographic names, and standard scientific symbols are not treated as prose.
+## Choose an entry point
 
-The main result is a generic unequal-charge BMPV solution that is first order in the four-derivative couplings and exact in the rotation parameter. Candidate expressions generated during an AI-assisted workflow were accepted only after exact Mathematica substitution and independent fresh-kernel checks. The human authors remain responsible for every scientific claim.
+| Audience | Start here | Contents |
+|---|---|---|
+| Human readers | [`for_humans/README.md`](for_humans/README.md) | The retrospective prompt, chronological research journey, solving-process PDF, and final verification report. |
+| AI agents and automated auditors | [`for_ai/PAPER.md`](for_ai/PAPER.md) | An ARA-inspired claim, experiment, source, trace, and evidence graph. |
 
-## Start here
+The main five-dimensional result is generic in the three unequal charges,
+first order in the four-derivative coupling, and exact in the single
+equal-angular-momentum BMPV rotation parameter within the stated ansatz.
+Candidate expressions became claims only after exact Mathematica substitution
+and fresh-kernel checks. Human researchers supplied the theory, conventions,
+physical interpretation, corrections, and final responsibility.
 
-- Readers: [`paper/current_manuscript/main.tex`](paper/current_manuscript/main.tex), then [`human/verification_report/main_new.pdf`](human/verification_report/main_new.pdf).
-- Reproducers: [`human/solving_process/solving_process.pdf`](human/solving_process/solving_process.pdf), then the machine-readable claim and evidence indexes.
-- AI agents: [`PAPER.md`](PAPER.md), then [`AGENTS.md`](AGENTS.md).
-- Archivists: [`archive/ARCHIVING.md`](archive/ARCHIVING.md) and [`archive/CONTENT_PLAN.md`](archive/CONTENT_PLAN.md).
+There was no single magic prompt. The published prompt is explicitly a
+retrospective task specification, while the research journey records the
+actual sequence of decisions, failures, pivots, and audits that can be
+supported by preserved artifacts.
 
-## Repository map
+## Artifact boundary
 
-| Path | Role |
-|---|---|
-| `paper/current_manuscript/` | Current article downloaded from the authors' Overleaf project. This is the publication manuscript. |
-| `paper/historical_paper_original/` | Earlier STU/Gutowski--Reall source paper used as the historical starting point. It is **not** the current manuscript. |
-| `human/` | Version-5 verification report, chronological solving narrative, and compact package guide. |
-| `logic/` | Machine-readable conventions, claims, dependencies, and limitations. |
-| `machine/` | Notebook index, execution environment, and verification tiers. |
-| `src/notebooks/` | The 32 GitHub-sized Mathematica notebooks; notebooks 01 and 02 remain archive-only. |
-| `evidence/` | Sanitized GitHub copies of fresh-kernel logs and independent audit records. |
-| `provenance/` | Historical milestones, human interventions, model/tool metadata, and redaction policy. |
-| `reproduction/` | Retrospective reconstruction and independent-audit prompts, including a blind protocol. |
-| `archive/` | Instructions and placeholders for the separately preserved complete archive. |
+This GitHub view contains 32 executable Mathematica notebooks. The two very
+large equation archives, NB01 and NB02, remain outside ordinary Git and are
+identified by immutable size and SHA-256 records in
+[`for_ai/evidence/external_archive.yaml`](for_ai/evidence/external_archive.yaml).
+Their DOI and download URL remain unset until the authors approve a public
+archive.
 
-The full sealed verification package is not committed here: it is about 686 MiB, and its largest Mathematica notebook is about 597 MiB. The eventual public repository should point to an immutable DOI-bearing archive containing those files.
+The `for_ai/` directory is inspired by the four-layer Agent-Native Research
+Artifact proposal: logic, executable source, exploration trace, and exact
+evidence. It is an adaptation for symbolic high-energy theory and is not
+presented as a formal third-party ARA certification.
 
 ## Current status
 
-- Private author review only.
-- Publication metadata, DOI, repository URL, licenses, and final artifact version are unresolved placeholders.
-- No statement of priority or “first use” is made by this repository.
-- The email block already present in the manuscript must be approved by all authors before public release.
-- The current manuscript source is included, but no compiled current-manuscript PDF was present in the downloaded Overleaf tree.
+- Repository visibility must remain private until the authors approve the
+  arXiv and artifact release.
+- Publication metadata, DOI, repository URL, and licenses are unresolved.
+- No claim of priority or of a first AI-assisted theory paper is made here.
+- No existing PASS label is evidence by itself; the linked calculation is.
 
-See [`LICENSE_STATUS.md`](LICENSE_STATUS.md), [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md), and [`PUBLIC_RELEASE_CHECKLIST.md`](PUBLIC_RELEASE_CHECKLIST.md) before changing repository visibility.
-
-For the lightweight structural, privacy, size, and claim-binding audit, run
+Run the lightweight structural and cross-reference audit with:
 
 ```console
-ruby tools/validate_repo.rb
+ruby for_ai/validate_level1.rb
 ```
 
-The same check is configured for pull requests. Full Mathematica evaluation
-remains a documented licensed-kernel workflow rather than a public CI job.
-`REPOSITORY_CHECKSUMS.sha256` seals every review-repository file other than
-the manifest itself; it is separate from the immutable full-v5 archive seal.
+Full notebook execution requires a compatible licensed Wolfram kernel and is
+not part of public continuous integration.

@@ -1,0 +1,74 @@
+Notebook[{Cell["Entropy conventions for the four-derivative BMPV correction", 
+   "Title"], 
+  Cell[
+   "A self-contained comparison of the four published rotation functions", 
+   "Subtitle"], Cell["Purpose. This notebook explains the disagreement \
+summarized in Eqs. (3.7)-(3.8) of arXiv:2605.19552 and checks the expansion \
+of the direct heterotic entropy in arXiv:2606.31987. It is a convention and \
+algebra certificate. It does not claim to evaluate the horizon entropy from \
+the five-dimensional corrected fields in this package.", "Text"], 
+  Cell["Human notation. z is the dimensionless spin J/Q^(3/2) (called varpi \
+in the report), q0, qp, qm are the heterotic charge variables, and eps is a \
+bookkeeping parameter multiplying the first four-derivative correction. These \
+symbols are local to this notebook.", "Text"], 
+  Cell["1. Four published functions", "Section"], 
+  Cell[BoxData["ClearAll[\"Global`*\"];\ngEuler[z_] := 1 + z^2/3;\ng4D5D[z_] \
+:= 1/(1-z^2);\ngHorizon[z_] := 1;\ngAsymptotic[z_] := (1-4 z^2/3)/(1-z^2);"], 
+   "Input"], Cell["The four functions respectively represent: an Euler-term \
+calculation on the uncorrected background; a full off-shell calculation with \
+a 4D/5D charge map; a near-horizon Noether/attractor calculation; and an \
+asymptotic grand-canonical action followed by a Legendre transform.", 
+   "Text"], Cell["2. Static agreement", "Section"], 
+  Cell[BoxData["staticValues={gEuler[0],g4D5D[0],gHorizon[0],gAsymptotic[0]};\
+\nstaticAgreement=TrueQ[staticValues==={1,1,1,1}];\n<|\"StaticValues\"->stati\
+cValues,\"StaticAgreement\"->staticAgreement|>"], "Input"], 
+  Cell["Expected: all four values are 1 and StaticAgreement is True. The \
+disagreement is therefore entirely rotation dependent.", "Text"], 
+  Cell["3. Expansion of the heterotic entropy", "Section"], 
+  Cell[BoxData["sClassical=2 Pi Sqrt[qp qm q0 (1-z^2)];\nsHeterotic[eps_]:=2 \
+Pi Sqrt[qp qm (q0+3 eps-z^2(q0+4 \
+eps))];\nlinearRatio=FullSimplify[Normal@Series[sHeterotic[eps]/sClassical,{e\
+ps,0,1}],Assumptions->{qp>0,qm>0,q0>0,0<=z^2<1}];\nexpectedRatio=1+(3 eps/(2 \
+q0)) \
+gAsymptotic[z];\nheteroticMatch=TrueQ[FullSimplify[linearRatio==expectedRatio\
+,Assumptions->{q0>0,0<=z^2<1}]];\n<|\"LinearRatio\"->linearRatio,\"ExpectedRa\
+tio\"->expectedRatio,\"Match\"->heteroticMatch|>"], "Input"], 
+  Cell["Expected: Match is True. The unexpanded square root reproduces \
+gAsymptotic at first order. Only this first-order term is controlled by the \
+four-derivative effective action.", "Text"], 
+  Cell["4. Slow-rotation comparison", "Section"], 
+  Cell[BoxData["smallSpinCoefficients=Coefficient[Normal@Series[#,{z,0,2}],z,\
+2]&/@{gEuler[z],g4D5D[z],gHorizon[z],gAsymptotic[z]};\nsmallSpinCheck=TrueQ[s\
+mallSpinCoefficients==={1/3,1,0,-1/3}];\n<|\"Order\"->{\"Euler \
+only\",\"4D/5D\",\"horizon attractor\",\"asymptotic \
+Legendre\"},\"zSquaredCoefficients\"->smallSpinCoefficients,\"Match\"->smallS\
+pinCheck|>"], "Input"], Cell["Expected z^2 coefficients in the displayed \
+order: {1/3, 1, 0, -1/3}. This makes the sign disagreement visible already at \
+the first nontrivial power of rotation.", "Text"], 
+  Cell["5. Why a charge redefinition changes the answer", "Section"], 
+  Cell[BoxData["s0[qq_,jj_]:=2 Pi \
+Sqrt[qq^3-jj^2];\nfixedPhysicalCorrection=s1-D[s0[qq,jj],qq] \
+deltaQ-D[s0[qq,jj],jj] \
+deltaJ;\nangularCoefficient=Coefficient[fixedPhysicalCorrection,deltaJ];\ncha\
+rgeMapCheck=TrueQ[angularCoefficient===2 Pi \
+jj/Sqrt[qq^3-jj^2]];\n<|\"FixedPhysicalCorrection\"->fixedPhysicalCorrection,\
+\"AngularCoefficient\"->angularCoefficient,\"Match\"->chargeMapCheck|>"], 
+   "Input"], Cell["At fixed physical charge and angular momentum, the \
+first-order entropy contains -d_Q S0 deltaQ-d_J S0 deltaJ. The angular \
+coefficient grows like J/sqrt(Q^3-J^2), so different higher-derivative \
+angular-momentum definitions produce the rational spin dependence seen in the \
+literature.", "Text"], Cell["6. Final executable ledger", "Section"], 
+  Cell[BoxData["checks=<|\"AllFourStaticLimitsAgree\"->staticAgreement,\"Hete\
+roticExpansionMatchesAsymptoticChargeFunction\"->heteroticMatch,\"SmallSpinCo\
+efficients\"->smallSpinCheck,\"AngularChargeRedefinitionIsEnhancedNearBound\"\
+->chargeMapCheck|>;\nfinalPass=TrueQ[And@@Values[checks]];\n<|\"Checks\"->che\
+cks,\"FinalPass\"->finalPass|>"], "Input"], 
+  Cell["Expected final result: FinalPass -> True.", "Text"], 
+  Cell["Interpretation boundary", "Section"], Cell["The enumerative data of \
+arXiv:2605.19552 and the direct ten-dimensional heterotic calculation of \
+arXiv:2606.31987 both support the asymptotic-charge function. The present \
+five-dimensional package fixes asymptotic Page charges and Komar angular \
+momentum consistently with that convention, but a direct horizon \
+Wald-Tachikawa evaluation on the package solution remains a separate \
+calculation.", "Text"]}, WindowTitle -> "BMPV entropy convention audit", 
+ StyleDefinitions -> "Default.nb"]

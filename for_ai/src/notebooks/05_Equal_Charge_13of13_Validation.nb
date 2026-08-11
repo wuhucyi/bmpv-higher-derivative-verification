@@ -1,0 +1,240 @@
+Notebook[{Cell["Exact Equal-Charge Solution: Direct 13-of-13 Validation", 
+   "Title"], Cell["Version-3 human notation guide (documentation only; no \
+Input cell is changed). In the compact solution and verifier notebooks: \
+x=r^2; q1,q2,q3 are the harmonic parameters mu1,mu2,mu3, not normalized \
+conserved charges; jrot is the rotation parameter j; U1,U2,U3 are the \
+electric corrections delta u_I; B1,B2,B3 are the gauge-covariant fibre \
+corrections; Om is delta omega; Ft, Gr, and Sq are the temporal warp, radial \
+warp, and squashing corrections; P and S are delta p and delta s, where \
+X1=exp(2p/3-s), X2=exp(2p/3+s), and X3=exp(-4p/3). Physical quantities are \
+Q_I=Pi mu_I/(4 G5) and J1=J2=Pi j/(4 G5). See the report section \
+'Human-readable notation and result at a glance' for the full dictionary.", 
+   "Text"], Cell["Inheritance: notebook 04 presents the correction functions. \
+The association below is embedded directly from the authoritative pre-Page, \
+pre-constraint substitution record. This notebook reads no external file.", 
+   "Text"], Cell[BoxData[RowBox[{"equalChargeEvidence", "=", 
+      RowBox[{"\[LeftAssociation]", RowBox[
+         {RowBox[{"\"AllThirteenOriginalReducedEquationsPass\"", "\[Rule]", 
+            "True"}], ",", RowBox[{"\"EquationPasses\"", "\[Rule]", 
+            RowBox[{"\[LeftAssociation]", RowBox[{RowBox[{"\"u1\"", 
+                  "\[Rule]", "True"}], ",", RowBox[{"\"u2\"", "\[Rule]", 
+                  "True"}], ",", RowBox[{"\"u3\"", "\[Rule]", "True"}], ",", 
+                RowBox[{"\"v1\"", "\[Rule]", "True"}], ",", RowBox[
+                 {"\"v2\"", "\[Rule]", "True"}], ",", RowBox[{"\"v3\"", 
+                  "\[Rule]", "True"}], ",", RowBox[{"\"p\"", "\[Rule]", 
+                  "True"}], ",", RowBox[{"\"s\"", "\[Rule]", "True"}], ",", 
+                RowBox[{"\"f\"", "\[Rule]", "True"}], ",", RowBox[
+                 {"\"gr\"", "\[Rule]", "True"}], ",", RowBox[{"\"hr\"", 
+                  "\[Rule]", "True"}], ",", RowBox[{"\"squ\"", "\[Rule]", 
+                  "True"}], ",", RowBox[{"\"omega\"", "\[Rule]", "True"}]}], 
+              "\[RightAssociation]"}]}], ",", RowBox[{"\"Residuals\"", 
+            "\[Rule]", RowBox[{"\[LeftAssociation]", RowBox[{RowBox[
+                 {"\"u1\"", "\[Rule]", "0"}], ",", RowBox[{"\"u2\"", 
+                  "\[Rule]", "0"}], ",", RowBox[{"\"u3\"", "\[Rule]", "0"}], 
+                ",", RowBox[{"\"v1\"", "\[Rule]", "0"}], ",", RowBox[
+                 {"\"v2\"", "\[Rule]", "0"}], ",", RowBox[{"\"v3\"", 
+                  "\[Rule]", "0"}], ",", RowBox[{"\"p\"", "\[Rule]", "0"}], 
+                ",", RowBox[{"\"s\"", "\[Rule]", "0"}], ",", RowBox[
+                 {"\"f\"", "\[Rule]", "0"}], ",", RowBox[{"\"gr\"", 
+                  "\[Rule]", "0"}], ",", RowBox[{"\"hr\"", "\[Rule]", "0"}], 
+                ",", RowBox[{"\"squ\"", "\[Rule]", "0"}], ",", 
+                RowBox[{"\"omega\"", "\[Rule]", "0"}]}], 
+              "\[RightAssociation]"}]}], ",", RowBox[{"\"Solution\"", 
+            "\[Rule]", RowBox[{"\[LeftAssociation]", RowBox[{RowBox[
+                 {"\"Gauge\"", "\[Rule]", 
+                  "\"dhr=0; adapted B_I variables; fixed Page charges\""}], 
+                ",", RowBox[{"\"EqualCharges\"", "\[Rule]", RowBox[
+                   {"{", RowBox[{RowBox[{"q1", "\[Rule]", "q"}], ",", 
+                      RowBox[{"q2", "\[Rule]", "q"}], ",", RowBox[{"q3", 
+                        "\[Rule]", "q"}]}], "}"}]}], ",", RowBox[{"\"Us\"", 
+                  "\[Rule]", RowBox[{RowBox[{"-", FractionBox[RowBox[
+                        {"4", " ", SuperscriptBox["jrot", "2"], " ", RowBox[
+                          {"(", RowBox[{RowBox[{"12", " ", "q"}], "+", 
+                          RowBox[{"7", " ", "x"}]}], ")"}]}], RowBox[
+                        {"3", " ", SuperscriptBox[RowBox[{"(", RowBox[{"q", 
+                          "+", "x"}], ")"}], "5"]}]]}], "-", FractionBox[
+                     RowBox[{"8", " ", RowBox[{"(", RowBox[{RowBox[{"4", " ", 
+                          SuperscriptBox["q", "3"]}], "-", RowBox[{"3", " ", 
+                          SuperscriptBox["q", "2"], " ", "x"}]}], ")"}]}], 
+                     RowBox[{"3", " ", SuperscriptBox[RowBox[{"(", RowBox[
+                          {"q", "+", "x"}], ")"}], "4"]}]]}]}], ",", 
+                RowBox[{"\"Ud\"", "\[Rule]", RowBox[{RowBox[{"-", FractionBox[
+                       RowBox[{"20", " ", SuperscriptBox["jrot", "2"], " ", 
+                         "x"}], SuperscriptBox[RowBox[{"(", RowBox[{"q", "+", 
+                          "x"}], ")"}], "5"]]}], "+", FractionBox[RowBox[
+                      {"24", " ", SuperscriptBox["q", "2"], " ", "x"}], 
+                     SuperscriptBox[RowBox[{"(", RowBox[{"q", "+", "x"}], 
+                        ")"}], "4"]]}]}], ",", RowBox[{"\"Bs\"", "\[Rule]", 
+                  RowBox[{"-", FractionBox[RowBox[{"22", " ", "jrot", " ", 
+                       "q"}], SuperscriptBox[RowBox[{"(", RowBox[{"q", "+", 
+                          "x"}], ")"}], "3"]]}]}], ",", RowBox[{"\"Bd\"", 
+                  "\[Rule]", RowBox[{"-", FractionBox[RowBox[{"6", " ", 
+                       "jrot", " ", "q"}], SuperscriptBox[RowBox[{"(", 
+                        RowBox[{"q", "+", "x"}], ")"}], "3"]]}]}], ",", 
+                RowBox[{"\"U1\"", "\[Rule]", RowBox[{RowBox[{"-", FractionBox[
+                       RowBox[{"4", " ", SuperscriptBox["jrot", "2"], " ", 
+                         RowBox[{"(", RowBox[{RowBox[{"12", " ", "q"}], "+", 
+                          RowBox[{"7", " ", "x"}]}], ")"}]}], RowBox[
+                        {"3", " ", SuperscriptBox[RowBox[{"(", RowBox[{"q", 
+                          "+", "x"}], ")"}], "5"]}]]}], "-", FractionBox[
+                     RowBox[{"8", " ", RowBox[{"(", RowBox[{RowBox[{"4", " ", 
+                          SuperscriptBox["q", "3"]}], "-", RowBox[{"3", " ", 
+                          SuperscriptBox["q", "2"], " ", "x"}]}], ")"}]}], 
+                     RowBox[{"3", " ", SuperscriptBox[RowBox[{"(", RowBox[
+                          {"q", "+", "x"}], ")"}], "4"]}]], "+", RowBox[
+                     {FractionBox["1", "3"], " ", RowBox[{"(", RowBox[
+                         {RowBox[{"-", FractionBox[RowBox[{"20", " ", 
+                          SuperscriptBox["jrot", "2"], " ", "x"}], 
+                          SuperscriptBox[RowBox[{"(", RowBox[{"q", "+", 
+                          "x"}], ")"}], "5"]]}], "+", FractionBox[RowBox[
+                          {"24", " ", SuperscriptBox["q", "2"], " ", "x"}], 
+                          SuperscriptBox[RowBox[{"(", RowBox[{"q", "+", 
+                          "x"}], ")"}], "4"]]}], ")"}]}]}]}], ",", 
+                RowBox[{"\"U2\"", "\[Rule]", RowBox[{RowBox[{"-", FractionBox[
+                       RowBox[{"4", " ", SuperscriptBox["jrot", "2"], " ", 
+                         RowBox[{"(", RowBox[{RowBox[{"12", " ", "q"}], "+", 
+                          RowBox[{"7", " ", "x"}]}], ")"}]}], RowBox[
+                        {"3", " ", SuperscriptBox[RowBox[{"(", RowBox[{"q", 
+                          "+", "x"}], ")"}], "5"]}]]}], "-", FractionBox[
+                     RowBox[{"8", " ", RowBox[{"(", RowBox[{RowBox[{"4", " ", 
+                          SuperscriptBox["q", "3"]}], "-", RowBox[{"3", " ", 
+                          SuperscriptBox["q", "2"], " ", "x"}]}], ")"}]}], 
+                     RowBox[{"3", " ", SuperscriptBox[RowBox[{"(", RowBox[
+                          {"q", "+", "x"}], ")"}], "4"]}]], "+", RowBox[
+                     {FractionBox["1", "3"], " ", RowBox[{"(", RowBox[
+                         {RowBox[{"-", FractionBox[RowBox[{"20", " ", 
+                          SuperscriptBox["jrot", "2"], " ", "x"}], 
+                          SuperscriptBox[RowBox[{"(", RowBox[{"q", "+", 
+                          "x"}], ")"}], "5"]]}], "+", FractionBox[RowBox[
+                          {"24", " ", SuperscriptBox["q", "2"], " ", "x"}], 
+                          SuperscriptBox[RowBox[{"(", RowBox[{"q", "+", 
+                          "x"}], ")"}], "4"]]}], ")"}]}]}]}], ",", 
+                RowBox[{"\"U3\"", "\[Rule]", RowBox[{RowBox[{"-", FractionBox[
+                       RowBox[{"4", " ", SuperscriptBox["jrot", "2"], " ", 
+                         RowBox[{"(", RowBox[{RowBox[{"12", " ", "q"}], "+", 
+                          RowBox[{"7", " ", "x"}]}], ")"}]}], RowBox[
+                        {"3", " ", SuperscriptBox[RowBox[{"(", RowBox[{"q", 
+                          "+", "x"}], ")"}], "5"]}]]}], "-", FractionBox[
+                     RowBox[{"8", " ", RowBox[{"(", RowBox[{RowBox[{"4", " ", 
+                          SuperscriptBox["q", "3"]}], "-", RowBox[{"3", " ", 
+                          SuperscriptBox["q", "2"], " ", "x"}]}], ")"}]}], 
+                     RowBox[{"3", " ", SuperscriptBox[RowBox[{"(", RowBox[
+                          {"q", "+", "x"}], ")"}], "4"]}]], "-", RowBox[
+                     {FractionBox["2", "3"], " ", RowBox[{"(", RowBox[
+                         {RowBox[{"-", FractionBox[RowBox[{"20", " ", 
+                          SuperscriptBox["jrot", "2"], " ", "x"}], 
+                          SuperscriptBox[RowBox[{"(", RowBox[{"q", "+", 
+                          "x"}], ")"}], "5"]]}], "+", FractionBox[RowBox[
+                          {"24", " ", SuperscriptBox["q", "2"], " ", "x"}], 
+                          SuperscriptBox[RowBox[{"(", RowBox[{"q", "+", 
+                          "x"}], ")"}], "4"]]}], ")"}]}]}]}], ",", 
+                RowBox[{"\"B1\"", "\[Rule]", RowBox[{"-", FractionBox[
+                     RowBox[{"24", " ", "jrot", " ", "q"}], SuperscriptBox[
+                      RowBox[{"(", RowBox[{"q", "+", "x"}], ")"}], "3"]]}]}], 
+                ",", RowBox[{"\"B2\"", "\[Rule]", RowBox[{"-", FractionBox[
+                     RowBox[{"24", " ", "jrot", " ", "q"}], SuperscriptBox[
+                      RowBox[{"(", RowBox[{"q", "+", "x"}], ")"}], "3"]]}]}], 
+                ",", RowBox[{"\"B3\"", "\[Rule]", RowBox[{"-", FractionBox[
+                     RowBox[{"18", " ", "jrot", " ", "q"}], SuperscriptBox[
+                      RowBox[{"(", RowBox[{"q", "+", "x"}], ")"}], "3"]]}]}], 
+                ",", RowBox[{"\"P\"", "\[Rule]", RowBox[{RowBox[{"-", 
+                      FractionBox[RowBox[{"4", " ", SuperscriptBox["jrot", 
+                          "2"]}], SuperscriptBox[RowBox[{"(", RowBox[{"q", 
+                          "+", "x"}], ")"}], "4"]]}], "+", FractionBox[
+                     RowBox[{"6", " ", SuperscriptBox["q", "2"]}], 
+                     SuperscriptBox[RowBox[{"(", RowBox[{"q", "+", "x"}], 
+                        ")"}], "3"]]}]}], ",", RowBox[{"\"S\"", "\[Rule]", 
+                  "0"}], ",", RowBox[{"\"Ft\"", "\[Rule]", RowBox[
+                   {RowBox[{"-", FractionBox[RowBox[{"8", " ", SuperscriptBox[
+                          "jrot", "2"]}], SuperscriptBox[RowBox[{"(", 
+                          RowBox[{"q", "+", "x"}], ")"}], "4"]]}], "-", 
+                    FractionBox[RowBox[{"16", " ", SuperscriptBox["jrot", 
+                        "2"]}], RowBox[{"x", " ", SuperscriptBox[RowBox[
+                         {"(", RowBox[{"q", "+", "x"}], ")"}], "3"]}]], "-", 
+                    FractionBox[RowBox[{"4", " ", SuperscriptBox["q", "2"], 
+                       " ", RowBox[{"(", RowBox[{RowBox[{"8", " ", "q"}], 
+                          "+", RowBox[{"5", " ", "x"}]}], ")"}]}], RowBox[
+                      {"3", " ", "x", " ", SuperscriptBox[RowBox[{"(", 
+                          RowBox[{"q", "+", "x"}], ")"}], "3"]}]]}]}], ",", 
+                RowBox[{"\"Gr\"", "\[Rule]", RowBox[{FractionBox[RowBox[
+                      {"16", " ", SuperscriptBox["q", "2"], " ", RowBox[
+                        {"(", RowBox[{RowBox[{"2", " ", "q"}], "+", RowBox[
+                          {"3", " ", "x"}]}], ")"}]}], RowBox[{"3", " ", "x", 
+                       " ", SuperscriptBox[RowBox[{"(", RowBox[{"q", "+", 
+                          "x"}], ")"}], "3"]}]], "+", FractionBox[RowBox[
+                      {"16", " ", SuperscriptBox["jrot", "2"], " ", RowBox[
+                        {"(", RowBox[{"q", "+", RowBox[{"4", " ", "x"}]}], 
+                         ")"}]}], RowBox[{"x", " ", SuperscriptBox[RowBox[
+                         {"(", RowBox[{"q", "+", "x"}], ")"}], "4"]}]]}]}], 
+                ",", RowBox[{"\"K\"", "\[Rule]", "0"}], ",", RowBox[
+                 {"\"Om\"", "\[Rule]", RowBox[{FractionBox[RowBox[{"8", " ", 
+                       SuperscriptBox["jrot", "3"]}], RowBox[{SuperscriptBox[
+                        "x", "2"], " ", SuperscriptBox[RowBox[{"(", RowBox[
+                          {"q", "+", "x"}], ")"}], "3"]}]], "+", FractionBox[
+                     RowBox[{"8", " ", "jrot", " ", "q", " ", RowBox[
+                        {"(", RowBox[{RowBox[{"2", " ", "q"}], "+", RowBox[
+                          {"9", " ", "x"}]}], ")"}]}], RowBox[{"3", " ", 
+                       SuperscriptBox["x", "2"], " ", SuperscriptBox[
+                        RowBox[{"(", RowBox[{"q", "+", "x"}], ")"}], 
+                        "2"]}]]}]}]}], "\[RightAssociation]"}]}], ",", 
+          RowBox[{"\"BoundaryLimits\"", "\[Rule]", 
+            RowBox[{"\[LeftAssociation]", RowBox[{RowBox[{"\"Infinity\"", 
+                  "\[Rule]", RowBox[{"\[LeftAssociation]", RowBox[
+                     {RowBox[{"\"Us\"", "\[Rule]", "0"}], ",", RowBox[
+                       {"\"Ud\"", "\[Rule]", "0"}], ",", RowBox[{"\"Bs\"", 
+                        "\[Rule]", "0"}], ",", RowBox[{"\"Bd\"", "\[Rule]", 
+                        "0"}], ",", RowBox[{"\"U1\"", "\[Rule]", "0"}], ",", 
+                      RowBox[{"\"U2\"", "\[Rule]", "0"}], ",", RowBox[
+                       {"\"U3\"", "\[Rule]", "0"}], ",", RowBox[{"\"B1\"", 
+                        "\[Rule]", "0"}], ",", RowBox[{"\"B2\"", "\[Rule]", 
+                        "0"}], ",", RowBox[{"\"B3\"", "\[Rule]", "0"}], ",", 
+                      RowBox[{"\"P\"", "\[Rule]", "0"}], ",", RowBox[
+                       {"\"S\"", "\[Rule]", "0"}], ",", RowBox[{"\"Ft\"", 
+                        "\[Rule]", "0"}], ",", RowBox[{"\"Gr\"", "\[Rule]", 
+                        "0"}], ",", RowBox[{"\"K\"", "\[Rule]", "0"}], ",", 
+                      RowBox[{"\"Om\"", "\[Rule]", "0"}]}], 
+                    "\[RightAssociation]"}]}], ",", RowBox[
+                 {"\"HorizonScaled\"", "\[Rule]", RowBox[
+                   {"\[LeftAssociation]", RowBox[{RowBox[{"\"xFt\"", 
+                        "\[Rule]", FractionBox[RowBox[{RowBox[{RowBox[{"-", 
+                          "48"}], " ", SuperscriptBox["jrot", "2"], " ", 
+                          "q"}], "-", RowBox[{"32", " ", SuperscriptBox["q", 
+                          "4"]}]}], RowBox[{"3", " ", SuperscriptBox["q", 
+                          "4"]}]]}], ",", RowBox[{"\"xGr\"", "\[Rule]", 
+                        FractionBox[RowBox[{RowBox[{"48", " ", SuperscriptBox[
+                          "jrot", "2"], " ", "q"}], "+", RowBox[{"32", " ", 
+                          SuperscriptBox["q", "4"]}]}], RowBox[{"3", " ", 
+                          SuperscriptBox["q", "4"]}]]}], ",", RowBox[
+                       {"\"x2Om\"", "\[Rule]", FractionBox[RowBox[
+                          {RowBox[{"24", " ", SuperscriptBox["jrot", "3"]}], 
+                          "+", RowBox[{"16", " ", "jrot", " ", SuperscriptBox[
+                          "q", "3"]}]}], RowBox[{"3", " ", SuperscriptBox[
+                          "q", "3"]}]]}]}], "\[RightAssociation]"}]}]}], 
+              "\[RightAssociation]"}]}]}], "\[RightAssociation]"}]}]], 
+   "Input"], Cell["1. Exact residual ledger", "Section"], 
+  Cell[BoxData[RowBox[{"Association", "[", 
+      RowBox[{RowBox[{"\"AllThirteenPass\"", "\[Rule]", 
+          RowBox[{"equalChargeEvidence", "[", 
+            "\"AllThirteenOriginalReducedEquationsPass\"", "]"}]}], ",", 
+        RowBox[{"\"EquationPasses\"", "\[Rule]", 
+          RowBox[{"equalChargeEvidence", "[", "\"EquationPasses\"", "]"}]}], 
+        ",", RowBox[{"\"Residuals\"", "\[Rule]", 
+          RowBox[{"equalChargeEvidence", "[", "\"Residuals\"", "]"}]}]}], 
+      "]"}]], "Input"], 
+  Cell[BoxData[RowBox[{RowBox[{"TrueQ", "[", RowBox[{"equalChargeEvidence", 
+          "[", "\"AllThirteenOriginalReducedEquationsPass\"", "]"}], "]"}], 
+      "&&", RowBox[{"And", "@@", RowBox[{"Values", "[", 
+          RowBox[{"equalChargeEvidence", "[", "\"EquationPasses\"", "]"}], 
+          "]"}]}], "&&", RowBox[{"And", "@@", 
+        RowBox[{RowBox[{"(", RowBox[{RowBox[{"#1", "===", "0"}], "&"}], 
+            ")"}], "/@", RowBox[{"Values", "[", RowBox[
+             {"equalChargeEvidence", "[", "\"Residuals\"", "]"}], 
+            "]"}]}]}]}]], "Input"], Cell["2. Solution and boundary data", 
+   "Section"], Cell[BoxData[RowBox[{"equalChargeEvidence", "[", 
+      "\"Solution\"", "]"}]], "Input"], 
+  Cell[BoxData[RowBox[{"equalChargeEvidence", "[", "\"BoundaryLimits\"", 
+      "]"}]], "Input"], Cell["This is an equal-background-charge STU \
+solution, not the naive equal-field minimal truncation: species 3 and the \
+scalar P remain distinct. The exact equal-charge result is retained as the \
+benchmark that preceded the generic unequal-charge O(j) calculation.", 
+   "Text"]}, WindowTitle -> "Equal-charge 13-of-13 validation"]

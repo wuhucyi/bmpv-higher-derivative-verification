@@ -1,0 +1,171 @@
+Notebook[
+ {
+  Cell[
+   "Independent exact-in-rotation lower-b field-redefinition certificate", 
+   "Title"], Cell["Fresh reconstruction from the five-dimensional coframe", 
+   "Subtitle"], Cell["Purpose", "Section"], Cell["This notebook independently \
+computes Y=Tr(omega wedge h) and the forward and inverse O(alphaPrime) shifts \
+of the horizontal three-form. It imports no cache or earlier notebook. \
+Coordinate order is (t,r,theta,phi,psi). The displayed coframe is an \
+auxiliary coordinate-positive coframe; it differs from the physical oriented \
+frame by a constant spatial reflection, which leaves the mixed-index trace \
+used here unchanged.", "Text"], 
+  Cell["Fresh-kernel calculation", "Section"], 
+  Cell[BoxData["(* ::Title:: *)\n(*Independent exact-in-rotation lower-b \
+field-redefinition certificate*)\n\n(* This file reconstructs the \
+five-dimensional rotating STU background from\n   its coframe.  It \
+deliberately imports no notebook, MX cache, or combined\n   source-chain \
+result.  Coordinate indices 1,...,5 mean\n   (t,r,theta,phi,psi). \
+*)\n\nClearAll[\"Global`*\"];\n$HistoryLength = 0;\n$Assumptions = r > 0 && \
+qplus > 0 && qminus > 0 && qzero > 0 &&\n  0 < theta < Pi && Element[a, \
+Reals];\n\ncoords = {t, r, theta, phi, psi};\nn = Length[coords];\ntriples = \
+Subsets[Range[n], {3}];\nhere = If[StringQ[$InputFileName] && \
+StringLength[$InputFileName] > 0,\n  DirectoryName[$InputFileName],\n  \
+If[$FrontEnd === Null, Directory[], NotebookDirectory[]]];\n\nhplus = 1 + \
+qplus/r^2;\nhminus = 1 + qminus/r^2;\nhzero = 1 + qzero/r^2;\nk = \
+1/Sqrt[hplus hminus];\ns = Sqrt[hzero];\nw = a/(2 r^2);\nthetaOne = {1, 0, 0, \
+w Cos[theta], w};\nomegaOne = {0, 0, 0, w Cos[theta], w};\n\n(* Orthonormal \
+coframe for the leading five-dimensional metric. *)\ncoframe = \
+ConstantArray[0, {n, n}];\ncoframe[[1]] = k thetaOne;\ncoframe[[2]] = {0, s, \
+0, 0, 0};\ncoframe[[3]] = {0, 0, s r/2, 0, 0};\ncoframe[[4]] = {0, 0, 0, s r \
+Sin[theta]/2, 0};\ncoframe[[5]] = {0, 0, 0, s r Cos[theta]/2, s r/2};\neta = \
+DiagonalMatrix[{-1, 1, 1, 1, 1}];\nmetric = \
+Simplify[Transpose[coframe].eta.coframe];\ninverseMetric = \
+Simplify[Inverse[metric]];\ninverseFrame = \
+Simplify[Inverse[coframe]];\n\nchristoffel = Table[\n  1/2 \
+Sum[inverseMetric[[lambda, rho]]\n    (D[metric[[rho, nu]], coords[[mu]]] +\n \
+    D[metric[[rho, mu]], coords[[nu]]] -\n     D[metric[[mu, nu]], \
+coords[[rho]]]), {rho, n}],\n  {lambda, n}, {mu, n}, {nu, n}];\n\n(* Mixed \
+Lorentz-index Levi-Civita connection omega^a_b. *)\nomegaMixed = Table[\n  \
+Sum[inverseFrame[[nu, b]]\n    (Sum[christoffel[[lambda, mu, nu]] \
+coframe[[aa, lambda]],\n       {lambda, n}] - D[coframe[[aa, nu]], \
+coords[[mu]]]), {nu, n}],\n  {mu, n}, {aa, n}, {b, n}];\nomegaUpper = \
+Table[eta[[b, b]] omegaMixed[[mu, aa, b]],\n  {mu, n}, {aa, n}, {b, \
+n}];\nspinAntisymmetryPass = And @@ (PossibleZeroQ /@ Flatten@Table[\n  \
+Together[PowerExpand[omegaUpper[[mu, aa, b]] +\n    omegaUpper[[mu, b, \
+aa]]]], {mu, n}, {aa, n}, {b, n}]);\n\ndOne[v_] := Table[D[v[[nu]], \
+coords[[mu]]] - D[v[[mu]], coords[[nu]]],\n  {mu, n}, {nu, n}];\nwedge21[q_, \
+v_] := Table[\n  q[[mu, nu]] v[[rho]] + q[[nu, rho]] v[[mu]] +\n   q[[rho, \
+mu]] v[[nu]], {mu, n}, {nu, n}, {rho, n}];\ndTwo[b_] := Table[\n  D[b[[nu, \
+rho]], coords[[mu]]] +\n   D[b[[rho, mu]], coords[[nu]]] +\n   D[b[[mu, nu]], \
+coords[[rho]]],\n  {mu, n}, {nu, n}, {rho, n}];\ndThree[c_] := Table[\n  \
+D[c[[nu, rho, sigma]], coords[[mu]]] -\n   D[c[[mu, rho, sigma]], \
+coords[[nu]]] +\n   D[c[[mu, nu, sigma]], coords[[rho]]] -\n   D[c[[mu, nu, \
+rho]], coords[[sigma]]],\n  {mu, n}, {nu, n}, {rho, n}, {sigma, n}];\n\n(* \
+Correct leading STU horizontal three-form.  The tensor hMagnetic is \
+M_het=star4_het dHzero.  Therefore h=-M_het+(Hplus Hminus)^(-1)domega \
+wedge Theta=-Exp[2 Phi] star5 F3 for the final +C multiplier sign and \
+positive Eq. (4.1) potential. *)\ndOmega = \
+Simplify[dOne[omegaOne]];\nhMagnetic = Table[\n  If[Sort[{mu, nu, rho}] === \
+{3, 4, 5},\n    Signature[{mu, nu, rho}] D[hzero, r] r^3 Sin[theta]/8, 0],\n  \
+{mu, n}, {nu, n}, {rho, n}];\nhLeading = Simplify[-hMagnetic + k^2 \
+wedge21[dOmega, thetaOne]];\n\n(* Convert h_{mu nu rho} into the mixed \
+Lorentz matrix h_mu^a_b. *)\nhUpper = Table[\n  Sum[hLeading[[mu, nu, rho]]\n \
+   (eta[[aa, aa]] inverseFrame[[nu, aa]])\n    (eta[[b, b]] \
+inverseFrame[[rho, b]]), {nu, n}, {rho, n}],\n  {mu, n}, {aa, n}, {b, \
+n}];\nhMixed = Table[eta[[b, b]] hUpper[[mu, aa, b]],\n  {mu, n}, {aa, n}, \
+{b, n}];\n\n(* Y=Tr(omega wedge h), with\n   Y_{mu nu}=Tr(omega_mu \
+h_nu-omega_nu h_mu). *)\nclean[x_] := Factor[Cancel[Together[FullSimplify[\n  \
+PowerExpand[TrigExpand[x]], Assumptions -> $Assumptions]]]];\nyTwo = \
+Table[clean[Tr[omegaMixed[[mu]].hMixed[[nu]] -\n  \
+omegaMixed[[nu]].hMixed[[mu]]]], {mu, n}, {nu, n}];\ndY = Map[clean, \
+dTwo[yTwo], {3}];\n\n(* Coefficients of the O(alphaPrime) three-form shift.  \
+The forward field\n   redefinition delta b=-(alphaPrime/8)Y gives \
+forwardShift=-dY/8.\n   Re-expressing the old field through the new one uses \
+inverseShift=+dY/8. *)\nforwardShift = Map[clean, -dY/8, {3}];\ninverseShift \
+= Map[clean, dY/8, {3}];\n\nnonzeroComponents[tensor_] := Select[\n  \
+Association@Table[tri -> clean[tensor[[Sequence @@ tri]]],\n    {tri, \
+triples}], !PossibleZeroQ[#] &];\nyNonzero = Select[Association@Table[\n  \
+pair -> clean[yTwo[[Sequence @@ pair]]],\n  {pair, Subsets[Range[n], {2}]}], \
+!PossibleZeroQ[#] &];\nforwardNonzero = \
+nonzeroComponents[forwardShift];\ninverseNonzero = \
+nonzeroComponents[inverseShift];\n\n(* A compact exact representation of all \
+nonzero components. *)\nuCoefficient = clean[2 a r^2\n  (4 qminus qplus + 3 \
+(qminus + qplus) r^2 + 2 r^4)/\n  ((qminus + r^2)^2 (qplus + r^2)^2 (qzero + \
+r^2))];\nvCoefficient = clean[2 a r^2\n  (2 qminus qplus + (qminus + qplus) \
+r^2)/\n  ((qminus + r^2)^2 (qplus + r^2)^2 (qzero + r^2))];\nwCoefficient = \
+clean[2 (qzero (qminus + r^2) (qplus + r^2) - a^2)/\n  ((qminus + r^2) (qplus \
++ r^2) (qzero + r^2))];\ncompactYPass = And @@ (PossibleZeroQ /@ {\n  \
+clean[yTwo[[1, 4]] - uCoefficient Cos[theta]],\n  clean[yTwo[[1, 5]] - \
+vCoefficient],\n  clean[yTwo[[4, 5]] - wCoefficient \
+Cos[theta]]});\n\nSetAttributes[setAntisymmetric, \
+HoldFirst];\nsetAntisymmetric[tensor_, tri_, value_] :=\n  \
+Do[tensor[[Sequence @@ permutation]] = Signature[permutation] value,\n    \
+{permutation, Permutations[tri]}];\ncompactForwardExpected = ConstantArray[0, \
+{n, n, n}];\nsetAntisymmetric[compactForwardExpected, {1, 2, 4},\n  \
+D[uCoefficient, r] Cos[theta]/8];\nsetAntisymmetric[compactForwardExpected, \
+{1, 2, 5},\n  D[vCoefficient, \
+r]/8];\nsetAntisymmetric[compactForwardExpected, {1, 3, 4},\n  -uCoefficient \
+Sin[theta]/8];\nsetAntisymmetric[compactForwardExpected, {2, 4, 5},\n  \
+-D[wCoefficient, r] Cos[theta]/8];\nsetAntisymmetric[compactForwardExpected, \
+{3, 4, 5},\n  wCoefficient Sin[theta]/8];\ncompactForwardPass = And @@ \
+(PossibleZeroQ /@ Flatten[\n  Map[clean, forwardShift - \
+compactForwardExpected, {3}]]);\n\n(* Static test against the residual stated \
+in the audit question. *)\nstaticResidual = ConstantArray[0, {n, n, \
+n}];\nsetAntisymmetric[staticResidual, {2, 4, 5},\n  qzero r Cos[theta]/(2 \
+(qzero + r^2)^2)];\nsetAntisymmetric[staticResidual, {3, 4, 5},\n  qzero \
+Sin[theta]/(4 (qzero + r^2))];\nstaticForward = Map[clean, (forwardShift /. a \
+-> 0), {3}];\nstaticInverse = Map[clean, (inverseShift /. a -> 0), \
+{3}];\nstaticForwardEqualsResidualPass = And @@ (PossibleZeroQ /@ Flatten[\n  \
+staticForward - staticResidual]);\nstaticInverseCancelsResidualPass = And @@ \
+(PossibleZeroQ /@ Flatten[\n  staticResidual + \
+staticInverse]);\nstaticForwardCancelsResidualPass = And @@ (PossibleZeroQ /@ \
+Flatten[\n  staticResidual + staticForward]);\n\n(* Exactness guarantees \
+closure.  We nevertheless check every independent\n   four-form component \
+directly. *)\nforwardClosure = Map[clean, dThree[forwardShift], \
+{4}];\nforwardClosurePass = And @@ (PossibleZeroQ /@ \
+Flatten[forwardClosure]);\ninverseClosurePass = And @@ (PossibleZeroQ /@ \
+Flatten[\n  Map[clean, dThree[inverseShift], {4}]]);\n\n(* Coordinate form of \
+the standard SU(2)-invariant relations.  The local\n   Lorentz-frame \
+transgression is expected not to be an invariant tensor by\n   itself.  It \
+removes the matching non-invariant representative term in the\n   inverse \
+field map. *)\nsu2Tests = <|\n  \"trphiEqualsCostrpsi\" -> \
+PossibleZeroQ[clean[\n    forwardShift[[1, 2, 4]] - Cos[theta] \
+forwardShift[[1, 2, 5]]]],\n  \"rphipsiForbiddenComponentVanishes\" -> \
+PossibleZeroQ[clean[\n    forwardShift[[2, 4, 5]]]],\n  \
+\"tthetaphiHasInvariantAngularFactor\" -> FreeQ[clean[\n    forwardShift[[1, \
+3, 4]]/Sin[theta]], theta],\n  \"rthetaphiHasInvariantAngularFactor\" -> \
+FreeQ[clean[\n    forwardShift[[2, 3, 4]]/Sin[theta]], theta],\n  \
+\"angularVolumeHasSinTheta\" -> FreeQ[clean[\n    forwardShift[[3, 4, \
+5]]/Sin[theta]], theta]\n|>;\nmanifestSu2Pass = And @@ \
+Values[su2Tests];\naxisymmetricStructurePass = And @@ (FreeQ[#, theta] & /@ \
+{\n  clean[forwardShift[[1, 2, 4]]/Cos[theta]],\n  clean[forwardShift[[1, 2, \
+5]]],\n  clean[forwardShift[[1, 3, 4]]/Sin[theta]],\n  clean[forwardShift[[2, \
+4, 5]]/Cos[theta]],\n  clean[forwardShift[[3, 4, \
+5]]/Sin[theta]]});\nlocalFrameNoninvarianceDetected = TrueQ[!manifestSu2Pass] \
+&&\n  TrueQ[axisymmetricStructurePass];\n\nledger = <|\n  \
+\"HeteroticSourceMagneticComponent\" -> TrueQ[FullSimplify[\n    \
+hMagnetic[[3,4,5]] == -qzero Sin[theta]/4]],\n  \
+\"PositiveEq41ThirdPotential\" -> TrueQ[FullSimplify[\n    \
+(thetaOne/hzero /. a -> 0) == {1/hzero,0,0,0,0}]],\n  \
+\"FinalActionMinusDualityStatic\" -> And @@ (PossibleZeroQ /@ Flatten[\n    \
+(hLeading /. a -> 0) + hMagnetic]),\n  \
+\"SpinConnectionAntisymmetry\" -> spinAntisymmetryPass,\n  \
+\"CompactYRepresentation\" -> compactYPass,\n  \
+\"CompactAllTenForwardRepresentation\" -> compactForwardPass,\n  \
+\"StaticForwardShiftEqualsResidual\" -> staticForwardEqualsResidualPass,\n  \
+\"StaticInverseShiftCancelsResidual\" -> staticInverseCancelsResidualPass,\n  \
+\"StaticForwardShiftCancelsResidual\" -> staticForwardCancelsResidualPass,\n  \
+\"ForwardShiftClosed\" -> forwardClosurePass,\n  \"InverseShiftClosed\" -> \
+inverseClosurePass,\n  \"ManifestSU2Relations\" -> manifestSu2Pass,\n  \
+\"LocalFrameNoninvarianceDetected\" -> \
+localFrameNoninvarianceDetected\n|>;\n\nPrint[\"Y_TWO_NONZERO = \", \
+InputForm[yNonzero]];\nPrint[\"FORWARD_SHIFT_MINUS_DY_OVER_8 = \", \
+InputForm[forwardNonzero]];\nPrint[\"INVERSE_SHIFT_PLUS_DY_OVER_8 = \", \
+InputForm[inverseNonzero]];\nPrint[\"COMPACT_Y_COEFFICIENTS_U_V_W = \",\n  \
+InputForm[{uCoefficient, vCoefficient, \
+wCoefficient}]];\nPrint[\"STATIC_FORWARD_SHIFT = \",\n  \
+InputForm[nonzeroComponents[staticForward]]];\nPrint[\"STATIC_INVERSE_SHIFT = \
+\",\n  InputForm[nonzeroComponents[staticInverse]]];\nPrint[\"SU2_TESTS = \", \
+InputForm[su2Tests]];\nPrint[\"LEDGER = \", \
+InputForm[ledger]];\nfinalGeometricPass = And @@ Values[KeyDrop[ledger,\n  \
+{\"StaticForwardShiftCancelsResidual\", \
+\"ManifestSU2Relations\"}]];\nPrint[\"FINAL_GEOMETRIC_PASS = \", \
+finalGeometricPass];"], "Input"], 
+  Cell["Interpretation", "Section"], Cell["The forward redefinition delta \
+b=-(alphaPrime/8)Y produces -dY/8. On the static background this equals, \
+rather than cancels, the stated residual. The inverse map produces +dY/8 and \
+cancels it. The exact shift is closed. In the diagonal polar coframe it is a \
+local-frame transgression, not a manifest SU(2)-invariant tensor by itself.", 
+   "Text"]}, WindowTitle -> "Independent lower-b certificate", 
+ Saveable -> True]

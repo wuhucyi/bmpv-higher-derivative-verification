@@ -1,0 +1,78 @@
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_BEGIN"
+"FILE_BASENAME=""15_Generic_ExactInJ_Horizon_Regularity.nb"
+"FILE_ABSOLUTE_PATH=""[LOCAL_HOME]/Documents/Codex/2026-07-12/https-www-overleaf-com-project-65577187a96876076df0bcd6/work/package_v4_staging/notebooks/15_Generic_ExactInJ_Horizon_Regularity.nb"
+"KERNEL=""14.1.0 for Mac OS X ARM (64-bit) (July 16, 2024)"
+"START_UTC=""2026-07-20T06:38:03"
+"BYTES="37533
+"SHA256=""8e9995c5ffa98fcca35b11dd1daa1bbe23172ed705e9bee28d456641e7b64b9d"
+"PARSE_PASS="True
+"INPUT_CELL_COUNT="6
+"PASS_EXPRESSION=""notebook15FinalPass"
+"CELL_"1"_BEGIN"
+"CELL_"1"_SECONDS="0.005124
+"CELL_"1"_RESULT_PASS="True
+"CELL_"1"_MESSAGE_COUNT="0
+"CELL_"1"_RESULT_HEAD="Symbol
+"CELL_"1"_RESULT_LEAF_COUNT="1
+"CELL_"1"_RESULT_SHORT=""Short[Null, 12]"
+"CELL_"1"_END"
+"CELL_"2"_BEGIN"
+"CELL_"2"_SECONDS="0.007054
+"CELL_"2"_RESULT_PASS="True
+"CELL_"2"_MESSAGE_COUNT="0
+"CELL_"2"_RESULT_HEAD="Symbol
+"CELL_"2"_RESULT_LEAF_COUNT="1
+"CELL_"2"_RESULT_SHORT=""Short[True, 12]"
+"CELL_"2"_END"
+"CELL_"3"_BEGIN"
+"[horizon 2/7] horizon shift and centered pole cancellations: "<|"ShiftPoleChecks" -> <|"-xFtEqualsShift" -> True, "xGrEqualsShift" -> True, "x2OmEqualsjShiftOver2" -> True|>, "FtCentered" -> True, "BxCentered" -> True, "BaseCentered" -> True, "OmCenteredOverOmega0" -> True, "D1Finite" -> True, "H1Finite" -> True|>
+"[horizon 3/7] transformed metric analytic limits: "<|"g_vx_0" -> True, "g_vx_1" -> True, "g_vv_0" -> True, "g_vv_1" -> True, "g_veta_0" -> True, "g_veta_1" -> True, "D_0" -> True, "D_1" -> True, "base_0" -> True, "base_1" -> True|>
+"[horizon 4/7] ingoing coordinate pole data complete"
+"[horizon 5/7] scalar values and kinetic invariants complete"
+"[horizon 6a/7] gauge frame component limits complete"
+"[horizon 6b/7] gauge invariant matrix limits complete"
+"[horizon 7/7] assembling report"
+"CELL_"3"_SECONDS="11.688329
+"CELL_"3"_RESULT_PASS="True
+"CELL_"3"_MESSAGE_COUNT="0
+"CELL_"3"_RESULT_HEAD="Symbol
+"CELL_"3"_RESULT_LEAF_COUNT="1
+"CELL_"3"_RESULT_SHORT=""Short[Null, 12]"
+"CELL_"3"_END"
+"CELL_"4"_BEGIN"
+"CELL_"4"_SECONDS="0.00246
+"CELL_"4"_RESULT_PASS="True
+"CELL_"4"_MESSAGE_COUNT="0
+"CELL_"4"_RESULT_HEAD="Association
+"CELL_"4"_RESULT_LEAF_COUNT="32
+"CELL_"4"_RESULT_SHORT=""Short[<|\"xShift\" -> (16*(3*jrot^2 + 2*q1*q2*q3))/(q3*(q2*q3 + q1*(q2 + q3))), \"MetricLeafCount\" -> 295, \"ScalarLeafCount\" -> 107, \"GaugeInvariantLeafCount\" -> 564, \"ExactLimitsPass\" -> True|>, 12]"
+"CELL_"4"_END"
+"CELL_"5"_BEGIN"
+"CELL_"5"_SECONDS="0.000148
+"CELL_"5"_RESULT_PASS="True
+"CELL_"5"_MESSAGE_COUNT="0
+"CELL_"5"_RESULT_HEAD="Association
+"CELL_"5"_RESULT_LEAF_COUNT="32
+"CELL_"5"_RESULT_SHORT=""Short[<|\"RawPoleCancellations\" -> <|\"ShiftPoleChecks\" -> <|\"-xFtEqualsShift\" -> True, \"xGrEqualsShift\" -> True, \"x2OmEqualsjShiftOver2\" -> True|>, \"FtCentered\" -> True, \"BxCentered\" -> True, \"BaseCentered\" -> True, \"OmCenteredOverOmega0\" -> True, \"D1Finite\" -> True, \"H1Finite\" -> True|>, \"AllMetricC2Finite\" -> True, \"DeterminantBackgroundNonzero\" -> True, \"OmegaH1\" -> 0, \"GeneratorChecks\" -> <|\"OmegaH1\" -> 0, \"chiSquaredAtHorizonOrder0\" -> 0, \"chiSquaredAtHorizonOrder1\" -> 0, \"chiDotEtaAtHorizonOrder0\" -> 0, \"chiDotEtaAtHorizonOrder1\" -> 0, \"chiSquaredSlopeAtHorizonOrder0\" -> 0, \"chiSquaredSlopeAtHorizonOrder1\" -> 0, \"SurfaceGravityCoefficient\" -> 0|>, \"AllScalarFinite\" -> True, \"AllGaugeFrameFinite\" -> True, \"AllGaugeInvariantsFinite\" -> True, \"Verdict\" -> <|\"MetricRegularToFirstOrder\" -> True, \"ScalarInvariantsFinite\" -> True, \"GaugeInvariantsFinite\" -> True, \"GeneratorConditionsPass\" -> True|>|>, 12]"
+"CELL_"5"_END"
+"CELL_"6"_BEGIN"
+"CELL_"6"_SECONDS="0.000044
+"CELL_"6"_RESULT_PASS="True
+"CELL_"6"_MESSAGE_COUNT="0
+"CELL_"6"_RESULT_HEAD="Symbol
+"CELL_"6"_RESULT_LEAF_COUNT="1
+"CELL_"6"_RESULT_SHORT=""Short[True, 12]"
+"CELL_"6"_END"
+"RESULT_FAILURE_COUNT="0
+"RESULT_FAILURE_INDICES="InputForm[{}]
+"MESSAGE_CELL_COUNT="0
+"MESSAGE_CELL_INDICES="InputForm[{}]
+"MESSAGE_TOTAL_COUNT="0
+"CELL_SECONDS="InputForm[{0.005124, 0.007054, 11.688329, 0.00246, 0.000148, 0.000044}]
+"CELL_SECONDS_TOTAL="11.703159
+"DECLARED_PASS_VALUE="InputForm[True]
+"CELL_EVALUATION_PASS="True
+"END_UTC=""2026-07-20T06:38:16"
+"TOTAL_WALL_SECONDS="13.101079`7.568852058956959
+"FRESH_KERNEL_FINAL_PASS="True
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_END"

@@ -1,0 +1,40 @@
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_BEGIN"
+"FILE_BASENAME=""22_Corrected_Rotating_Winding_MixedIndex_LorentzCS_Certificate.nb"
+"FILE_ABSOLUTE_PATH=""[LOCAL_HOME]/Documents/Codex/2026-07-12/https-www-overleaf-com-project-65577187a96876076df0bcd6/work/package_v3_staging/notebooks/22_Corrected_Rotating_Winding_MixedIndex_LorentzCS_Certificate.nb"
+"KERNEL=""14.1.0 for Mac OS X ARM (64-bit) (July 16, 2024)"
+"START_UTC=""2026-07-18T17:18:55"
+"BYTES="15727
+"SHA256=""86dc4e0a924b24d1bd8f9270a174839937c0e00dcc2d417c2b1dede50393aa87"
+"PARSE_PASS="True
+"INPUT_CELL_COUNT="1
+"PASS_EXPRESSION=""TrueQ[Global`finalPass]"
+"CELL_"1"_BEGIN"
+"CORRECTED_DELTA_B_KK = "InputForm[{(2*r^2*(-2*a^2 + qminus*qplus*(qzero + r^2)))/((qminus + r^2)^2*(qplus + r^2)*(qzero + r^2)^2), 0, 0, -((a*(2*a^2 - qminus*qplus*qzero + (qminus + qplus)*r^4 + r^6)*Cos[theta])/((qminus + r^2)^2*(qplus + r^2)*(qzero + r^2)^2)), (a*(-2*a^2 + 2*qminus*qplus*qzero + qminus*(qplus + qzero)*r^2 + qzero*r^2*(qplus + r^2)))/((qminus + r^2)^2*(qplus + r^2)*(qzero + r^2)^2)}]
+"CORRECTED_B1 = "InputForm[{(-2*r^2*(-2*a^2 + qminus*qplus*(qzero + r^2)))/((qminus + r^2)^2*(qplus + r^2)*(qzero + r^2)^2), 0, 0, -((a*(-2*a^2 + 2*qminus*qplus*qzero + qminus*(qplus + qzero)*r^2 + qzero*r^2*(qplus + r^2))*Cos[theta])/((qminus + r^2)^2*(qplus + r^2)*(qzero + r^2)^2)), -((a*(-2*a^2 + 2*qminus*qplus*qzero + qminus*(qplus + qzero)*r^2 + qzero*r^2*(qplus + r^2)))/((qminus + r^2)^2*(qplus + r^2)*(qzero + r^2)^2))}]
+"OLD_COMPACT_FORM_SURVIVES = "False
+"OPPOSITE_VERTICAL_SIGN_CLOSED = "False
+"MIXED_INDEX_CS_SAMPLE_125 = "InputForm[(2*a*r*(-8*qminus^2*qplus^2*qzero - 4*qminus*qplus*(qminus*qplus + 2*(qminus + qplus)*qzero)*r^2 - (qminus + qplus)*(4*qminus*qplus + (qminus + qplus)*qzero)*r^4 - (qminus + qplus)*(qminus + qplus - 4*qzero)*r^6 + 4*qzero*r^8 + 8*a^2*(qminus + r^2)*(qplus + r^2)))/((qminus + r^2)^3*(qplus + r^2)^3*(qzero + r^2)^2)]
+"LEDGER = "InputForm[<|"HeteroticSourceMagneticComponent" -> True, "PositiveEq41ThirdPotential" -> True, "FinalActionMinusDualityStatic" -> True, "SpinConnectionAntisymmetry" -> True, "SixDimensionalLorentzCSComponents" -> True, "AllTenVerticalLorentzCSComponents" -> True, "PontryaginComponent" -> True, "DirectSixDimensionalTransgression" -> True, "OmegaPlusImplementationConvention" -> True, "HorizontalHSourceConvention" -> True, "MixedIndexTraceImplementationConvention" -> True, "CorrectedKKShift" -> True, "VerticalBridgeSignSelectedByBianchiClosure" -> True, "CanonicalFieldStrengthClosed" -> True, "CanonicalFieldStrengthSU2Invariant" -> True, "UniqueZeroTailPotentialGeneratesFieldStrength" -> True, "StaticLimit" -> True, "NoConstantOrInverseSquareTail" -> True, "OldCompactFormRejected" -> True|>]
+"FINAL_PASS = "True
+"CELL_"1"_SECONDS="15.905561
+"CELL_"1"_RESULT_PASS="True
+"CELL_"1"_MESSAGE_COUNT="0
+"CELL_"1"_RESULT_HEAD="Symbol
+"CELL_"1"_RESULT_LEAF_COUNT="1
+"CELL_"1"_RESULT_SHORT=""Short[Null, 12]"
+"CELL_"1"_END"
+"RESULT_FAILURE_COUNT="0
+"RESULT_FAILURE_INDICES="InputForm[{}]
+"MESSAGE_CELL_COUNT="0
+"MESSAGE_CELL_INDICES="InputForm[{}]
+"MESSAGE_TOTAL_COUNT="0
+"CELL_SECONDS="InputForm[{15.905561}]
+"CELL_SECONDS_TOTAL="15.905561
+"FINAL_LEDGER="InputForm[<|"HeteroticSourceMagneticComponent" -> True, "PositiveEq41ThirdPotential" -> True, "FinalActionMinusDualityStatic" -> True, "SpinConnectionAntisymmetry" -> True, "SixDimensionalLorentzCSComponents" -> True, "AllTenVerticalLorentzCSComponents" -> True, "PontryaginComponent" -> True, "DirectSixDimensionalTransgression" -> True, "OmegaPlusImplementationConvention" -> True, "HorizontalHSourceConvention" -> True, "MixedIndexTraceImplementationConvention" -> True, "CorrectedKKShift" -> True, "VerticalBridgeSignSelectedByBianchiClosure" -> True, "CanonicalFieldStrengthClosed" -> True, "CanonicalFieldStrengthSU2Invariant" -> True, "UniqueZeroTailPotentialGeneratesFieldStrength" -> True, "StaticLimit" -> True, "NoConstantOrInverseSquareTail" -> True, "OldCompactFormRejected" -> True|>]
+"GLOBAL_finalPass="InputForm[True]
+"DECLARED_PASS_VALUE="InputForm[True]
+"CELL_EVALUATION_PASS="True
+"END_UTC=""2026-07-18T17:19:13"
+"TOTAL_WALL_SECONDS="17.498259`7.6945398339361875
+"FRESH_KERNEL_FINAL_PASS="True
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_END"

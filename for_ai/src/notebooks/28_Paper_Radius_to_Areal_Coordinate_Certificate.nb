@@ -1,0 +1,346 @@
+Notebook[{Cell["Paper-Matched Radial Coordinate and Areal-Gauge Certificate", 
+   "Title"], 
+  Cell[
+   "Generic unequal charges, static exact map, and exact-in-j pullback rule", 
+   "Subtitle"], Cell["Purpose and scope", "Section"], 
+  Cell[TextData[{"This notebook independently certifies the first-order \
+radial diffeomorphism between the paper/isotropic-like static coordinate and \
+the areal (Schwarzschild-like) gauge used to solve the reduced equations.  It \
+is self-contained: all twelve unequal-charge areal-gauge correction functions \
+and all paper-coordinate formulas are literal data in this notebook.  No \
+project file is loaded when it is evaluated."}], "Text"], 
+  Cell[TextData[{"The coupling convention is ", 
+     StyleBox["lambda3 = alphaPrime/8", FontFamily -> "Courier"], ".  Every \
+correction function below is the coefficient of lambda3, so its coefficient \
+of alphaPrime is one eighth as large.  The proof is exact at first order in \
+that coupling and does not expand in the three charges."}], "Text"], 
+  Cell[TextData[{"Source locations used for transcription: arXiv:2502.05065, \
+the field-redefined static solution and its spherical-coordinate form in BH \
+Final V2.tex lines 841--913 (SHA-256 dd1d3314...9789); arXiv:2603.18180, the \
+repeated and generic-lambda_I solution in Superinvariant-final.tex lines \
+1012--1061 (SHA-256 2ddd7566...d226); v3 notebook 13, Section 5, lines \
+203257--203304 (SHA-256 208760ff...0403); and static_lambda3_seed_areal.wl \
+(SHA-256 938395c7...88aa)."}], "Text"], Cell["Important terminology", 
+   "Subsection"], Cell[TextData[{"The paper coordinate is called \
+isotropic-like, not strictly isotropic.  After the field redefinitions used \
+in the five-dimensional Riemann frame, the published spatial metric contains \
+a distinguished radial tensor correction (called deltaG3RadialPaper below), \
+so it is not exactly conformally flat.  The areal gauge instead fixes the \
+first-order correction to the angular sphere-size exponent to zero."}], 
+   "Text"], Cell["1. Exact arithmetic and branch", "Section"], 
+  Cell[BoxData["ClearAll[\"Global`*\"];\n$HistoryLength=0; \
+$RecursionLimit=200000;\nphysicalBranch=R>0&&q1+R^2>0&&q2+R^2>0&&q3+R^2>0;\ne\
+xactZeroQ[expression_]:=TrueQ[Expand[Numerator[Together[expression]]]===0];\n\
+derivativeAt[function_,argument_]:=Module[{dummy},D[function[dummy],dummy]/.d\
+ummy->argument];"], "Input"], Cell["2. Paper/isotropic-like static fields", 
+   "Section"], Cell[TextData[{"The variable r in this section is the paper \
+radius.  The functions dLogHI are radial derivatives of log(HI).  The symbols \
+deltaFPaper, deltaGPaper and deltaHPaper are corrections to metric exponents, \
+with deltaHPaper controlling the angular sphere size.  The gauge-field \
+convention is the positive STU convention A^1=A, A^2=-B, A^3=C, so all \
+leading electric potentials are +1/HI.  The scalar functions are the \
+canonical report variables varphi1 and varphi2.  Only at the literal \
+seed-comparison boundary are they converted to the old notebook coordinates \
+P=-Sqrt[6] deltaVarphi1/4 and S=deltaVarphi2/Sqrt[2]."}], "Text"], 
+  Cell[BoxData["H1Paper[r_]:=1+q1/r^2; H2Paper[r_]:=1+q2/r^2; \
+H3Paper[r_]:=1+q3/r^2;\nHProductPaper[r_]:=H1Paper[r] H2Paper[r] \
+H3Paper[r];\ndLogH1[r_]:=-2 q1/(r (q1+r^2)); dLogH2[r_]:=-2 q2/(r (q2+r^2)); \
+dLogH3[r_]:=-2 q3/(r \
+(q3+r^2));\ndLogHProduct[r_]:=dLogH1[r]+dLogH2[r]+dLogH3[r];\ndeltaU1Paper[r_\
+]:=2 dLogHProduct[r] (dLogH1[r]+dLogH2[r])/(3 H1Paper[r] \
+H3Paper[r]);\ndeltaU2Paper[r_]:=2 dLogHProduct[r] (dLogH1[r]+dLogH2[r])/(3 \
+H2Paper[r] H3Paper[r]);\ndeltaU3Paper[r_]:=-2 dLogHProduct[r] dLogH3[r]/(3 \
+H3Paper[r]^2);\ndeltaVarphi1Paper[r_]:=-4 dLogHProduct[r]^2/(Sqrt[6] 6 \
+H3Paper[r]); deltaVarphi2Paper[r_]:=0;\ndeltaG1Paper[r_]:=2/(9 H3Paper[r]) (7 \
+(dLogH1[r]-dLogH2[r])^2-2 (dLogH1[r]+dLogH2[r]) dLogH3[r]+19 \
+dLogH3[r]^2);\ndeltaG2Paper[r_]:=4/(9 H3Paper[r]) \
+((dLogH1[r]-dLogH2[r])^2+(dLogH1[r]+dLogH2[r]) dLogH3[r]+4 \
+dLogH3[r]^2);\ndeltaG3RadialPaper[r_]:=4/(9 H3Paper[r]) (dLogHProduct[r]^2+3 \
+dLogHProduct[r] \
+dLogH3[r]);\ndeltaFPaper[r_]:=-deltaG1Paper[r]/2;\ndeltaGPaper[r_]:=(deltaG2P\
+aper[r]-deltaG3RadialPaper[r])/2;\ndeltaHPaper[r_]:=deltaG2Paper[r]/2;\nF0[r_\
+]:=-Log[HProductPaper[r]]/3; G0[r_]:=Log[HProductPaper[r]]/6; \
+H0[r_]:=Log[HProductPaper[r]]/6;\nVarphi10[r_]:=Log[H1Paper[r] \
+H2Paper[r]/H3Paper[r]^2]/Sqrt[6];\nVarphi20[r_]:=Log[H1Paper[r]/H2Paper[r]]/S\
+qrt[2];\nU10[r_]:=1/H1Paper[r]; U20[r_]:=1/H2Paper[r]; \
+U30[r_]:=1/H3Paper[r];\npaperLambda3Coefficients={deltaU1Paper[R],deltaU2Pape\
+r[R],deltaU3Paper[R],deltaVarphi1Paper[R],deltaVarphi2Paper[R],deltaFPaper[R]\
+,deltaGPaper[R],deltaHPaper[R]};\ncouplingNormalizationChecks=And@@(TrueQ[Exp\
+and[((lambda3 #)/.lambda3->alphaPrime/8)-alphaPrime \
+(#/8)]===0]&/@paperLambda3Coefficients);\npaperTemporalBracket=7 \
+(dLogH1[R]-dLogH2[R])^2-2 (dLogH1[R]+dLogH2[R]) dLogH3[R]+19 \
+dLogH3[R]^2;\npaperAngularBracket=(dLogH1[R]-dLogH2[R])^2+(dLogH1[R]+dLogH2[R\
+]) dLogH3[R]+4 dLogH3[R]^2;\npaperRadialMultiplier=-2 (dLogH1[R] \
+dLogH2[R]+(dLogH1[R]+dLogH2[R]) dLogH3[R])/(9 \
+H3Paper[R]);\npaperTranscriptionChecks=<|\"A^1 electric \
+coefficient\"->exactZeroQ[deltaU1Paper[R]/8-dLogHProduct[R] \
+(dLogH1[R]+dLogH2[R])/(12 H1Paper[R] H3Paper[R])],\"A^2=-B electric \
+coefficient\"->exactZeroQ[deltaU2Paper[R]/8-dLogHProduct[R] \
+(dLogH1[R]+dLogH2[R])/(12 H2Paper[R] H3Paper[R])],\"A^3 electric \
+coefficient\"->exactZeroQ[deltaU3Paper[R]/8+dLogHProduct[R] dLogH3[R]/(12 \
+H3Paper[R]^2)],\"heterotic dilaton coefficient\"->exactZeroQ[(-Sqrt[6] \
+deltaVarphi1Paper[R]/4)/8-dLogHProduct[R]^2/(48 H3Paper[R])],\"temporal \
+metric multiplier\"->exactZeroQ[deltaFPaper[R]/4+paperTemporalBracket/(36 \
+H3Paper[R])],\"radial metric \
+multiplier\"->exactZeroQ[deltaGPaper[R]/4-paperRadialMultiplier],\"angular \
+metric multiplier\"->exactZeroQ[deltaHPaper[R]/4-paperAngularBracket/(18 \
+H3Paper[R])]|>;\n<|\"lambda3=alphaPrime/8\"->couplingNormalizationChecks,\"Pu\
+blishedAlphaPrimeCoefficients\"->paperTranscriptionChecks|>"], "Input"], 
+  Cell["3. The radial map to areal gauge", "Section"], 
+  Cell[TextData[{"Let the paper radius and areal radius be related by rPaper \
+= R + lambda3 xiStatic(R).  A scalar-like correction gains +xiStatic times \
+the background radial derivative.  The radial metric exponent also gains \
+xiStatic prime from the Jacobian.  The angular exponent gains xiStatic (H0 \
+prime + 1/R), including the explicit radius multiplying the unit \
+three-sphere."}], "Text"], Cell[BoxData["xiStatic[R_]:=Together[-deltaHPaper[\
+R]/(derivativeAt[H0,R]+1/R)];\nscalarPaperToAreal[paperCorrection_,background\
+_][R_]:=Together[paperCorrection[R]+xiStatic[R] \
+derivativeAt[background,R]];\nradialExponentPaperToAreal[R_]:=Together[deltaG\
+Paper[R]+xiStatic[R] \
+derivativeAt[G0,R]+derivativeAt[xiStatic,R]];\nsphereExponentPaperToAreal[R_]\
+:=Together[deltaHPaper[R]+xiStatic[R] \
+(derivativeAt[H0,R]+1/R)];\ncandidateArealCorrections={scalarPaperToAreal[del\
+taU1Paper,U10][R],scalarPaperToAreal[deltaU2Paper,U20][R],scalarPaperToAreal[\
+deltaU3Paper,U30][R],0,0,0,-Sqrt[6] \
+scalarPaperToAreal[deltaVarphi1Paper,Varphi10][R]/4,scalarPaperToAreal[deltaV\
+arphi2Paper,Varphi20][R]/Sqrt[2],scalarPaperToAreal[deltaFPaper,F0][R],radial\
+ExponentPaperToAreal[R],0,0};\ngaugeDenominator=q1 q2+q1 q3+q2 q3+2 R^2 \
+(q1+q2+q3)+3 \
+R^4;\npositiveDenominator=(q1+R^2)(q2+R^2)+(q1+R^2)(q3+R^2)+(q2+R^2)(q3+R^2);\
+\ncoordinateGaugeChecks=<|\"SphereCorrectionVanishes\"->exactZeroQ[sphereExpo\
+nentPaperToAreal[R]],\"PositiveDenominatorIdentity\"->exactZeroQ[gaugeDenomin\
+ator-positiveDenominator],\"ShiftIsJIndependent\"->FreeQ[xiStatic[R],jrot]|>;\
+\n<|\"rPaperEquals\"->HoldForm[R+lambda3 \
+xiStatic[R]],\"XiStatic\"->Factor[xiStatic[R]],\"Checks\"->coordinateGaugeChe\
+cks|>"], "Input"], Cell["4. Embedded v3 areal representative", "Section"], 
+  Cell[TextData[{"The next cell is literal data copied from the independently \
+derived generic static seed.  It is intentionally verbose: this makes the \
+comparison executable without any cache, import statement, or path \
+dependency."}], "Text"], Cell[BoxData["staticArealSeedRules={U1 -> \
+Function[{z}, (8*(-12*q1^3*q2^3*q3^2 + 2*q1^3*q2^3*q3*z - \n      \
+28*q1^3*q2^2*q3^2*z - 16*q1^2*q2^3*q3^2*z + 4*q1^3*q2^3*z^2 + \n      \
+13*q1^3*q2^2*q3*z^2 + 17*q1^2*q2^3*q3*z^2 - 27*q1^3*q2*q3^2*z^2 - \n      \
+32*q1^2*q2^2*q3^2*z^2 - 5*q1*q2^3*q3^2*z^2 + 12*q1^3*q2^2*z^3 + \n      \
+12*q1^2*q2^3*z^3 + 8*q1^3*q2*q3*z^3 + 62*q1^2*q2^2*q3*z^3 + \n      \
+14*q1*q2^3*q3*z^3 - 10*q1^3*q3^2*z^3 - 32*q1^2*q2*q3^2*z^3 - \n      \
+8*q1*q2^2*q3^2*z^3 + 2*q2^3*q3^2*z^3 + 7*q1^3*q2*z^4 + \n      \
+34*q1^2*q2^2*z^4 + 7*q1*q2^3*z^4 - q1^3*q3*z^4 + 47*q1^2*q2*q3*z^4 + \n      \
+41*q1*q2^2*q3*z^4 + 5*q2^3*q3*z^4 - 13*q1^2*q3^2*z^4 - \n      \
+12*q1*q2*q3^2*z^4 + 5*q2^2*q3^2*z^4 + 22*q1^2*q2*z^5 + 16*q1*q2^2*z^5 + \n    \
+  2*q2^3*z^5 + 8*q1^2*q3*z^5 + 24*q1*q2*q3*z^5 + 10*q2^2*q3*z^5 - \n      \
+6*q1*q3^2*z^5 + 2*q2*q3^2*z^5 + 3*q1^2*z^6 + 6*q1*q2*z^6 + 3*q2^2*z^6 + \n    \
+  3*q1*q3*z^6 + 3*q2*q3*z^6))/(3*(q1 + z)^3*(q2 + z)^2*(q3 + z)^2*\n     \
+(q1*q2 + q1*q3 + q2*q3 + 2*q1*z + 2*q2*z + 2*q3*z + 3*z^2))], \n U2 -> \
+Function[{z}, (8*(-12*q1^3*q2^3*q3^2 + 2*q1^3*q2^3*q3*z - \n      \
+16*q1^3*q2^2*q3^2*z - 28*q1^2*q2^3*q3^2*z + 4*q1^3*q2^3*z^2 + \n      \
+17*q1^3*q2^2*q3*z^2 + 13*q1^2*q2^3*q3*z^2 - 5*q1^3*q2*q3^2*z^2 - \n      \
+32*q1^2*q2^2*q3^2*z^2 - 27*q1*q2^3*q3^2*z^2 + 12*q1^3*q2^2*z^3 + \n      \
+12*q1^2*q2^3*z^3 + 14*q1^3*q2*q3*z^3 + 62*q1^2*q2^2*q3*z^3 + \n      \
+8*q1*q2^3*q3*z^3 + 2*q1^3*q3^2*z^3 - 8*q1^2*q2*q3^2*z^3 - \n      \
+32*q1*q2^2*q3^2*z^3 - 10*q2^3*q3^2*z^3 + 7*q1^3*q2*z^4 + \n      \
+34*q1^2*q2^2*z^4 + 7*q1*q2^3*z^4 + 5*q1^3*q3*z^4 + 41*q1^2*q2*q3*z^4 + \n     \
+ 47*q1*q2^2*q3*z^4 - q2^3*q3*z^4 + 5*q1^2*q3^2*z^4 - 12*q1*q2*q3^2*z^4 - \n   \
+   13*q2^2*q3^2*z^4 + 2*q1^3*z^5 + 16*q1^2*q2*z^5 + 22*q1*q2^2*z^5 + \n      \
+10*q1^2*q3*z^5 + 24*q1*q2*q3*z^5 + 8*q2^2*q3*z^5 + 2*q1*q3^2*z^5 - \n      \
+6*q2*q3^2*z^5 + 3*q1^2*z^6 + 6*q1*q2*z^6 + 3*q2^2*z^6 + 3*q1*q3*z^6 + \n      \
+3*q2*q3*z^6))/(3*(q1 + z)^2*(q2 + z)^3*(q3 + z)^2*\n     (q1*q2 + q1*q3 + \
+q2*q3 + 2*q1*z + 2*q2*z + 2*q3*z + 3*z^2))], \n U3 -> Function[{z}, \
+(-8*q3*(12*q1^2*q2^2*q3^2 + 7*q1^2*q2^2*q3*z + \n      25*q1^2*q2*q3^2*z + \
+25*q1*q2^2*q3^2*z + 2*q1^2*q2^2*z^2 + \n      16*q1^2*q2*q3*z^2 + \
+16*q1*q2^2*q3*z^2 + 14*q1^2*q3^2*z^2 + \n      46*q1*q2*q3^2*z^2 + \
+14*q2^2*q3^2*z^2 + 5*q1^2*q2*z^3 + 5*q1*q2^2*z^3 + \n      11*q1^2*q3*z^3 + \
+24*q1*q2*q3*z^3 + 11*q2^2*q3*z^3 + 23*q1*q3^2*z^3 + \n      23*q2*q3^2*z^3 + \
+4*q1^2*z^4 + 6*q1*q2*z^4 + 4*q2^2*z^4 + 12*q1*q3*z^4 + \n      12*q2*q3*z^4 + \
+10*q3^2*z^4 + 3*q1*z^5 + 3*q2*z^5 + 3*q3*z^5))/\n    (3*(q1 + z)*(q2 + z)*(q3 \
++ z)^4*(q1*q2 + q1*q3 + q2*q3 + 2*q1*z + \n      2*q2*z + 2*q3*z + 3*z^2))], \
+B1 -> Function[{z}, 0], \n B2 -> Function[{z}, 0], B3 -> Function[{z}, 0], \n \
+P -> Function[{z}, (2*(-15*q1^3*q2^3*q3^2 + 21*q1^3*q2^2*q3^3 + \n      \
+21*q1^2*q2^3*q3^3 + 4*q1^3*q2^3*q3*z - 10*q1^3*q2^2*q3^2*z - \n      \
+10*q1^2*q2^3*q3^2*z + 34*q1^3*q2*q3^3*z + 110*q1^2*q2^2*q3^3*z + \n      \
+34*q1*q2^3*q3^3*z + 4*q1^3*q2^3*z^2 + 26*q1^3*q2^2*q3*z^2 + \n      \
+26*q1^2*q2^3*q3*z^2 + 2*q1^3*q2*q3^2*z^2 + 45*q1^2*q2^2*q3^2*z^2 + \n      \
+2*q1*q2^3*q3^2*z^2 + 16*q1^3*q3^3*z^2 + 134*q1^2*q2*q3^3*z^2 + \n      \
+134*q1*q2^2*q3^3*z^2 + 16*q2^3*q3^3*z^2 + 12*q1^3*q2^2*z^3 + \n      \
+12*q1^2*q2^3*z^3 + 18*q1^3*q2*q3*z^3 + 108*q1^2*q2^2*q3*z^3 + \n      \
+18*q1*q2^3*q3*z^3 + 6*q1^3*q3^2*z^3 + 54*q1^2*q2*q3^2*z^3 + \n      \
+54*q1*q2^2*q3^2*z^3 + 6*q2^3*q3^2*z^3 + 54*q1^2*q3^3*z^3 + \n      \
+144*q1*q2*q3^3*z^3 + 54*q2^2*q3^3*z^3 + 5*q1^3*q2*z^4 + \n      \
+38*q1^2*q2^2*z^4 + 5*q1*q2^3*z^4 + 5*q1^3*q3*z^4 + 75*q1^2*q2*q3*z^4 + \n     \
+ 75*q1*q2^2*q3*z^4 + 5*q2^3*q3*z^4 + 26*q1^2*q3^2*z^4 + \n      \
+39*q1*q2*q3^2*z^4 + 26*q2^2*q3^2*z^4 + 53*q1*q3^3*z^4 + \n      \
+53*q2*q3^3*z^4 + 20*q1^2*q2*z^5 + 20*q1*q2^2*z^5 + 20*q1^2*q3*z^5 + \n      \
+36*q1*q2*q3*z^5 + 20*q2^2*q3*z^5 + 14*q1*q3^2*z^5 + 14*q2*q3^2*z^5 + \n      \
+18*q3^3*z^5 + 3*q1^2*z^6 + 6*q1*q2*z^6 + 3*q2^2*z^6 + 6*q1*q3*z^6 + \n      \
+6*q2*q3*z^6 + 3*q3^2*z^6))/(3*(q1 + z)^2*(q2 + z)^2*(q3 + z)^3*\n     (q1*q2 \
++ q1*q3 + q2*q3 + 2*q1*z + 2*q2*z + 2*q3*z + 3*z^2))], \n S -> Function[{z}, \
+(8*(q1 - q2)*(6*q1^2*q2^2*q3^2 + 2*q1^2*q2^2*q3*z + \n      11*q1^2*q2*q3^2*z \
++ 11*q1*q2^2*q3^2*z + 3*q1^2*q2*q3*z^2 + \n      3*q1*q2^2*q3*z^2 + \
+6*q1^2*q3^2*z^2 + 18*q1*q2*q3^2*z^2 + \n      6*q2^2*q3^2*z^2 + 3*q1^2*q3*z^3 \
++ 3*q2^2*q3*z^3 + 9*q1*q3^2*z^3 + \n      9*q2*q3^2*z^3 + q1^2*z^4 - \
+2*q1*q2*z^4 + q2^2*z^4 + q1*q3*z^4 + \n      q2*q3*z^4 + 4*q3^2*z^4))/(3*(q1 \
++ z)^2*(q2 + z)^2*(q3 + z)^2*\n     (q1*q2 + q1*q3 + q2*q3 + 2*q1*z + 2*q2*z \
++ 2*q3*z + 3*z^2))], \n Ft -> Function[{z}, (-4*(24*q1^3*q2^3*q3^3 + \
+29*q1^3*q2^3*q3^2*z + \n      65*q1^3*q2^2*q3^3*z + 65*q1^2*q2^3*q3^3*z + \
+4*q1^3*q2^3*q3*z^2 + \n      74*q1^3*q2^2*q3^2*z^2 + 74*q1^2*q2^3*q3^2*z^2 + \
+64*q1^3*q2*q3^3*z^2 + \n      170*q1^2*q2^2*q3^3*z^2 + 64*q1*q2^3*q3^3*z^2 + \
+6*q1^3*q2^2*q3*z^3 + \n      6*q1^2*q2^3*q3*z^3 + 78*q1^3*q2*q3^2*z^3 + \
+165*q1^2*q2^2*q3^2*z^3 + \n      78*q1*q2^3*q3^2*z^3 + 24*q1^3*q3^3*z^3 + \
+162*q1^2*q2*q3^3*z^3 + \n      162*q1*q2^2*q3^3*z^3 + 24*q2^3*q3^3*z^3 + \
+16*q1^3*q2*q3*z^4 - \n      24*q1^2*q2^2*q3*z^4 + 16*q1*q2^3*q3*z^4 + \
+36*q1^3*q3^2*z^4 + \n      156*q1^2*q2*q3^2*z^4 + 156*q1*q2^2*q3^2*z^4 + \
+36*q2^3*q3^2*z^4 + \n      60*q1^2*q3^3*z^4 + 148*q1*q2*q3^3*z^4 + \
+60*q2^2*q3^3*z^4 + \n      5*q1^3*q2*z^5 - 10*q1^2*q2^2*z^5 + 5*q1*q2^3*z^5 + \
+17*q1^3*q3*z^5 - \n      21*q1^2*q2*q3*z^5 - 21*q1*q2^2*q3*z^5 + \
+17*q2^3*q3*z^5 + \n      74*q1^2*q3^2*z^5 + 123*q1*q2*q3^2*z^5 + \
+74*q2^2*q3^2*z^5 + \n      53*q1*q3^3*z^5 + 53*q2*q3^3*z^5 + 6*q1^3*z^6 - \
+6*q1^2*q2*z^6 - \n      6*q1*q2^2*z^6 + 6*q2^3*z^6 + 18*q1^2*q3*z^6 - \
+48*q1*q2*q3*z^6 + \n      18*q2^2*q3*z^6 + 54*q1*q3^2*z^6 + 54*q2*q3^2*z^6 + \
+18*q3^3*z^6 + \n      7*q1^2*z^7 - 14*q1*q2*z^7 + 7*q2^2*z^7 - 2*q1*q3*z^7 - \
+2*q2*q3*z^7 + \n      19*q3^2*z^7))/(3*z*(q1 + z)^2*(q2 + z)^2*(q3 + z)^3*\n  \
+   (q1*q2 + q1*q3 + q2*q3 + 2*q1*z + 2*q2*z + 2*q3*z + 3*z^2))], \n Gr -> \
+Function[{z}, (8*(36*q1^4*q2^4*q3^3 + 36*q1^4*q2^3*q3^4 + \n      \
+36*q1^3*q2^4*q3^4 + 90*q1^4*q2^4*q3^2*z + 288*q1^4*q2^3*q3^3*z + \n      \
+288*q1^3*q2^4*q3^3*z + 54*q1^4*q2^2*q3^4*z + 252*q1^3*q2^3*q3^4*z + \n      \
+54*q1^2*q2^4*q3^4*z + 6*q1^4*q2^4*q3*z^2 + 471*q1^4*q2^3*q3^2*z^2 + \n      \
+471*q1^3*q2^4*q3^2*z^2 + 504*q1^4*q2^2*q3^3*z^2 + \n      \
+1644*q1^3*q2^3*q3^3*z^2 + 504*q1^2*q2^4*q3^3*z^2 + 3*q1^4*q2*q3^4*z^2 + \n    \
+  357*q1^3*q2^2*q3^4*z^2 + 357*q1^2*q2^3*q3^4*z^2 + 3*q1*q2^4*q3^4*z^2 - \n   \
+   4*q1^4*q2^4*z^3 + 23*q1^4*q2^3*q3*z^3 + 23*q1^3*q2^4*q3*z^3 + \n      \
+744*q1^4*q2^2*q3^2*z^3 + 2286*q1^3*q2^3*q3^2*z^3 + \n      \
+744*q1^2*q2^4*q3^2*z^3 + 311*q1^4*q2*q3^3*z^3 + \n      \
+2721*q1^3*q2^2*q3^3*z^3 + 2721*q1^2*q2^3*q3^3*z^3 + \n      \
+311*q1*q2^4*q3^3*z^3 - 10*q1^4*q3^4*z^3 + 122*q1^3*q2*q3^4*z^3 + \n      \
+480*q1^2*q2^2*q3^4*z^3 + 122*q1*q2^3*q3^4*z^3 - 10*q2^4*q3^4*z^3 - \n      \
+20*q1^4*q2^3*z^4 - 20*q1^3*q2^4*z^4 - 9*q1^4*q2^2*q3*z^4 + \n      \
+112*q1^3*q2^3*q3*z^4 - 9*q1^2*q2^4*q3*z^4 + 486*q1^4*q2*q3^2*z^4 + \n      \
+3597*q1^3*q2^2*q3^2*z^4 + 3597*q1^2*q2^3*q3^2*z^4 + \n      \
+486*q1*q2^4*q3^2*z^4 + 79*q1^4*q3^3*z^4 + 1786*q1^3*q2*q3^3*z^4 + \n      \
+4386*q1^2*q2^2*q3^3*z^4 + 1786*q1*q2^3*q3^3*z^4 + 79*q2^4*q3^3*z^4 + \n      \
+q1^3*q3^4*z^4 + 147*q1^2*q2*q3^4*z^4 + 147*q1*q2^2*q3^4*z^4 + \n      \
+q2^3*q3^4*z^4 - 39*q1^4*q2^2*z^5 - 78*q1^3*q2^3*z^5 - \n      \
+39*q1^2*q2^4*z^5 - 18*q1^4*q2*q3*z^5 + 45*q1^3*q2^2*q3*z^5 + \n      \
+45*q1^2*q2^3*q3*z^5 - 18*q1*q2^4*q3*z^5 + 153*q1^4*q3^2*z^5 + \n      \
+2472*q1^3*q2*q3^2*z^5 + 5544*q1^2*q2^2*q3^2*z^5 + \n      \
+2472*q1*q2^3*q3^2*z^5 + 153*q2^4*q3^2*z^5 + 501*q1^3*q3^3*z^5 + \n      \
+2859*q1^2*q2*q3^3*z^5 + 2859*q1*q2^2*q3^3*z^5 + 501*q2^3*q3^3*z^5 - \n      \
+24*q1*q2*q3^4*z^5 - 20*q1^4*q2*z^6 - 132*q1^3*q2^2*z^6 - \n      \
+132*q1^2*q2^3*z^6 - 20*q1*q2^4*z^6 + 28*q1^4*q3*z^6 + \n      \
+58*q1^3*q2*q3*z^6 - 186*q1^2*q2^2*q3*z^6 + 58*q1*q2^3*q3*z^6 + \n      \
+28*q2^4*q3*z^6 + 810*q1^3*q3^2*z^6 + 3723*q1^2*q2*q3^2*z^6 + \n      \
+3723*q1*q2^2*q3^2*z^6 + 810*q2^3*q3^2*z^6 + 810*q1^2*q3^3*z^6 + \n      \
+1792*q1*q2*q3^3*z^6 + 810*q2^2*q3^3*z^6 - 32*q1*q3^4*z^6 - \n      \
+32*q2*q3^4*z^6 + 8*q1^4*z^7 - 46*q1^3*q2*z^7 - 240*q1^2*q2^2*z^7 - \n      \
+46*q1*q2^3*z^7 + 8*q2^4*z^7 + 182*q1^3*q3*z^7 - 177*q1^2*q2*q3*z^7 - \n      \
+177*q1*q2^2*q3*z^7 + 182*q2^3*q3*z^7 + 1212*q1^2*q3^2*z^7 + \n      \
+2322*q1*q2*q3^2*z^7 + 1212*q2^2*q3^2*z^7 + 488*q1*q3^3*z^7 + \n      \
+488*q2*q3^3*z^7 - 16*q3^4*z^7 + 48*q1^3*z^8 - 132*q1^2*q2*z^8 - \n      \
+132*q1*q2^2*z^8 + 48*q2^3*z^8 + 183*q1^2*q3*z^8 - 324*q1*q2*q3*z^8 + \n      \
+183*q2^2*q3*z^8 + 705*q1*q3^2*z^8 + 705*q2*q3^2*z^8 + 120*q3^3*z^8 + \n      \
+45*q1^2*z^9 - 126*q1*q2*z^9 + 45*q2^2*z^9 + 9*q1*q3*z^9 + 9*q2*q3*z^9 + \n    \
+  180*q3^2*z^9))/(9*z*(q1 + z)^2*(q2 + z)^2*(q3 + z)^3*\n     (q1*q2 + q1*q3 \
++ q2*q3 + 2*q1*z + 2*q2*z + 2*q3*z + 3*z^2)^2)], \n K -> Function[{z}, 0], Om \
+-> Function[{z}, \
+0]};\nembeddedSeedSHA256=\"938395c7cdc10379069f2a6a823e326655d2a9a777c41b2b8a\
+4cf4e723e888aa\";\nseedFieldSymbols={U1,U2,U3,B1,B2,B3,P,S,Ft,Gr,K,Om};\nseed\
+FieldNames={\"delta u_1\",\"delta u_2\",\"delta \
+u_3\",\"beta_1\",\"beta_2\",\"beta_3\",\"delta varphi_1\",\"delta \
+varphi_2\",\"delta F\",\"delta G\",\"delta K\",\"delta omega\"};"], "Input"], 
+  Cell["5. Exact field-by-field map and inverse", "Section"], 
+  Cell[TextData[{"The comparison is carried out directly in R, without \
+replacing R squared by a new symbol.  Together clears exact rational \
+denominators and Expand tests the numerator.  The inverse check starts from \
+the embedded areal functions and recovers every paper-coordinate correction, \
+including the nonzero sphere-size correction."}], "Text"], 
+  Cell[BoxData["staticMapChecks=AssociationThread[seedFieldNames,MapThread[ex\
+actZeroQ[#1-#2]&,{candidateArealCorrections,(#[R^2]/.staticArealSeedRules)&/@\
+seedFieldSymbols}]];\nseedArealCorrections=(#[R^2]/.staticArealSeedRules)&/@s\
+eedFieldSymbols;\npaperRecoveredFromSeed={Together[seedArealCorrections[[1]]-\
+xiStatic[R] \
+derivativeAt[U10,R]],Together[seedArealCorrections[[2]]-xiStatic[R] \
+derivativeAt[U20,R]],Together[seedArealCorrections[[3]]-xiStatic[R] \
+derivativeAt[U30,R]],seedArealCorrections[[4]],seedArealCorrections[[5]],seed\
+ArealCorrections[[6]],Together[-4 \
+seedArealCorrections[[7]]/Sqrt[6]-xiStatic[R] \
+derivativeAt[Varphi10,R]],Together[Sqrt[2] \
+seedArealCorrections[[8]]-xiStatic[R] \
+derivativeAt[Varphi20,R]],Together[seedArealCorrections[[9]]-xiStatic[R] \
+derivativeAt[F0,R]],Together[seedArealCorrections[[10]]-xiStatic[R] \
+derivativeAt[G0,R]-derivativeAt[xiStatic,R]],seedArealCorrections[[11]],seedA\
+realCorrections[[12]],Together[0-xiStatic[R] \
+(derivativeAt[H0,R]+1/R)]};\npaperOriginalCorrections={deltaU1Paper[R],deltaU\
+2Paper[R],deltaU3Paper[R],0,0,0,deltaVarphi1Paper[R],deltaVarphi2Paper[R],del\
+taFPaper[R],deltaGPaper[R],0,0,deltaHPaper[R]};\ninverseMapFieldNames=Append[\
+seedFieldNames,\"delta H (sphere \
+size)\"];\ninverseMapChecks=AssociationThread[inverseMapFieldNames,MapThread[\
+exactZeroQ[#1-#2]&, \
+{paperRecoveredFromSeed,paperOriginalCorrections}]];\n<|\"PaperToAreal\"->sta\
+ticMapChecks,\"ArealToPaper\"->inverseMapChecks,\"AllPass\"->TrueQ[And@@Value\
+s[staticMapChecks]&&And@@Values[inverseMapChecks]]|>"], "Input"], 
+  Cell["6. General first-order pullback, exact in rotation", "Section"], 
+  Cell[TextData[{"For any cohomogeneity-one rotating background whose fields \
+depend on R and jrot, the same coordinate change is a tensor pullback.  At \
+first order in lambda3, delta T in the areal chart equals delta T in the \
+paper chart plus the Lie derivative of the exact-in-j background along \
+xiGeneral(R,jrot) partial_R.  The following direct Jacobian calculation \
+proves this for a scalar, every covector component, and every covariant \
+rank-two component.  No series expansion in jrot is performed.  For a \
+differential form, the equivalent rule is delta F_areal = delta F_paper + \
+Lie_xi F0 = delta F_paper + d(i_xi F0) + i_xi(dF0)."}], "Text"], 
+  Cell[BoxData["dimension=5; radialIndex=2; \
+newCoordinates={time,R,theta,phi1,phi2};\noldCoordinates={time,R+lambda3 \
+xiGeneral[R,jrot],theta,phi1,phi2};\ncoordinateJacobian=Table[D[oldCoordinate\
+s[[mu]],newCoordinates[[a]]],{mu,dimension},{a,dimension}];\ndirectScalar=Nor\
+mal@Series[(scalar0[rho,jrot]+lambda3 \
+deltaScalarPaper[rho,jrot])/.rho->oldCoordinates[[radialIndex]],{lambda3,0,1}\
+];\nexpectedScalar=scalar0[R,jrot]+lambda3 \
+(deltaScalarPaper[R,jrot]+xiGeneral[R,jrot] \
+D[scalar0[R,jrot],R]);\ndirectCovector=Table[Normal@Series[Sum[coordinateJaco\
+bian[[mu,a]] ((covector0[mu][rho,jrot]+lambda3 \
+deltaCovectorPaper[mu][rho,jrot])/.rho->oldCoordinates[[radialIndex]]),{mu,di\
+mension}],{lambda3,0,1}],{a,dimension}];\nexpectedCovector=Table[covector0[a]\
+[R,jrot]+lambda3 (deltaCovectorPaper[a][R,jrot]+xiGeneral[R,jrot] \
+D[covector0[a][R,jrot],R]+KroneckerDelta[a,radialIndex] \
+D[xiGeneral[R,jrot],R] \
+covector0[radialIndex][R,jrot]),{a,dimension}];\ndirectMetric=Table[Normal@Se\
+ries[Sum[coordinateJacobian[[mu,a]] coordinateJacobian[[nu,b]] \
+((metric0[mu,nu][rho,jrot]+lambda3 \
+deltaMetricPaper[mu,nu][rho,jrot])/.rho->oldCoordinates[[radialIndex]]),{mu,d\
+imension},{nu,dimension}],{lambda3,0,1}],{a,dimension},{b,dimension}];\nexpec\
+tedMetric=Table[metric0[a,b][R,jrot]+lambda3 \
+(deltaMetricPaper[a,b][R,jrot]+xiGeneral[R,jrot] \
+D[metric0[a,b][R,jrot],R]+KroneckerDelta[a,radialIndex] \
+D[xiGeneral[R,jrot],R] \
+metric0[radialIndex,b][R,jrot]+KroneckerDelta[b,radialIndex] \
+D[xiGeneral[R,jrot],R] \
+metric0[a,radialIndex][R,jrot]),{a,dimension},{b,dimension}];\ngeneralPullbac\
+kChecks=<|\"Scalar\"->exactZeroQ[directScalar-expectedScalar],\"CovectorAllCo\
+mponents\"->And@@Flatten[MapThread[exactZeroQ[#1-#2]&, \
+{directCovector,expectedCovector}]],\"MetricAllComponents\"->And@@Flatten[Map\
+Thread[exactZeroQ[#1-#2]&, \
+{directMetric,expectedMetric},2]],\"NoRotationExpansion\"->FreeQ[{directScala\
+r,directCovector,directMetric},_SeriesData]|>;\ngeneralPullbackChecks"], 
+   "Input"], Cell["7. Rotating-coordinate interpretation", "Section"], 
+  Cell[TextData[{"Choosing xiGeneral(R,jrot) = xiStatic(R) and applying the \
+inverse of this rule to the complete exact-in-j areal-gauge solution defines a paper-matched rotating \
+radial coordinate: its jrot = 0 limit is exactly the published static \
+coordinate.  This construction does not establish a unique fully isotropic \
+rotating gauge.  A rotating isotropy condition would have to be stated \
+separately, and different jrot-dependent radial shifts can agree in the \
+static limit.  Thus the static map is a proved equivalence; the rotating \
+paper-matched presentation is a valid coordinate choice but not a uniqueness \
+theorem."}], "Text"], Cell["8. Final certificate", "Section"], 
+  Cell[BoxData["v4CoordinateCertificateChecks=<|\"Coupling \
+lambda3=alphaPrime/8\"->couplingNormalizationChecks,\"Published alphaPrime \
+transcription\"->And@@Values[paperTranscriptionChecks],\"Coordinate \
+gauge\"->And@@Values[coordinateGaugeChecks],\"Static paper to areal field \
+map\"->And@@Values[staticMapChecks],\"Static inverse \
+map\"->And@@Values[inverseMapChecks],\"General exact-in-j \
+pullback\"->And@@Values[generalPullbackChecks]|>;\nv4CoordinateCertificatePas\
+s=TrueQ[And@@Values[v4CoordinateCertificateChecks]];\nfinalPass=v4CoordinateC\
+ertificatePass;\n<|\"Checks\"->v4CoordinateCertificateChecks,\"FinalPass\"->v\
+4CoordinateCertificatePass|>"], "Input"], 
+  Cell[TextData[
+    {"Expected final result: every entry is True and FinalPass is True."}], 
+   "Text"]}, WindowSize -> {1400, 900}, 
+ WindowMargins -> {{Automatic, 0}, {Automatic, 0}}, Magnification -> 1., 
+ StyleDefinitions -> "Default.nb"]

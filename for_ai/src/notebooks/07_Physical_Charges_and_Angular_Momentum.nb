@@ -1,0 +1,221 @@
+Notebook[{Cell["Physical Page Charges and Angular-Momentum Normalization", 
+   "Title"], Cell["Version-3 human notation guide (documentation only; no \
+Input cell is changed). In the compact solution and verifier notebooks: \
+x=r^2; q1,q2,q3 are the harmonic parameters mu1,mu2,mu3, not normalized \
+conserved charges; jrot is the rotation parameter j; U1,U2,U3 are the \
+electric corrections delta u_I; B1,B2,B3 are the gauge-covariant fibre \
+corrections; Om is delta omega; Ft, Gr, and Sq are the temporal warp, radial \
+warp, and squashing corrections; P and S are delta p and delta s, where \
+X1=exp(2p/3-s), X2=exp(2p/3+s), and X3=exp(-4p/3). Physical quantities are \
+Q_I=Pi mu_I/(4 G5) and J1=J2=Pi j/(4 G5). See the report section \
+'Human-readable notation and result at a glance' for the full dictionary.", 
+   "Text"], Cell["PACKAGE-V1 SUPERSESSION NOTICE: Historical OPEN, NOT \
+COMPUTED, or NOT CLAIMED values retained later in this notebook describe the \
+evidence available when this notebook was first sealed; they are not the \
+current package-v1 claim ledger. Current package-v1 certificates supersede \
+them as follows: GenericStatic -> notebook 13; \
+GenericWaldAndPhysicalNormalization -> notebook 14; HorizonRegularity -> \
+notebook 15; CassaniHeteroticEq331 -> notebook 16; PageRadialIdentity -> \
+notebook 17. Only the corrected ten-dimensional-to-five-dimensional \
+field-by-field map remains open/conditional.", "Text"], 
+  Cell["Inheritance: notebook 02 derives the Page and radial-constraint \
+reduction; notebook 06 supplies the fixed-charge generic O(j) solution. This \
+notebook embeds the decisive charge and asymptotic rotation evidence.", 
+   "Text"], Cell["1. Page total derivatives and physical normalization", 
+   "Section"], Cell[BoxData[RowBox[{"pageChargeEvidence", "=", 
+      RowBox[{"\[LeftAssociation]", RowBox[
+         {RowBox[{"\"Gauge\"", "\[Rule]", "\"dhr=0\""}], ",", 
+          RowBox[{"\"RadialVariable\"", "\[Rule]", "\"x=r^2\""}], ",", 
+          RowBox[{"\"AdaptedVariables\"", "\[Rule]", 
+            RowBox[{"{", RowBox[{RowBox[{RowBox[{"B1", "[", "x", "]"}], 
+                  "\[Equal]", RowBox[{RowBox[{"-", FractionBox[RowBox[
+                        {"domega", "[", SqrtBox["x"], "]"}], RowBox[{"1", 
+                         "+", FractionBox["q1", "x"]}]]}], "-", FractionBox[
+                     RowBox[{"jrot", " ", RowBox[{"du1", "[", SqrtBox["x"], 
+                         "]"}]}], RowBox[{"2", " ", "x"}]], "+", RowBox[
+                     {"dv1", "[", SqrtBox["x"], "]"}]}]}], ",", 
+                RowBox[{RowBox[{"B2", "[", "x", "]"}], "\[Equal]", 
+                  RowBox[{RowBox[{"-", FractionBox[RowBox[{"domega", "[", 
+                         SqrtBox["x"], "]"}], RowBox[{"1", "+", FractionBox[
+                          "q2", "x"]}]]}], "-", FractionBox[RowBox[{"jrot", 
+                       " ", RowBox[{"du2", "[", SqrtBox["x"], "]"}]}], 
+                     RowBox[{"2", " ", "x"}]], "+", RowBox[{"dv2", "[", 
+                      SqrtBox["x"], "]"}]}]}], ",", RowBox[
+                 {RowBox[{"B3", "[", "x", "]"}], "\[Equal]", RowBox[
+                   {RowBox[{"-", FractionBox[RowBox[{"domega", "[", SqrtBox[
+                          "x"], "]"}], RowBox[{"1", "+", FractionBox["q3", 
+                          "x"]}]]}], "-", FractionBox[RowBox[{"jrot", " ", 
+                       RowBox[{"du3", "[", SqrtBox["x"], "]"}]}], RowBox[
+                      {"2", " ", "x"}]], "+", RowBox[{"dv3", "[", SqrtBox[
+                       "x"], "]"}]}]}]}], "}"}]}], ",", 
+          RowBox[{"\"HomogeneousTotalDerivativeChecks\"", "\[Rule]", 
+            RowBox[{"\[LeftAssociation]", RowBox[{RowBox[{"\"u1\"", 
+                  "\[Rule]", "True"}], ",", RowBox[{"\"u2\"", "\[Rule]", 
+                  "True"}], ",", RowBox[{"\"u3\"", "\[Rule]", "True"}]}], 
+              "\[RightAssociation]"}]}], ",", 
+          RowBox[{"\"SourceDerivativeChecks\"", "\[Rule]", 
+            RowBox[{"\[LeftAssociation]", RowBox[{RowBox[{"\"u1\"", 
+                  "\[Rule]", "True"}], ",", RowBox[{"\"u2\"", "\[Rule]", 
+                  "True"}], ",", RowBox[{"\"u3\"", "\[Rule]", "True"}]}], 
+              "\[RightAssociation]"}]}]}], "\[RightAssociation]"}]}]], 
+   "Input"], Cell[BoxData[RowBox[{"And", "@@", 
+      RowBox[{"Join", "[", RowBox[{RowBox[{"Values", "[", 
+            RowBox[{"pageChargeEvidence", "[", 
+              "\"HomogeneousTotalDerivativeChecks\"", "]"}], "]"}], ",", 
+          RowBox[{"Values", "[", RowBox[{"pageChargeEvidence", "[", 
+              "\"SourceDerivativeChecks\"", "]"}], "]"}]}], "]"}]}]], 
+   "Input"], Cell["With action normalization 1/(16 Pi G5), Q_I = Pi q_I/(4 \
+G5) and delta Q_I^physical = -Pi delta Q_I^reduced/G5. Therefore setting the \
+three reduced Page shifts to zero means fixed physical electric charges.", 
+   "Text"], Cell["2. Exact rotation-parameter homogeneous mode", "Section"], 
+  Cell[BoxData[RowBox[{"rotationModeEvidence", "=", 
+      RowBox[{"\[LeftAssociation]", RowBox[
+         {RowBox[{"\"ModeIsExactHomogeneousSolution\"", "\[Rule]", "True"}], 
+          ",", RowBox[{"\"Residuals\"", "\[Rule]", 
+            RowBox[{"\[LeftAssociation]", RowBox[{RowBox[{"\"u1\"", 
+                  "\[Rule]", "0"}], ",", RowBox[{"\"u2\"", "\[Rule]", "0"}], 
+                ",", RowBox[{"\"u3\"", "\[Rule]", "0"}], ",", RowBox[
+                 {"\"v1\"", "\[Rule]", "0"}], ",", RowBox[{"\"v2\"", 
+                  "\[Rule]", "0"}], ",", RowBox[{"\"v3\"", "\[Rule]", "0"}], 
+                ",", RowBox[{"\"p\"", "\[Rule]", "0"}], ",", RowBox[
+                 {"\"s\"", "\[Rule]", "0"}], ",", RowBox[{"\"f\"", "\[Rule]", 
+                  "0"}], ",", RowBox[{"\"gr\"", "\[Rule]", "0"}], ",", 
+                RowBox[{"\"hr\"", "\[Rule]", "0"}], ",", RowBox[{"\"squ\"", 
+                  "\[Rule]", "0"}], ",", RowBox[{"\"omega\"", "\[Rule]", 
+                  "0"}]}], "\[RightAssociation]"}]}], ",", 
+          RowBox[{"\"AdaptedMode\"", "\[Rule]", RowBox[{"\[LeftAssociation]", 
+              RowBox[{RowBox[{"\"Om\"", "\[Rule]", FractionBox["cj", 
+                   RowBox[{"2", " ", "x"}]]}], ",", RowBox[
+                 {"\"AllOtherAdaptedFields\"", "\[Rule]", "0"}]}], 
+              "\[RightAssociation]"}]}], ",", RowBox[{"\"OriginalMode\"", 
+            "\[Rule]", RowBox[{"\[LeftAssociation]", RowBox[{RowBox[
+                 {"\"du1\"", "\[Rule]", "0"}], ",", RowBox[{"\"du2\"", 
+                  "\[Rule]", "0"}], ",", RowBox[{"\"du3\"", "\[Rule]", "0"}], 
+                ",", RowBox[{"\"dv1\"", "\[Rule]", FractionBox["cj", 
+                   RowBox[{"2", " ", RowBox[{"(", RowBox[{"q", "+", "x"}], 
+                       ")"}]}]]}], ",", RowBox[{"\"dv2\"", "\[Rule]", 
+                  FractionBox["cj", RowBox[{"2", " ", RowBox[{"(", RowBox[
+                        {"q", "+", "x"}], ")"}]}]]}], ",", RowBox[
+                 {"\"dv3\"", "\[Rule]", FractionBox["cj", RowBox[{"2", " ", 
+                     RowBox[{"(", RowBox[{"q", "+", "x"}], ")"}]}]]}], ",", 
+                RowBox[{"\"domega\"", "\[Rule]", FractionBox["cj", 
+                   RowBox[{"2", " ", "x"}]]}], ",", RowBox[
+                 {"\"allOtherMetricAndScalarCorrections\"", "\[Rule]", 
+                  "0"}]}], "\[RightAssociation]"}]}], ",", 
+          RowBox[{"\"ParticularOneOverXCoefficient\"", "\[Rule]", "0"}], ",", 
+          RowBox[{"\"ModeOneOverXCoefficient\"", "\[Rule]", 
+            FractionBox["cj", "2"]}], ",", RowBox[
+           {"\"CorrectedTotalOneOverXCoefficient\"", "\[Rule]", 
+            RowBox[{FractionBox["1", "2"], " ", RowBox[{"(", RowBox[
+                 {"jrot", "+", RowBox[{"cj", " ", "lambda3"}]}], ")"}]}]}], 
+          ",", RowBox[{"\"PageChargeShiftsOfMode\"", "\[Rule]", 
+            RowBox[{"{", RowBox[{"0", ",", "0", ",", "0"}], "}"}]}], ",", 
+          RowBox[{"\"Interpretation\"", "\[Rule]", "\"The Page conditions fix \
+q but do not fix cj: this mode is tangent to the BMPV family at fixed \
+electric parameters.\""}]}], "\[RightAssociation]"}]}]], "Input"], 
+  Cell[BoxData[RowBox[{"Association", "[", 
+      RowBox[{RowBox[{"\"ModeExact\"", "\[Rule]", 
+          RowBox[{"rotationModeEvidence", "[", 
+            "\"ModeIsExactHomogeneousSolution\"", "]"}]}], ",", 
+        RowBox[{"\"Residuals\"", "\[Rule]", RowBox[{"rotationModeEvidence", 
+            "[", "\"Residuals\"", "]"}]}], ",", 
+        RowBox[{"\"PageChargeShifts\"", "\[Rule]", 
+          RowBox[{"rotationModeEvidence", "[", "\"PageChargeShiftsOfMode\"", 
+            "]"}]}], ",", RowBox[{"\"AdaptedMode\"", "\[Rule]", 
+          RowBox[{"rotationModeEvidence", "[", "\"AdaptedMode\"", "]"}]}]}], 
+      "]"}]], "Input"], 
+  Cell[BoxData[RowBox[{RowBox[{"TrueQ", "[", RowBox[{"rotationModeEvidence", 
+          "[", "\"ModeIsExactHomogeneousSolution\"", "]"}], "]"}], "&&", 
+      RowBox[{"And", "@@", RowBox[
+         {RowBox[{"(", RowBox[{RowBox[{"#1", "===", "0"}], "&"}], ")"}], 
+          "/@", RowBox[{"Values", "[", RowBox[{"rotationModeEvidence", "[", 
+              "\"Residuals\"", "]"}], "]"}]}]}], "&&", 
+      RowBox[{"And", "@@", RowBox[
+         {RowBox[{"(", RowBox[{RowBox[{"#1", "===", "0"}], "&"}], ")"}], 
+          "/@", RowBox[{"rotationModeEvidence", "[", 
+            "\"PageChargeShiftsOfMode\"", "]"}]}]}]}]], "Input"], 
+  Cell["The homogeneous mode is tangent to the BMPV family: delta omega = \
+c_j/(2 x), delta v_I = c_j/[2(x+q_I)]. Fixed Page charges do not determine \
+c_j. The two-derivative normalization is J_1=J_2=Pi j/(4 G5); applying a \
+fixed physical angular-momentum condition at four derivatives requires the \
+generic Wald--Tachikawa charge that is explicitly left open below.", "Text"], 
+  Cell["3. Intrinsic four-derivative angular charge", "Section"], 
+  Cell[BoxData[RowBox[{"arrAngularEvidence", "=", 
+      RowBox[{"\[LeftAssociation]", RowBox[
+         {RowBox[{"\"AsymptoticSeries\"", "\[Rule]", 
+            RowBox[{RowBox[{"-", FractionBox[RowBox[{"jrot", " ", 
+                   RowBox[{"(", RowBox[{RowBox[{"9", " ", SuperscriptBox[
+                          "jrot", "2"]}], "+", RowBox[{"2528", " ", "q"}], 
+                       "+", RowBox[{"16", " ", SuperscriptBox["q", "2"]}], 
+                       "-", RowBox[{"26", " ", SuperscriptBox["q", "3"]}]}], 
+                     ")"}]}], RowBox[{"4", " ", SuperscriptBox["r", 
+                    "8"]}]]}], "-", FractionBox[RowBox[{"4", " ", "jrot", 
+                 " ", RowBox[{"(", RowBox[{RowBox[{"-", "24"}], "+", 
+                     SuperscriptBox["q", "2"]}], ")"}]}], SuperscriptBox["r", 
+                "6"]], "+", FractionBox[RowBox[{"3", " ", "jrot", " ", "q"}], 
+               RowBox[{"2", " ", SuperscriptBox["r", "4"]}]]}]}], ",", 
+          RowBox[{"\"AsymptoticDensityLimit\"", "\[Rule]", "0"}], ",", 
+          RowBox[{"\"GravitationalSurfaceChargeAtInfinityVanishes\"", 
+            "\[Rule]", "True"}]}], "\[RightAssociation]"}]}]], "Input"], 
+  Cell[BoxData[RowBox[{"covariantAngularEvidence", "=", 
+      RowBox[{"\[LeftAssociation]", RowBox[
+         {RowBox[{"\"AsymptoticDensityWithoutSinTheta\"", "\[Rule]", "0"}], 
+          ",", RowBox[{"\"NormalizationStatus\"", "\[Rule]", "\"bare \
+covariant lambda3 contribution; overall 1/(16 pi G5), orientation, gauge \
+Noether term, and ARR Tachikawa term not yet included\""}]}], 
+        "\[RightAssociation]"}]}]], "Input"], 
+  Cell[BoxData[RowBox[{"matterAngularEvidence", "=", 
+      RowBox[{"\[LeftAssociation]", RowBox[
+         {RowBox[{"\"XiDotALeadingCoefficient\"", "\[Rule]", 
+            FractionBox["jrot", "2"]}], ",", RowBox[{"\"F2ScaledLimit\"", 
+            "\[Rule]", RowBox[{RowBox[{"-", "8"}], " ", SuperscriptBox["q", 
+               "2"]}]}], ",", RowBox[{"\"Riemann2ScaledLimit\"", "\[Rule]", 
+            RowBox[{"288", " ", SuperscriptBox["q", "2"]}]}], ",", 
+          RowBox[{"\"ScalarGradientsVanishExactly\"", "\[Rule]", "True"}], 
+          ",", RowBox[{"\"CovariantMatterChargeConclusion\"", "\[Rule]", "\"E\
+very matter Noether term is proportional to xi.A.  F4 momentum is O(F^3), RFF \
+momentum O(R F), scalar-gradient sectors vanish, and xi.A=O(r^-2); after the \
+r^3 S3 measure all vanish.\""}], ",", RowBox[
+           {"\"MixedGaugeCompensatorConclusion\"", "\[Rule]", "\"For \
+Lambda=-xi.A, Lambda=O(r^-2).  The background-subtracted gravitational \
+Chern-Simons 3-form has no growing asymptotic flux, hence its S3 integral \
+times Lambda vanishes.\""}]}], "\[RightAssociation]"}]}]], "Input"], 
+  Cell[BoxData[RowBox[{"Association", "[", 
+      RowBox[{RowBox[{"\"ARRDensityLimit\"", "\[Rule]", 
+          RowBox[{"arrAngularEvidence", "[", "\"AsymptoticDensityLimit\"", 
+            "]"}]}], ",", RowBox[{"\"ARRChargeVanishes\"", "\[Rule]", 
+          RowBox[{"arrAngularEvidence", "[", 
+            "\"GravitationalSurfaceChargeAtInfinityVanishes\"", "]"}]}], ",", 
+        RowBox[{"\"CovariantDensityLimit\"", "\[Rule]", 
+          RowBox[{"covariantAngularEvidence", "[", 
+            "\"AsymptoticDensityWithoutSinTheta\"", "]"}]}], ",", 
+        RowBox[{"\"ScalarGradientsVanish\"", "\[Rule]", 
+          RowBox[{"matterAngularEvidence", "[", 
+            "\"ScalarGradientsVanishExactly\"", "]"}]}], ",", 
+        RowBox[{"\"MatterConclusion\"", "\[Rule]", 
+          RowBox[{"matterAngularEvidence", "[", 
+            "\"CovariantMatterChargeConclusion\"", "]"}]}]}], "]"}]], 
+   "Input"], 
+  Cell[BoxData[RowBox[{RowBox[{"TrueQ", "[", RowBox[{"arrAngularEvidence", 
+          "[", "\"GravitationalSurfaceChargeAtInfinityVanishes\"", "]"}], 
+        "]"}], "&&", RowBox[{RowBox[{"arrAngularEvidence", "[", 
+          "\"AsymptoticDensityLimit\"", "]"}], "===", "0"}], "&&", 
+      RowBox[{RowBox[{"covariantAngularEvidence", "[", 
+          "\"AsymptoticDensityWithoutSinTheta\"", "]"}], "===", "0"}], "&&", 
+      RowBox[{"TrueQ", "[", RowBox[{"matterAngularEvidence", "[", 
+          "\"ScalarGradientsVanishExactly\"", "]"}], "]"}]}]], "Input"], 
+  Cell["Evidence boundary: the Page electric charges and the two-derivative \
+normalization of the rotation-parameter mode are exact. The equal-charge \
+mixed A wedge R wedge R falloff and the displayed covariant/matter falloffs \
+support J_4=0 on that locus. For generic unequal charges, the complete \
+higher-derivative Wald--Tachikawa charge, including the noncovariant mixed-CS \
+term and gauge compensator, has not been computed. The generic solution has \
+no 1/x correction tail, so c_j=0 is the selected asymptotic parameter gauge; \
+it is not promoted here to a proof of fixed generic physical Wald angular \
+momentum.", "Text"], Cell["4. Corrected charge-status ledger", "Section"], 
+  Cell[BoxData["chargeStatus=<|\"PageElectricCharges\"->\"EXACT\",\"TwoDeriva\
+tiveRotationModeNormalization\"->\"EXACT\",\"NoGenericOneOverXTail\"->True,\"\
+EqualChargeJ4Falloff\"->\"SUPPORTED\",\"GenericWaldJ4\"->\"NOT \
+COMPUTED\",\"GenericFixedPhysicalAngularMomentum\"->\"NOT CLAIMED\"|>; \
+chargeStatus"], "Input"]}, WindowTitle -> 
+  "Physical charge and angular-momentum normalization"]

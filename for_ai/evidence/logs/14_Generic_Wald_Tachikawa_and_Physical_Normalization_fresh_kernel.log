@@ -1,0 +1,105 @@
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_BEGIN"
+"FILE_BASENAME=""14_Generic_Wald_Tachikawa_and_Physical_Normalization.nb"
+"FILE_ABSOLUTE_PATH=""[LOCAL_HOME]/Documents/Codex/2026-07-12/https-www-overleaf-com-project-65577187a96876076df0bcd6/work/package_v3_staging/notebooks/14_Generic_Wald_Tachikawa_and_Physical_Normalization.nb"
+"KERNEL=""14.1.0 for Mac OS X ARM (64-bit) (July 16, 2024)"
+"START_UTC=""2026-07-19T10:26:08"
+"BYTES="132956
+"SHA256=""1d93aaea65b3fefa71a4b002e3f4516c740120010f95bcddbcfa4d875695a379"
+"PARSE_PASS="True
+"INPUT_CELL_COUNT="9
+"PASS_EXPRESSION=""TrueQ[Global`notebook14FinalPass]"
+"CELL_"1"_BEGIN"
+<|"FrameLower01234" -> 1, "FrameUpper01234" -> -1, "CoordinateOrientation" -> -1, "CoordinateLowerSign" -> -1, "CoordinateUpperSign" -> 1, "AlternatingArraySign" -> 1, "Pass" -> True|>
+"CELL_"1"_SECONDS="0.017928
+"CELL_"1"_RESULT_PASS="True
+"CELL_"1"_MESSAGE_COUNT="0
+"CELL_"1"_RESULT_HEAD="Symbol
+"CELL_"1"_RESULT_LEAF_COUNT="1
+"CELL_"1"_RESULT_SHORT=""Short[Null, 12]"
+"CELL_"1"_END"
+"CELL_"2"_BEGIN"
+"CELL_"2"_SECONDS="0.294852
+"CELL_"2"_RESULT_PASS="True
+"CELL_"2"_MESSAGE_COUNT="0
+"CELL_"2"_RESULT_HEAD="Association
+"CELL_"2"_RESULT_LEAF_COUNT="22
+"CELL_"2"_RESULT_SHORT=""Short[<|\"HashPass\" -> True, \"gDD\" -> {5, 5}, \"Gamma\" -> {5, 5, 5}, \"RiemannUU\" -> {25, 25}, \"RiemannMixed\" -> {25, 25}, \"FUU\" -> {3, 5, 5}, \"D\" -> {3, 3}|>, 12]"
+"CELL_"2"_END"
+"CELL_"3"_BEGIN"
+"CELL_"3"_SECONDS="29.617887
+"CELL_"3"_RESULT_PASS="True
+"CELL_"3"_MESSAGE_COUNT="0
+"CELL_"3"_RESULT_HEAD="Association
+"CELL_"3"_RESULT_LEAF_COUNT="9
+"CELL_"3"_RESULT_SHORT=""Short[<|\"Metric\" -> True, \"InverseMetric\" -> True, \"VolumeDensity\" -> True, \"GaugePotentials\" -> True, \"RaisedFieldStrengths\" -> True, \"lambdaDotX\" -> True, \"D_IJ\" -> True, \"MixedIndexRiemann\" -> True|>, 12]"
+"CELL_"3"_END"
+"CELL_"4"_BEGIN"
+"ORDER_START="10
+"ORDER_RESULT="InputForm[<|"SeriesOrder" -> 10, "FiniteDensityCoefficientZero" -> True, "AllPotentiallyNondecayingCoefficientsZero" -> True, "ReducedDensityAngularIndependent" -> True, "CoefficientZ4" -> -2*jrot*q1 - 2*jrot*q2 - 8*jrot*q3, "CovariantFiniteCoefficient" -> 0, "MixedARRFiniteCoefficient" -> 0, "EinsteinKomarNormalizationPass" -> True|>]
+"ORDER_START="12
+"ORDER_RESULT="InputForm[<|"SeriesOrder" -> 12, "FiniteDensityCoefficientZero" -> True, "AllPotentiallyNondecayingCoefficientsZero" -> True, "ReducedDensityAngularIndependent" -> True, "CoefficientZ4" -> -2*jrot*q1 - 2*jrot*q2 - 8*jrot*q3, "CovariantFiniteCoefficient" -> 0, "MixedARRFiniteCoefficient" -> 0, "EinsteinKomarNormalizationPass" -> True|>]
+"ORDER_START="14
+"ORDER_RESULT="InputForm[<|"SeriesOrder" -> 14, "FiniteDensityCoefficientZero" -> True, "AllPotentiallyNondecayingCoefficientsZero" -> True, "ReducedDensityAngularIndependent" -> True, "CoefficientZ4" -> -2*jrot*q1 - 2*jrot*q2 - 8*jrot*q3, "CovariantFiniteCoefficient" -> 0, "MixedARRFiniteCoefficient" -> 0, "EinsteinKomarNormalizationPass" -> True|>]
+"ORDER_START="16
+"ORDER_RESULT="InputForm[<|"SeriesOrder" -> 16, "FiniteDensityCoefficientZero" -> True, "AllPotentiallyNondecayingCoefficientsZero" -> True, "ReducedDensityAngularIndependent" -> True, "CoefficientZ4" -> -2*jrot*q1 - 2*jrot*q2 - 8*jrot*q3, "CovariantFiniteCoefficient" -> 0, "MixedARRFiniteCoefficient" -> 0, "EinsteinKomarNormalizationPass" -> True|>]
+"CELL_"4"_SECONDS="223.006856
+"CELL_"4"_RESULT_PASS="True
+"CELL_"4"_MESSAGE_COUNT="0
+"CELL_"4"_RESULT_HEAD="Symbol
+"CELL_"4"_RESULT_LEAF_COUNT="1
+"CELL_"4"_RESULT_SHORT=""Short[Null, 12]"
+"CELL_"4"_END"
+"CELL_"5"_BEGIN"
+"CELL_"5"_SECONDS="0.000208
+"CELL_"5"_RESULT_PASS="True
+"CELL_"5"_MESSAGE_COUNT="0
+"CELL_"5"_RESULT_HEAD="Association
+"CELL_"5"_RESULT_LEAF_COUNT="119
+"CELL_"5"_RESULT_SHORT=""Short[<|\"FormulaReference\" -> \"Cassani-Ruiperez-Turetta arXiv:2304.06101 Eq. (3.44)\", \"Sector\" -> \"generic q1,q2,q3 lambda3 curvature plus mixed ARR\", \"Orders\" -> {10, 12, 14, 16}, \"FiniteCoefficientZeroAtEveryOrder\" -> True, \"AllPotentiallyNondecayingCoefficientsZero\" -> True, \"ReducedDensityAngularIndependentAtEveryOrder\" -> True, \"EinsteinKomarNormalizationAtEveryOrder\" -> True, \"LeadingCoefficientZ4Stabilized\" -> True, \"PASS\" -> True, \"Results\" -> <|\"10\" -> <|\"SeriesOrder\" -> 10, \"FiniteDensityCoefficientZero\" -> True, \"AllPotentiallyNondecayingCoefficientsZero\" -> True, \"ReducedDensityAngularIndependent\" -> True, \"CoefficientZ4\" -> -2*jrot*q1 - 2*jrot*q2 - 8*jrot*q3, \"CovariantFiniteCoefficient\" -> 0, \"MixedARRFiniteCoefficient\" -> 0, \"EinsteinKomarFiniteCoefficient\" -> jrot/4, \"EinsteinKomarNormalizationPass\" -> True|>, \"12\" -> <|\"SeriesOrder\" -> 12, \"FiniteDensityCoefficientZero\" -> True, \"AllPotentiallyNondecayingCoefficientsZero\" -> True, \"ReducedDensityAngularIndependent\" -> True, \"CoefficientZ4\" -> -2*jrot*q1 - 2*jrot*q2 - 8*jrot*q3, \"CovariantFiniteCoefficient\" -> 0, \"MixedARRFiniteCoefficient\" -> 0, \"EinsteinKomarFiniteCoefficient\" -> jrot/4, \"EinsteinKomarNormalizationPass\" -> True|>, \"14\" -> <|\"SeriesOrder\" -> 14, \"FiniteDensityCoefficientZero\" -> True, \"AllPotentiallyNondecayingCoefficientsZero\" -> True, \"ReducedDensityAngularIndependent\" -> True, \"CoefficientZ4\" -> -2*jrot*q1 - 2*jrot*q2 - 8*jrot*q3, \"CovariantFiniteCoefficient\" -> 0, \"MixedARRFiniteCoefficient\" -> 0, \"EinsteinKomarFiniteCoefficient\" -> jrot/4, \"EinsteinKomarNormalizationPass\" -> True|>, \"16\" -> <|\"SeriesOrder\" -> 16, \"FiniteDensityCoefficientZero\" -> True, \"AllPotentiallyNondecayingCoefficientsZero\" -> True, \"ReducedDensityAngularIndependent\" -> True, \"CoefficientZ4\" -> -2*jrot*q1 - 2*jrot*q2 - 8*jrot*q3, \"CovariantFiniteCoefficient\" -> 0, \"MixedARRFiniteCoefficient\" -> 0, \"EinsteinKomarFiniteCoefficient\" -> jrot/4, \"EinsteinKomarNormalizationPass\" -> True|>|>|>, 12]"
+"CELL_"5"_END"
+"CELL_"6"_BEGIN"
+"CELL_"6"_SECONDS="0.017631
+"CELL_"6"_RESULT_PASS="True
+"CELL_"6"_MESSAGE_COUNT="0
+"CELL_"6"_RESULT_HEAD="Symbol
+"CELL_"6"_RESULT_LEAF_COUNT="1
+"CELL_"6"_RESULT_SHORT=""Short[True, 12]"
+"CELL_"6"_END"
+"CELL_"7"_BEGIN"
+"CELL_"7"_SECONDS="26.427251
+"CELL_"7"_RESULT_PASS="True
+"CELL_"7"_MESSAGE_COUNT="0
+"CELL_"7"_RESULT_HEAD="Association
+"CELL_"7"_RESULT_LEAF_COUNT="9
+"CELL_"7"_RESULT_SHORT=""Short[<|\"NoADMmassTail\" -> True, \"NoADMangularTail\" -> True, \"NoRotationParameterTail\" -> True, \"NoElectricPotentialChargeTails\" -> True, \"NoGaugeFibreOneOverXTails\" -> True, \"NoSquashingCorrection\" -> True, \"AllFieldFalloffsCertified\" -> True, \"AllMetricFalloffsCertified\" -> True|>, 12]"
+"CELL_"7"_END"
+"CELL_"8"_BEGIN"
+"CELL_"8"_SECONDS="0.000088
+"CELL_"8"_RESULT_PASS="True
+"CELL_"8"_MESSAGE_COUNT="0
+"CELL_"8"_RESULT_HEAD="Association
+"CELL_"8"_RESULT_LEAF_COUNT="22
+"CELL_"8"_RESULT_SHORT=""Short[<|\"Normalization\" -> <|\"deltaQ_I\" -> {0, 0, 0}, \"J4Background\" -> 0, \"ParticularOneOverXAngularTail\" -> 0, \"HomogeneousRotationMode\" -> cj/(2*x), \"FixedPhysicalJSelects\" -> cj -> 0, \"TwoDerivativeElectricCharges\" -> \"Q_I = Pi q_I/(4 G5)\", \"TwoDerivativeEqualAngularMomenta\" -> \"J_1=J_2=Pi jrot/(4 G5)\"|>, \"FINAL_PASS\" -> True|>, 12]"
+"CELL_"8"_END"
+"CELL_"9"_BEGIN"
+"CELL_"9"_SECONDS="0.000011
+"CELL_"9"_RESULT_PASS="True
+"CELL_"9"_MESSAGE_COUNT="0
+"CELL_"9"_RESULT_HEAD="Symbol
+"CELL_"9"_RESULT_LEAF_COUNT="1
+"CELL_"9"_RESULT_SHORT=""Short[True, 12]"
+"CELL_"9"_END"
+"RESULT_FAILURE_COUNT="0
+"RESULT_FAILURE_INDICES="InputForm[{}]
+"MESSAGE_CELL_COUNT="0
+"MESSAGE_CELL_INDICES="InputForm[{}]
+"MESSAGE_TOTAL_COUNT="0
+"CELL_SECONDS="InputForm[{0.017928, 0.294852, 29.617887, 223.006856, 0.000208, 0.017631, 26.427251, 0.000088, 0.000011}]
+"CELL_SECONDS_TOTAL="279.38271199999997
+"GLOBAL_notebook14FinalPass="InputForm[True]
+"DECLARED_PASS_VALUE="InputForm[True]
+"CELL_EVALUATION_PASS="True
+"END_UTC=""2026-07-19T10:30:51"
+"TOTAL_WALL_SECONDS="282.578036`8.902683395825553
+"FRESH_KERNEL_FINAL_PASS="True
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_END"

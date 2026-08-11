@@ -1,0 +1,97 @@
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_BEGIN"
+"FILE_BASENAME=""00A_Levi_Civita_Tensor_and_Action_Density_Convention.nb"
+"FILE_ABSOLUTE_PATH=""[LOCAL_HOME]/Documents/Codex/2026-07-12/https-www-overleaf-com-project-65577187a96876076df0bcd6/work/package_v3_staging/notebooks/00A_Levi_Civita_Tensor_and_Action_Density_Convention.nb"
+"KERNEL=""14.1.0 for Mac OS X ARM (64-bit) (July 16, 2024)"
+"START_UTC=""2026-07-19T10:24:04"
+"BYTES="11738
+"SHA256=""c65ca8f7c2e668de14a77a10c6a3b1a657b2af51924cb724d136a2071e0dc1f9"
+"PARSE_PASS="True
+"INPUT_CELL_COUNT="9
+"PASS_EXPRESSION=""TrueQ[Global`FinalPass]"
+"CELL_"1"_BEGIN"
+"CELL_"1"_SECONDS="0.00008
+"CELL_"1"_RESULT_PASS="True
+"CELL_"1"_MESSAGE_COUNT="0
+"CELL_"1"_RESULT_HEAD="Association
+"CELL_"1"_RESULT_LEAF_COUNT="11
+"CELL_"1"_RESULT_SHORT=""Short[<|\"Coordinates\" -> {t, r, theta, phi, psi}, \"Eq4.1GaugeSign\" -> 1, \"BaseOrientationRelativeToDrSigma123\" -> -1, \"ChartOrientationRelativeToPhysical\" -> -1, \"Pass\" -> True|>, 12]"
+"CELL_"1"_END"
+"CELL_"2"_BEGIN"
+"CELL_"2"_SECONDS="0.052595
+"CELL_"2"_RESULT_PASS="True
+"CELL_"2"_MESSAGE_COUNT="0
+"CELL_"2"_RESULT_HEAD="Association
+"CELL_"2"_RESULT_LEAF_COUNT="68
+"CELL_"2"_RESULT_SHORT=""Short[<|\"Metric\" -> {{-n0^2, 0, 0, 0, 0}, {0, n1^2, 0, 0, 0}, {0, 0, n2^2, 0, 0}, {0, 0, 0, n3^2, 0}, {0, 0, 0, 0, n4^2}}, \"VielbeinDeterminant\" -> -(n0*n1*n2*n3*n4), \"Determinant\" -> -(n0^2*n1^2*n2^2*n3^2*n4^2)|>, 12]"
+"CELL_"2"_END"
+"CELL_"3"_BEGIN"
+"CELL_"3"_SECONDS="0.140295
+"CELL_"3"_RESULT_PASS="True
+"CELL_"3"_MESSAGE_COUNT="0
+"CELL_"3"_RESULT_HEAD="Association
+"CELL_"3"_RESULT_LEAF_COUNT="30
+"CELL_"3"_RESULT_SHORT=""Short[<|\"FlatSymbolLower01234\" -> 1, \"FlatSymbolUpper01234\" -> -1, \"CurvedCoordinateLower\" -> -(n0*n1*n2*n3*n4), \"CurvedCoordinateUpper\" -> 1/(n0*n1*n2*n3*n4), \"VielbeinOrientation\" -> True, \"RaisingAllIndices\" -> True, \"AlternatingDensityEqualsSqrtMinusgTimesCurvedUpper\" -> True, \"Pass\" -> True|>, 12]"
+"CELL_"3"_END"
+"CELL_"4"_BEGIN"
+"CELL_"4"_SECONDS="0.00015
+"CELL_"4"_RESULT_PASS="True
+"CELL_"4"_MESSAGE_COUNT="0
+"CELL_"4"_RESULT_HEAD="Association
+"CELL_"4"_RESULT_LEAF_COUNT="10
+"CELL_"4"_RESULT_SHORT=""Short[<|\"OrientedAFFCoefficient\" -> -1, \"EffectiveCoordinateAFFCoefficient\" -> 1/4, \"OrientedMixedCoefficient\" -> 2, \"EffectiveCoordinateMixedCoefficient\" -> 1/2, \"Pass\" -> True|>, 12]"
+"CELL_"4"_END"
+"CELL_"5"_BEGIN"
+"CELL_"5"_SECONDS="0.000063
+"CELL_"5"_RESULT_PASS="True
+"CELL_"5"_MESSAGE_COUNT="0
+"CELL_"5"_RESULT_HEAD="Association
+"CELL_"5"_RESULT_LEAF_COUNT="6
+"CELL_"5"_RESULT_SHORT=""Short[<|\"VariationCoefficients\" -> {-3, -3}, \"MaxwellEquation\" -> \"d(star F)+F wedge F=0\", \"Pass\" -> True|>, 12]"
+"CELL_"5"_END"
+"CELL_"6"_BEGIN"
+"CELL_"6"_SECONDS="1.041015
+"CELL_"6"_RESULT_PASS="True
+"CELL_"6"_MESSAGE_COUNT="0
+"CELL_"6"_RESULT_HEAD="Association
+"CELL_"6"_RESULT_LEAF_COUNT="101
+"CELL_"6"_RESULT_SHORT=""Short[<|\"StaticAEqualsPlusHInverseDt\" -> True, \"MetricDeterminantCheck\" -> True, \"IndependentFourFormIndices\" -> {{1, 2, 3, 4}, {1, 2, 3, 5}, {1, 2, 4, 5}, {1, 3, 4, 5}, {2, 3, 4, 5}}, \"dStarF\" -> {(-2*j*q*r*Sin[theta])/(q + r^2)^3, 0, 0, 0, -((j^2*r*Sin[theta])/(q + r^2)^3)}, \"FwedgeF\" -> {(2*j*q*r*Sin[theta])/(q + r^2)^3, 0, 0, 0, (j^2*r*Sin[theta])/(q + r^2)^3}, \"Residuals\" -> {0, 0, 0, 0, 0}, \"PlusGaugePotentialSolvesMaxwell\" -> True|>, 12]"
+"CELL_"6"_END"
+"CELL_"7"_BEGIN"
+"CELL_"7"_SECONDS="0.000155
+"CELL_"7"_RESULT_PASS="True
+"CELL_"7"_MESSAGE_COUNT="0
+"CELL_"7"_RESULT_HEAD="Association
+"CELL_"7"_RESULT_LEAF_COUNT="16
+"CELL_"7"_RESULT_SHORT=""Short[<|\"ClosedPageForm\" -> \"a star F+C A wedge F\", \"PhysicalHopfIntegral\" -> 16*Pi^2, \"CoordinateHopfIntegral\" -> -16*Pi^2, \"PhysicalTachikawaSign\" -> 1, \"CoordinateTachikawaSign\" -> -1, \"NumericalProductsAgree\" -> True, \"Pass\" -> True|>, 12]"
+"CELL_"7"_END"
+"CELL_"8"_BEGIN"
+"CELL_"8"_SECONDS="0.000229
+"CELL_"8"_RESULT_PASS="True
+"CELL_"8"_MESSAGE_COUNT="0
+"CELL_"8"_RESULT_HEAD="Association
+"CELL_"8"_RESULT_LEAF_COUNT="27
+"CELL_"8"_RESULT_SHORT=""Short[<|\"BetaDefinition\" -> deltaV - deltaU*omega0 - deltaOmega/(1 + q/r^2), \"BetaPass\" -> True, \"SameSignDictionary\" -> <|\"A physical\" -> aArchived, \"F physical\" -> fArchived, \"delta u physical\" -> duArchived, \"delta v physical\" -> dvArchived, \"beta physical\" -> betaArchived|>, \"SameSignPass\" -> True|>, 12]"
+"CELL_"8"_END"
+"CELL_"9"_BEGIN"
+"CELL_"9"_SECONDS="0.000083
+"CELL_"9"_RESULT_PASS="True
+"CELL_"9"_MESSAGE_COUNT="0
+"CELL_"9"_RESULT_HEAD="Association
+"CELL_"9"_RESULT_LEAF_COUNT="21
+"CELL_"9"_RESULT_SHORT=""Short[<|\"Checks\" -> <|\"SourceAndBMPVAnchors\" -> True, \"FrameSigns\" -> True, \"VielbeinOrientation\" -> True, \"CoordinateSigns\" -> True, \"MetricRaising\" -> True, \"AlternatingArrayDictionary\" -> True, \"AFFFormConversion\" -> True, \"MixedFormConversion\" -> True, \"MaxwellVariation\" -> True, \"StaticGaugeAnchor\" -> True, \"BMPVMetricDeterminant\" -> True, \"ExactRotatingMaxwell\" -> True, \"PageSign\" -> True, \"HopfOrientation\" -> True, \"TachikawaOrientation\" -> True, \"TachikawaNumericalEquivalence\" -> True, \"BetaDefinition\" -> True, \"GaugeSigns\" -> True|>, \"FinalPass\" -> True|>, 12]"
+"CELL_"9"_END"
+"RESULT_FAILURE_COUNT="0
+"RESULT_FAILURE_INDICES="InputForm[{}]
+"MESSAGE_CELL_COUNT="0
+"MESSAGE_CELL_INDICES="InputForm[{}]
+"MESSAGE_TOTAL_COUNT="0
+"CELL_SECONDS="InputForm[{0.00008, 0.052595, 0.140295, 0.00015, 0.000063, 1.041015, 0.000155, 0.000229, 0.000083}]
+"CELL_SECONDS_TOTAL="1.2346650000000001
+"FINAL_CHECKS="InputForm[<|"SourceAndBMPVAnchors" -> True, "FrameSigns" -> True, "VielbeinOrientation" -> True, "CoordinateSigns" -> True, "MetricRaising" -> True, "AlternatingArrayDictionary" -> True, "AFFFormConversion" -> True, "MixedFormConversion" -> True, "MaxwellVariation" -> True, "StaticGaugeAnchor" -> True, "BMPVMetricDeterminant" -> True, "ExactRotatingMaxwell" -> True, "PageSign" -> True, "HopfOrientation" -> True, "TachikawaOrientation" -> True, "TachikawaNumericalEquivalence" -> True, "BetaDefinition" -> True, "GaugeSigns" -> True|>]
+"GLOBAL_FinalPass="InputForm[True]
+"DECLARED_PASS_VALUE="InputForm[True]
+"CELL_EVALUATION_PASS="True
+"END_UTC=""2026-07-19T10:24:09"
+"TOTAL_WALL_SECONDS="4.207622`7.075581710694912
+"FRESH_KERNEL_FINAL_PASS="True
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_END"

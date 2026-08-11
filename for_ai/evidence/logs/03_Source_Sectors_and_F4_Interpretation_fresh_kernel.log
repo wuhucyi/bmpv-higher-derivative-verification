@@ -1,0 +1,55 @@
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_BEGIN"
+"FILE_BASENAME=""03_Source_Sectors_and_F4_Interpretation.nb"
+"FILE_ABSOLUTE_PATH=""[LOCAL_HOME]/Documents/Codex/2026-07-12/https-www-overleaf-com-project-65577187a96876076df0bcd6/work/package_v4_staging/notebooks/03_Source_Sectors_and_F4_Interpretation.nb"
+"KERNEL=""14.1.0 for Mac OS X ARM (64-bit) (July 16, 2024)"
+"START_UTC=""2026-07-20T06:25:37"
+"BYTES="7879
+"SHA256=""c729303c766ae12f20da5afd7c9dea8dae704db34d297eb0a06008c885e2c8e6"
+"PARSE_PASS="True
+"INPUT_CELL_COUNT="4
+"PASS_EXPRESSION=""True"
+"CELL_"1"_BEGIN"
+"CELL_"1"_SECONDS="0.000521
+"CELL_"1"_RESULT_PASS="True
+"CELL_"1"_MESSAGE_COUNT="0
+"CELL_"1"_RESULT_HEAD="Integer
+"CELL_"1"_RESULT_LEAF_COUNT="1
+"CELL_"1"_RESULT_SHORT=""Short[0, 12]"
+"CELL_"1"_END"
+"CELL_"2"_BEGIN"
+"CELL_"2"_SECONDS="0.00003
+"CELL_"2"_RESULT_PASS="True
+"CELL_"2"_MESSAGE_COUNT="0
+"CELL_"2"_RESULT_HEAD="Symbol
+"CELL_"2"_RESULT_LEAF_COUNT="1
+"CELL_"2"_RESULT_SHORT=""Short[True, 12]"
+"CELL_"2"_END"
+"CELL_"3"_BEGIN"
+"CELL_"3"_SECONDS="0.001177
+"CELL_"3"_RESULT_PASS="True
+"CELL_"3"_MESSAGE_COUNT="0
+"CELL_"3"_RESULT_HEAD="Association
+"CELL_"3"_RESULT_LEAF_COUNT="52
+"CELL_"3"_RESULT_SHORT=""Short[<|\"StandaloneCurvatureFreeVectorInvariantBPSResidual\" -> 0, \"GaugeSourceBooleanChecks\" -> <|\"Passed\" -> 108, \"Failed\" -> 0|>, \"ScalarSourceBooleanChecks\" -> <|\"Passed\" -> 40, \"Failed\" -> 0|>, \"GaugeSectorKeys\" -> {\"RFF\", \"E\", \"Et\", \"H\", \"Ht\", \"W\", \"ARR\"}, \"ScalarSectorKeys\" -> {\"Riemann2\", \"RFF\", \"I\", \"E\", \"Et\", \"H\", \"Ht\", \"W\"}, \"GaugeParity\" -> <|\"u1\" -> \"even\", \"u2\" -> \"even\", \"u3\" -> \"even\", \"v1\" -> \"odd\", \"v2\" -> \"odd\", \"v3\" -> \"odd\"|>, \"ScalarParity\" -> <|\"p\" -> \"even\", \"s\" -> \"even\"|>, \"StaticOldSolutionResiduals\" -> <|\"u1\" -> 0, \"u2\" -> 0, \"u3\" -> 0, \"v1\" -> 0, \"v2\" -> 0, \"v3\" -> 0, \"p\" -> 0, \"s\" -> 0, \"gr\" -> 0, \"hr\" -> 0, \"squ\" -> 0, \"omega\" -> 0|>, \"StaticMetricFResidualStatus\" -> \"TIMEOUT_NOT_FAILURE\", \"FullLambda3DirectGaugeCompletionEplusEtNonzero\" -> True, \"FullLambda3RFFSectorNonzero\" -> True, \"Interpretation\" -> \"The separate curvature-free vector invariant has zero BPS equations. The complete supersymmetric Riemann-square invariant still contains nonzero F^4/RFF completion sectors and must be varied as a whole.\"|>, 12]"
+"CELL_"3"_END"
+"CELL_"4"_BEGIN"
+"CELL_"4"_SECONDS="0.000535
+"CELL_"4"_RESULT_PASS="True
+"CELL_"4"_MESSAGE_COUNT="0
+"CELL_"4"_RESULT_HEAD="Association
+"CELL_"4"_RESULT_LEAF_COUNT="6
+"CELL_"4"_RESULT_SHORT=""Short[<|\"StandaloneVectorPass\" -> True, \"GaugeChecksPass\" -> True, \"ScalarChecksPass\" -> True, \"StaticRegressionPass\" -> True, \"CompletionSectorsRemain\" -> True|>, 12]"
+"CELL_"4"_END"
+"RESULT_FAILURE_COUNT="0
+"RESULT_FAILURE_INDICES="InputForm[{}]
+"MESSAGE_CELL_COUNT="0
+"MESSAGE_CELL_INDICES="InputForm[{}]
+"MESSAGE_TOTAL_COUNT="0
+"CELL_SECONDS="InputForm[{0.000521, 0.00003, 0.001177, 0.000535}]
+"CELL_SECONDS_TOTAL="0.002263
+"DECLARED_PASS_VALUE="InputForm[True]
+"CELL_EVALUATION_PASS="True
+"END_UTC=""2026-07-20T06:25:38"
+"TOTAL_WALL_SECONDS="1.330292`6.575491972861417
+"FRESH_KERNEL_FINAL_PASS="True
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_END"

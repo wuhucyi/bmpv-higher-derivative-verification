@@ -1,0 +1,73 @@
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_BEGIN"
+"FILE_BASENAME=""29_V1_Parity_Odd_Compatibility_Certificate.nb"
+"FILE_ABSOLUTE_PATH=""[LOCAL_HOME]/Documents/Codex/2026-07-12/https-www-overleaf-com-project-65577187a96876076df0bcd6/work/package_v4_staging/notebooks/29_V1_Parity_Odd_Compatibility_Certificate.nb"
+"KERNEL=""14.1.0 for Mac OS X ARM (64-bit) (July 16, 2024)"
+"START_UTC=""2026-07-20T06:12:38"
+"BYTES="9527
+"SHA256=""35a7ed03d12209e00764a6536c1fa8d0af8069cdf880357b5c856d4cc6e139b5"
+"PARSE_PASS="True
+"INPUT_CELL_COUNT="6
+"PASS_EXPRESSION=""FinalPass"
+"CELL_"1"_BEGIN"
+"CELL_"1"_SECONDS="0.006532
+"CELL_"1"_RESULT_PASS="True
+"CELL_"1"_MESSAGE_COUNT="0
+"CELL_"1"_RESULT_HEAD="Association
+"CELL_"1"_RESULT_LEAF_COUNT="17
+"CELL_"1"_RESULT_SHORT=""Short[<|\"OrderedComponents\" -> {1, -1, -e, e^(-1), 1}, \"Checks\" -> <|\"FlatLower\" -> True, \"FlatUpper\" -> True, \"CurvedLower\" -> True, \"CurvedUpper\" -> True, \"RawDensity\" -> True|>|>, 12]"
+"CELL_"1"_END"
+"CELL_"2"_BEGIN"
+"CELL_"2"_SECONDS="0.000206
+"CELL_"2"_RESULT_PASS="True
+"CELL_"2"_MESSAGE_COUNT="0
+"CELL_"2"_RESULT_HEAD="Association
+"CELL_"2"_RESULT_LEAF_COUNT="5
+"CELL_"2"_RESULT_SHORT=""Short[<|\"AFFDensityEquivalence\" -> True, \"ARRDensityEquivalence\" -> True, \"V1RawDensityUse\" -> True, \"V1RawOverDetIsCurvedTensor\" -> True|>, 12]"
+"CELL_"2"_END"
+"CELL_"3"_BEGIN"
+"CELL_"3"_SECONDS="0.000146
+"CELL_"3"_RESULT_PASS="True
+"CELL_"3"_MESSAGE_COUNT="0
+"CELL_"3"_RESULT_HEAD="Association
+"CELL_"3"_RESULT_LEAF_COUNT="5
+"CELL_"3"_RESULT_SHORT=""Short[<|\"WPrimeCoefficientTranscription\" -> True, \"WOverallSign\" -> True, \"WFFFdXDensityRepresentation\" -> True, \"Notebook00WUsesCurvedTensor\" -> True|>, 12]"
+"CELL_"3"_END"
+"CELL_"4"_BEGIN"
+"CELL_"4"_SECONDS="0.000061
+"CELL_"4"_RESULT_PASS="True
+"CELL_"4"_MESSAGE_COUNT="0
+"CELL_"4"_RESULT_HEAD="Association
+"CELL_"4"_RESULT_LEAF_COUNT="16
+"CELL_"4"_RESULT_SHORT=""Short[<|\"V1RawArrayFactor\" -> 1/(2*e), \"CurvedTensorFactor\" -> 1/(2*e), \"Pass\" -> True|>, 12]"
+"CELL_"4"_END"
+"CELL_"5"_BEGIN"
+"CELL_"5"_SECONDS="0.000046
+"CELL_"5"_RESULT_PASS="True
+"CELL_"5"_MESSAGE_COUNT="0
+"CELL_"5"_RESULT_HEAD="Association
+"CELL_"5"_RESULT_LEAF_COUNT="3
+"CELL_"5"_RESULT_SHORT=""Short[<|\"PositiveGaugePotential\" -> True, \"StaticCoordinateMapParityIndependent\" -> True|>, 12]"
+"CELL_"5"_END"
+"CELL_"6"_BEGIN"
+"CELL_"6"_SECONDS="0.000145
+"CELL_"6"_RESULT_PASS="True
+"CELL_"6"_MESSAGE_COUNT="0
+"CELL_"6"_RESULT_HEAD="Association
+"CELL_"6"_RESULT_LEAF_COUNT="21
+"CELL_"6"_RESULT_SHORT=""Short[<|\"Checks\" -> <|\"FlatLower\" -> True, \"FlatUpper\" -> True, \"CurvedLower\" -> True, \"CurvedUpper\" -> True, \"RawDensity\" -> True, \"AFFDensityRepresentation\" -> True, \"WPrimeCoefficientTranscription\" -> True, \"WOverallSign\" -> True, \"WFFFdXDensityRepresentation\" -> True, \"Notebook00WUsesCurvedTensor\" -> True, \"ARRDensityRepresentation\" -> True, \"Notebook00RawDensity\" -> True, \"Notebook00CurvedTensor\" -> True, \"Notebook14MixedARR\" -> True, \"PositiveGaugePotential\" -> True, \"StaticMapParityIndependent\" -> True, \"ProvenanceAnchors\" -> True|>, \"Verdict\" -> \"V1_DOCUMENTATION_AMBIGUOUS_BUT_COMPUTED_PARITY_ODD_SIGNS_COMPATIBLE_NO_RESULT_REVERSAL\", \"FinalPass\" -> True|>, 12]"
+"CELL_"6"_END"
+"RESULT_FAILURE_COUNT="0
+"RESULT_FAILURE_INDICES="InputForm[{}]
+"MESSAGE_CELL_COUNT="0
+"MESSAGE_CELL_INDICES="InputForm[{}]
+"MESSAGE_TOTAL_COUNT="0
+"CELL_SECONDS="InputForm[{0.006532, 0.000206, 0.000146, 0.000061, 0.000046, 0.000145}]
+"CELL_SECONDS_TOTAL="0.007135999999999999
+"FINAL_CHECKS="InputForm[<|"FlatLower" -> True, "FlatUpper" -> True, "CurvedLower" -> True, "CurvedUpper" -> True, "RawDensity" -> True, "AFFDensityRepresentation" -> True, "WPrimeCoefficientTranscription" -> True, "WOverallSign" -> True, "WFFFdXDensityRepresentation" -> True, "Notebook00WUsesCurvedTensor" -> True, "ARRDensityRepresentation" -> True, "Notebook00RawDensity" -> True, "Notebook00CurvedTensor" -> True, "Notebook14MixedARR" -> True, "PositiveGaugePotential" -> True, "StaticMapParityIndependent" -> True, "ProvenanceAnchors" -> True|>]
+"GLOBAL_FinalPass="InputForm[True]
+"DECLARED_PASS_VALUE="InputForm[True]
+"CELL_EVALUATION_PASS="True
+"END_UTC=""2026-07-20T06:12:39"
+"TOTAL_WALL_SECONDS="1.335947`6.577334222545593
+"FRESH_KERNEL_FINAL_PASS="True
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_END"

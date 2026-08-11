@@ -1,0 +1,53 @@
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_BEGIN"
+"FILE_BASENAME=""32_Appendix_B_Boundary_Current_No_Go.nb"
+"FILE_ABSOLUTE_PATH=""[LOCAL_HOME]/Documents/Codex/2026-07-12/https-www-overleaf-com-project-65577187a96876076df0bcd6/work/package_v5_staging/notebooks/32_Appendix_B_Boundary_Current_No_Go.nb"
+"KERNEL=""14.1.0 for Mac OS X ARM (64-bit) (July 16, 2024)"
+"START_UTC=""2026-07-21T01:33:23"
+"BYTES="14370
+"SHA256=""5bf9d36f073691b3486e4d57fe8721ce1c0c63cb613034feab8404ad929aca76"
+"PARSE_PASS="True
+"INPUT_CELL_COUNT="1
+"PASS_EXPRESSION=""finalPass"
+"CELL_"1"_BEGIN"
+"APPENDIX_B_SOURCE_FORMULA_LEDGER="InputForm[<|"B.1_line907" -> {Fminus[alpha, beta, aa]*Fplus[beta, gamma, cc]*P[gamma, cc, aa], Dplain[alpha, Fminus[beta, mu, aa]]*Fminus[alpha, beta, aa]}, "B.2_line922" -> {Fminus[beta, delta, bb]*Fplus[beta, gamma, aa]*P[delta, aa, bb], Dplain[gamma, Fplus[alpha, beta, aa]]*Fplus[beta, gamma, aa]}, "B.3_line933" -> {Dplain[alpha, P[beta, aa, bb]]*P[beta, aa, bb], Fminus[mu, nu, bb]*Fplus[mu, nu, aa]*P[alpha, aa, bb]}, "B.4_line945" -> {Fplus[alpha, delta, aa]*Fplus[beta, gamma, aa]*h[alpha, beta, gamma]}|>]
+"APPENDIX_B_SOURCE_FORMULA_CHECKS="InputForm[<|"FourAnchoredAppendixEntriesPresent" -> True, "B1ThroughB3ContainPlainD" -> True, "B1ThroughB3HaveNoExplicitH" -> True, "B4HasExplicitH" -> True, "NoTorsionfulDerivativeInBoundaryLedger" -> True, "OnlyB4HasExplicitH" -> True|>]
+"APPENDIX_B4_FPLUS_COMPONENTS="InputForm[{{1, 2, (2*(qminus - qplus)*r^3)/((qminus + r^2)^(3/2)*(qplus + r^2)^(3/2))}, {2, 4, -((a*(qminus - qplus)*r*Cos[theta])/((qminus + r^2)^(3/2)*(qplus + r^2)^(3/2)))}, {2, 5, -((a*(qminus - qplus)*r)/((qminus + r^2)^(3/2)*(qplus + r^2)^(3/2)))}}]
+"APPENDIX_B4_FPLUS_WEDGE_SQUARE="InputForm[<|{1, 2, 3, 4} -> 0, {1, 2, 3, 5} -> 0, {1, 2, 4, 5} -> 0, {1, 3, 4, 5} -> 0, {2, 3, 4, 5} -> 0|>]
+"APPENDIX_B4_STAR_FPLUS_WEDGE_SQUARE="InputForm[{0, 0, 0, 0, 0}]
+"APPENDIX_B4_PHYSICAL_CURRENT="InputForm[{0, 0, 0, 0, 0}]
+"APPENDIX_B4_REQUIRED_SHIFT="InputForm[{(a^2*r^2)/(2*(qminus + r^2)*(qplus + r^2)*(qzero + r^2)^3), 0, 0, (a*(a^2 - qminus*qplus*qzero - qminus*qzero*r^2 - qplus*qzero*r^2 - qzero*r^4)*Cos[theta])/(4*(qminus + r^2)*(qplus + r^2)*(qzero + r^2)^3), (a*(a^2 - qminus*qplus*qzero - qminus*qzero*r^2 - qplus*qzero*r^2 - qzero*r^4))/(4*(qminus + r^2)*(qplus + r^2)*(qzero + r^2)^3)}]
+"APPENDIX_B4_CHECKS="InputForm[<|"FplusWedgeSquareVanishes" -> True, "StarFplusWedgeSquareVanishes" -> True, "PhysicalB4CurrentVanishes" -> True, "RequiredShiftIsNotIdenticallyZero" -> True, "B4CannotGenerateRequiredShift" -> True|>]
+"SOURCE_ORIGIN_PROFILE_RESIDUAL="InputForm[{0, 0}]
+"SOURCE_ORIGIN_KK_STATIC_CONTAMINATION="InputForm[{-1/4*(qminus*qplus*r^2)/((qminus + r^2)*(qplus + r^2)*(qzero + r^2)^2), 0}]
+"SOURCE_ORIGIN_KK_CANDIDATE_RESIDUAL="InputForm[{-1/4*(qminus*qplus*r^2)/((qminus + r^2)*(qplus + r^2)*(qzero + r^2)^2), -1/8*(a*(-(qminus*qplus*qzero) + qminus*qplus*r^2 - 2*qminus*qzero*r^2 - 2*qplus*qzero*r^2 - 2*qzero*r^4))/((qminus + r^2)*(qplus + r^2)*(qzero + r^2)^3)}]
+"SOURCE_ORIGIN_COORDINATE_DIRECTION_DETERMINANT="InputForm[(a*r*(a^2*qzero - qminus*qplus*qzero^2 + a^2*r^2 - qminus*qzero^2*r^2 - qplus*qzero^2*r^2 - qzero^2*r^4))/(2*(qminus + r^2)*(qplus + r^2)*(qzero + r^2)^5)]
+"SOURCE_ORIGIN_POSTDUAL_DIRECTION_DETERMINANT="InputForm[-1/4*(a*r^4*(2*qminus*qplus - qminus*qzero - qplus*qzero + qminus*r^2 + qplus*r^2 - 2*qzero*r^2)*(a^2*qzero - qminus*qplus*qzero^2 + a^2*r^2 - qminus*qzero^2*r^2 - qplus*qzero^2*r^2 - qzero^2*r^4))/((qminus + r^2)^2*(qplus + r^2)^2*(qzero + r^2)^7)]
+"SOURCE_ORIGIN_SHIFT_FIELD_PROFILES="InputForm[{(a^2*r*(-(qminus*qplus*qzero) + 2*qminus*qplus*r^2 + 3*qminus*r^4 + 3*qplus*r^4 + qzero*r^4 + 4*r^6))/((qminus + r^2)^2*(qplus + r^2)^2*(qzero + r^2)^4), -1/2*(a*r*(3*a^2*qminus*qplus + a^2*qminus*qzero + a^2*qplus*qzero - 3*qminus^2*qplus^2*qzero + 4*a^2*qminus*r^2 + 4*a^2*qplus*r^2 + 2*a^2*qzero*r^2 - 6*qminus^2*qplus*qzero*r^2 - 6*qminus*qplus^2*qzero*r^2 + 5*a^2*r^4 - 3*qminus^2*qzero*r^4 - 12*qminus*qplus*qzero*r^4 - 3*qplus^2*qzero*r^4 - 6*qminus*qzero*r^6 - 6*qplus*qzero*r^6 - 3*qzero*r^8))/((qminus + r^2)^2*(qplus + r^2)^2*(qzero + r^2)^4), -1/4*(a*(a^2 - qminus*qplus*qzero - qminus*qzero*r^2 - qplus*qzero*r^2 - qzero*r^4))/((qminus + r^2)*(qplus + r^2)*(qzero + r^2)^3)}]
+"SOURCE_ORIGIN_SHIFT_CLOSURE="InputForm[0]
+"SOURCE_ORIGIN_UNDERDETERMINED_FAMILY="InputForm[{(2*a^2*ca*r^2)/((qminus + r^2)*(qplus + r^2)*(qzero + r^2)^3), (a*(a^2*ca + cb*qminus*qplus*qzero + cb*qminus*qzero*r^2 + cb*qplus*qzero*r^2 + cb*qzero*r^4))/((qminus + r^2)*(qplus + r^2)*(qzero + r^2)^3)}]
+"SOURCE_ORIGIN_FAMILY_CLOSURE="InputForm[0]
+"SOURCE_ORIGIN_CHECKS="InputForm[<|"RawProfileRecognition" -> True, "PrintedKKCandidateHasStaticContamination" -> True, "PrintedKKCandidateDoesNotEqualShift" -> True, "CoordinateDirectionDeterminantFormula" -> True, "NotRadialCoordinateDirection" -> True, "NotDisplayedPostdualDirection" -> True, "ShiftFieldIsClosedAndNontrivial" -> True, "RawProfileFamilyAlwaysClosed" -> True, "RawProfileFamilyAlwaysStaticVanishing" -> True, "RawProfileFamilyAlwaysHasRotationParity" -> True, "RawProfileFamilyAlwaysChargePreservingFalloff" -> True|>]
+"APPENDIX_B_BOUNDARY_NO_GO_CHECKS="InputForm[<|"FourAnchoredAppendixEntriesPresent" -> True, "B1ThroughB3ContainPlainD" -> True, "B1ThroughB3HaveNoExplicitH" -> True, "B4HasExplicitH" -> True, "NoTorsionfulDerivativeInBoundaryLedger" -> True, "OnlyB4HasExplicitH" -> True, "FplusWedgeSquareVanishes" -> True, "StarFplusWedgeSquareVanishes" -> True, "PhysicalB4CurrentVanishes" -> True, "RequiredShiftIsNotIdenticallyZero" -> True, "B4CannotGenerateRequiredShift" -> True, "RawProfileRecognition" -> True, "PrintedKKCandidateHasStaticContamination" -> True, "PrintedKKCandidateDoesNotEqualShift" -> True, "CoordinateDirectionDeterminantFormula" -> True, "NotRadialCoordinateDirection" -> True, "NotDisplayedPostdualDirection" -> True, "ShiftFieldIsClosedAndNontrivial" -> True, "RawProfileFamilyAlwaysClosed" -> True, "RawProfileFamilyAlwaysStaticVanishing" -> True, "RawProfileFamilyAlwaysHasRotationParity" -> True, "RawProfileFamilyAlwaysChargePreservingFalloff" -> True|>]
+"APPENDIX_B_BOUNDARY_NO_GO_FINAL_PASS="True
+"CELL_"1"_SECONDS="0.883056
+"CELL_"1"_RESULT_PASS="True
+"CELL_"1"_MESSAGE_COUNT="0
+"CELL_"1"_RESULT_HEAD="Symbol
+"CELL_"1"_RESULT_LEAF_COUNT="1
+"CELL_"1"_RESULT_SHORT=""Short[Null, 12]"
+"CELL_"1"_END"
+"RESULT_FAILURE_COUNT="0
+"RESULT_FAILURE_INDICES="InputForm[{}]
+"MESSAGE_CELL_COUNT="0
+"MESSAGE_CELL_INDICES="InputForm[{}]
+"MESSAGE_TOTAL_COUNT="0
+"CELL_SECONDS="InputForm[{0.883056}]
+"CELL_SECONDS_TOTAL="0.883056
+"FINAL_CHECKS="InputForm[<|"FourAnchoredAppendixEntriesPresent" -> True, "B1ThroughB3ContainPlainD" -> True, "B1ThroughB3HaveNoExplicitH" -> True, "B4HasExplicitH" -> True, "NoTorsionfulDerivativeInBoundaryLedger" -> True, "OnlyB4HasExplicitH" -> True, "FplusWedgeSquareVanishes" -> True, "StarFplusWedgeSquareVanishes" -> True, "PhysicalB4CurrentVanishes" -> True, "RequiredShiftIsNotIdenticallyZero" -> True, "B4CannotGenerateRequiredShift" -> True, "RawProfileRecognition" -> True, "PrintedKKCandidateHasStaticContamination" -> True, "PrintedKKCandidateDoesNotEqualShift" -> True, "CoordinateDirectionDeterminantFormula" -> True, "NotRadialCoordinateDirection" -> True, "NotDisplayedPostdualDirection" -> True, "ShiftFieldIsClosedAndNontrivial" -> True, "RawProfileFamilyAlwaysClosed" -> True, "RawProfileFamilyAlwaysStaticVanishing" -> True, "RawProfileFamilyAlwaysHasRotationParity" -> True, "RawProfileFamilyAlwaysChargePreservingFalloff" -> True|>]
+"GLOBAL_finalPass="InputForm[True]
+"DECLARED_PASS_VALUE="InputForm[True]
+"CELL_EVALUATION_PASS="True
+"END_UTC=""2026-07-21T01:33:26"
+"TOTAL_WALL_SECONDS="2.4314`6.8374014058573875
+"FRESH_KERNEL_FINAL_PASS="True
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_END"

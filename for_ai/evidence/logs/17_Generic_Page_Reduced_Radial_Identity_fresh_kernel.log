@@ -1,0 +1,71 @@
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_BEGIN"
+"FILE_BASENAME=""17_Generic_Page_Reduced_Radial_Identity.nb"
+"FILE_ABSOLUTE_PATH=""[LOCAL_HOME]/Documents/Codex/2026-07-12/https-www-overleaf-com-project-65577187a96876076df0bcd6/work/package_v4_staging/notebooks/17_Generic_Page_Reduced_Radial_Identity.nb"
+"KERNEL=""14.1.0 for Mac OS X ARM (64-bit) (July 16, 2024)"
+"START_UTC=""2026-07-20T06:38:20"
+"BYTES="2677918
+"SHA256=""a155cb8ea383e9069ab052204b57b5728fce3ef10c8c66642b306e2381edeacb"
+"PARSE_PASS="True
+"INPUT_CELL_COUNT="6
+"PASS_EXPRESSION=""notebook17FinalPass"
+"CELL_"1"_BEGIN"
+"CELL_"1"_SECONDS="0.006243
+"CELL_"1"_RESULT_PASS="True
+"CELL_"1"_MESSAGE_COUNT="0
+"CELL_"1"_RESULT_HEAD="Symbol
+"CELL_"1"_RESULT_LEAF_COUNT="1
+"CELL_"1"_RESULT_SHORT=""Short[Null, 12]"
+"CELL_"1"_END"
+"CELL_"2"_BEGIN"
+"CELL_"2"_SECONDS="2.230723
+"CELL_"2"_RESULT_PASS="True
+"CELL_"2"_MESSAGE_COUNT="0
+"CELL_"2"_RESULT_HEAD="Association
+"CELL_"2"_RESULT_LEAF_COUNT="4
+"CELL_"2"_RESULT_SHORT=""Short[<|\"InputHashPass\" -> True, \"FullPageRuleCount\" -> 3, \"J2PageRuleCount\" -> 3|>, 12]"
+"CELL_"2"_END"
+"CELL_"3"_BEGIN"
+"CELL_"3"_SECONDS="1.149292
+"CELL_"3"_RESULT_PASS="True
+"CELL_"3"_MESSAGE_COUNT="0
+"CELL_"3"_RESULT_HEAD="Association
+"CELL_"3"_RESULT_LEAF_COUNT="293
+"CELL_"3"_RESULT_SHORT=""Short[<|\"RawElectricJetDecompositionExact\" -> True, \"PageReducedLinearDecompositionExact\" -> True, \"RuleIdentityExact\" -> True, \"StoredCoefficientMatchesReconstruction\" -> True, \"Coefficient\" -> (jrot^2*q1*q2*q3 + 2*q1^2*q2^2*q3*x + 2*q1^2*q2*q3^2*x + 2*q1*q2^2*q3^2*x - jrot^2*q1*x^2 - jrot^2*q2*x^2 + q1^2*q2^2*x^2 - jrot^2*q3*x^2 + 8*q1^2*q2*q3*x^2 + 8*q1*q2^2*q3*x^2 + q1^2*q3^2*x^2 + 8*q1*q2*q3^2*x^2 + q2^2*q3^2*x^2 - 2*jrot^2*x^3 + 4*q1^2*q2*x^3 + 4*q1*q2^2*x^3 + 4*q1^2*q3*x^3 + 24*q1*q2*q3*x^3 + 4*q2^2*q3*x^3 + 4*q1*q3^2*x^3 + 4*q2*q3^2*x^3 + 2*q1^2*x^4 + 12*q1*q2*x^4 + 2*q2^2*x^4 + 12*q1*q3*x^4 + 12*q2*q3*x^4 + 2*q3^2*x^4 + 6*q1*x^5 + 6*q2*x^5 + 6*q3*x^5 + 3*x^6)/(2*(q1 + x)^2*(q2 + x)^2*(q3 + x)^2), \"CoefficientYDegree\" -> 1, \"EndpointPositiveCoefficientProofs\" -> {True, True}, \"DenominatorPositiveStructure\" -> True, \"PhysicalExteriorNonzeroProof\" -> True|>, 12]"
+"CELL_"3"_END"
+"CELL_"4"_BEGIN"
+"CELL_"4"_SECONDS="8.775945
+"CELL_"4"_RESULT_PASS="True
+"CELL_"4"_MESSAGE_COUNT="0
+"CELL_"4"_RESULT_HEAD="Association
+"CELL_"4"_RESULT_LEAF_COUNT="244
+"CELL_"4"_RESULT_SHORT=""Short[<|\"RawElectricJetDecompositionExact\" -> True, \"EachPageRuleLinearDecompositionExact\" -> {True, True, True}, \"PageReducedLinearDecompositionExact\" -> True, \"RuleIdentityExact\" -> True, \"StoredCoefficientMatchesReconstruction\" -> True, \"Coefficient\" -> (x*(2*q1^2*q2^2*q3 + 2*q1^2*q2*q3^2 + 2*q1*q2^2*q3^2 + q1^2*q2^2*x + 8*q1^2*q2*q3*x + 8*q1*q2^2*q3*x + q1^2*q3^2*x + 8*q1*q2*q3^2*x + q2^2*q3^2*x + 4*q1^2*q2*x^2 + 4*q1*q2^2*x^2 + 4*q1^2*q3*x^2 + 24*q1*q2*q3*x^2 + 4*q2^2*q3*x^2 + 4*q1*q3^2*x^2 + 4*q2*q3^2*x^2 + 2*q1^2*x^3 + 12*q1*q2*x^3 + 2*q2^2*x^3 + 12*q1*q3*x^3 + 12*q2*q3*x^3 + 2*q3^2*x^3 + 6*q1*x^4 + 6*q2*x^4 + 6*q3*x^4 + 3*x^5))/(2*(q1 + x)^2*(q2 + x)^2*(q3 + x)^2), \"PositiveNumeratorPolynomial\" -> True, \"PositiveDenominatorStructure\" -> True, \"PhysicalExteriorNonzeroProof\" -> True, \"ClosedSolutionInOriginalUnreducedRadialEOM\" -> True, \"ClosedSolutionInPageRules\" -> {True, True, True}, \"ClosedSolutionInRadialRule\" -> True|>, 12]"
+"CELL_"4"_END"
+"CELL_"5"_BEGIN"
+"CELL_"5"_SECONDS="0.000174
+"CELL_"5"_RESULT_PASS="True
+"CELL_"5"_MESSAGE_COUNT="0
+"CELL_"5"_RESULT_HEAD="Association
+"CELL_"5"_RESULT_LEAF_COUNT="5
+"CELL_"5"_RESULT_SHORT=""Short[<|\"Verdict\" -> <|\"FullIdentityPass\" -> True, \"J2IdentityPass\" -> True|>, \"FINAL_PASS\" -> True|>, 12]"
+"CELL_"5"_END"
+"CELL_"6"_BEGIN"
+"CELL_"6"_SECONDS="0.000015
+"CELL_"6"_RESULT_PASS="True
+"CELL_"6"_MESSAGE_COUNT="0
+"CELL_"6"_RESULT_HEAD="Symbol
+"CELL_"6"_RESULT_LEAF_COUNT="1
+"CELL_"6"_RESULT_SHORT=""Short[True, 12]"
+"CELL_"6"_END"
+"RESULT_FAILURE_COUNT="0
+"RESULT_FAILURE_INDICES="InputForm[{}]
+"MESSAGE_CELL_COUNT="0
+"MESSAGE_CELL_INDICES="InputForm[{}]
+"MESSAGE_TOTAL_COUNT="0
+"CELL_SECONDS="InputForm[{0.006243, 2.230723, 1.149292, 8.775945, 0.000174, 0.000015}]
+"CELL_SECONDS_TOTAL="12.162391999999999
+"DECLARED_PASS_VALUE="InputForm[True]
+"CELL_EVALUATION_PASS="True
+"END_UTC=""2026-07-20T06:38:34"
+"TOTAL_WALL_SECONDS="13.652016`7.586741782090829
+"FRESH_KERNEL_FINAL_PASS="True
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_END"

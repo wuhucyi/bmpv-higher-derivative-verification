@@ -1,0 +1,115 @@
+Notebook[{Cell["Source Sectors and the F4 Interpretation", "Title"], 
+  Cell["Version-3 human notation guide (documentation only; no Input cell is \
+changed). In the compact solution and verifier notebooks: x=r^2; q1,q2,q3 are \
+the harmonic parameters mu1,mu2,mu3, not normalized conserved charges; jrot \
+is the rotation parameter j; U1,U2,U3 are the electric corrections delta u_I; \
+B1,B2,B3 are the gauge-covariant fibre corrections; Om is delta omega; Ft, \
+Gr, and Sq are the temporal warp, radial warp, and squashing corrections; P \
+and S are delta p and delta s, where X1=exp(2p/3-s), X2=exp(2p/3+s), and \
+X3=exp(-4p/3). Physical quantities are Q_I=Pi mu_I/(4 G5) and J1=J2=Pi j/(4 \
+G5). See the report section 'Human-readable notation and result at a glance' \
+for the full dictionary.", "Text"], Cell["Inheritance: evaluate or inspect \
+notebooks 00 and 01 first. Notebook 00 derives the reduced action and source \
+construction; notebook 01 stores the literal homogeneous operators and \
+lambda3 sources. This notebook is a compact audit of their interpretation.", 
+   "Text"], Cell["1. Standalone curvature-free vector invariant", "Section"], 
+  Cell["The following algebraic identity is the BPS regression used for the \
+separate curvature-free vector-multiplet invariant. Its exact zero does not \
+apply term-by-term to the gravity invariant.", "Text"], 
+  Cell[BoxData[RowBox[{RowBox[{"Clear", "[", "z", "]"}], ";", 
+      RowBox[{"vectorBPSAlgebraResidual", "=", 
+        RowBox[{"Expand", "[", RowBox[{SuperscriptBox[
+             RowBox[{"(", RowBox[{RowBox[{"-", "2"}], " ", "z"}], ")"}], 
+             "2"], "-", RowBox[{"4", " ", RowBox[{"(", RowBox[{"2", " ", 
+                  SuperscriptBox["z", "2"]}], ")"}]}], "+", 
+            RowBox[{"4", " ", RowBox[{"(", RowBox[{RowBox[{"-", "2"}], " ", 
+                  "z"}], ")"}], " ", "z"}], "-", RowBox[{"16", " ", 
+              RowBox[{"(", RowBox[{"-", SuperscriptBox["z", "2"]}], ")"}]}], 
+            "-", RowBox[{"4", " ", SuperscriptBox["z", "2"]}]}], "]"}]}], 
+      ";", "vectorBPSAlgebraResidual"}]], "Input"], 
+  Cell[BoxData[RowBox[{"vectorBPSAlgebraResidual", "===", "0"}]], "Input"], 
+  Cell["2. Embedded source-validation record", "Section"], 
+  Cell[BoxData[RowBox[{"sourceValidationEvidence", "=", 
+      RowBox[{"\[LeftAssociation]", RowBox[
+         {RowBox[{"\"StandaloneCurvatureFreeVectorInvariantBPSResidual\"", 
+            "\[Rule]", "0"}], ",", RowBox[{"\"GaugeSourceBooleanChecks\"", 
+            "\[Rule]", RowBox[{"\[LeftAssociation]", RowBox[{RowBox[
+                 {"\"Passed\"", "\[Rule]", "108"}], ",", RowBox[
+                 {"\"Failed\"", "\[Rule]", "0"}]}], 
+              "\[RightAssociation]"}]}], ",", 
+          RowBox[{"\"ScalarSourceBooleanChecks\"", "\[Rule]", 
+            RowBox[{"\[LeftAssociation]", RowBox[{RowBox[{"\"Passed\"", 
+                  "\[Rule]", "40"}], ",", RowBox[{"\"Failed\"", "\[Rule]", 
+                  "0"}]}], "\[RightAssociation]"}]}], ",", 
+          RowBox[{"\"GaugeSectorKeys\"", "\[Rule]", 
+            RowBox[{"{", RowBox[{"\"RFF\"", ",", "\"E\"", ",", "\"Et\"", ",", 
+                "\"H\"", ",", "\"Ht\"", ",", "\"W\"", ",", "\"ARR\""}], 
+              "}"}]}], ",", RowBox[{"\"ScalarSectorKeys\"", "\[Rule]", 
+            RowBox[{"{", RowBox[{"\"Riemann2\"", ",", "\"RFF\"", ",", 
+                "\"I\"", ",", "\"E\"", ",", "\"Et\"", ",", "\"H\"", ",", 
+                "\"Ht\"", ",", "\"W\""}], "}"}]}], ",", 
+          RowBox[{"\"GaugeParity\"", "\[Rule]", RowBox[{"\[LeftAssociation]", 
+              RowBox[{RowBox[{"\"u1\"", "\[Rule]", "\"even\""}], ",", 
+                RowBox[{"\"u2\"", "\[Rule]", "\"even\""}], ",", 
+                RowBox[{"\"u3\"", "\[Rule]", "\"even\""}], ",", 
+                RowBox[{"\"v1\"", "\[Rule]", "\"odd\""}], ",", 
+                RowBox[{"\"v2\"", "\[Rule]", "\"odd\""}], ",", 
+                RowBox[{"\"v3\"", "\[Rule]", "\"odd\""}]}], 
+              "\[RightAssociation]"}]}], ",", RowBox[{"\"ScalarParity\"", 
+            "\[Rule]", RowBox[{"\[LeftAssociation]", RowBox[{RowBox[
+                 {"\"p\"", "\[Rule]", "\"even\""}], ",", RowBox[{"\"s\"", 
+                  "\[Rule]", "\"even\""}]}], "\[RightAssociation]"}]}], ",", 
+          RowBox[{"\"StaticOldSolutionResiduals\"", "\[Rule]", 
+            RowBox[{"\[LeftAssociation]", RowBox[{RowBox[{"\"u1\"", 
+                  "\[Rule]", "0"}], ",", RowBox[{"\"u2\"", "\[Rule]", "0"}], 
+                ",", RowBox[{"\"u3\"", "\[Rule]", "0"}], ",", RowBox[
+                 {"\"v1\"", "\[Rule]", "0"}], ",", RowBox[{"\"v2\"", 
+                  "\[Rule]", "0"}], ",", RowBox[{"\"v3\"", "\[Rule]", "0"}], 
+                ",", RowBox[{"\"p\"", "\[Rule]", "0"}], ",", RowBox[
+                 {"\"s\"", "\[Rule]", "0"}], ",", RowBox[{"\"gr\"", 
+                  "\[Rule]", "0"}], ",", RowBox[{"\"hr\"", "\[Rule]", "0"}], 
+                ",", RowBox[{"\"squ\"", "\[Rule]", "0"}], ",", 
+                RowBox[{"\"omega\"", "\[Rule]", "0"}]}], 
+              "\[RightAssociation]"}]}], ",", 
+          RowBox[{"\"StaticMetricFResidualStatus\"", "\[Rule]", 
+            "\"TIMEOUT_NOT_FAILURE\""}], ",", 
+          RowBox[{"\"FullLambda3DirectGaugeCompletionEplusEtNonzero\"", 
+            "\[Rule]", "True"}], ",", RowBox[
+           {"\"FullLambda3RFFSectorNonzero\"", "\[Rule]", "True"}], ",", 
+          RowBox[{"\"Interpretation\"", "\[Rule]", "\"The separate \
+curvature-free vector invariant has zero BPS equations. The complete \
+supersymmetric Riemann-square invariant still contains nonzero F^4/RFF \
+completion sectors and must be varied as a whole.\""}]}], 
+        "\[RightAssociation]"}]}]], "Input"], 
+  Cell[BoxData[RowBox[{"Association", "[", 
+      RowBox[{RowBox[{"\"StandaloneVectorPass\"", "\[Rule]", 
+          RowBox[{RowBox[{"sourceValidationEvidence", "[", 
+              "\"StandaloneCurvatureFreeVectorInvariantBPSResidual\"", "]"}], 
+            "===", "0"}]}], ",", RowBox[{"\"GaugeChecksPass\"", "\[Rule]", 
+          RowBox[{RowBox[{"sourceValidationEvidence", "[", 
+              RowBox[{"\"GaugeSourceBooleanChecks\"", ",", "\"Failed\""}], 
+              "]"}], "===", "0"}]}], ",", RowBox[{"\"ScalarChecksPass\"", 
+          "\[Rule]", RowBox[{RowBox[{"sourceValidationEvidence", "[", 
+              RowBox[{"\"ScalarSourceBooleanChecks\"", ",", "\"Failed\""}], 
+              "]"}], "===", "0"}]}], ",", RowBox[{"\"StaticRegressionPass\"", 
+          "\[Rule]", RowBox[{"And", "@@", RowBox[{RowBox[{"(", 
+                RowBox[{RowBox[{"#1", "===", "0"}], "&"}], ")"}], "/@", 
+              RowBox[{"Values", "[", RowBox[{"sourceValidationEvidence", "[", 
+                  "\"StaticOldSolutionResiduals\"", "]"}], "]"}]}]}]}], ",", 
+        RowBox[{"\"CompletionSectorsRemain\"", "\[Rule]", 
+          RowBox[{RowBox[{"sourceValidationEvidence", "[", 
+              "\"FullLambda3DirectGaugeCompletionEplusEtNonzero\"", "]"}], 
+            "&&", RowBox[{"sourceValidationEvidence", "[", 
+              "\"FullLambda3RFFSectorNonzero\"", "]"}]}]}]}], "]"}]], 
+   "Input"], Cell["3. Interpretation", "Section"], 
+  Cell["Exact conclusion: the separate curvature-free vector invariant does \
+not correct this BPS background. The nontrivial correction is generated by \
+the complete supersymmetric Riemann-square invariant. In this \
+field-redefinition frame that invariant includes Riemann-F^2, quartic \
+field-strength, scalar-gradient, and Chern-Simons companions; the bare \
+Riemann^2 monomial is not a separately supersymmetric calculation.", "Text"], 
+  Cell["The TIMEOUT label for the static f-metric regression is deliberately \
+not a failure. All other listed static residuals are literal zero; the \
+complete equal-charge and generic O(j) solution checks are given \
+independently in notebooks 05 and 06.", "Text"]}, 
+ WindowTitle -> "Source sectors and F4 interpretation"]

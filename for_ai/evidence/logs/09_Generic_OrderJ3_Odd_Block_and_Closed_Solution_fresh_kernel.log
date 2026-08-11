@@ -1,0 +1,47 @@
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_BEGIN"
+"FILE_BASENAME=""09_Generic_OrderJ3_Odd_Block_and_Closed_Solution.nb"
+"FILE_ABSOLUTE_PATH=""[LOCAL_HOME]/Documents/Codex/2026-07-12/https-www-overleaf-com-project-65577187a96876076df0bcd6/work/package_v4_staging/notebooks/09_Generic_OrderJ3_Odd_Block_and_Closed_Solution.nb"
+"KERNEL=""14.1.0 for Mac OS X ARM (64-bit) (July 16, 2024)"
+"START_UTC=""2026-07-20T06:25:53"
+"BYTES="2867
+"SHA256=""77e45fe73e61ee188f823f9bee13185aab1a9bae22e9daa72cfb79b92b7c8439"
+"PARSE_PASS="True
+"INPUT_CELL_COUNT="3
+"PASS_EXPRESSION=""True"
+"CELL_"1"_BEGIN"
+"CELL_"1"_SECONDS="0.00355
+"CELL_"1"_RESULT_PASS="True
+"CELL_"1"_MESSAGE_COUNT="0
+"CELL_"1"_RESULT_HEAD="Association
+"CELL_"1"_RESULT_LEAF_COUNT="38
+"CELL_"1"_RESULT_SHORT=""Short[<|\"B13\" -> 0, \"B23\" -> 0, \"B33\" -> 0, \"Omega3\" -> 24/(x^2*(q3 + x)*((q1 + x)*(q2 + x) + (q1 + x)*(q3 + x) + (q2 + x)*(q3 + x)))|>, 12]"
+"CELL_"1"_END"
+"CELL_"2"_BEGIN"
+"CELL_"2"_SECONDS="0.03548
+"CELL_"2"_RESULT_PASS="True
+"CELL_"2"_MESSAGE_COUNT="0
+"CELL_"2"_RESULT_HEAD="Association
+"CELL_"2"_RESULT_LEAF_COUNT="4
+"CELL_"2"_RESULT_SHORT=""Short[<|\"RecordedFourOfFourResidualReplay\" -> True, \"ThreeFibreCorrectionsVanish\" -> True, \"Omega3VanishesAtInfinity\" -> True|>, 12]"
+"CELL_"2"_END"
+"CELL_"3"_BEGIN"
+"CELL_"3"_SECONDS="0.007227
+"CELL_"3"_RESULT_PASS="True
+"CELL_"3"_MESSAGE_COUNT="0
+"CELL_"3"_RESULT_HEAD="Association
+"CELL_"3"_RESULT_LEAF_COUNT="22
+"CELL_"3"_RESULT_SHORT=""Short[<|\"Computed\" -> 8/(x^2*(q + x)^3), \"Expected\" -> 8/(x^2*(q + x)^3), \"Pass\" -> True|>, 12]"
+"CELL_"3"_END"
+"RESULT_FAILURE_COUNT="0
+"RESULT_FAILURE_INDICES="InputForm[{}]
+"MESSAGE_CELL_COUNT="0
+"MESSAGE_CELL_INDICES="InputForm[{}]
+"MESSAGE_TOTAL_COUNT="0
+"CELL_SECONDS="InputForm[{0.00355, 0.03548, 0.007227}]
+"CELL_SECONDS_TOTAL="0.04625699999999999
+"DECLARED_PASS_VALUE="InputForm[True]
+"CELL_EVALUATION_PASS="True
+"END_UTC=""2026-07-20T06:25:54"
+"TOTAL_WALL_SECONDS="1.414643`6.602191848415101
+"FRESH_KERNEL_FINAL_PASS="True
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_END"

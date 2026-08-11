@@ -1,0 +1,73 @@
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_BEGIN"
+"FILE_BASENAME=""19_Rotating_Heterotic_to_STU_Field_Map_Candidate.nb"
+"FILE_ABSOLUTE_PATH=""[LOCAL_HOME]/Documents/Codex/2026-07-12/https-www-overleaf-com-project-65577187a96876076df0bcd6/work/package_v3_staging/notebooks/19_Rotating_Heterotic_to_STU_Field_Map_Candidate.nb"
+"KERNEL=""14.1.0 for Mac OS X ARM (64-bit) (July 16, 2024)"
+"START_UTC=""2026-07-19T10:24:38"
+"BYTES="8984
+"SHA256=""41799ba4265bcc924ab4e0dd08ab1217c532cbe72ce1afc3a9ad44e7af482924"
+"PARSE_PASS="True
+"INPUT_CELL_COUNT="6
+"PASS_EXPRESSION=""TrueQ[Global`finalPassForProvedSector]"
+"CELL_"1"_BEGIN"
+"CELL_"1"_SECONDS="0.096035
+"CELL_"1"_RESULT_PASS="True
+"CELL_"1"_MESSAGE_COUNT="0
+"CELL_"1"_RESULT_HEAD="Symbol
+"CELL_"1"_RESULT_LEAF_COUNT="1
+"CELL_"1"_RESULT_SHORT=""Short[Null, 12]"
+"CELL_"1"_END"
+"CELL_"2"_BEGIN"
+"CELL_"2"_SECONDS="4.454258
+"CELL_"2"_RESULT_PASS="True
+"CELL_"2"_MESSAGE_COUNT="0
+"CELL_"2"_RESULT_HEAD="Symbol
+"CELL_"2"_RESULT_LEAF_COUNT="1
+"CELL_"2"_RESULT_SHORT=""Short[Null, 12]"
+"CELL_"2"_END"
+"CELL_"3"_BEGIN"
+"CELL_"3"_SECONDS="0.82177
+"CELL_"3"_RESULT_PASS="True
+"CELL_"3"_MESSAGE_COUNT="0
+"CELL_"3"_RESULT_HEAD="Symbol
+"CELL_"3"_RESULT_LEAF_COUNT="1
+"CELL_"3"_RESULT_SHORT=""Short[Null, 12]"
+"CELL_"3"_END"
+"CELL_"4"_BEGIN"
+"CELL_"4"_SECONDS="0.007694
+"CELL_"4"_RESULT_PASS="True
+"CELL_"4"_MESSAGE_COUNT="0
+"CELL_"4"_RESULT_HEAD="Symbol
+"CELL_"4"_RESULT_LEAF_COUNT="1
+"CELL_"4"_RESULT_SHORT=""Short[Null, 12]"
+"CELL_"4"_END"
+"CELL_"5"_BEGIN"
+"CELL_"5"_SECONDS="0.133982
+"CELL_"5"_RESULT_PASS="True
+"CELL_"5"_MESSAGE_COUNT="0
+"CELL_"5"_RESULT_HEAD="Symbol
+"CELL_"5"_RESULT_LEAF_COUNT="1
+"CELL_"5"_RESULT_SHORT=""Short[Null, 12]"
+"CELL_"5"_END"
+"CELL_"6"_BEGIN"
+"CELL_"6"_SECONDS="0.000093
+"CELL_"6"_RESULT_PASS="True
+"CELL_"6"_MESSAGE_COUNT="0
+"CELL_"6"_RESULT_HEAD="Association
+"CELL_"6"_RESULT_LEAF_COUNT="19
+"CELL_"6"_RESULT_SHORT=""Short[<|\"Checks\" -> <|\"ProfileExpansion\" -> True, \"RawMetricReduction\" -> True, \"RawDilatonReduction\" -> True, \"RawMomentumVectorReduction\" -> True, \"TkkEqualsTrot\" -> True, \"CanonicalSigmaUncorrected\" -> True, \"RotationSelfDualCoefficient\" -> True, \"NoAsymptoticChargeTail\" -> True, \"STUScalarConstraint\" -> True, \"StaticLimitMatchesKnownMap\" -> True, \"WindingLorentzCSMap\" -> \"CONDITIONAL: full tensor substitution required\", \"CorrectedDualizationMap\" -> \"CONDITIONAL: full tensor substitution required\", \"FullFiveDimensionalProfileMatch\" -> \"CONDITIONAL: depends on the preceding two checks and radial gauge\"|>, \"ProvedChecksPassed\" -> 10, \"ProvedChecksExpected\" -> 10, \"ConditionalChecks\" -> 3, \"FINAL_PASS_PROVED_SECTOR\" -> True|>, 12]"
+"CELL_"6"_END"
+"RESULT_FAILURE_COUNT="0
+"RESULT_FAILURE_INDICES="InputForm[{}]
+"MESSAGE_CELL_COUNT="0
+"MESSAGE_CELL_INDICES="InputForm[{}]
+"MESSAGE_TOTAL_COUNT="0
+"CELL_SECONDS="InputForm[{0.096035, 4.454258, 0.82177, 0.007694, 0.133982, 0.000093}]
+"CELL_SECONDS_TOTAL="5.513832
+"FINAL_LEDGER="InputForm[<|"ProfileExpansion" -> True, "RawMetricReduction" -> True, "RawDilatonReduction" -> True, "RawMomentumVectorReduction" -> True, "TkkEqualsTrot" -> True, "CanonicalSigmaUncorrected" -> True, "RotationSelfDualCoefficient" -> True, "NoAsymptoticChargeTail" -> True, "STUScalarConstraint" -> True, "StaticLimitMatchesKnownMap" -> True, "WindingLorentzCSMap" -> "CONDITIONAL: full tensor substitution required", "CorrectedDualizationMap" -> "CONDITIONAL: full tensor substitution required", "FullFiveDimensionalProfileMatch" -> "CONDITIONAL: depends on the preceding two checks and radial gauge"|>]
+"GLOBAL_finalPassForProvedSector="InputForm[True]
+"DECLARED_PASS_VALUE="InputForm[True]
+"CELL_EVALUATION_PASS="True
+"END_UTC=""2026-07-19T10:24:47"
+"TOTAL_WALL_SECONDS="8.495661`7.380742168047079
+"FRESH_KERNEL_FINAL_PASS="True
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_END"

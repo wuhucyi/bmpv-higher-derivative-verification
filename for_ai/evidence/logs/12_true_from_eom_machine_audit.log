@@ -1,0 +1,160 @@
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_BEGIN"
+"FILE_BASENAME=""12_True_FromEOM_ExactInJ_Verifier.nb"
+"FILE_ABSOLUTE_PATH=""[LOCAL_HOME]/Documents/Codex/2026-07-12/https-www-overleaf-com-project-65577187a96876076df0bcd6/work/package_v4_staging/notebooks/12_True_FromEOM_ExactInJ_Verifier.nb"
+"KERNEL=""14.1.0 for Mac OS X ARM (64-bit) (July 16, 2024)"
+"START_UTC=""2026-07-20T06:26:01"
+"BYTES="19990167
+"SHA256=""e313875ed52b6ec57ec5a1bf1118ad9d239af0de5ec731b492f7de6cbe7855a6"
+"PARSE_PASS="True
+"INPUT_CELL_COUNT="17
+"PASS_EXPRESSION=""finalPass"
+"CELL_"1"_BEGIN"
+"CELL_"1"_SECONDS="0.00566
+"CELL_"1"_RESULT_PASS="True
+"CELL_"1"_MESSAGE_COUNT="0
+"CELL_"1"_RESULT_HEAD="Symbol
+"CELL_"1"_RESULT_LEAF_COUNT="1
+"CELL_"1"_RESULT_SHORT=""Short[Null, 12]"
+"CELL_"1"_END"
+"CELL_"2"_BEGIN"
+"CELL_"2"_SECONDS="0.017355
+"CELL_"2"_RESULT_PASS="True
+"CELL_"2"_MESSAGE_COUNT="0
+"CELL_"2"_RESULT_HEAD="List
+"CELL_"2"_RESULT_LEAF_COUNT="14
+"CELL_"2"_RESULT_SHORT=""Short[{\"u1\", \"u2\", \"u3\", \"v1\", \"v2\", \"v3\", \"p\", \"s\", \"f\", \"gr\", \"hr\", \"squ\", \"omega\"}, 12]"
+"CELL_"2"_END"
+"CELL_"3"_BEGIN"
+"CELL_"3"_SECONDS="8.207357
+"CELL_"3"_RESULT_PASS="True
+"CELL_"3"_MESSAGE_COUNT="0
+"CELL_"3"_RESULT_HEAD="List
+"CELL_"3"_RESULT_LEAF_COUNT="14
+"CELL_"3"_RESULT_SHORT=""Short[{\"u1\", \"u2\", \"u3\", \"v1\", \"v2\", \"v3\", \"p\", \"s\", \"f\", \"gr\", \"hr\", \"squ\", \"omega\"}, 12]"
+"CELL_"3"_END"
+"CELL_"4"_BEGIN"
+"CELL_"4"_SECONDS="0.002018
+"CELL_"4"_RESULT_PASS="True
+"CELL_"4"_MESSAGE_COUNT="0
+"CELL_"4"_RESULT_HEAD="List
+"CELL_"4"_RESULT_LEAF_COUNT="16
+"CELL_"4"_RESULT_SHORT=""Short[{\"Gauge\", \"OrderInLambda3\", \"RotationDependence\", \"U1\", \"U2\", \"U3\", \"B1\", \"B2\", \"B3\", \"P\", \"S\", \"Ft\", \"Gr\", \"K\", \"Om\"}, 12]"
+"CELL_"4"_END"
+"CELL_"5"_BEGIN"
+"CELL_"5"_SECONDS="0.938484
+"CELL_"5"_RESULT_PASS="True
+"CELL_"5"_MESSAGE_COUNT="0
+"CELL_"5"_RESULT_HEAD="Association
+"CELL_"5"_RESULT_LEAF_COUNT="21
+"CELL_"5"_RESULT_SHORT=""Short[<|\"J1\" -> {\"v1\", \"v2\", \"v3\", \"omega\"}, \"J2\" -> {\"u1\", \"u2\", \"u3\", \"p\", \"s\", \"f\", \"gr\", \"hr\", \"squ\"}, \"J3\" -> {\"v1\", \"v2\", \"v3\", \"omega\"}|>, 12]"
+"CELL_"5"_END"
+"CELL_"6"_BEGIN"
+"CELL_"6"_SECONDS="0.275914
+"CELL_"6"_RESULT_PASS="True
+"CELL_"6"_MESSAGE_COUNT="0
+"CELL_"6"_RESULT_HEAD="Association
+"CELL_"6"_RESULT_LEAF_COUNT="41
+"CELL_"6"_RESULT_SHORT=""Short[<|\"4\" -> {\"u1\", \"u2\", \"u3\", \"p\", \"s\", \"f\", \"gr\", \"hr\", \"squ\"}, \"5\" -> {\"v1\", \"v2\", \"v3\", \"omega\"}, \"6\" -> {\"u1\", \"u2\", \"u3\", \"p\", \"s\", \"f\", \"gr\", \"hr\", \"squ\"}, \"7\" -> {\"v1\", \"v2\", \"v3\", \"omega\"}, \"8\" -> {\"u1\", \"u2\", \"u3\", \"p\", \"s\", \"f\", \"gr\", \"hr\", \"squ\"}|>, 12]"
+"CELL_"6"_END"
+"CELL_"7"_BEGIN"
+"CELL_"7"_SECONDS="11.698567
+"CELL_"7"_RESULT_PASS="True
+"CELL_"7"_MESSAGE_COUNT="0
+"CELL_"7"_RESULT_HEAD="Symbol
+"CELL_"7"_RESULT_LEAF_COUNT="1
+"CELL_"7"_RESULT_SHORT=""Short[True, 12]"
+"CELL_"7"_END"
+"CELL_"8"_BEGIN"
+"CELL_"8"_SECONDS="6.190054
+"CELL_"8"_RESULT_PASS="True
+"CELL_"8"_MESSAGE_COUNT="0
+"CELL_"8"_RESULT_HEAD="Association
+"CELL_"8"_RESULT_LEAF_COUNT="31
+"CELL_"8"_RESULT_SHORT=""Short[<|\"RawOperatorDegrees\" -> <|\"u1\" -> 2, \"u2\" -> 2, \"u3\" -> 2, \"v1\" -> 1, \"v2\" -> 1, \"v3\" -> 1, \"p\" -> 2, \"s\" -> 2, \"f\" -> 2, \"gr\" -> 2, \"hr\" -> 2, \"squ\" -> 2, \"omega\" -> 1|>, \"SourceDegrees\" -> <|\"u1\" -> 4, \"u2\" -> 4, \"u3\" -> 4, \"v1\" -> 3, \"v2\" -> 3, \"v3\" -> 3, \"p\" -> 4, \"s\" -> 2, \"f\" -> 6, \"gr\" -> 6, \"hr\" -> 8, \"squ\" -> 8, \"omega\" -> 7|>, \"RawDegreePass\" -> True, \"SourceDegreePass\" -> True|>, 12]"
+"CELL_"8"_END"
+"CELL_"9"_BEGIN"
+"CELL_"9"_SECONDS="0.000683
+"CELL_"9"_RESULT_PASS="True
+"CELL_"9"_MESSAGE_COUNT="0
+"CELL_"9"_RESULT_HEAD="Symbol
+"CELL_"9"_RESULT_LEAF_COUNT="1
+"CELL_"9"_RESULT_SHORT=""Short[Null, 12]"
+"CELL_"9"_END"
+"CELL_"10"_BEGIN"
+"CELL_"10"_SECONDS="165.809287
+"CELL_"10"_RESULT_PASS="True
+"CELL_"10"_MESSAGE_COUNT="0
+"CELL_"10"_RESULT_HEAD="Association
+"CELL_"10"_RESULT_LEAF_COUNT="12
+"CELL_"10"_RESULT_SHORT=""Short[<|\"Residuals\" -> <|\"v1\" -> 0, \"v2\" -> 0, \"v3\" -> 0, \"omega\" -> 0|>, \"Passes\" -> <|\"v1\" -> True, \"v2\" -> True, \"v3\" -> True, \"omega\" -> True|>, \"AllPass\" -> True|>, 12]"
+"CELL_"10"_END"
+"CELL_"11"_BEGIN"
+"CELL_"11"_SECONDS="11.0616
+"CELL_"11"_RESULT_PASS="True
+"CELL_"11"_MESSAGE_COUNT="0
+"CELL_"11"_RESULT_HEAD="Association
+"CELL_"11"_RESULT_LEAF_COUNT="22
+"CELL_"11"_RESULT_SHORT=""Short[<|\"Residuals\" -> <|\"u1\" -> 0, \"u2\" -> 0, \"u3\" -> 0, \"p\" -> 0, \"s\" -> 0, \"f\" -> 0, \"gr\" -> 0, \"hr\" -> 0, \"squ\" -> 0|>, \"Passes\" -> <|\"u1\" -> True, \"u2\" -> True, \"u3\" -> True, \"p\" -> True, \"s\" -> True, \"f\" -> True, \"gr\" -> True, \"hr\" -> True, \"squ\" -> True|>, \"AllPass\" -> True|>, 12]"
+"CELL_"11"_END"
+"CELL_"12"_BEGIN"
+"CELL_"12"_SECONDS="4.9967
+"CELL_"12"_RESULT_PASS="True
+"CELL_"12"_MESSAGE_COUNT="0
+"CELL_"12"_RESULT_HEAD="Association
+"CELL_"12"_RESULT_LEAF_COUNT="12
+"CELL_"12"_RESULT_SHORT=""Short[<|\"Residuals\" -> <|\"v1\" -> 0, \"v2\" -> 0, \"v3\" -> 0, \"omega\" -> 0|>, \"Passes\" -> <|\"v1\" -> True, \"v2\" -> True, \"v3\" -> True, \"omega\" -> True|>, \"AllPass\" -> True|>, 12]"
+"CELL_"12"_END"
+"CELL_"13"_BEGIN"
+"CELL_"13"_SECONDS="2.438172
+"CELL_"13"_RESULT_PASS="True
+"CELL_"13"_MESSAGE_COUNT="0
+"CELL_"13"_RESULT_HEAD="Association
+"CELL_"13"_RESULT_LEAF_COUNT="15
+"CELL_"13"_RESULT_SHORT=""Short[<|\"Checks\" -> <|\"4:f\" -> True, \"4:gr\" -> True, \"4:hr\" -> True, \"4:squ\" -> True, \"6:f\" -> True, \"6:gr\" -> True, \"6:hr\" -> True, \"6:squ\" -> True, \"8:f\" -> True, \"8:gr\" -> True, \"8:hr\" -> True, \"8:squ\" -> True|>, \"AllPass\" -> True|>, 12]"
+"CELL_"13"_END"
+"CELL_"14"_BEGIN"
+"CELL_"14"_SECONDS="16.688789
+"CELL_"14"_RESULT_PASS="True
+"CELL_"14"_MESSAGE_COUNT="0
+"CELL_"14"_RESULT_HEAD="Association
+"CELL_"14"_RESULT_LEAF_COUNT="266
+"CELL_"14"_RESULT_SHORT=""Short[<|\"CanonicalMemberZeroFlags\" -> <|\"4\" -> <|\"u1\" -> <|\"HomogeneousZero\" -> False, \"SourceZero\" -> False|>, \"u2\" -> <|\"HomogeneousZero\" -> False, \"SourceZero\" -> False|>, \"u3\" -> <|\"HomogeneousZero\" -> False, \"SourceZero\" -> False|>, \"p\" -> <|\"HomogeneousZero\" -> False, \"SourceZero\" -> False|>, \"s\" -> <|\"HomogeneousZero\" -> True, \"SourceZero\" -> True|>, \"f\" -> <|\"HomogeneousZero\" -> False, \"SourceZero\" -> False|>, \"gr\" -> <|\"HomogeneousZero\" -> True, \"SourceZero\" -> True|>, \"hr\" -> <|\"HomogeneousZero\" -> True, \"SourceZero\" -> True|>, \"squ\" -> <|\"HomogeneousZero\" -> True, \"SourceZero\" -> True|>|>, \"5\" -> <|\"v1\" -> <|\"HomogeneousZero\" -> True, \"SourceZero\" -> True|>, \"v2\" -> <|\"HomogeneousZero\" -> True, \"SourceZero\" -> True|>, \"v3\" -> <|\"HomogeneousZero\" -> True, \"SourceZero\" -> True|>, \"omega\" -> <|\"HomogeneousZero\" -> True, \"SourceZero\" -> True|>|>, \"6\" -> <|\"u1\" -> <|\"HomogeneousZero\" -> True, \"SourceZero\" -> True|>, \"u2\" -> <|\"HomogeneousZero\" -> True, \"SourceZero\" -> True|>, \"u3\" -> <|\"HomogeneousZero\" -> True, \"SourceZero\" -> True|>, \"p\" -> <|\"HomogeneousZero\" -> True, \"SourceZero\" -> True|>, \"s\" -> <|\"HomogeneousZero\" -> True, \"SourceZero\" -> True|>, \"f\" -> <|\"HomogeneousZero\" -> True, \"SourceZero\" -> True|>, \"gr\" -> <|\"HomogeneousZero\" -> True, \"SourceZero\" -> True|>, \"hr\" -> <|\"HomogeneousZero\" -> True, \"SourceZero\" -> True|>, \"squ\" -> <|\"HomogeneousZero\" -> True, \"SourceZero\" -> True|>|>, \"7\" -> <|\"v1\" -> <|\"HomogeneousZero\" -> True, \"SourceZero\" -> True|>, \"v2\" -> <|\"HomogeneousZero\" -> True, \"SourceZero\" -> True|>, \"v3\" -> <|\"HomogeneousZero\" -> True, \"SourceZero\" -> True|>, \"omega\" -> <|\"HomogeneousZero\" -> True, \"SourceZero\" -> True|>|>, \"8\" -> <|\"u1\" -> <|\"HomogeneousZero\" -> True, \"SourceZero\" -> True|>, \"u2\" -> <|\"HomogeneousZero\" -> True, \"SourceZero\" -> True|>, \"u3\" -> <|\"HomogeneousZero\" -> True, \"SourceZero\" -> True|>, \"p\" -> <|\"HomogeneousZero\" -> True, \"SourceZero\" -> True|>, \"s\" -> <|\"HomogeneousZero\" -> True, \"SourceZero\" -> True|>, \"f\" -> <|\"HomogeneousZero\" -> True, \"SourceZero\" -> True|>, \"gr\" -> <|\"HomogeneousZero\" -> True, \"SourceZero\" -> True|>, \"hr\" -> <|\"HomogeneousZero\" -> True, \"SourceZero\" -> True|>, \"squ\" -> <|\"HomogeneousZero\" -> True, \"SourceZero\" -> True|>|>|>, \"Classes\" -> <|\"4\" -> <|\"u1\" -> \"NONTRIVIAL_CANCELLATION\", \"u2\" -> \"NONTRIVIAL_CANCELLATION\", \"u3\" -> \"NONTRIVIAL_CANCELLATION\", \"p\" -> \"NONTRIVIAL_CANCELLATION\", \"s\" -> \"ABSENCE_ZERO_ZERO\", \"f\" -> \"NONTRIVIAL_CANCELLATION\", \"gr\" -> \"ABSENCE_ZERO_ZERO\", \"hr\" -> \"ABSENCE_ZERO_ZERO\", \"squ\" -> \"ABSENCE_ZERO_ZERO\"|>, \"5\" -> <|\"v1\" -> \"ABSENCE_ZERO_ZERO\", \"v2\" -> \"ABSENCE_ZERO_ZERO\", \"v3\" -> \"ABSENCE_ZERO_ZERO\", \"omega\" -> \"ABSENCE_ZERO_ZERO\"|>, \"6\" -> <|\"u1\" -> \"ABSENCE_ZERO_ZERO\", \"u2\" -> \"ABSENCE_ZERO_ZERO\", \"u3\" -> \"ABSENCE_ZERO_ZERO\", \"p\" -> \"ABSENCE_ZERO_ZERO\", \"s\" -> \"ABSENCE_ZERO_ZERO\", \"f\" -> \"ABSENCE_ZERO_ZERO\", \"gr\" -> \"ABSENCE_ZERO_ZERO\", \"hr\" -> \"ABSENCE_ZERO_ZERO\", \"squ\" -> \"ABSENCE_ZERO_ZERO\"|>, \"7\" -> <|\"v1\" -> \"ABSENCE_ZERO_ZERO\", \"v2\" -> \"ABSENCE_ZERO_ZERO\", \"v3\" -> \"ABSENCE_ZERO_ZERO\", \"omega\" -> \"ABSENCE_ZERO_ZERO\"|>, \"8\" -> <|\"u1\" -> \"ABSENCE_ZERO_ZERO\", \"u2\" -> \"ABSENCE_ZERO_ZERO\", \"u3\" -> \"ABSENCE_ZERO_ZERO\", \"p\" -> \"ABSENCE_ZERO_ZERO\", \"s\" -> \"ABSENCE_ZERO_ZERO\", \"f\" -> \"ABSENCE_ZERO_ZERO\", \"gr\" -> \"ABSENCE_ZERO_ZERO\", \"hr\" -> \"ABSENCE_ZERO_ZERO\", \"squ\" -> \"ABSENCE_ZERO_ZERO\"|>|>, \"ClassCountsByOrder\" -> <|\"4\" -> <|\"NONTRIVIAL_CANCELLATION\" -> 5, \"ABSENCE_ZERO_ZERO\" -> 4|>, \"5\" -> <|\"ABSENCE_ZERO_ZERO\" -> 4|>, \"6\" -> <|\"ABSENCE_ZERO_ZERO\" -> 9|>, \"7\" -> <|\"ABSENCE_ZERO_ZERO\" -> 4|>, \"8\" -> <|\"ABSENCE_ZERO_ZERO\" -> 9|>|>, \"ClassCounts\" -> <|\"NONTRIVIAL_CANCELLATION\" -> 5, \"ABSENCE_ZERO_ZERO\" -> 30|>, \"ExpectedNontrivialJ4Fields\" -> {\"u1\", \"u2\", \"u3\", \"p\", \"f\"}, \"ActualNontrivialJ4Fields\" -> {\"u1\", \"u2\", \"u3\", \"p\", \"f\"}, \"ClassPass\" -> True, \"Residuals\" -> <|\"4\" -> <|\"u1\" -> 0, \"u2\" -> 0, \"u3\" -> 0, \"p\" -> 0, \"s\" -> 0, \"f\" -> 0, \"gr\" -> 0, \"hr\" -> 0, \"squ\" -> 0|>, \"5\" -> <|\"v1\" -> 0, \"v2\" -> 0, \"v3\" -> 0, \"omega\" -> 0|>, \"6\" -> <|\"u1\" -> 0, \"u2\" -> 0, \"u3\" -> 0, \"p\" -> 0, \"s\" -> 0, \"f\" -> 0, \"gr\" -> 0, \"hr\" -> 0, \"squ\" -> 0|>, \"7\" -> <|\"v1\" -> 0, \"v2\" -> 0, \"v3\" -> 0, \"omega\" -> 0|>, \"8\" -> <|\"u1\" -> 0, \"u2\" -> 0, \"u3\" -> 0, \"p\" -> 0, \"s\" -> 0, \"f\" -> 0, \"gr\" -> 0, \"hr\" -> 0, \"squ\" -> 0|>|>, \"Passes\" -> <|\"4\" -> <|\"u1\" -> True, \"u2\" -> True, \"u3\" -> True, \"p\" -> True, \"s\" -> True, \"f\" -> True, \"gr\" -> True, \"hr\" -> True, \"squ\" -> True|>, \"5\" -> <|\"v1\" -> True, \"v2\" -> True, \"v3\" -> True, \"omega\" -> True|>, \"6\" -> <|\"u1\" -> True, \"u2\" -> True, \"u3\" -> True, \"p\" -> True, \"s\" -> True, \"f\" -> True, \"gr\" -> True, \"hr\" -> True, \"squ\" -> True|>, \"7\" -> <|\"v1\" -> True, \"v2\" -> True, \"v3\" -> True, \"omega\" -> True|>, \"8\" -> <|\"u1\" -> True, \"u2\" -> True, \"u3\" -> True, \"p\" -> True, \"s\" -> True, \"f\" -> True, \"gr\" -> True, \"hr\" -> True, \"squ\" -> True|>|>, \"ResidualCount\" -> 35, \"ResidualZeroCount\" -> 35, \"AllResidualsPass\" -> True|>, 12]"
+"CELL_"14"_END"
+"CELL_"15"_BEGIN"
+"CELL_"15"_SECONDS="8.191026
+"CELL_"15"_RESULT_PASS="True
+"CELL_"15"_MESSAGE_COUNT="0
+"CELL_"15"_RESULT_HEAD="Association
+"CELL_"15"_RESULT_LEAF_COUNT="16
+"CELL_"15"_RESULT_SHORT=""Short[<|\"Degrees\" -> <|\"u1\" -> 4, \"u2\" -> 4, \"u3\" -> 4, \"v1\" -> 3, \"v2\" -> 3, \"v3\" -> 3, \"p\" -> 4, \"s\" -> 4, \"f\" -> 4, \"gr\" -> 4, \"hr\" -> 4, \"squ\" -> 4, \"omega\" -> 3|>, \"Pass\" -> True|>, 12]"
+"CELL_"15"_END"
+"CELL_"16"_BEGIN"
+"CELL_"16"_SECONDS="0.000228
+"CELL_"16"_RESULT_PASS="True
+"CELL_"16"_MESSAGE_COUNT="0
+"CELL_"16"_RESULT_HEAD="Association
+"CELL_"16"_RESULT_LEAF_COUNT="28
+"CELL_"16"_RESULT_SHORT=""Short[<|\"Verdict\" -> <|\"LiteralHashPass\" -> True, \"RawOperatorDegreePass\" -> True, \"SourceDegreePass\" -> True, \"J1FourOfFour\" -> True, \"J2NineOfNine\" -> True, \"J3FourOfFour\" -> True, \"MetricSourceCoefficientCrossChecks\" -> True, \"ClosureCount\" -> 35, \"ClosureZeroCount\" -> 35, \"ClosureAllPass\" -> True, \"ClosureClassPass\" -> True, \"NontrivialJ4Fields\" -> {\"u1\", \"u2\", \"u3\", \"p\", \"f\"}, \"NontrivialCancellationCount\" -> 5, \"AbsenceZeroZeroCount\" -> 30, \"OneSidedZeroCount\" -> 0, \"HomogeneousOnSolutionDegreePass\" -> True, \"GenericStaticMetricSymbolicProof\" -> \"NOT CLAIMED: exact rational samples only\", \"GenericWaldJ4\" -> \"NOT COMPUTED\", \"HeteroticFieldMap\" -> \"OPEN\", \"InvariantHorizonRegularity\" -> \"OPEN\"|>, \"FINAL_PASS\" -> True|>, 12]"
+"CELL_"16"_END"
+"CELL_"17"_BEGIN"
+"CELL_"17"_SECONDS="0.000012
+"CELL_"17"_RESULT_PASS="True
+"CELL_"17"_MESSAGE_COUNT="0
+"CELL_"17"_RESULT_HEAD="Symbol
+"CELL_"17"_RESULT_LEAF_COUNT="1
+"CELL_"17"_RESULT_SHORT=""Short[True, 12]"
+"CELL_"17"_END"
+"RESULT_FAILURE_COUNT="0
+"RESULT_FAILURE_INDICES="InputForm[{}]
+"MESSAGE_CELL_COUNT="0
+"MESSAGE_CELL_INDICES="InputForm[{}]
+"MESSAGE_TOTAL_COUNT="0
+"CELL_SECONDS="InputForm[{0.00566, 0.017355, 8.207357, 0.002018, 0.938484, 0.275914, 11.698567, 6.190054, 0.000683, 165.809287, 11.0616, 4.9967, 2.438172, 16.688789, 8.191026, 0.000228, 0.000012}]
+"CELL_SECONDS_TOTAL="236.52190600000003
+"GLOBAL_finalPass="InputForm[True]
+"DECLARED_PASS_VALUE="InputForm[True]
+"CELL_EVALUATION_PASS="True
+"END_UTC=""2026-07-20T06:30:00"
+"TOTAL_WALL_SECONDS="238.728648`8.829449531990676
+"FRESH_KERNEL_FINAL_PASS="True
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_END"

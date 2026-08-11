@@ -1,0 +1,24 @@
+schema_version: 1
+purpose: "Hypotheses and release work not promoted to established claims."
+observations:
+  - id: OBS-OFFSHELL-001
+    status: open
+    statement: >-
+      A larger covariant field-redefinition basis or an unreduced parent
+      functional may determine the rotating third-vector shift off shell.
+    promotion_requirement: >-
+      Supply an independent covariant derivation valid beyond the stationary
+      BMPV solution space and pass a new symbolic audit.
+    related_claims: [MAP-OFFSHELL-001, MAP-SOURCE-NOGO-001]
+  - id: OBS-ARCHIVE-001
+    status: release_blocked
+    statement: "The full sealed-v5 archive still needs immutable DOI metadata."
+    promotion_requirement: "All-author approval, license decision, clean archive hash, DOI, and public URL."
+  - id: OBS-ARA-001
+    status: descriptive_only
+    statement: >-
+      The directory follows an ARA-inspired four-layer organization adapted to
+      symbolic high-energy theory.
+    promotion_requirement: >-
+      Do not call it formally ARA-certified without an external normative
+      compiler and certification process.

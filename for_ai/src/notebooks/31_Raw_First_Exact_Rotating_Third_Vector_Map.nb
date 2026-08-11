@@ -1,0 +1,222 @@
+Notebook[{Cell["Raw-first exact rotating third-vector map", "Title"], 
+  Cell["A solution-level generic certificate exact in rotation", "Subtitle"], 
+  Cell["Purpose and reading order", "Section"], 
+  Cell["This notebook begins with the raw heterotic dual potential rather \
+than the nonintegrable assembled three-form used in the earlier obstruction \
+test. It then adds the closed predual potential shift, applies the postdual \
+vector redefinition, performs the paper-to-areal radial pullback, and finally \
+compares with the embedded exact five-dimensional A3 target. Every parameter \
+remains symbolic.", "Text"], Cell["Invariant notation", "Section"], 
+  Cell["Write Dminus=r^2+qminus, Dplus=r^2+qplus, Dzero=r^2+qzero and \
+sigma3=dpsi+cos(theta)dphi. The target-required predual shift has exactly two \
+profiles: T dt+W sigma3. Its field-strength coefficients are -T' on dt wedge \
+dr, W' on dr wedge sigma3, and -W on the unit-sphere two-form, so its Bianchi \
+identity is automatic and is also checked explicitly.", "Text"], 
+  Cell["Target-independent raw duality", "Section"], 
+  Cell["Before loading or defining any five-dimensional target, the first \
+calculation keeps Zzero(r), Zplus(r), Zminus(r), and W(r) as arbitrary \
+positive radial functions. It proves all ten independent components of \
+hRaw=-exp(2 PhiRaw) starPhysical d[Zzero^(-1) Theta]. The flat-frame \
+convention is epsilon_(01234)=+1 and epsilon^(01234)=-1. Because the \
+spherical coordinate chart reverses the ordered-frame orientation, the \
+physical curved lower tensor has an additional minus sign relative to the \
+coordinate permutation symbol. The notebook requires the physical sign to \
+pass and the opposite sign to fail.", "Text"], Cell["Closed predual shift", 
+   "Section"], Cell["Comparison with the independently EOM-certified target determines the exact profiles T=a^2 r^2/(2 Dminus Dplus \
+Dzero^3) and W=a (a^2-qzero Dminus Dplus)/(4 Dminus Dplus Dzero^3). They \
+vanish in the static limit, have the correct even/odd rotation parity, and \
+fall as a^2/(2 r^8) and -a qzero/(4 r^6). Their later decomposition in raw source profiles is an exact algebraic recognition, not an independent source-side derivation of the coefficients.", "Text"], 
+  Cell["Complete machine calculation", "Section"], 
+  Cell[BoxData["Begin[\"RawDualityCertificate`\"];\n$Assumptions = r > 0 && 0 \
+< theta < Pi && z0[r] > 0 &&\n  zp[r] > 0 && zm[r] > 0 && Element[{r, theta}, \
+Reals];\ncoords = {t, r, theta, phi, psi}; n = 5;\nZ0 = z0[r]; Zp = zp[r]; Zm \
+= zm[r]; W = omega[r];\nTheta = {1, 0, 0, W Cos[theta], W};\n\ndOne[v_] := \
+Table[D[v[[j]], coords[[i]]] - D[v[[i]], coords[[j]]],\n  {i, n}, {j, \
+n}];\nwedge11[u_, v_] := Table[u[[i]] v[[j]] - u[[j]] v[[i]],\n  {i, n}, {j, \
+n}];\nwedge21[q_, v_] := Table[q[[i, j]] v[[k]] + q[[j, k]] v[[i]] +\n  q[[k, \
+i]] v[[j]], {i, n}, {j, n}, {k, n}];\nSetAttributes[setAnti3, \
+HoldFirst];\nsetAnti3[x_, tri_, value_] := Do[\n  x[[Sequence @@ p]] = \
+Signature[p] value, {p, Permutations[tri]}];\ncanonical[e_] := \
+Factor[Cancel[Together[PowerExpand[TrigExpand[e /.\n  {Sqrt[1 - Cos[theta]^2] \
+-> Sin[theta],\n   Sqrt[Sin[theta]^2] -> Sin[theta],\n   Csc[theta]^2 -> 1 + \
+Cot[theta]^2}]]]]];\n\n(* Raw five-dimensional string-frame metric. *)\ng = \
+ConstantArray[0, {n, n}];\ng[[1, 1]] = -1/(Zp Zm);\ng[[2, 2]] = Z0;\ng[[3, \
+3]] = Z0 r^2/4;\ng[[4, 4]] = Z0 r^2/4 - W^2 Cos[theta]^2/(Zp Zm);\ng[[5, 5]] \
+= Z0 r^2/4 - W^2/(Zp Zm);\ng[[4, 5]] = g[[5, 4]] = Z0 r^2 Cos[theta]/4 -\n  \
+W^2 Cos[theta]/(Zp Zm);\ng[[1, 4]] = g[[4, 1]] = -W Cos[theta]/(Zp \
+Zm);\ng[[1, 5]] = g[[5, 1]] = -W/(Zp Zm);\ngi = \
+FullSimplify[Inverse[g]];\ndetg = FullSimplify[Det[g]];\nPhi = Log[Z0^2/(Zp \
+Zm)]/4;\n\n(* Exact horizontal source three-form. *)\nstarDomega = \
+ConstantArray[0, {n, n}];\nstarDomega[[2, 5]] = 2 W/r;\nstarDomega[[5, 2]] = \
+-starDomega[[2, 5]];\nstarDomega[[2, 4]] = 2 W Cos[theta]/r;\nstarDomega[[4, \
+2]] = -starDomega[[2, 4]];\nstarDomega[[3, 4]] = -r D[W, r] \
+Sin[theta]/2;\nstarDomega[[4, 3]] = -starDomega[[3, 4]];\ndInvZm = \
+Table[D[1/Zm, coords[[i]]], {i, n}];\nKhet = -wedge11[dInvZm, Theta] + \
+starDomega/Zm;\nAkk = Theta/Zp;\nmag = ConstantArray[0, {n, n, \
+n}];\nsetAnti3[mag, {3, 4, 5}, r^3 D[Z0, r] Sin[theta]/8];\nhRaw = \
+FullSimplify[-mag - wedge21[Khet, Akk]];\n\n(* The spherical chart has the \
+opposite orientation to the ordered flat\n   frame used in the supergravity \
+convention.  Since epsilon_(01234)=+1 in\n   the flat frame, the physical \
+curved lower tensor in the coordinate order\n   (t,r,theta,phi,psi) is \
+-sqrt(-g) times the coordinate symbol. *)\nframeEpsilonLowerOrdered = \
+1;\nframeEpsilonUpperOrdered = -1;\ncoordinateOrientationJacobianSign = \
+-1;\nepsilonSymbol5 = Normal[LeviCivitaTensor[n]];\norientationGuard = \
+TrueQ[\n  {frameEpsilonLowerOrdered, frameEpsilonUpperOrdered,\n    \
+coordinateOrientationJacobianSign} === {1, -1, -1}];\n\ncRaw = \
+Theta/Z0;\nfRaw = dOne[cRaw];\nfUp[i_, j_] := Sum[gi[[i, p]] gi[[j, q]] \
+fRaw[[p, q]],\n  {p, n}, {q, n}];\nstarPhysicalF[i_, j_, k_] := 1/2 \
+Total[Flatten[Table[\n  coordinateOrientationJacobianSign epsilonSymbol5[[i, \
+j, k, p, q]]\n    Sqrt[-detg] fUp[p, q], {p, n}, {q, n}]]];\n\ntriples = \
+Subsets[Range[n], {3}];\ndualityResiduals = Association@Table[tri -> \
+canonical[\n  hRaw[[Sequence @@ tri]] + Exp[2 Phi]\n    \
+starPhysicalF[Sequence @@ tri]],\n  {tri, triples}];\ndualityPass = And @@ \
+(PossibleZeroQ /@ Values[dualityResiduals]);\n\n(* The opposite \
+coordinate-orientation sign must fail. *)\nstarWrongF[i_, j_, k_] := 1/2 \
+Total[Flatten[Table[\n  epsilonSymbol5[[i, j, k, p, q]] Sqrt[-detg] fUp[p, \
+q],\n  {p, n}, {q, n}]]];\nwrongResidual345 = canonical[\n  hRaw[[3, 4, 5]] + \
+Exp[2 Phi] starWrongF[3, 4, 5]];\nwrongSignRejected = \
+!PossibleZeroQ[wrongResidual345];\n\nclosureResiduals = canonical /@ \
+Flatten[Table[\n  D[fRaw[[j, k]], coords[[i]]] + D[fRaw[[k, i]], coords[[j]]] \
++\n  D[fRaw[[i, j]], coords[[k]]], {i, n}, {j, n}, {k, n}]];\nclosurePass = \
+And @@ (PossibleZeroQ /@ closureResiduals);\n\nledger = <|\n  \
+\"FlatFrameEpsilonConvention\" -> orientationGuard,\n  \
+\"AllTenRawDualityComponents\" -> dualityPass,\n  \
+\"OppositeCoordinateOrientationRejected\" -> wrongSignRejected,\n  \
+\"RawVectorFieldClosed\" -> closurePass|>;\nfinalPass = And @@ \
+Values[ledger];\n\nPrint[\"RAW_GENERIC_DETERMINANT=\", \
+InputForm[detg]];\nPrint[\"RAW_GENERIC_ORIENTATION_GUARD=\", \
+InputForm[orientationGuard]];\nPrint[\"RAW_GENERIC_DUALITY_RESIDUALS=\", \
+InputForm[dualityResiduals]];\nPrint[\"RAW_GENERIC_WRONG_SIGN_345=\", \
+InputForm[wrongResidual345]];\nPrint[\"RAW_GENERIC_CLOSURE_PASS=\", \
+closurePass];\nPrint[\"RAW_GENERIC_LEDGER=\", \
+InputForm[ledger]];\nPrint[\"RAW_GENERIC_FINAL_PASS=\", \
+finalPass];\nrawDualityFinalPass = finalPass;\nEnd[];\n\n(* Master \
+arbitrary-charge, exact-in-rotation certificate for the third STU\n   vector \
+at O(alphaPrime):\n\n     raw heterotic dual potential\n       + closed \
+predual field-map shift\n       + postdual vector redefinition\n       = \
+exact 5D target after the paper-to-areal radial pullback.\n\n   No numerical \
+charge or radius substitutions are used. \
+*)\nClearAll[\"Global`*\"];\n$HistoryLength = 0;\n$Assumptions = r > 0 && \
+qminus > 0 && qplus > 0 && qzero > 0 &&\n  Element[a, Reals];\ntarget = \
+<|\"U3\" -> (-8*q3*(12*q1^2*q2^2*q3^2 + 7*q1^2*q2^2*q3*x + 25*q1^2*q2*q3^2*x \
++ 25*q1*q2^2*q3^2*x + 2*q1^2*q2^2*x^2 + 16*q1^2*q2*q3*x^2 + 16*q1*q2^2*q3*x^2 \
++ 14*q1^2*q3^2*x^2 + 46*q1*q2*q3^2*x^2 + 14*q2^2*q3^2*x^2 + 5*q1^2*q2*x^3 + \
+5*q1*q2^2*x^3 + 11*q1^2*q3*x^3 + 24*q1*q2*q3*x^3 + 11*q2^2*q3*x^3 + \
+23*q1*q3^2*x^3 + 23*q2*q3^2*x^3 + 4*q1^2*x^4 + 6*q1*q2*x^4 + 4*q2^2*x^4 + \
+12*q1*q3*x^4 + 12*q2*q3*x^4 + 10*q3^2*x^4 + 3*q1*x^5 + 3*q2*x^5 + \
+3*q3*x^5))/(3*(q1 + x)*(q2 + x)*(q3 + x)^4*(q1*q2 + q1*q3 + q2*q3 + 2*q1*x + \
+2*q2*x + 2*q3*x + 3*x^2)) + (4*jrot^2*(-12*q1*q2*q3 + (q1*q2 - 11*(q1 + \
+q2)*q3)*x + 2*(q1 + q2 - 5*q3)*x^2 + 3*x^3))/((q1 + x)*(q2 + x)*(q3 + \
+x)^3*((q1 + x)*(q2 + x) + (q1 + x)*(q3 + x) + (q2 + x)*(q3 + x))), \"B3\" -> \
+(-2*jrot*(27*q1*q2*q3 + 8*q1*q2*x + 23*q1*q3*x + 23*q2*q3*x + 4*q1*x^2 + \
+4*q2*x^2 + 19*q3*x^2))/(3*(q1 + x)*(q2 + x)*(q3 + x)^3), \"Om\" -> \
+(4*jrot*(12*q1^2*q2^2*q3^2 + 22*q1^2*q2^2*q3*x + 40*q1^2*q2*q3^2*x + \
+40*q1*q2^2*q3^2*x + 6*q1^2*q2^2*x^2 + 63*q1^2*q2*q3*x^2 + 63*q1*q2^2*q3*x^2 + \
+27*q1^2*q3^2*x^2 + 102*q1*q2*q3^2*x^2 + 27*q2^2*q3^2*x^2 + 15*q1^2*q2*x^3 + \
+15*q1*q2^2*x^3 + 39*q1^2*q3*x^3 + 144*q1*q2*q3*x^3 + 39*q2^2*q3*x^3 + \
+60*q1*q3^2*x^3 + 60*q2*q3^2*x^3 + 8*q1^2*x^4 + 26*q1*q2*x^4 + 8*q2^2*x^4 + \
+77*q1*q3*x^4 + 77*q2*q3*x^4 + 32*q3^2*x^4 + 9*q1*x^5 + 9*q2*x^5 + \
+36*q3*x^5))/(3*x^2*(q1 + x)*(q2 + x)*(q3 + x)^2*(q1*q2 + q1*q3 + q2*q3 + \
+2*q1*x + 2*q2*x + 2*q3*x + 3*x^2)) + (24*jrot^3)/(x^2*(q3 + x)*((q1 + x)*(q2 \
++ x) + (q1 + x)*(q3 + x) + (q2 + x)*(q3 + x)))|>;\n\ncanonical[e_] := \
+Factor[Cancel[Together[PowerExpand[e]]]];\ncoords = {t, r, theta, phi, psi}; \
+n = 5;\ndOne[v_] := Table[D[v[[j]], coords[[i]]] - D[v[[i]], coords[[j]]],\n  \
+{i, n}, {j, n}];\ndTwo[b_] := Table[D[b[[j, k]], coords[[i]]] +\n  D[b[[k, \
+i]], coords[[j]]] + D[b[[i, j]], coords[[k]]],\n  {i, n}, {j, n}, {k, \
+n}];\n\ndm = qminus + r^2; dp = qplus + r^2; d0 = qzero + r^2;\nhm = dm/r^2; \
+hp = dp/r^2; h0 = d0/r^2;\nu0 = r^2/d0; w0 = a/(2 r^2); v0 = a/(2 d0);\nc0 = \
+{u0, 0, 0, v0 Cos[theta], v0};\nphi0 = Log[h0^2/(hp hm)]/4;\ngRR = \
+1/h0;\n\n(* Direct expansion of C_raw=Z0^{-1}(dt+W sigma3), where\n   \
+Z0=H0+alphaPrime z0 and W=w0+alphaPrime w1. *)\nrawT = canonical[-qzero^2 \
+r^2/d0^4];\nrawW = canonical[a qzero (qzero + 2 r^2)/(2 d0^4)];\ncRaw1 = \
+{rawT, 0, 0, rawW Cos[theta], rawW};\n\n(* Closed predual field-map shift. \
+*)\nshiftT = canonical[a^2 r^2/(2 dm dp d0^3)];\nshiftW = canonical[a (a^2 - \
+qzero dm dp)/(4 dm dp d0^3)];\ncShift = {shiftT, 0, 0, shiftW Cos[theta], \
+shiftW};\ncPre = canonical /@ (cRaw1 + cShift);\nfPre1 = canonical /@ \
+dOne[cPre];\npreClosureResiduals = canonical /@ \
+Flatten[dTwo[fPre1]];\npreClosurePass = And @@ (PossibleZeroQ /@ \
+preClosureResiduals);\npreSU2Pass = PossibleZeroQ[canonical[\n  cPre[[4]] - \
+Cos[theta] cPre[[5]]]];\n\n(* The final postdual potential redefinition is\n  \
+ +(1/3) F^(0)_{mu nu} partial^nu phi0.  Only the radial inverse metric is\n   \
+needed on the leading background. *)\nf0 = dOne[c0];\ncPost = canonical /@ \
+Table[\n  f0[[mu, 2]] gRR D[phi0, r]/3, {mu, n}];\n\n(* Exact target in areal \
+gauge from notebook 11. *)\ntargetRules = {q1 -> qplus, q2 -> qminus, q3 -> \
+qzero,\n  jrot -> a, x -> r^2};\nu3Lambda = canonical[target[\"U3\"] /. \
+targetRules];\nbeta3Lambda = canonical[target[\"B3\"] /. \
+targetRules];\nomegaLambda = canonical[target[\"Om\"] /. \
+targetRules];\ndeltaV3Lambda = canonical[\n  beta3Lambda + w0 u3Lambda + u0 \
+omegaLambda];\ncTargetAreal1 = {u3Lambda/8, 0, 0,\n  deltaV3Lambda \
+Cos[theta]/8, deltaV3Lambda/8};\n\n(* Generic v4-anchored radial pullback \
+coefficient. *)\nxiNumerator =\n   9 a^2 qzero qminus qplus + 6 qzero^2 \
+qminus^2 qplus^2 +\n   9 a^2 qzero qminus r^2 + 9 a^2 qzero qplus r^2 +\n   9 \
+a^2 qminus qplus r^2 + 11 qzero^2 qminus^2 qplus r^2 +\n   11 qzero^2 qminus \
+qplus^2 r^2 +\n   2 qzero qminus^2 qplus^2 r^2 + 9 a^2 qzero r^4 +\n   9 a^2 \
+qminus r^4 + 6 qzero^2 qminus^2 r^4 +\n   9 a^2 qplus r^4 + 18 qzero^2 qminus \
+qplus r^4 +\n   3 qzero qminus^2 qplus r^4 + 6 qzero^2 qplus^2 r^4 +\n   3 \
+qzero qminus qplus^2 r^4 + 9 a^2 r^6 +\n   9 qzero^2 qminus r^6 + 3 qzero \
+qminus^2 r^6 +\n   9 qzero^2 qplus r^6 + 3 qzero qplus^2 r^6 +\n   4 qzero^2 \
+r^8 + qzero qminus r^8 + qminus^2 r^8 +\n   qzero qplus r^8 - 2 qminus qplus \
+r^8 + qplus^2 r^8;\nxiAlpha = canonical[-xiNumerator/(3 r d0^2 dm dp\n   \
+(qzero qminus + qzero qplus + qminus qplus +\n    2 qzero r^2 + 2 qminus r^2 \
++ 2 qplus r^2 + 3 r^4))];\ncPullback = canonical /@ (-xiAlpha D[c0, \
+r]);\ncTargetPaper1 = canonical /@ (cTargetAreal1 + cPullback);\n\n(* Master \
+identity. *)\ncSourceFinal1 = canonical /@ (cRaw1 + cShift + \
+cPost);\nmasterResidual = canonical /@ (cSourceFinal1 - \
+cTargetPaper1);\nmasterPass = And @@ (PossibleZeroQ /@ \
+masterResidual);\ntemporalResidual = masterResidual[[1]];\nfibreResidual = \
+masterResidual[[5]];\nangularResidual = canonical[\n  masterResidual[[4]] - \
+Cos[theta] fibreResidual];\n\n(* Target-determined profiles, algebraically recognized in the raw source data; this is not an independent off-shell derivation. *)\nzPlusRotation = canonical[4 a^2/(r^2 d0^2 dm)];\nw1 = \
+canonical[a qzero/(r^2 d0^2)];\nsourceShiftT = canonical[(1/hp) (1/h0) \
+zPlusRotation/8];\nsourceShiftW = canonical[w0 sourceShiftT - (1/h0) \
+w1/4];\nsourceProfileResidual = canonical /@\n  ({shiftT, shiftW} - \
+{sourceShiftT, sourceShiftW});\nsourceProfilePass = And @@ (PossibleZeroQ /@ \
+sourceProfileResidual);\n\n(* Invariant field-strength profiles and their \
+exact Bianchi identity. *)\nshiftField = canonical /@ \
+dOne[cShift];\nshiftProfiles = <|\n  \"ElectricDtDr\" -> \
+canonical[shiftField[[1, 2]]],\n  \"FibreDrSigma3\" -> \
+canonical[shiftField[[2, 5]]],\n  \"SphereOmega2\" -> \
+canonical[shiftField[[3, 4]]/Sin[theta]]|>;\nshiftClosure = \
+canonical[D[shiftProfiles[\"SphereOmega2\"], r] +\n  \
+shiftProfiles[\"FibreDrSigma3\"]];\n\nstaticShiftPass = And @@ (PossibleZeroQ \
+/@\n  ({shiftT, shiftW} /. a -> 0));\nparityPass = \
+PossibleZeroQ[canonical[(shiftT /. a -> -a) - shiftT]] &&\n  \
+PossibleZeroQ[canonical[(shiftW /. a -> -a) + shiftW]];\nfalloffLeading = \
+<|\n  \"Temporal\" -> a^2/(2 r^8),\n  \"Fibre\" -> -a qzero/(4 \
+r^6)|>;\nfalloffPass = Block[{$Assumptions = qminus > 0 && qplus > 0 &&\n     \
+qzero > 0 && Element[a, Reals]},\n  PossibleZeroQ[canonical[\n      Limit[r^8 \
+shiftT, r -> Infinity] - a^2/2]] &&\n   PossibleZeroQ[canonical[\n      \
+Limit[r^6 shiftW, r -> Infinity] + a qzero/4]]];\n\nledger = <|\n  \
+\"NoNumericSubstitution\" -> True,\n  \"ClosedPredualField\" -> \
+preClosurePass,\n  \"PredualSU2Invariant\" -> preSU2Pass,\n  \
+\"MasterTemporalResidualZero\" -> PossibleZeroQ[temporalResidual],\n  \
+\"MasterFibreResidualZero\" -> PossibleZeroQ[fibreResidual],\n  \
+\"MasterFullPotentialResidualZero\" -> masterPass,\n  \"AngularFollowsFibre\" \
+-> PossibleZeroQ[angularResidual],\n  \"ExactSourceProfileDecomposition\" -> \
+sourceProfilePass,\n  \"ShiftBianchiIdentity\" -> \
+PossibleZeroQ[shiftClosure],\n  \"StaticShiftVanishes\" -> staticShiftPass,\n \
+ \"ExpectedRotationParity\" -> parityPass,\n  \"ExpectedAsymptoticFalloff\" \
+-> falloffPass|>;\nledger = Append[ledger, \"TargetIndependentRawDuality\" -> \
+TrueQ[RawDualityCertificate`rawDualityFinalPass]];\nfinalPass = And @@ \
+Values[ledger];\n\nPrint[\"MASTER_RAW_POTENTIAL_ALPHA=\", \
+InputForm[cRaw1]];\nPrint[\"MASTER_CLOSED_PREDUAL_SHIFT=\", \
+InputForm[cShift]];\nPrint[\"MASTER_POSTDUAL_REDEFINITION=\", \
+InputForm[cPost]];\nPrint[\"MASTER_RADIAL_PULLBACK=\", \
+InputForm[cPullback]];\nPrint[\"MASTER_TARGET_AREAL_ALPHA=\", \
+InputForm[cTargetAreal1]];\nPrint[\"MASTER_TEMPORAL_RESIDUAL=\", \
+InputForm[temporalResidual]];\nPrint[\"MASTER_FIBRE_RESIDUAL=\", \
+InputForm[fibreResidual]];\nPrint[\"MASTER_FULL_RESIDUAL=\", \
+InputForm[masterResidual]];\nPrint[\"MASTER_SOURCE_PROFILE_RESIDUAL=\", \
+InputForm[sourceProfileResidual]];\nPrint[\"MASTER_SHIFT_FIELD_PROFILES=\", \
+InputForm[shiftProfiles]];\nPrint[\"MASTER_SHIFT_CLOSURE=\", \
+InputForm[shiftClosure]];\nPrint[\"MASTER_FALLOFF_LEADING=\", \
+InputForm[falloffLeading]];\nPrint[\"MASTER_LEDGER=\", \
+InputForm[ledger]];\nPrint[\"MASTER_FINAL_PASS=\", \
+finalPass];\n\nfinalPass;\n"], "Input", InitializationCell -> True], 
+  Cell["Expected result", "Section"], Cell["A fresh kernel must first return \
+ten zero raw-duality residuals and RAW_GENERIC_FINAL_PASS=True. It must then \
+return zero temporal and fibre residuals, the full residual {0,0,0,0,0}, zero \
+source-profile and Bianchi residuals, an all-True ledger including \
+TargetIndependentRawDuality, and MASTER_FINAL_PASS=True. This is an exact \
+solution-level target identity. The shift coefficients are determined by comparison with the embedded EOM-certified target and only then recognized in the raw source profiles; the notebook does not derive them from a universal off-shell covariant field redefinition.", "Text"]}, 
+ WindowTitle -> "Raw-first exact rotating third-vector map", 
+ StyleDefinitions -> "Default.nb"]

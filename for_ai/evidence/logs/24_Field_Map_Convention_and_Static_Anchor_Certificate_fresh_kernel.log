@@ -1,0 +1,41 @@
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_BEGIN"
+"FILE_BASENAME=""24_Field_Map_Convention_and_Static_Anchor_Certificate.nb"
+"FILE_ABSOLUTE_PATH=""[LOCAL_HOME]/Documents/Codex/2026-07-12/https-www-overleaf-com-project-65577187a96876076df0bcd6/work/package_v3_staging/notebooks/24_Field_Map_Convention_and_Static_Anchor_Certificate.nb"
+"KERNEL=""14.1.0 for Mac OS X ARM (64-bit) (July 16, 2024)"
+"START_UTC=""2026-07-18T17:21:23"
+"BYTES="20967
+"SHA256=""50cb644ae3a7a3fbdc272ff04efd496bd4287d2aceefc7b438cc0a2cc9fc5bd8"
+"PARSE_PASS="True
+"INPUT_CELL_COUNT="1
+"PASS_EXPRESSION=""TrueQ[Global`finalPass]"
+"CELL_"1"_BEGIN"
+"CONSOLIDATED_LEDGER = "InputForm[<|"HeteroticSourceMagneticComponent" -> True, "PositiveEq41ThirdPotential" -> True, "FinalActionMinusDualityStatic" -> True, "LeadingGOldWedgeAIdentity" -> True, "LeadingHorizontalExpression" -> True, "ObsoleteLeadingRotationSignRejected" -> True, "SixDimensionalHorizontalReconstruction" -> True, "FirstOrderLeadingVerticalEqualsDOldWinding" -> True, "FirstOrderMomentumVectorExpansion" -> True, "FirstOrderHorizontalSourceLedger" -> True, "RawQAllTenEvaluated" -> True, "RawQExpectedComponents" -> True, "RawQOtherSixComponentsZero" -> True, "RawQSU2InvariantRelation" -> True, "Delta1MetricUsesPlusAlphaPrimeOverEight" -> True, "Delta1VarphiUsesPlusAlphaPrimeOverEight" -> True, "Delta1MomentumVectorUsesPlusAlphaPrimeOverEight" -> True, "Delta1WindingVectorUsesPlusAlphaPrimeOverEight" -> True, "Delta1LowerTwoFormStaticShiftVanishes" -> True, "Delta2MetricUsesPlusAlphaPrimeOverEight" -> True, "Delta2VarphiUsesPlusAlphaPrimeOverEight" -> True, "Delta2LeavesStaticVectorsUnchanged" -> True, "StaticThreeFormUnchangedByDelta1" -> True, "SignatureTorsionConnectionBridge" -> True, "SignatureCurvatureBridge" -> True, "CurvatureQuadraticInvariantUnchanged" -> True, "StaticGttKeepsAlphaPrimeSign" -> True, "StaticSpatialMetricKeepsAlphaPrimeSign" -> True, "StaticDilatonKeepsAlphaPrimeSign" -> True, "StaticMomentumPotentialKeepsAlphaPrimeSign" -> True, "StaticZplusIdentity" -> True, "StaticZzeroIdentity" -> True|>]
+"LEADING_HORIZONTAL_FIELD = -M_het + (Hplus Hminus)^(-1) dOmega wedge Theta"
+"FIRST_ORDER_HORIZONTAL_FIELD = -M1-K1 wedge A0-G0 wedge A1"
+"CORRECTED_Q_NONZERO = "InputForm[<|{1, 2, 4} -> (-2*a*(qminus - qplus)^2*r^5*Cos[theta])/((qminus + r^2)^3*(qplus + r^2)^3*(qzero + r^2)), {1, 2, 5} -> (-2*a*(qminus - qplus)^2*r^5)/((qminus + r^2)^3*(qplus + r^2)^3*(qzero + r^2)), {1, 3, 4} -> -((a*(qminus - qplus)^2*r^6*Sin[theta])/((qminus + r^2)^3*(qplus + r^2)^3*(qzero + r^2))), {3, 4, 5} -> -1/2*(a^2*(qminus - qplus)^2*r^4*Sin[theta])/((qminus + r^2)^3*(qplus + r^2)^3*(qzero + r^2))|>]
+"FIELD_REDEFINITION_DIRECTION = Phi_after = Phi_before + alphaPrime DeltaPhi/8"
+"TORSION_CONNECTION_BRIDGE = OmegaPlus_STU = -omegaMinus_heterotic"
+"ALPHAPRIME_SIGN_UNCHANGED = "True
+"FINAL_PASS = "True
+"CELL_"1"_SECONDS="13.984053
+"CELL_"1"_RESULT_PASS="True
+"CELL_"1"_MESSAGE_COUNT="0
+"CELL_"1"_RESULT_HEAD="Symbol
+"CELL_"1"_RESULT_LEAF_COUNT="1
+"CELL_"1"_RESULT_SHORT=""Short[Null, 12]"
+"CELL_"1"_END"
+"RESULT_FAILURE_COUNT="0
+"RESULT_FAILURE_INDICES="InputForm[{}]
+"MESSAGE_CELL_COUNT="0
+"MESSAGE_CELL_INDICES="InputForm[{}]
+"MESSAGE_TOTAL_COUNT="0
+"CELL_SECONDS="InputForm[{13.984053}]
+"CELL_SECONDS_TOTAL="13.984053
+"FINAL_LEDGER="InputForm[<|"HeteroticSourceMagneticComponent" -> True, "PositiveEq41ThirdPotential" -> True, "FinalActionMinusDualityStatic" -> True, "LeadingGOldWedgeAIdentity" -> True, "LeadingHorizontalExpression" -> True, "ObsoleteLeadingRotationSignRejected" -> True, "SixDimensionalHorizontalReconstruction" -> True, "FirstOrderLeadingVerticalEqualsDOldWinding" -> True, "FirstOrderMomentumVectorExpansion" -> True, "FirstOrderHorizontalSourceLedger" -> True, "RawQAllTenEvaluated" -> True, "RawQExpectedComponents" -> True, "RawQOtherSixComponentsZero" -> True, "RawQSU2InvariantRelation" -> True, "Delta1MetricUsesPlusAlphaPrimeOverEight" -> True, "Delta1VarphiUsesPlusAlphaPrimeOverEight" -> True, "Delta1MomentumVectorUsesPlusAlphaPrimeOverEight" -> True, "Delta1WindingVectorUsesPlusAlphaPrimeOverEight" -> True, "Delta1LowerTwoFormStaticShiftVanishes" -> True, "Delta2MetricUsesPlusAlphaPrimeOverEight" -> True, "Delta2VarphiUsesPlusAlphaPrimeOverEight" -> True, "Delta2LeavesStaticVectorsUnchanged" -> True, "StaticThreeFormUnchangedByDelta1" -> True, "SignatureTorsionConnectionBridge" -> True, "SignatureCurvatureBridge" -> True, "CurvatureQuadraticInvariantUnchanged" -> True, "StaticGttKeepsAlphaPrimeSign" -> True, "StaticSpatialMetricKeepsAlphaPrimeSign" -> True, "StaticDilatonKeepsAlphaPrimeSign" -> True, "StaticMomentumPotentialKeepsAlphaPrimeSign" -> True, "StaticZplusIdentity" -> True, "StaticZzeroIdentity" -> True|>]
+"GLOBAL_finalPass="InputForm[True]
+"DECLARED_PASS_VALUE="InputForm[True]
+"CELL_EVALUATION_PASS="True
+"END_UTC=""2026-07-18T17:21:38"
+"TOTAL_WALL_SECONDS="15.531311`7.642753109626027
+"FRESH_KERNEL_FINAL_PASS="True
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_END"

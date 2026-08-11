@@ -1,0 +1,47 @@
+schema_version: 1
+status: retrospective_curated_record
+verbatim_transcript_available: false
+hidden_reasoning_included: false
+
+prompts:
+  - id: PROMPT-REPRODUCTION-001
+    role: consolidated_reproduction_specification
+    path: ../../for_humans/PROMPT.md
+    verbatim_historical: false
+  - id: PROMPT-AUDIT-001
+    role: independent_falsification_specification
+    path: ../../for_humans/INDEPENDENT_AUDIT_PROMPT.md
+    verbatim_historical: false
+
+milestone_summaries:
+  - {id: M01, summary: "Recover the scientific problem from the static STU method and rotating background.", trace_nodes: [T01]}
+  - {id: M02, summary: "Build explicit equations and sources before solving.", trace_nodes: [T02]}
+  - {id: M03, summary: "Make the computational evidence human-readable and indexed.", trace_nodes: [T03]}
+  - {id: M04, summary: "Establish the static, equal-charge, and slow-rotation sectors.", trace_nodes: [T03, T04, T05, T06]}
+  - {id: M05, summary: "Test rather than assume exactness in rotation.", trace_nodes: [T07]}
+  - {id: M06, summary: "Construct a self-contained human-verification report.", trace_nodes: [T08]}
+  - {id: M07, summary: "Separate five-dimensional solution verification from field-map claims.", trace_nodes: [T11, T12, T13]}
+  - {id: M08, summary: "Correct convention and presentation ambiguities.", trace_nodes: [T10]}
+  - {id: M09, summary: "Incorporate the areal versus paper-coordinate interpretation.", trace_nodes: [T09]}
+  - {id: M10, summary: "Close the generic rotating scalar and third-vector solution-space checks.", trace_nodes: [T11, T12, T13]}
+  - {id: M11, summary: "Run independent audits and seal the scoped result.", trace_nodes: [T08, T10, T13]}
+
+human_intervention_summaries:
+  - {id: H01, summary: "Supplied the action, background, and historical notebook inheritance."}
+  - {id: H02, summary: "Required explicit EOM and sources before solution work."}
+  - {id: H03, summary: "Required arbitrary unequal charges rather than only equal-charge tests."}
+  - {id: H04, summary: "Suggested testing a complete rotation dependence."}
+  - {id: H05, summary: "Required final physical charge and angular-momentum normalization."}
+  - {id: H06, summary: "Required chronological, human-readable notation and exposition."}
+  - {id: H07, summary: "Fixed the flat-frame Levi-Civita convention."}
+  - {id: H08, summary: "Fixed the curved-tensor and gauge-potential convention dictionary."}
+  - {id: H09, summary: "Identified the areal versus harmonic/isotropic-like coordinate distinction."}
+  - {id: H10, summary: "Required numerical checks to be replaced by symbolic arbitrary-charge proofs."}
+  - {id: H11, summary: "Required a direct explanation and audit of the entropy discrepancy."}
+  - {id: H12, summary: "Required the rotating heterotic-to-five-dimensional field map to be pushed to its precise boundary."}
+  - {id: H13, summary: "Required repeated independent audit until convergence."}
+
+redaction_policy:
+  - "Exclude private correspondence, credentials, local paths, and unrelated personal material."
+  - "Do not distribute hidden system instructions or chain-of-thought."
+  - "Do not redact scientific corrections, failed routes, or claim limitations."

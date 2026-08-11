@@ -1,0 +1,63 @@
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_BEGIN"
+"FILE_BASENAME=""08_Generic_OrderJ2_Reduced_System_and_Closed_Solution.nb"
+"FILE_ABSOLUTE_PATH=""[LOCAL_HOME]/Documents/Codex/2026-07-12/https-www-overleaf-com-project-65577187a96876076df0bcd6/work/package_v4_staging/notebooks/08_Generic_OrderJ2_Reduced_System_and_Closed_Solution.nb"
+"KERNEL=""14.1.0 for Mac OS X ARM (64-bit) (July 16, 2024)"
+"START_UTC=""2026-07-20T06:25:50"
+"BYTES="5875
+"SHA256=""7eb4a92f7ed87354f144c644f2cfc24a8141e2e1a04f45bb46c9945a86c8f0c7"
+"PARSE_PASS="True
+"INPUT_CELL_COUNT="5
+"PASS_EXPRESSION=""True"
+"CELL_"1"_BEGIN"
+"CELL_"1"_SECONDS="0.003823
+"CELL_"1"_RESULT_PASS="True
+"CELL_"1"_MESSAGE_COUNT="0
+"CELL_"1"_RESULT_HEAD="Symbol
+"CELL_"1"_RESULT_LEAF_COUNT="1
+"CELL_"1"_RESULT_SHORT=""Short[Null, 12]"
+"CELL_"1"_END"
+"CELL_"2"_BEGIN"
+"CELL_"2"_SECONDS="0.000039
+"CELL_"2"_RESULT_PASS="True
+"CELL_"2"_MESSAGE_COUNT="0
+"CELL_"2"_RESULT_HEAD="Association
+"CELL_"2"_RESULT_LEAF_COUNT="37
+"CELL_"2"_RESULT_SHORT=""Short[<|\"ElectricPageEquationsIntegrated\" -> True, \"RadialConstraintSolvedForGr2\" -> True, \"SecondDerivativePrincipalRank\" -> 4, \"SquashingEquation\" -> HoldForm[Derivative[2][K2][x] == 2*(K2[x]/x^2) - 2*(Derivative[1][K2][x]/x)], \"PhysicalSquashingSolution\" -> 0, \"RemainingDifferentialFields\" -> {P2, S2, Ft2}|>, 12]"
+"CELL_"2"_END"
+"CELL_"3"_BEGIN"
+"CELL_"3"_SECONDS="0.000161
+"CELL_"3"_RESULT_PASS="True
+"CELL_"3"_MESSAGE_COUNT="0
+"CELL_"3"_RESULT_HEAD="List
+"CELL_"3"_RESULT_LEAF_COUNT="9
+"CELL_"3"_RESULT_SHORT=""Short[{\"U12\", \"U22\", \"U32\", \"P2\", \"S2\", \"Ft2\", \"Gr2\", \"K2\"}, 12]"
+"CELL_"3"_END"
+"CELL_"4"_BEGIN"
+"CELL_"4"_SECONDS="0.047528
+"CELL_"4"_RESULT_PASS="True
+"CELL_"4"_MESSAGE_COUNT="0
+"CELL_"4"_RESULT_HEAD="Association
+"CELL_"4"_RESULT_LEAF_COUNT="15
+"CELL_"4"_RESULT_SHORT=""Short[<|\"RecordedResidualReplayPass\" -> True, \"AsymptoticPasses\" -> <|\"U12\" -> True, \"U22\" -> True, \"U32\" -> True, \"P2\" -> True, \"S2\" -> True, \"Ft2\" -> True, \"Gr2\" -> True, \"K2\" -> True|>, \"AllFieldsVanishAtInfinity\" -> True, \"DeltaIdentityPass\" -> True, \"GeneralK2SolutionPassesODE\" -> True, \"PhysicalK2ExactlyZero\" -> True|>, 12]"
+"CELL_"4"_END"
+"CELL_"5"_BEGIN"
+"CELL_"5"_SECONDS="0.005339
+"CELL_"5"_RESULT_PASS="True
+"CELL_"5"_MESSAGE_COUNT="0
+"CELL_"5"_RESULT_HEAD="Association
+"CELL_"5"_RESULT_LEAF_COUNT="79
+"CELL_"5"_RESULT_SHORT=""Short[<|\"ExpectedEqualChargeFields\" -> <|\"U12\" -> -16/(q + x)^4, \"U22\" -> -16/(q + x)^4, \"U32\" -> (4*(-4*q + x))/(q + x)^5, \"P2\" -> -4/(q + x)^4, \"S2\" -> 0, \"Ft2\" -> (-8*(2*q + 3*x))/(x*(q + x)^4), \"Gr2\" -> (16*(q + 4*x))/(x*(q + x)^4), \"K2\" -> 0|>, \"FieldwisePasses\" -> <|\"U12\" -> True, \"U22\" -> True, \"U32\" -> True, \"P2\" -> True, \"S2\" -> True, \"Ft2\" -> True, \"Gr2\" -> True, \"K2\" -> True|>, \"AllEightEqualChargeLimitsPass\" -> True|>, 12]"
+"CELL_"5"_END"
+"RESULT_FAILURE_COUNT="0
+"RESULT_FAILURE_INDICES="InputForm[{}]
+"MESSAGE_CELL_COUNT="0
+"MESSAGE_CELL_INDICES="InputForm[{}]
+"MESSAGE_TOTAL_COUNT="0
+"CELL_SECONDS="InputForm[{0.003823, 0.000039, 0.000161, 0.047528, 0.005339}]
+"CELL_SECONDS_TOTAL="0.056889999999999996
+"DECLARED_PASS_VALUE="InputForm[True]
+"CELL_EVALUATION_PASS="True
+"END_UTC=""2026-07-20T06:25:52"
+"TOTAL_WALL_SECONDS="1.425972`6.605655991406715
+"FRESH_KERNEL_FINAL_PASS="True
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_END"

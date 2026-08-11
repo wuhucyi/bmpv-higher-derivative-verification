@@ -1,0 +1,73 @@
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_BEGIN"
+"FILE_BASENAME=""18_Entropy_Convention_and_Literature_Comparison.nb"
+"FILE_ABSOLUTE_PATH=""[LOCAL_HOME]/Documents/Codex/2026-07-12/https-www-overleaf-com-project-65577187a96876076df0bcd6/work/package_v4_staging/notebooks/18_Entropy_Convention_and_Literature_Comparison.nb"
+"KERNEL=""14.1.0 for Mac OS X ARM (64-bit) (July 16, 2024)"
+"START_UTC=""2026-07-20T06:38:36"
+"BYTES="4950
+"SHA256=""289d097131b58ac1a757b321c7b06cb5e29fe9cecb54f98ad34c2b2364261636"
+"PARSE_PASS="True
+"INPUT_CELL_COUNT="6
+"PASS_EXPRESSION=""finalPass"
+"CELL_"1"_BEGIN"
+"CELL_"1"_SECONDS="0.009516
+"CELL_"1"_RESULT_PASS="True
+"CELL_"1"_MESSAGE_COUNT="0
+"CELL_"1"_RESULT_HEAD="Symbol
+"CELL_"1"_RESULT_LEAF_COUNT="1
+"CELL_"1"_RESULT_SHORT=""Short[Null, 12]"
+"CELL_"1"_END"
+"CELL_"2"_BEGIN"
+"CELL_"2"_SECONDS="0.000064
+"CELL_"2"_RESULT_PASS="True
+"CELL_"2"_MESSAGE_COUNT="0
+"CELL_"2"_RESULT_HEAD="Association
+"CELL_"2"_RESULT_LEAF_COUNT="7
+"CELL_"2"_RESULT_SHORT=""Short[<|\"StaticValues\" -> {1, 1, 1, 1}, \"StaticAgreement\" -> True|>, 12]"
+"CELL_"2"_END"
+"CELL_"3"_BEGIN"
+"CELL_"3"_SECONDS="0.158233
+"CELL_"3"_RESULT_PASS="True
+"CELL_"3"_MESSAGE_COUNT="0
+"CELL_"3"_RESULT_HEAD="Association
+"CELL_"3"_RESULT_LEAF_COUNT="55
+"CELL_"3"_RESULT_SHORT=""Short[<|\"LinearRatio\" -> 1 + (3*eps - 4*eps*z^2)/(2*q0 - 2*q0*z^2), \"ExpectedRatio\" -> 1 + (3*eps*(1 - (4*z^2)/3))/(2*q0*(1 - z^2)), \"Match\" -> True|>, 12]"
+"CELL_"3"_END"
+"CELL_"4"_BEGIN"
+"CELL_"4"_SECONDS="0.000417
+"CELL_"4"_RESULT_PASS="True
+"CELL_"4"_MESSAGE_COUNT="0
+"CELL_"4"_RESULT_HEAD="Association
+"CELL_"4"_RESULT_LEAF_COUNT="16
+"CELL_"4"_RESULT_SHORT=""Short[<|\"Order\" -> {\"Euler only\", \"4D/5D\", \"horizon attractor\", \"asymptotic Legendre\"}, \"zSquaredCoefficients\" -> {1/3, 1, 0, -1/3}, \"Match\" -> True|>, 12]"
+"CELL_"4"_END"
+"CELL_"5"_BEGIN"
+"CELL_"5"_SECONDS="0.000204
+"CELL_"5"_RESULT_PASS="True
+"CELL_"5"_MESSAGE_COUNT="0
+"CELL_"5"_RESULT_HEAD="Association
+"CELL_"5"_RESULT_LEAF_COUNT="59
+"CELL_"5"_RESULT_SHORT=""Short[<|\"FixedPhysicalCorrection\" -> (2*deltaJ*jj*Pi)/Sqrt[-jj^2 + qq^3] - (3*deltaQ*Pi*qq^2)/Sqrt[-jj^2 + qq^3] + s1, \"AngularCoefficient\" -> (2*jj*Pi)/Sqrt[-jj^2 + qq^3], \"Match\" -> True|>, 12]"
+"CELL_"5"_END"
+"CELL_"6"_BEGIN"
+"CELL_"6"_SECONDS="0.000044
+"CELL_"6"_RESULT_PASS="True
+"CELL_"6"_MESSAGE_COUNT="0
+"CELL_"6"_RESULT_HEAD="Association
+"CELL_"6"_RESULT_LEAF_COUNT="7
+"CELL_"6"_RESULT_SHORT=""Short[<|\"Checks\" -> <|\"AllFourStaticLimitsAgree\" -> True, \"HeteroticExpansionMatchesAsymptoticChargeFunction\" -> True, \"SmallSpinCoefficients\" -> True, \"AngularChargeRedefinitionIsEnhancedNearBound\" -> True|>, \"FinalPass\" -> True|>, 12]"
+"CELL_"6"_END"
+"RESULT_FAILURE_COUNT="0
+"RESULT_FAILURE_INDICES="InputForm[{}]
+"MESSAGE_CELL_COUNT="0
+"MESSAGE_CELL_INDICES="InputForm[{}]
+"MESSAGE_TOTAL_COUNT="0
+"CELL_SECONDS="InputForm[{0.009516, 0.000064, 0.158233, 0.000417, 0.000204, 0.000044}]
+"CELL_SECONDS_TOTAL="0.16847800000000002
+"FINAL_CHECKS="InputForm[<|"AllFourStaticLimitsAgree" -> True, "HeteroticExpansionMatchesAsymptoticChargeFunction" -> True, "SmallSpinCoefficients" -> True, "AngularChargeRedefinitionIsEnhancedNearBound" -> True|>]
+"GLOBAL_finalPass="InputForm[True]
+"DECLARED_PASS_VALUE="InputForm[True]
+"CELL_EVALUATION_PASS="True
+"END_UTC=""2026-07-20T06:38:37"
+"TOTAL_WALL_SECONDS="1.538053`6.638516294638205
+"FRESH_KERNEL_FINAL_PASS="True
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_END"

@@ -1,0 +1,287 @@
+Notebook[{Cell["Exact Equal-Charge BMPV Lambda3 Correction", "Title"], 
+  Cell["Version-3 human notation guide (documentation only; no Input cell is \
+changed). In the compact solution and verifier notebooks: x=r^2; q1,q2,q3 are \
+the harmonic parameters mu1,mu2,mu3, not normalized conserved charges; jrot \
+is the rotation parameter j; U1,U2,U3 are the electric corrections delta u_I; \
+B1,B2,B3 are the gauge-covariant fibre corrections; Om is delta omega; Ft, \
+Gr, and Sq are the temporal warp, radial warp, and squashing corrections; P \
+and S are delta p and delta s, where X1=exp(2p/3-s), X2=exp(2p/3+s), and \
+X3=exp(-4p/3). Physical quantities are Q_I=Pi mu_I/(4 G5) and J1=J2=Pi j/(4 \
+G5). See the report section 'Human-readable notation and result at a glance' \
+for the full dictionary.", "Text"], Cell["This notebook records the exact \
+four-derivative correction on the q1=q2=q3=q BMPV locus for the single \
+lambda3 invariant. The displayed functions are the coefficients of lambda3; \
+multiply them by lambda3 when reconstructing the corrected fields.", "Text"], 
+  Cell["The radial coordinate is x=r^2. The solution uses the areal-radius \
+gauge dhr=0, fixed Page charges, vanishing electric gauge constants at \
+infinity, and a nonrotating asymptotic frame. The physical BMPV domain is q>0 \
+and jrot^2<q^3.", "Text"], Cell["Assumptions and conventions", "Section"], 
+  Cell[BoxData[RowBox[{RowBox[{"$Assumptions", "=", 
+        RowBox[{RowBox[{"x", ">", "0"}], "&&", RowBox[{"q", ">", "0"}], "&&", 
+          RowBox[{SuperscriptBox["jrot", "2"], "<", SuperscriptBox["q", 
+             "3"]}]}]}], ";"}]], "Input"], 
+  Cell[BoxData[RowBox[{RowBox[{"radialDefinition", "=", 
+        RowBox[{"x", "\[Equal]", SuperscriptBox["r", "2"]}]}], ";"}]], 
+   "Input"], 
+  Cell[BoxData[RowBox[{RowBox[{"correctionConvention", "=", 
+        RowBox[{"fieldCorrected", "\[Equal]", RowBox[{"fieldBackground", "+", 
+            RowBox[{"lambda3", " ", "fieldLambda3"}]}]}]}], ";"}]], "Input"], 
+  Cell["Explicit correction functions in the original ansatz", "Section"], 
+  Cell["The functions duI and dvI correct the electric and Hopf-fibre \
+components of the three gauge fields. The metric/scalar notation agrees with \
+the explicit EOM notebook.", "Text"], 
+  Cell[BoxData[RowBox[{RowBox[{RowBox[{"du1", "[", "x_", "]"}], ":=", 
+        RowBox[{"-", FractionBox[RowBox[{"16", " ", RowBox[{"(", RowBox[
+                {RowBox[{"3", " ", SuperscriptBox["jrot", "2"]}], "+", 
+                 RowBox[{"2", " ", SuperscriptBox["q", "3"]}], "-", 
+                 RowBox[{"3", " ", SuperscriptBox["q", "2"], " ", "x"}]}], 
+               ")"}]}], RowBox[{"3", " ", SuperscriptBox[RowBox[{"(", 
+                RowBox[{"q", "+", "x"}], ")"}], "4"]}]]}]}], ";"}]], 
+   "Input"], 
+  Cell[BoxData[RowBox[{RowBox[{RowBox[{"du2", "[", "x_", "]"}], ":=", 
+        RowBox[{"du1", "[", "x", "]"}]}], ";"}]], "Input"], 
+  Cell[BoxData[RowBox[{RowBox[{RowBox[{"du3", "[", "x_", "]"}], ":=", 
+        RowBox[{"-", FractionBox[RowBox[{"4", " ", RowBox[{"(", RowBox[
+                {RowBox[{"12", " ", SuperscriptBox["jrot", "2"], " ", "q"}], 
+                 "+", RowBox[{"8", " ", SuperscriptBox["q", "4"]}], "-", 
+                 RowBox[{"3", " ", SuperscriptBox["jrot", "2"], " ", "x"}], 
+                 "+", RowBox[{"14", " ", SuperscriptBox["q", "3"], " ", 
+                   "x"}], "+", RowBox[{"6", " ", SuperscriptBox["q", "2"], 
+                   " ", SuperscriptBox["x", "2"]}]}], ")"}]}], 
+           RowBox[{"3", " ", SuperscriptBox[RowBox[{"(", RowBox[{"q", "+", 
+                  "x"}], ")"}], "5"]}]]}]}], ";"}]], "Input"], 
+  Cell[BoxData[RowBox[{RowBox[{RowBox[{"dv1", "[", "x_", "]"}], ":=", 
+        FractionBox[RowBox[{"40", " ", "jrot", " ", SuperscriptBox["q", 
+            "2"]}], RowBox[{"3", " ", SuperscriptBox[
+            RowBox[{"(", RowBox[{"q", "+", "x"}], ")"}], "4"]}]]}], ";"}]], 
+   "Input"], 
+  Cell[BoxData[RowBox[{RowBox[{RowBox[{"dv2", "[", "x_", "]"}], ":=", 
+        RowBox[{"dv1", "[", "x", "]"}]}], ";"}]], "Input"], 
+  Cell[BoxData[RowBox[{RowBox[{RowBox[{"dv3", "[", "x_", "]"}], ":=", 
+        FractionBox[RowBox[{"2", " ", "jrot", " ", 
+           RowBox[{"(", RowBox[{RowBox[{"15", " ", SuperscriptBox["jrot", 
+                  "2"]}], "+", RowBox[{"11", " ", SuperscriptBox["q", "3"]}], 
+               "+", RowBox[{"20", " ", SuperscriptBox["q", "2"], " ", "x"}], 
+               "+", RowBox[{"9", " ", "q", " ", SuperscriptBox["x", "2"]}]}], 
+             ")"}]}], RowBox[{"3", " ", SuperscriptBox[
+            RowBox[{"(", RowBox[{"q", "+", "x"}], ")"}], "5"]}]]}], ";"}]], 
+   "Input"], 
+  Cell[BoxData[RowBox[{RowBox[{RowBox[{"dp", "[", "x_", "]"}], ":=", 
+        RowBox[{"-", FractionBox[RowBox[{"2", " ", RowBox[{"(", RowBox[
+                {RowBox[{"2", " ", SuperscriptBox["jrot", "2"]}], "-", 
+                 RowBox[{"3", " ", SuperscriptBox["q", "3"]}], "-", 
+                 RowBox[{"3", " ", SuperscriptBox["q", "2"], " ", "x"}]}], 
+               ")"}]}], SuperscriptBox[RowBox[{"(", RowBox[{"q", "+", "x"}], 
+              ")"}], "4"]]}]}], ";"}]], "Input"], 
+  Cell[BoxData[RowBox[{RowBox[{RowBox[{"ds", "[", "x_", "]"}], ":=", "0"}], 
+      ";"}]], "Input"], 
+  Cell[BoxData[RowBox[{RowBox[{RowBox[{"df", "[", "x_", "]"}], ":=", 
+        RowBox[{"-", FractionBox[RowBox[{"4", " ", RowBox[{"(", RowBox[
+                {RowBox[{"12", " ", SuperscriptBox["jrot", "2"], " ", "q"}], 
+                 "+", RowBox[{"8", " ", SuperscriptBox["q", "4"]}], "+", 
+                 RowBox[{"18", " ", SuperscriptBox["jrot", "2"], " ", "x"}], 
+                 "+", RowBox[{"13", " ", SuperscriptBox["q", "3"], " ", 
+                   "x"}], "+", RowBox[{"5", " ", SuperscriptBox["q", "2"], 
+                   " ", SuperscriptBox["x", "2"]}]}], ")"}]}], 
+           RowBox[{"3", " ", "x", " ", SuperscriptBox[RowBox[{"(", 
+                RowBox[{"q", "+", "x"}], ")"}], "4"]}]]}]}], ";"}]], 
+   "Input"], 
+  Cell[BoxData[RowBox[{RowBox[{RowBox[{"dgr", "[", "x_", "]"}], ":=", 
+        FractionBox[RowBox[{"16", " ", RowBox[
+            {"(", RowBox[{RowBox[{"3", " ", SuperscriptBox["jrot", "2"], " ", 
+                 "q"}], "+", RowBox[{"2", " ", SuperscriptBox["q", "4"]}], 
+               "+", RowBox[{"12", " ", SuperscriptBox["jrot", "2"], " ", 
+                 "x"}], "+", RowBox[{"5", " ", SuperscriptBox["q", "3"], " ", 
+                 "x"}], "+", RowBox[{"3", " ", SuperscriptBox["q", "2"], " ", 
+                 SuperscriptBox["x", "2"]}]}], ")"}]}], 
+         RowBox[{"3", " ", "x", " ", SuperscriptBox[
+            RowBox[{"(", RowBox[{"q", "+", "x"}], ")"}], "4"]}]]}], ";"}]], 
+   "Input"], 
+  Cell[BoxData[RowBox[{RowBox[{RowBox[{"dhr", "[", "x_", "]"}], ":=", "0"}], 
+      ";"}]], "Input"], 
+  Cell[BoxData[RowBox[{RowBox[{RowBox[{"dsqu", "[", "x_", "]"}], ":=", "0"}], 
+      ";"}]], "Input"], 
+  Cell[BoxData[RowBox[{RowBox[{RowBox[{"domega", "[", "x_", "]"}], ":=", 
+        FractionBox[RowBox[{"8", " ", "jrot", " ", 
+           RowBox[{"(", RowBox[{RowBox[{"3", " ", SuperscriptBox["jrot", 
+                  "2"]}], "+", RowBox[{"2", " ", SuperscriptBox["q", "3"]}], 
+               "+", RowBox[{"11", " ", SuperscriptBox["q", "2"], " ", "x"}], 
+               "+", RowBox[{"9", " ", "q", " ", SuperscriptBox["x", "2"]}]}], 
+             ")"}]}], RowBox[{"3", " ", SuperscriptBox["x", "2"], " ", 
+           SuperscriptBox[RowBox[{"(", RowBox[{"q", "+", "x"}], ")"}], 
+            "3"]}]]}], ";"}]], "Input"], 
+  Cell["Adapted fibre variables used by the solver", "Section"], 
+  Cell["For equal charges, omega0=jrot/(2x) and u0=x/(x+q). The adapted \
+variables are BI=dvI-omega0 duI-u0 domega. They separate genuine Hopf-fibre \
+flux from the part induced by changing the electric potentials and rotating \
+frame.", "Text"], 
+  Cell[BoxData[RowBox[{RowBox[{RowBox[{"omega0", "[", "x_", "]"}], ":=", 
+        FractionBox["jrot", RowBox[{"2", " ", "x"}]]}], ";"}]], "Input"], 
+  Cell[BoxData[RowBox[{RowBox[{RowBox[{"u0", "[", "x_", "]"}], ":=", 
+        FractionBox["x", RowBox[{"x", "+", "q"}]]}], ";"}]], "Input"], 
+  Cell[BoxData[RowBox[{RowBox[{RowBox[{"B1", "[", "x_", "]"}], ":=", 
+        RowBox[{"Simplify", "[", RowBox[{RowBox[{"dv1", "[", "x", "]"}], "-", 
+            RowBox[{RowBox[{"omega0", "[", "x", "]"}], " ", RowBox[{"du1", 
+                "[", "x", "]"}]}], "-", RowBox[{RowBox[{"u0", "[", "x", 
+                "]"}], " ", RowBox[{"domega", "[", "x", "]"}]}]}], "]"}]}], 
+      ";"}]], "Input"], 
+  Cell[BoxData[RowBox[{RowBox[{RowBox[{"B2", "[", "x_", "]"}], ":=", 
+        RowBox[{"B1", "[", "x", "]"}]}], ";"}]], "Input"], 
+  Cell[BoxData[RowBox[{RowBox[{RowBox[{"B3", "[", "x_", "]"}], ":=", 
+        RowBox[{"Simplify", "[", RowBox[{RowBox[{"dv3", "[", "x", "]"}], "-", 
+            RowBox[{RowBox[{"omega0", "[", "x", "]"}], " ", RowBox[{"du3", 
+                "[", "x", "]"}]}], "-", RowBox[{RowBox[{"u0", "[", "x", 
+                "]"}], " ", RowBox[{"domega", "[", "x", "]"}]}]}], "]"}]}], 
+      ";"}]], "Input"], 
+  Cell[BoxData[RowBox[{RowBox[{"adaptedVariablesExplicit", "=", 
+        RowBox[{"{", RowBox[{RowBox[{RowBox[{"B1", "[", "x", "]"}], 
+              "\[Equal]", RowBox[{"-", FractionBox[RowBox[{"24", " ", "jrot", 
+                   " ", "q"}], SuperscriptBox[RowBox[{"(", RowBox[{"q", "+", 
+                      "x"}], ")"}], "3"]]}]}], ",", 
+            RowBox[{RowBox[{"B2", "[", "x", "]"}], "\[Equal]", 
+              RowBox[{"-", FractionBox[RowBox[{"24", " ", "jrot", " ", "q"}], 
+                 SuperscriptBox[RowBox[{"(", RowBox[{"q", "+", "x"}], ")"}], 
+                  "3"]]}]}], ",", RowBox[{RowBox[{"B3", "[", "x", "]"}], 
+              "\[Equal]", RowBox[{"-", FractionBox[RowBox[{"18", " ", "jrot", 
+                   " ", "q"}], SuperscriptBox[RowBox[{"(", RowBox[{"q", "+", 
+                      "x"}], ")"}], "3"]]}]}]}], "}"}]}], ";"}]], "Input"], 
+  Cell["Singlet and vector-multiplet decomposition", "Section"], 
+  Cell[BoxData[RowBox[{RowBox[{RowBox[{"Us", "[", "x_", "]"}], ":=", 
+        RowBox[{"Simplify", "[", RowBox[{FractionBox["1", "3"], " ", 
+            RowBox[{"(", RowBox[{RowBox[{"2", " ", RowBox[{"du1", "[", "x", 
+                    "]"}]}], "+", RowBox[{"du3", "[", "x", "]"}]}], ")"}]}], 
+          "]"}]}], ";"}]], "Input"], 
+  Cell[BoxData[RowBox[{RowBox[{RowBox[{"Ud", "[", "x_", "]"}], ":=", 
+        RowBox[{"Simplify", "[", RowBox[{RowBox[{"du1", "[", "x", "]"}], "-", 
+            RowBox[{"du3", "[", "x", "]"}]}], "]"}]}], ";"}]], "Input"], 
+  Cell[BoxData[RowBox[{RowBox[{RowBox[{"Bs", "[", "x_", "]"}], ":=", 
+        RowBox[{"Simplify", "[", RowBox[{FractionBox["1", "3"], " ", 
+            RowBox[{"(", RowBox[{RowBox[{"2", " ", RowBox[{"B1", "[", "x", 
+                    "]"}]}], "+", RowBox[{"B3", "[", "x", "]"}]}], ")"}]}], 
+          "]"}]}], ";"}]], "Input"], 
+  Cell[BoxData[RowBox[{RowBox[{RowBox[{"Bd", "[", "x_", "]"}], ":=", 
+        RowBox[{"Simplify", "[", RowBox[{RowBox[{"B1", "[", "x", "]"}], "-", 
+            RowBox[{"B3", "[", "x", "]"}]}], "]"}]}], ";"}]], "Input"], 
+  Cell[BoxData[RowBox[{RowBox[{"blockSolution", "=", 
+        RowBox[{"{", RowBox[{RowBox[{RowBox[{"Us", "[", "x", "]"}], 
+              "\[Equal]", RowBox[{RowBox[{"-", FractionBox[RowBox[{"8", " ", 
+                     RowBox[{"(", RowBox[{RowBox[{"4", " ", SuperscriptBox[
+                          "q", "3"]}], "-", RowBox[{"3", " ", SuperscriptBox[
+                          "q", "2"], " ", "x"}]}], ")"}]}], RowBox[{"3", " ", 
+                     SuperscriptBox[RowBox[{"(", RowBox[{"q", "+", "x"}], 
+                        ")"}], "4"]}]]}], "-", FractionBox[RowBox[{"4", " ", 
+                   SuperscriptBox["jrot", "2"], " ", RowBox[{"(", RowBox[
+                      {RowBox[{"12", " ", "q"}], "+", RowBox[{"7", " ", 
+                         "x"}]}], ")"}]}], RowBox[{"3", " ", SuperscriptBox[
+                    RowBox[{"(", RowBox[{"q", "+", "x"}], ")"}], "5"]}]]}]}], 
+            ",", RowBox[{RowBox[{"Ud", "[", "x", "]"}], "\[Equal]", 
+              RowBox[{FractionBox[RowBox[{"24", " ", SuperscriptBox["q", 
+                    "2"], " ", "x"}], SuperscriptBox[RowBox[{"(", RowBox[
+                     {"q", "+", "x"}], ")"}], "4"]], "-", FractionBox[
+                 RowBox[{"20", " ", SuperscriptBox["jrot", "2"], " ", "x"}], 
+                 SuperscriptBox[RowBox[{"(", RowBox[{"q", "+", "x"}], ")"}], 
+                  "5"]]}]}], ",", RowBox[{RowBox[{"Bs", "[", "x", "]"}], 
+              "\[Equal]", RowBox[{"-", FractionBox[RowBox[{"22", " ", "jrot", 
+                   " ", "q"}], SuperscriptBox[RowBox[{"(", RowBox[{"q", "+", 
+                      "x"}], ")"}], "3"]]}]}], ",", 
+            RowBox[{RowBox[{"Bd", "[", "x", "]"}], "\[Equal]", 
+              RowBox[{"-", FractionBox[RowBox[{"6", " ", "jrot", " ", "q"}], 
+                 SuperscriptBox[RowBox[{"(", RowBox[{"q", "+", "x"}], ")"}], 
+                  "3"]]}]}]}], "}"}]}], ";"}]], "Input"], 
+  Cell["Exact validation record", "Section"], Cell["The solution was \
+substituted directly into all thirteen x-space equations before Page \
+integration and before algebraic Gr elimination. Every residual simplified to \
+exact zero.", "Text"], 
+  Cell[BoxData[RowBox[{RowBox[{"equationPasses", "=", 
+        RowBox[{"Association", "[", RowBox[{RowBox[{"\"u1\"", "\[Rule]", 
+              "True"}], ",", RowBox[{"\"u2\"", "\[Rule]", "True"}], ",", 
+            RowBox[{"\"u3\"", "\[Rule]", "True"}], ",", 
+            RowBox[{"\"v1\"", "\[Rule]", "True"}], ",", 
+            RowBox[{"\"v2\"", "\[Rule]", "True"}], ",", 
+            RowBox[{"\"v3\"", "\[Rule]", "True"}], ",", 
+            RowBox[{"\"p\"", "\[Rule]", "True"}], ",", 
+            RowBox[{"\"s\"", "\[Rule]", "True"}], ",", 
+            RowBox[{"\"f\"", "\[Rule]", "True"}], ",", 
+            RowBox[{"\"gr\"", "\[Rule]", "True"}], ",", 
+            RowBox[{"\"hr\"", "\[Rule]", "True"}], ",", 
+            RowBox[{"\"squ\"", "\[Rule]", "True"}], ",", 
+            RowBox[{"\"omega\"", "\[Rule]", "True"}]}], "]"}]}], ";"}]], 
+   "Input"], 
+  Cell[BoxData[RowBox[{RowBox[{"allThirteenEquationsPass", "=", 
+        RowBox[{"And", "@@", RowBox[{"Values", "[", "equationPasses", 
+            "]"}]}]}], ";"}]], "Input"], 
+  Cell[BoxData[RowBox[{RowBox[{"asymptoticLimits", "=", 
+        RowBox[{"Block", "[", RowBox[{RowBox[{"{", RowBox[{"$Assumptions", 
+                "=", RowBox[{RowBox[{"q", ">", "0"}], "&&", RowBox[
+                   {SuperscriptBox["jrot", "2"], "<", SuperscriptBox["q", 
+                     "3"]}]}]}], "}"}], ",", RowBox[{"Simplify", "[", 
+              RowBox[{UnderscriptBox["\[Limit]", RowBox[{"x", "\[Rule]", 
+                   "\[Infinity]"}]], RowBox[{"{", RowBox[{RowBox[{"du1", "[", 
+                      "x", "]"}], ",", RowBox[{"du2", "[", "x", "]"}], ",", 
+                    RowBox[{"du3", "[", "x", "]"}], ",", RowBox[{"dv1", "[", 
+                      "x", "]"}], ",", RowBox[{"dv2", "[", "x", "]"}], ",", 
+                    RowBox[{"dv3", "[", "x", "]"}], ",", RowBox[{"dp", "[", 
+                      "x", "]"}], ",", RowBox[{"ds", "[", "x", "]"}], ",", 
+                    RowBox[{"df", "[", "x", "]"}], ",", RowBox[{"dgr", "[", 
+                      "x", "]"}], ",", RowBox[{"dhr", "[", "x", "]"}], ",", 
+                    RowBox[{"dsqu", "[", "x", "]"}], ",", RowBox[{"domega", 
+                      "[", "x", "]"}]}], "}"}]}], "]"}]}], "]"}]}], ";"}]], 
+   "Input"], 
+  Cell[BoxData[RowBox[{RowBox[{"horizonScaledLimits", "=", 
+        RowBox[{"Block", "[", RowBox[{RowBox[{"{", RowBox[{"$Assumptions", 
+                "=", RowBox[{RowBox[{"q", ">", "0"}], "&&", RowBox[
+                   {SuperscriptBox["jrot", "2"], "<", SuperscriptBox["q", 
+                     "3"]}]}]}], "}"}], ",", RowBox[{"Simplify", "[", 
+              RowBox[{"{", RowBox[{RowBox[{UnderscriptBox["\[Limit]", 
+                     TagBox[RowBox[{"x", "\[Rule]", SuperscriptBox["0", 
+                         "+"]}], "AlternateLimitDirection"]], RowBox[
+                     {"x", " ", RowBox[{"df", "[", "x", "]"}]}]}], ",", 
+                  RowBox[{UnderscriptBox["\[Limit]", TagBox[RowBox[{"x", 
+                        "\[Rule]", SuperscriptBox["0", "+"]}], 
+                      "AlternateLimitDirection"]], RowBox[{"x", " ", 
+                      RowBox[{"dgr", "[", "x", "]"}]}]}], ",", RowBox[
+                   {UnderscriptBox["\[Limit]", TagBox[RowBox[{"x", "\[Rule]", 
+                        SuperscriptBox["0", "+"]}], 
+                      "AlternateLimitDirection"]], RowBox[{SuperscriptBox[
+                       "x", "2"], " ", RowBox[{"domega", "[", "x", 
+                        "]"}]}]}]}], "}"}], "]"}]}], "]"}]}], ";"}]], 
+   "Input"], Cell["Physical charge normalization", "Section"], 
+  Cell["The Page integration constants are deltaQ1=deltaQ2=deltaQ3=0. The \
+exact homogeneous rotation-parameter mode is domega=cj/(2x), dvI=cj/[2(q+x)]. \
+A sector-by-sector asymptotic calculation displays vanishing equal-charge \
+curvature, mixed A wedge R wedge R, and matter/gauge-compensator falloffs in \
+the gauge Apsi->0. These falloffs support J4=0 on the equal-charge locus. The \
+selected no-1/x asymptotic rotation-parameter gauge has cj=0.", "Text"], 
+  Cell[BoxData[RowBox[{RowBox[{"physicalChargeNormalization", "=", 
+        RowBox[{"Association", "[", RowBox[{RowBox[{"\"PageChargeShifts\"", 
+              "\[Rule]", RowBox[{"{", RowBox[{"0", ",", "0", ",", "0"}], 
+                "}"}]}], ",", RowBox[{"\"TwoDerivativeAngularMomentum\"", 
+              "\[Rule]", FractionBox[RowBox[{"\[Pi]", " ", "jrot"}], RowBox[
+                {"4", " ", "G5"}]]}], ",", RowBox[
+             {"\"EqualChargeJ4FalloffStatus\"", "\[Rule]", "\"SUPPORTED\""}], 
+            ",", RowBox[{"\"SelectedRotationParameterModeCoefficient\"", 
+              "\[Rule]", "0"}], ",", RowBox[{"\"AsymptoticGauge\"", 
+              "\[Rule]", RowBox[{"Block", "[", RowBox[{RowBox[{"{", 
+                    RowBox[{"$Assumptions", "=", RowBox[{"q", ">", "0"}]}], 
+                    "}"}], ",", RowBox[{RowBox[{UnderscriptBox["\[Limit]", 
+                       RowBox[{"x", "\[Rule]", "\[Infinity]"}]], FractionBox[
+                       "jrot", RowBox[{"2", " ", RowBox[{"(", RowBox[{"q", 
+                          "+", "x"}], ")"}]}]]}], "\[Equal]", "0"}]}], 
+                "]"}]}]}], "]"}]}], ";"}]], "Input"], 
+  Cell["Boundary-mode choice", "Section"], Cell["Growing and non-decaying \
+homogeneous modes were removed by asymptotic flatness and gauge \
+normalization. Singular homogeneous branches beyond the coordinate behavior \
+already present in the regular BMPV ansatz were discarded. The 1/x \
+rotation-parameter homogeneous mode is not added in the selected asymptotic \
+parameter gauge. The displayed equal-charge falloffs support J4=0, but a \
+generic Wald statement is not made here.", "Text"], 
+  Cell[BoxData[RowBox[{RowBox[{"physicalDomainCheck", "=", 
+        RowBox[{"FullSimplify", "[", RowBox[
+           {RowBox[{RowBox[{SuperscriptBox["q", "3"], "-", SuperscriptBox[
+                 "jrot", "2"]}], ">", "0"}], ",", "$Assumptions"}], "]"}]}], 
+      ";"}]], "Input"]}, WindowTitle -> 
+  "Exact Equal-Charge BMPV Lambda3 Correction", 
+ StyleDefinitions -> "Default.nb", TaggingRules -> 
+  <|"SelfContained" -> True, "NoExternalFileAccess" -> True, 
+   "Sector" -> "lambda3", "ChargeLocus" -> "q1=q2=q3=q", 
+   "DirectThirteenEquationValidation" -> True|>]

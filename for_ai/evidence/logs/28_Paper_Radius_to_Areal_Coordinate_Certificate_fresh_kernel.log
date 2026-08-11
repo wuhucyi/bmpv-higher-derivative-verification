@@ -1,0 +1,80 @@
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_BEGIN"
+"FILE_BASENAME=""28_Paper_Radius_to_Areal_Coordinate_Certificate.nb"
+"FILE_ABSOLUTE_PATH=""[LOCAL_HOME]/Documents/Codex/2026-07-12/https-www-overleaf-com-project-65577187a96876076df0bcd6/work/package_v4_staging/notebooks/28_Paper_Radius_to_Areal_Coordinate_Certificate.nb"
+"KERNEL=""14.1.0 for Mac OS X ARM (64-bit) (July 16, 2024)"
+"START_UTC=""2026-07-20T06:12:29"
+"BYTES="24001
+"SHA256=""6d2634df411214021489e90de4f9d50abbaa2e8572feb171289ee629b61c0557"
+"PARSE_PASS="True
+"INPUT_CELL_COUNT="7
+"PASS_EXPRESSION=""v4CoordinateCertificatePass"
+"CELL_"1"_BEGIN"
+"CELL_"1"_SECONDS="0.004336
+"CELL_"1"_RESULT_PASS="True
+"CELL_"1"_MESSAGE_COUNT="0
+"CELL_"1"_RESULT_HEAD="Symbol
+"CELL_"1"_RESULT_LEAF_COUNT="1
+"CELL_"1"_RESULT_SHORT=""Short[Null, 12]"
+"CELL_"1"_END"
+"CELL_"2"_BEGIN"
+"CELL_"2"_SECONDS="0.003822
+"CELL_"2"_RESULT_PASS="True
+"CELL_"2"_MESSAGE_COUNT="0
+"CELL_"2"_RESULT_HEAD="Association
+"CELL_"2"_RESULT_LEAF_COUNT="10
+"CELL_"2"_RESULT_SHORT=""Short[<|\"lambda3=alphaPrime/8\" -> True, \"PublishedAlphaPrimeCoefficients\" -> <|\"A^1 electric coefficient\" -> True, \"A^2=-B electric coefficient\" -> True, \"A^3 electric coefficient\" -> True, \"heterotic dilaton coefficient\" -> True, \"temporal metric multiplier\" -> True, \"radial metric multiplier\" -> True, \"angular metric multiplier\" -> True|>|>, 12]"
+"CELL_"2"_END"
+"CELL_"3"_BEGIN"
+"CELL_"3"_SECONDS="0.06433
+"CELL_"3"_RESULT_PASS="True
+"CELL_"3"_MESSAGE_COUNT="0
+"CELL_"3"_RESULT_HEAD="Association
+"CELL_"3"_RESULT_LEAF_COUNT="252
+"CELL_"3"_RESULT_SHORT=""Short[<|\"rPaperEquals\" -> HoldForm[R + lambda3*xiStatic[R]], \"XiStatic\" -> (-8*(6*q1^2*q2^2*q3^2 + 2*q1^2*q2^2*q3*R^2 + 11*q1^2*q2*q3^2*R^2 + 11*q1*q2^2*q3^2*R^2 + 3*q1^2*q2*q3*R^4 + 3*q1*q2^2*q3*R^4 + 6*q1^2*q3^2*R^4 + 18*q1*q2*q3^2*R^4 + 6*q2^2*q3^2*R^4 + 3*q1^2*q3*R^6 + 3*q2^2*q3*R^6 + 9*q1*q3^2*R^6 + 9*q2*q3^2*R^6 + q1^2*R^8 - 2*q1*q2*R^8 + q2^2*R^8 + q1*q3*R^8 + q2*q3*R^8 + 4*q3^2*R^8))/(3*R*(q1 + R^2)*(q2 + R^2)*(q3 + R^2)^2*(q1*q2 + q1*q3 + q2*q3 + 2*q1*R^2 + 2*q2*R^2 + 2*q3*R^2 + 3*R^4)), \"Checks\" -> <|\"SphereCorrectionVanishes\" -> True, \"PositiveDenominatorIdentity\" -> True, \"ShiftIsJIndependent\" -> True|>|>, 12]"
+"CELL_"3"_END"
+"CELL_"4"_BEGIN"
+"CELL_"4"_SECONDS="0.001326
+"CELL_"4"_RESULT_PASS="True
+"CELL_"4"_MESSAGE_COUNT="0
+"CELL_"4"_RESULT_HEAD="Symbol
+"CELL_"4"_RESULT_LEAF_COUNT="1
+"CELL_"4"_RESULT_SHORT=""Short[Null, 12]"
+"CELL_"4"_END"
+"CELL_"5"_BEGIN"
+"CELL_"5"_SECONDS="0.060078
+"CELL_"5"_RESULT_PASS="True
+"CELL_"5"_MESSAGE_COUNT="0
+"CELL_"5"_RESULT_HEAD="Association
+"CELL_"5"_RESULT_LEAF_COUNT="29
+"CELL_"5"_RESULT_SHORT=""Short[<|\"PaperToAreal\" -> <|\"delta u_1\" -> True, \"delta u_2\" -> True, \"delta u_3\" -> True, \"beta_1\" -> True, \"beta_2\" -> True, \"beta_3\" -> True, \"delta varphi_1\" -> True, \"delta varphi_2\" -> True, \"delta F\" -> True, \"delta G\" -> True, \"delta K\" -> True, \"delta omega\" -> True|>, \"ArealToPaper\" -> <|\"delta u_1\" -> True, \"delta u_2\" -> True, \"delta u_3\" -> True, \"beta_1\" -> True, \"beta_2\" -> True, \"beta_3\" -> True, \"delta varphi_1\" -> True, \"delta varphi_2\" -> True, \"delta F\" -> True, \"delta G\" -> True, \"delta K\" -> True, \"delta omega\" -> True, \"delta H (sphere size)\" -> True|>, \"AllPass\" -> True|>, 12]"
+"CELL_"5"_END"
+"CELL_"6"_BEGIN"
+"CELL_"6"_SECONDS="0.016347
+"CELL_"6"_RESULT_PASS="True
+"CELL_"6"_MESSAGE_COUNT="0
+"CELL_"6"_RESULT_HEAD="Association
+"CELL_"6"_RESULT_LEAF_COUNT="5
+"CELL_"6"_RESULT_SHORT=""Short[<|\"Scalar\" -> True, \"CovectorAllComponents\" -> True, \"MetricAllComponents\" -> True, \"NoRotationExpansion\" -> True|>, 12]"
+"CELL_"6"_END"
+"CELL_"7"_BEGIN"
+"CELL_"7"_SECONDS="0.000043
+"CELL_"7"_RESULT_PASS="True
+"CELL_"7"_MESSAGE_COUNT="0
+"CELL_"7"_RESULT_HEAD="Association
+"CELL_"7"_RESULT_LEAF_COUNT="9
+"CELL_"7"_RESULT_SHORT=""Short[<|\"Checks\" -> <|\"Coupling lambda3=alphaPrime/8\" -> True, \"Published alphaPrime transcription\" -> True, \"Coordinate gauge\" -> True, \"Static paper to areal field map\" -> True, \"Static inverse map\" -> True, \"General exact-in-j pullback\" -> True|>, \"FinalPass\" -> True|>, 12]"
+"CELL_"7"_END"
+"RESULT_FAILURE_COUNT="0
+"RESULT_FAILURE_INDICES="InputForm[{}]
+"MESSAGE_CELL_COUNT="0
+"MESSAGE_CELL_INDICES="InputForm[{}]
+"MESSAGE_TOTAL_COUNT="0
+"CELL_SECONDS="InputForm[{0.004336, 0.003822, 0.06433, 0.001326, 0.060078, 0.016347, 0.000043}]
+"CELL_SECONDS_TOTAL="0.15028199999999997
+"GLOBAL_finalPass="InputForm[True]
+"DECLARED_PASS_VALUE="InputForm[True]
+"CELL_EVALUATION_PASS="True
+"END_UTC=""2026-07-20T06:12:30"
+"TOTAL_WALL_SECONDS="1.437818`6.609248909724986
+"FRESH_KERNEL_FINAL_PASS="True
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_END"

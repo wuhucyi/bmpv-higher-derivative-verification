@@ -1,0 +1,113 @@
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_BEGIN"
+"FILE_BASENAME=""21_Independent_Direct_Entropy_Verifier.nb"
+"FILE_ABSOLUTE_PATH=""[LOCAL_HOME]/Documents/Codex/2026-07-12/https-www-overleaf-com-project-65577187a96876076df0bcd6/work/package_v3_staging/notebooks/21_Independent_Direct_Entropy_Verifier.nb"
+"KERNEL=""14.1.0 for Mac OS X ARM (64-bit) (July 16, 2024)"
+"START_UTC=""2026-07-19T10:25:00"
+"BYTES="12179
+"SHA256=""3af04f4a156cd8208162a0587476c83464f7eb43a2397923e57fc0a963e54b2f"
+"PARSE_PASS="True
+"INPUT_CELL_COUNT="10
+"PASS_EXPRESSION=""TrueQ[Global`FinalPass]"
+"CELL_"1"_BEGIN"
+<|"FlatSymbolLower01234" -> 1, "FlatSymbolUpper01234" -> -1, "CurvedCoordinateLowerSign" -> -1, "CurvedCoordinateUpperSign" -> 1, "AlternatingDensity" -> 1, "Pass" -> True|>
+"CELL_"1"_SECONDS="0.00131
+"CELL_"1"_RESULT_PASS="True
+"CELL_"1"_MESSAGE_COUNT="0
+"CELL_"1"_RESULT_HEAD="Symbol
+"CELL_"1"_RESULT_LEAF_COUNT="1
+"CELL_"1"_RESULT_SHORT=""Short[Null, 12]"
+"CELL_"1"_END"
+"CELL_"2"_BEGIN"
+"CELL_"2"_SECONDS="0.000142
+"CELL_"2"_RESULT_PASS="True
+"CELL_"2"_MESSAGE_COUNT="0
+"CELL_"2"_RESULT_HEAD="Symbol
+"CELL_"2"_RESULT_LEAF_COUNT="1
+"CELL_"2"_RESULT_SHORT=""Short[Null, 12]"
+"CELL_"2"_END"
+"CELL_"3"_BEGIN"
+"CELL_"3"_SECONDS="12.330451
+"CELL_"3"_RESULT_PASS="True
+"CELL_"3"_MESSAGE_COUNT="0
+"CELL_"3"_RESULT_HEAD="Symbol
+"CELL_"3"_RESULT_LEAF_COUNT="1
+"CELL_"3"_RESULT_SHORT=""Short[Null, 12]"
+"CELL_"3"_END"
+"CELL_"4"_BEGIN"
+<|"RawR0101" -> (j^2 + 4*mu1*mu2*mu3)/(mu1*mu2*mu3)^(4/3), "RawR4101" -> (-4*j)/(mu1*mu2*mu3)^(5/6), "RawR4141" -> (3*j^2)/(mu1*mu2*mu3)^(4/3), "AdaptedR" -> (-3*j^2 + 4*mu1*mu2*mu3)/(mu1*mu2*mu3)^(4/3), "Pass" -> True|>
+"CELL_"4"_SECONDS="0.676647
+"CELL_"4"_RESULT_PASS="True
+"CELL_"4"_MESSAGE_COUNT="0
+"CELL_"4"_RESULT_HEAD="Symbol
+"CELL_"4"_RESULT_LEAF_COUNT="1
+"CELL_"4"_RESULT_SHORT=""Short[Null, 12]"
+"CELL_"4"_END"
+"CELL_"5"_BEGIN"
+<|"AdaptedF01" -> {(-2*mu2*mu3*Sqrt[mu1*mu2*mu3*(-j^2 + mu1*mu2*mu3)])/(mu1*mu2*mu3)^(11/6), (-2*mu1*mu3*Sqrt[mu1*mu2*mu3*(-j^2 + mu1*mu2*mu3)])/(mu1*mu2*mu3)^(11/6), (-2*mu1*mu2*Sqrt[mu1*mu2*mu3*(-j^2 + mu1*mu2*mu3)])/(mu1*mu2*mu3)^(11/6)}, "WaldKernel" -> mu3^(-1), "RelativeEntropyCoefficient" -> -4/mu3, "Pass" -> True|>
+"CELL_"5"_SECONDS="0.315414
+"CELL_"5"_RESULT_PASS="True
+"CELL_"5"_MESSAGE_COUNT="0
+"CELL_"5"_RESULT_HEAD="Symbol
+"CELL_"5"_RESULT_LEAF_COUNT="1
+"CELL_"5"_RESULT_SHORT=""Short[Null, 12]"
+"CELL_"5"_END"
+"CELL_"6"_BEGIN"
+<|"GammaNFullComponents" -> {((-j^2 + 2*mu1*mu2*mu3)*r^2)/(mu1*mu2*mu3*Sqrt[-j^2 + mu1*mu2*mu3]), 0, 0, (j*Sqrt[-j^2 + mu1*mu2*mu3]*Cos[th])/(2*mu1*mu2*mu3), (j*Sqrt[-j^2 + mu1*mu2*mu3])/(2*mu1*mu2*mu3)}, "HorizonPullback" -> {0, (j*Sqrt[-j^2 + mu1*mu2*mu3]*Cos[th])/(2*mu1*mu2*mu3), (j*Sqrt[-j^2 + mu1*mu2*mu3])/(2*mu1*mu2*mu3)}, "Sigma3Coefficient" -> (j*Sqrt[-j^2 + mu1*mu2*mu3])/(2*mu1*mu2*mu3), "HopfPullbackPass" -> True|>
+"CELL_"6"_SECONDS="0.290284
+"CELL_"6"_RESULT_PASS="True
+"CELL_"6"_MESSAGE_COUNT="0
+"CELL_"6"_RESULT_HEAD="Symbol
+"CELL_"6"_RESULT_LEAF_COUNT="1
+"CELL_"6"_RESULT_SHORT=""Short[Null, 12]"
+"CELL_"6"_END"
+"CELL_"7"_BEGIN"
+<|"PhysicalIntegralGammaNWedgeF3" -> (4*j^2*Sqrt[-j^2 + mu1*mu2*mu3]*Pi^2)/(mu1*mu2*mu3^2), "RelativeEntropyCoefficient" -> (8*j^2)/(mu1*mu2*mu3^2), "Pass" -> True|>
+"CELL_"7"_SECONDS="0.080631
+"CELL_"7"_RESULT_PASS="True
+"CELL_"7"_MESSAGE_COUNT="0
+"CELL_"7"_RESULT_HEAD="Symbol
+"CELL_"7"_RESULT_LEAF_COUNT="1
+"CELL_"7"_RESULT_SHORT=""Short[Null, 12]"
+"CELL_"7"_END"
+"CELL_"8"_BEGIN"
+"CELL_"8"_SECONDS="0.000667
+"CELL_"8"_RESULT_PASS="True
+"CELL_"8"_MESSAGE_COUNT="0
+"CELL_"8"_RESULT_HEAD="Symbol
+"CELL_"8"_RESULT_LEAF_COUNT="1
+"CELL_"8"_RESULT_SHORT=""Short[Null, 12]"
+"CELL_"8"_END"
+"CELL_"9"_BEGIN"
+<|"RelativeAreaCoefficient" -> (-4*(2*j^4 - 7*j^2*mu1*mu2*mu3 + 4*mu1^2*mu2^2*mu3^2))/(mu1*mu2*mu3^2*(j^2 - mu1*mu2*mu3)), "Pass" -> True|>
+"CELL_"9"_SECONDS="0.22639
+"CELL_"9"_RESULT_PASS="True
+"CELL_"9"_MESSAGE_COUNT="0
+"CELL_"9"_RESULT_HEAD="Symbol
+"CELL_"9"_RESULT_LEAF_COUNT="1
+"CELL_"9"_RESULT_SHORT=""Short[Null, 12]"
+"CELL_"9"_END"
+"CELL_"10"_BEGIN"
+<|"Area" -> (-4*(2*j^4 - 7*j^2*mu1*mu2*mu3 + 4*mu1^2*mu2^2*mu3^2))/(mu1*mu2*mu3^2*(j^2 - mu1*mu2*mu3)), "CovariantWald" -> -4/mu3, "MixedCS" -> (8*j^2)/(mu1*mu2*mu3^2), "SurfaceTotal" -> (4*(2*j^2 - mu1*mu2*mu3))/(mu1*mu2*mu3^2), "GrandTotal" -> (4*(-4*j^2 + 3*mu1*mu2*mu3))/(mu3*(-j^2 + mu1*mu2*mu3))|>
+<|"LeviCivitaAndChartOrientationPass" -> True, "GeometryRiemannPass" -> True, "CovariantKernelPass" -> True, "NormalConnectionHopfPullbackPass" -> True, "MixedCSPass" -> True, "CorrectedAreaPass" -> True, "TotalPass" -> True, "CSRelative" -> (8*j^2)/(mu1*mu2*mu3^2), "TotalRelative" -> (4*(-4*j^2 + 3*mu1*mu2*mu3))/(mu3*(-j^2 + mu1*mu2*mu3))|>
+<|"FINAL_PASS" -> True|>
+"CELL_"10"_SECONDS="0.084384
+"CELL_"10"_RESULT_PASS="True
+"CELL_"10"_MESSAGE_COUNT="0
+"CELL_"10"_RESULT_HEAD="Symbol
+"CELL_"10"_RESULT_LEAF_COUNT="1
+"CELL_"10"_RESULT_SHORT=""Short[Null, 12]"
+"CELL_"10"_END"
+"RESULT_FAILURE_COUNT="0
+"RESULT_FAILURE_INDICES="InputForm[{}]
+"MESSAGE_CELL_COUNT="0
+"MESSAGE_CELL_INDICES="InputForm[{}]
+"MESSAGE_TOTAL_COUNT="0
+"CELL_SECONDS="InputForm[{0.00131, 0.000142, 12.330451, 0.676647, 0.315414, 0.290284, 0.080631, 0.000667, 0.22639, 0.084384}]
+"CELL_SECONDS_TOTAL="14.00632
+"GLOBAL_FinalPass="InputForm[True]
+"DECLARED_PASS_VALUE="InputForm[True]
+"CELL_EVALUATION_PASS="True
+"END_UTC=""2026-07-19T10:25:17"
+"TOTAL_WALL_SECONDS="17.094536`7.684402310656992
+"FRESH_KERNEL_FINAL_PASS="True
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_END"

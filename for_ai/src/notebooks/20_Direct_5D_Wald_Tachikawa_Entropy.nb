@@ -1,0 +1,148 @@
+Notebook[{Cell["Direct five-dimensional Wald--Tachikawa entropy of the \
+generic rotating STU black hole", "Title"], Cell["First order in lambda3, \
+exact in rotation, and symbolic in three unequal charges", "Subtitle"], 
+  Cell["Purpose and certified scope", "Section"], 
+  Cell["This notebook performs the direct five-dimensional horizon \
+calculation that was left open in Version 2. It combines three independently \
+displayed contributions: the corrected horizon area, the covariant \
+Riemann/RF^2 Wald density, and the mixed gauge--gravitational Chern--Simons \
+normal-bundle term. The calculation uses fixed Page charges and fixed \
+asymptotic angular momentum. It does not infer the answer from the heterotic \
+entropy formula.", "Text"], Cell["Human notation", "Section"], 
+  Cell["We use P=mu1 mu2 mu3, DeltaH=P-j^2, S0=Pi^2 Sqrt[DeltaH]/(2 G5), and \
+alphaPrime=8 lambda3. The regular black-hole branch has positive muI and \
+0<=j^2<P. The left-invariant Hopf form is sigma3=dpsi+Cos[theta] dphi. The \
+physical horizon orientation is -sigma1 wedge sigma2 wedge sigma3, so \
+Integral_phys[sigma3 wedge d sigma3]=+16 Pi^2; the positive coordinate \
+measure gives -16 Pi^2.", 
+   "Text"], Cell["The oriented mostly-plus frame has the flat-index symbol epsilonLower[0,1,2,3,4]=+1 and epsilonUpper[0,1,2,3,4]=-1. The curved tensor is its five-vielbein transform and carries the determinant. The BMPV base orientation makes (t,r,theta,phi,psi) orientation reversing, so its curved components are coordinate epsilonLower=-Sqrt[-g] epsilonTilde and coordinate epsilonUpper=+epsilonTilde/Sqrt[-g]. Mathematica's positive alternating density is epsilonTilde. The positive BMPV gauge potentials follow Eq. 4.1 of arXiv:2603.18180.", "Text"], Cell[BoxData["alt5=Normal[LeviCivitaTensor[5]]; frameEpsilonLowerOrdered=1; frameEpsilonUpperOrdered=-1; coordinateOrientation=-1; coordinateEpsilonLowerSign=-1; coordinateEpsilonUpperSign=1; actionArrayOrdered=alt5[[1,2,3,4,5]]; epsilonConventionPass=TrueQ[{frameEpsilonLowerOrdered,frameEpsilonUpperOrdered,coordinateOrientation,coordinateEpsilonLowerSign,coordinateEpsilonUpperSign,actionArrayOrdered}=={1,-1,-1,-1,1,1}]; Print[<|\"FlatSymbolLower01234\"->frameEpsilonLowerOrdered,\"FlatSymbolUpper01234\"->frameEpsilonUpperOrdered,\"CurvedCoordinateLowerSign\"->coordinateEpsilonLowerSign,\"CurvedCoordinateUpperSign\"->coordinateEpsilonUpperSign,\"AlternatingDensity\"->actionArrayOrdered,\"Pass\"->epsilonConventionPass|>];"], "Input"], Cell[BoxData["ClearAll[x,mu1,mu2,mu3,j,lambda3,alphaPrime,G5,P,De\
+ltaH,S0];\nP=mu1 mu2 mu3; DeltaH=P-j^2; S0=Pi^2 Sqrt[DeltaH]/(2 \
+G5);\nassumptions=mu1>0&&mu2>0&&mu3>0&&G5>0&&0<=j^2<P;"], "Input"], 
+  Cell["I. Corrected horizon area from the complete metric", "Section"], 
+  Cell["The three metric fields needed for the horizon cross-section are \
+embedded below from the independently EOM-certified generic solution. No \
+external notebook is read during evaluation. The apparent poles at the old \
+coordinate origin cancel after the unique horizon-centering shift.", "Text"], 
+  Cell[BoxData["metricCorrectionSubset=<|\"Ft\" -> (-4*(24*q1^3*q2^3*q3^3 + \
+29*q1^3*q2^3*q3^2*x + 65*q1^3*q2^2*q3^3*x + 65*q1^2*q2^3*q3^3*x + \
+4*q1^3*q2^3*q3*x^2 + 74*q1^3*q2^2*q3^2*x^2 + 74*q1^2*q2^3*q3^2*x^2 + \
+64*q1^3*q2*q3^3*x^2 + 170*q1^2*q2^2*q3^3*x^2 + 64*q1*q2^3*q3^3*x^2 + \
+6*q1^3*q2^2*q3*x^3 + 6*q1^2*q2^3*q3*x^3 + 78*q1^3*q2*q3^2*x^3 + \
+165*q1^2*q2^2*q3^2*x^3 + 78*q1*q2^3*q3^2*x^3 + 24*q1^3*q3^3*x^3 + \
+162*q1^2*q2*q3^3*x^3 + 162*q1*q2^2*q3^3*x^3 + 24*q2^3*q3^3*x^3 + \
+16*q1^3*q2*q3*x^4 - 24*q1^2*q2^2*q3*x^4 + 16*q1*q2^3*q3*x^4 + \
+36*q1^3*q3^2*x^4 + 156*q1^2*q2*q3^2*x^4 + 156*q1*q2^2*q3^2*x^4 + \
+36*q2^3*q3^2*x^4 + 60*q1^2*q3^3*x^4 + 148*q1*q2*q3^3*x^4 + 60*q2^2*q3^3*x^4 + \
+5*q1^3*q2*x^5 - 10*q1^2*q2^2*x^5 + 5*q1*q2^3*x^5 + 17*q1^3*q3*x^5 - \
+21*q1^2*q2*q3*x^5 - 21*q1*q2^2*q3*x^5 + 17*q2^3*q3*x^5 + 74*q1^2*q3^2*x^5 + \
+123*q1*q2*q3^2*x^5 + 74*q2^2*q3^2*x^5 + 53*q1*q3^3*x^5 + 53*q2*q3^3*x^5 + \
+6*q1^3*x^6 - 6*q1^2*q2*x^6 - 6*q1*q2^2*x^6 + 6*q2^3*x^6 + 18*q1^2*q3*x^6 - \
+48*q1*q2*q3*x^6 + 18*q2^2*q3*x^6 + 54*q1*q3^2*x^6 + 54*q2*q3^2*x^6 + \
+18*q3^3*x^6 + 7*q1^2*x^7 - 14*q1*q2*x^7 + 7*q2^2*x^7 - 2*q1*q3*x^7 - \
+2*q2*q3*x^7 + 19*q3^2*x^7))/(3*x*(q1 + x)^2*(q2 + x)^2*(q3 + x)^3*(q1*q2 + \
+q1*q3 + q2*q3 + 2*q1*x + 2*q2*x + 2*q3*x + 3*x^2)) - (8*jrot^2*(6*q1*q2*q3 + \
+7*(q1*q2 + q1*q3 + q2*q3)*x + 8*(q1 + q2 + q3)*x^2 + 9*x^3))/(x*(q1 + x)*(q2 \
++ x)*(q3 + x)^2*((q1 + x)*(q2 + x) + (q1 + x)*(q3 + x) + (q2 + x)*(q3 + x))), \
+\"K\" -> 0, \"Om\" -> (4*jrot*(12*q1^2*q2^2*q3^2 + 22*q1^2*q2^2*q3*x + \
+40*q1^2*q2*q3^2*x + 40*q1*q2^2*q3^2*x + 6*q1^2*q2^2*x^2 + 63*q1^2*q2*q3*x^2 + \
+63*q1*q2^2*q3*x^2 + 27*q1^2*q3^2*x^2 + 102*q1*q2*q3^2*x^2 + 27*q2^2*q3^2*x^2 \
++ 15*q1^2*q2*x^3 + 15*q1*q2^2*x^3 + 39*q1^2*q3*x^3 + 144*q1*q2*q3*x^3 + \
+39*q2^2*q3*x^3 + 60*q1*q3^2*x^3 + 60*q2*q3^2*x^3 + 8*q1^2*x^4 + 26*q1*q2*x^4 \
++ 8*q2^2*x^4 + 77*q1*q3*x^4 + 77*q2*q3*x^4 + 32*q3^2*x^4 + 9*q1*x^5 + \
+9*q2*x^5 + 36*q3*x^5))/(3*x^2*(q1 + x)*(q2 + x)*(q3 + x)^2*(q1*q2 + q1*q3 + \
+q2*q3 + 2*q1*x + 2*q2*x + 2*q3*x + 3*x^2)) + (24*jrot^3)/(x^2*(q3 + x)*((q1 + \
+x)*(q2 + x) + (q1 + x)*(q3 + x) + (q2 + x)*(q3 + x)))|>;"], "Input"], 
+  Cell[BoxData["productD=(x+mu1)(x+mu2)(x+mu3);\nareaBase=productD^(1/3);\nfi\
+berBase=areaBase-j^2/productD^(2/3);\nhorizonShift=16(3j^2+2P)/(mu3(mu1 \
+mu2+mu1 mu3+mu2 mu3));\nfBackground=Log[x]-Log[productD]/3; \
+omegaBackground=j/(2x);\nfCentered=metricCorrectionSubset[\"Ft\"]/.{q1->mu1,q\
+2->mu2,q3->mu3,jrot->j};\nfCentered=fCentered+horizonShift \
+D[fBackground,x];\nomegaCentered=metricCorrectionSubset[\"Om\"]/.{q1->mu1,q2-\
+>mu2,q3->mu3,jrot->j};\nomegaCentered=omegaCentered+horizonShift \
+D[omegaBackground,x];\nkCentered=metricCorrectionSubset[\"K\"]/.{q1->mu1,q2->\
+mu2,q3->mu3,jrot->j};\nareaBaseCorrection=horizonShift \
+D[areaBase,x];\nfiberCorrection=Together[areaBaseCorrection+2areaBase \
+kCentered-4(x^2/productD^(2/3))omegaBackground^2(2fCentered+2omegaCentered/om\
+egaBackground)];\nareaRelative=FullSimplify[Limit[areaBaseCorrection/areaBase\
++fiberCorrection/(2fiberBase),x->0,Direction->\"FromAbove\"],Assumptions->ass\
+umptions];\nareaExpected=4(2j^4-7j^2 P+4P^2)/(P mu3 \
+DeltaH);\nareaPass=TrueQ[FullSimplify[areaRelative-areaExpected,Assumptions->\
+assumptions]===0];\n<|\"AreaRelative\"->Factor[areaRelative],\"Expected\"->Fa\
+ctor[areaExpected],\"Pass\"->areaPass|>"], "Input"], 
+  Cell["II. Horizon-adapted binormal and covariant Wald density", "Section"], 
+  Cell["The raw BMPV coframe is not adapted to the rotating horizon \
+cross-section. The constant Lorentz boost with velocity u=j/Sqrt[P] and \
+gamma=Sqrt[P/DeltaH] removes the tangential component of the timelike \
+coframe. Omitting this boost produces a spurious rotation dependence in the \
+covariant Wald term.", "Text"], Cell[BoxData["u=j/Sqrt[P]; \
+gamma=Sqrt[P/DeltaH];\nrawR0101=(j^2+4P)/P^(4/3); rawR4101=-4j/P^(5/6); \
+rawR4141=3j^2/P^(4/3);\nrawF01=-2P^(1/6)/{mu1,mu2,mu3}; \
+rawF41=2j/(P^(1/3){mu1,mu2,mu3});\nadaptedR=FullSimplify[gamma^2(rawR0101+2u \
+rawR4101+u^2 \
+rawR4141),Assumptions->assumptions];\nadaptedF=FullSimplify[gamma(rawF01+u \
+rawF41),Assumptions->assumptions];\nxUpper=P^(1/3)/{mu1,mu2,mu3}; \
+xLower={mu1,mu2,mu3}/(3P^(1/3)); \
+lambdaDirection={0,0,1};\ndTensor=Table[3lambdaDirection[[i]]xLower[[k]]-(9/2\
+)xUpper[[3]]xLower[[i]]xLower[[k]],{i,3},{k,3}];\ncovariantKernel=FullSimplif\
+y[xUpper[[3]]adaptedR+(1/2)Sum[dTensor[[i,k]]adaptedF[[i]]adaptedF[[k]],{i,3}\
+,{k,3}],Assumptions->assumptions];\ncovariantExpected=1/mu3; \
+covariantKernelPass=TrueQ[FullSimplify[covariantKernel-covariantExpected,Assu\
+mptions->assumptions]===0];\ncovariantRelative=-4/mu3;\n<|\"AdaptedR0101\"->F\
+actor[adaptedR],\"AdaptedF01\"->Factor[adaptedF],\"Kernel\"->Factor[covariant\
+Kernel],\"KernelPass\"->covariantKernelPass,\"EntropyRelative\"->covariantRel\
+ative|>"], "Input"], 
+  Cell["III. Mixed gravitational Chern--Simons/Tachikawa term", "Section"], 
+  Cell["The sign is fixed before evaluating the horizon integral. With a \
+Lorentz matrix trace, tr(R wedge R)=R^a_b wedge R^b_a=-(1/4) R_(mu nu rho \
+sigma) R_(alpha beta)^(rho sigma) dx^(mu nu alpha beta). Hence the package \
+scalar component term +(lambda3/(2 e)) epsilonTilde R R A3 is +2 lambda3 A3 wedge tr(R \
+wedge R) as an oriented form because the notebook chart reverses the \
+physical orientation. Tachikawa's formula, including the common 1/(16 Pi G5) \
+action factor, is therefore +(lambda3/G5) Integral_phys[GammaN wedge F3]. The \
+horizon-adapted normal connection and \
+tangential third field strength are shown explicitly. This term vanishes in \
+the static limit but is essential for rotation.", "Text"], 
+  Cell[BoxData["rawGamma01=j/(2Sqrt[P]); \
+rawGamma41=j^2/(2P);\ngammaNormal=FullSimplify[gamma(rawGamma01-u \
+rawGamma41),Assumptions->assumptions];\nf3HopfCoefficient=j/(2mu3); \
+hopfIntegral=16Pi^2;\nnormalBundleIntegral=FullSimplify[gammaNormal \
+f3HopfCoefficient \
+hopfIntegral,Assumptions->assumptions];\ncsEntropyCoefficient=FullSimplify[n\
+ormalBundleIntegral/G5,Assumptions->assumptions];\ncsRelative=FullSimplify[cs\
+EntropyCoefficient/S0,Assumptions->assumptions];\ncsExpected=8j^2/(P mu3); \
+csPass=TrueQ[FullSimplify[csRelative-csExpected,Assumptions->assumptions]===0\
+];\n<|\"GammaNormal\"->Factor[gammaNormal],\"IntegralGammaWedgeF3\"->Factor[n\
+ormalBundleIntegral],\"EntropyRelative\"->Factor[csRelative],\"Expected\"->Fa\
+ctor[csExpected],\"Pass\"->csPass|>"], "Input"], 
+  Cell["IV. Complete entropy and literature comparison", "Section"], 
+  Cell[BoxData["surfaceRelative=FullSimplify[covariantRelative+csRelative,Ass\
+umptions->assumptions];\ntotalRelative=FullSimplify[areaRelative+surfaceRelat\
+ive,Assumptions->assumptions];\ntotalExpected=4(3P-4j^2)/(mu3 \
+DeltaH);\nheteroticRelative=FullSimplify[(alphaPrime/(2mu3))(3P-4j^2)/DeltaH/\
+.alphaPrime->8lambda3,Assumptions->assumptions]/lambda3;\ntotalPass=TrueQ[Ful\
+lSimplify[totalRelative-totalExpected,Assumptions->assumptions]===0];\nhetero\
+ticPass=TrueQ[FullSimplify[totalRelative-heteroticRelative,Assumptions->assum\
+ptions]===0];\nstaticPass=TrueQ[FullSimplify[(totalRelative/.j->0)-12/mu3,Ass\
+umptions->assumptions]===0];\n<|\"AreaRelative\"->Factor[areaRelative],\"Cova\
+riantRelative\"->Factor[covariantRelative],\"ChernSimonsRelative\"->Factor[cs\
+Relative],\"SurfaceRelative\"->Factor[surfaceRelative],\"TotalRelative\"->Fac\
+tor[totalRelative],\"TotalExpected\"->Factor[totalExpected],\"TotalPass\"->to\
+talPass,\"HeteroticAlphaPrimePass\"->heteroticPass,\"StaticPass\"->staticPass\
+|>"], "Input"], Cell["The proved result is S=S0[1+4 \
+lambda3(3P-4j^2)/(mu3(P-j^2))]+O(lambda3^2). With alphaPrime=8 lambda3, this \
+is the asymptotic-charge spin factor g_asym=(1-4 varpi^2/3)/(1-varpi^2). The \
+result is non-uniform at the classical zero-area bound P=j^2, as expected for \
+a perturbative expansion.", "Text"], Cell["V. Machine-readable proof ledger", 
+   "Section"], Cell[BoxData["proofLedger=<|\"LeviCivitaAndChartOrientation\"->epsilonConventionPass,\"AreaFromCorrectedMetric\"->areaP\
+ass,\"HorizonBoostCovariantKernel\"->covariantKernelPass,\"MixedChernSimonsNo\
+rmalBundle\"->csPass,\"TotalEntropy\"->totalPass,\"HeteroticNormalization\"->\
+heteroticPass,\"StaticLimit\"->staticPass,\"OrderInLambda3\"->1,\"RotationDep\
+endence\"->\"exact in j for \
+DeltaH>0\"|>;\nFinalPass=And@@Cases[Values[proofLedger],True|False];\nFullEva\
+lPass=TrueQ[FinalPass];\n<|\"ProofLedger\"->proofLedger,\"FINAL_PASS\"->Final\
+Pass,\"FULL_EVAL_PASS\"->FullEvalPass|>"], "Input"], 
+  Cell["Expected final output: all six named Boolean checks and the \
+association fields FINAL_PASS and FULL_EVAL_PASS are True. There are no \
+conditional records in this notebook.", "Text"]}, 
+ WindowTitle -> "Direct 5D Wald--Tachikawa entropy", 
+ StyleDefinitions -> "Default.nb"]

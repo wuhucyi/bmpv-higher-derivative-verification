@@ -1,0 +1,111 @@
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_BEGIN"
+"FILE_BASENAME=""07_Physical_Charges_and_Angular_Momentum.nb"
+"FILE_ABSOLUTE_PATH=""[LOCAL_HOME]/Documents/Codex/2026-07-12/https-www-overleaf-com-project-65577187a96876076df0bcd6/work/package_v4_staging/notebooks/07_Physical_Charges_and_Angular_Momentum.nb"
+"KERNEL=""14.1.0 for Mac OS X ARM (64-bit) (July 16, 2024)"
+"START_UTC=""2026-07-20T06:25:48"
+"BYTES="15037
+"SHA256=""0c268344a7dd2e993502fc593ba9ae2cff5ed5d72008790a4b2403e7e0b85f43"
+"PARSE_PASS="True
+"INPUT_CELL_COUNT="11
+"PASS_EXPRESSION=""True"
+"CELL_"1"_BEGIN"
+"CELL_"1"_SECONDS="0.000597
+"CELL_"1"_RESULT_PASS="True
+"CELL_"1"_MESSAGE_COUNT="0
+"CELL_"1"_RESULT_HEAD="Association
+"CELL_"1"_RESULT_LEAF_COUNT="135
+"CELL_"1"_RESULT_SHORT=""Short[<|\"Gauge\" -> \"dhr=0\", \"RadialVariable\" -> \"x=r^2\", \"AdaptedVariables\" -> {B1[x] == -(domega[Sqrt[x]]/(1 + q1/x)) - (jrot*du1[Sqrt[x]])/(2*x) + dv1[Sqrt[x]], B2[x] == -(domega[Sqrt[x]]/(1 + q2/x)) - (jrot*du2[Sqrt[x]])/(2*x) + dv2[Sqrt[x]], B3[x] == -(domega[Sqrt[x]]/(1 + q3/x)) - (jrot*du3[Sqrt[x]])/(2*x) + dv3[Sqrt[x]]}, \"HomogeneousTotalDerivativeChecks\" -> <|\"u1\" -> True, \"u2\" -> True, \"u3\" -> True|>, \"SourceDerivativeChecks\" -> <|\"u1\" -> True, \"u2\" -> True, \"u3\" -> True|>|>, 12]"
+"CELL_"1"_END"
+"CELL_"2"_BEGIN"
+"CELL_"2"_SECONDS="0.000079
+"CELL_"2"_RESULT_PASS="True
+"CELL_"2"_MESSAGE_COUNT="0
+"CELL_"2"_RESULT_HEAD="Symbol
+"CELL_"2"_RESULT_LEAF_COUNT="1
+"CELL_"2"_RESULT_SHORT=""Short[True, 12]"
+"CELL_"2"_END"
+"CELL_"3"_BEGIN"
+"CELL_"3"_SECONDS="0.000579
+"CELL_"3"_RESULT_PASS="True
+"CELL_"3"_MESSAGE_COUNT="0
+"CELL_"3"_RESULT_HEAD="Association
+"CELL_"3"_RESULT_LEAF_COUNT="89
+"CELL_"3"_RESULT_SHORT=""Short[<|\"ModeIsExactHomogeneousSolution\" -> True, \"Residuals\" -> <|\"u1\" -> 0, \"u2\" -> 0, \"u3\" -> 0, \"v1\" -> 0, \"v2\" -> 0, \"v3\" -> 0, \"p\" -> 0, \"s\" -> 0, \"f\" -> 0, \"gr\" -> 0, \"hr\" -> 0, \"squ\" -> 0, \"omega\" -> 0|>, \"AdaptedMode\" -> <|\"Om\" -> cj/(2*x), \"AllOtherAdaptedFields\" -> 0|>, \"OriginalMode\" -> <|\"du1\" -> 0, \"du2\" -> 0, \"du3\" -> 0, \"dv1\" -> cj/(2*(q + x)), \"dv2\" -> cj/(2*(q + x)), \"dv3\" -> cj/(2*(q + x)), \"domega\" -> cj/(2*x), \"allOtherMetricAndScalarCorrections\" -> 0|>, \"ParticularOneOverXCoefficient\" -> 0, \"ModeOneOverXCoefficient\" -> cj/2, \"CorrectedTotalOneOverXCoefficient\" -> (jrot + cj*lambda3)/2, \"PageChargeShiftsOfMode\" -> {0, 0, 0}, \"Interpretation\" -> \"The Page conditions fix q but do not fix cj: this mode is tangent to the BMPV family at fixed electric parameters.\"|>, 12]"
+"CELL_"3"_END"
+"CELL_"4"_BEGIN"
+"CELL_"4"_SECONDS="0.000099
+"CELL_"4"_RESULT_PASS="True
+"CELL_"4"_MESSAGE_COUNT="0
+"CELL_"4"_RESULT_HEAD="Association
+"CELL_"4"_RESULT_LEAF_COUNT="30
+"CELL_"4"_RESULT_SHORT=""Short[<|\"ModeExact\" -> True, \"Residuals\" -> <|\"u1\" -> 0, \"u2\" -> 0, \"u3\" -> 0, \"v1\" -> 0, \"v2\" -> 0, \"v3\" -> 0, \"p\" -> 0, \"s\" -> 0, \"f\" -> 0, \"gr\" -> 0, \"hr\" -> 0, \"squ\" -> 0, \"omega\" -> 0|>, \"PageChargeShifts\" -> {0, 0, 0}, \"AdaptedMode\" -> <|\"Om\" -> cj/(2*x), \"AllOtherAdaptedFields\" -> 0|>|>, 12]"
+"CELL_"4"_END"
+"CELL_"5"_BEGIN"
+"CELL_"5"_SECONDS="0.000129
+"CELL_"5"_RESULT_PASS="True
+"CELL_"5"_MESSAGE_COUNT="0
+"CELL_"5"_RESULT_HEAD="Symbol
+"CELL_"5"_RESULT_LEAF_COUNT="1
+"CELL_"5"_RESULT_SHORT=""Short[True, 12]"
+"CELL_"5"_END"
+"CELL_"6"_BEGIN"
+"CELL_"6"_SECONDS="0.000271
+"CELL_"6"_RESULT_PASS="True
+"CELL_"6"_MESSAGE_COUNT="0
+"CELL_"6"_RESULT_HEAD="Association
+"CELL_"6"_RESULT_LEAF_COUNT="51
+"CELL_"6"_RESULT_SHORT=""Short[<|\"AsymptoticSeries\" -> -1/4*(jrot*(9*jrot^2 + 2528*q + 16*q^2 - 26*q^3))/r^8 - (4*jrot*(-24 + q^2))/r^6 + (3*jrot*q)/(2*r^4), \"AsymptoticDensityLimit\" -> 0, \"GravitationalSurfaceChargeAtInfinityVanishes\" -> True|>, 12]"
+"CELL_"6"_END"
+"CELL_"7"_BEGIN"
+"CELL_"7"_SECONDS="0.000063
+"CELL_"7"_RESULT_PASS="True
+"CELL_"7"_MESSAGE_COUNT="0
+"CELL_"7"_RESULT_HEAD="Association
+"CELL_"7"_RESULT_LEAF_COUNT="3
+"CELL_"7"_RESULT_SHORT=""Short[<|\"AsymptoticDensityWithoutSinTheta\" -> 0, \"NormalizationStatus\" -> \"bare covariant lambda3 contribution; overall 1/(16 pi G5), orientation, gauge Noether term, and ARR Tachikawa term not yet included\"|>, 12]"
+"CELL_"7"_END"
+"CELL_"8"_BEGIN"
+"CELL_"8"_SECONDS="0.000147
+"CELL_"8"_RESULT_PASS="True
+"CELL_"8"_MESSAGE_COUNT="0
+"CELL_"8"_RESULT_HEAD="Association
+"CELL_"8"_RESULT_LEAF_COUNT="19
+"CELL_"8"_RESULT_SHORT=""Short[<|\"XiDotALeadingCoefficient\" -> jrot/2, \"F2ScaledLimit\" -> -8*q^2, \"Riemann2ScaledLimit\" -> 288*q^2, \"ScalarGradientsVanishExactly\" -> True, \"CovariantMatterChargeConclusion\" -> \"Every matter Noether term is proportional to xi.A.  F4 momentum is O(F^3), RFF momentum O(R F), scalar-gradient sectors vanish, and xi.A=O(r^-2); after the r^3 S3 measure all vanish.\", \"MixedGaugeCompensatorConclusion\" -> \"For Lambda=-xi.A, Lambda=O(r^-2).  The background-subtracted gravitational Chern-Simons 3-form has no growing asymptotic flux, hence its S3 integral times Lambda vanishes.\"|>, 12]"
+"CELL_"8"_END"
+"CELL_"9"_BEGIN"
+"CELL_"9"_SECONDS="0.000307
+"CELL_"9"_RESULT_PASS="True
+"CELL_"9"_MESSAGE_COUNT="0
+"CELL_"9"_RESULT_HEAD="Association
+"CELL_"9"_RESULT_LEAF_COUNT="6
+"CELL_"9"_RESULT_SHORT=""Short[<|\"ARRDensityLimit\" -> 0, \"ARRChargeVanishes\" -> True, \"CovariantDensityLimit\" -> 0, \"ScalarGradientsVanish\" -> True, \"MatterConclusion\" -> \"Every matter Noether term is proportional to xi.A.  F4 momentum is O(F^3), RFF momentum O(R F), scalar-gradient sectors vanish, and xi.A=O(r^-2); after the r^3 S3 measure all vanish.\"|>, 12]"
+"CELL_"9"_END"
+"CELL_"10"_BEGIN"
+"CELL_"10"_SECONDS="0.000089
+"CELL_"10"_RESULT_PASS="True
+"CELL_"10"_MESSAGE_COUNT="0
+"CELL_"10"_RESULT_HEAD="Symbol
+"CELL_"10"_RESULT_LEAF_COUNT="1
+"CELL_"10"_RESULT_SHORT=""Short[True, 12]"
+"CELL_"10"_END"
+"CELL_"11"_BEGIN"
+"CELL_"11"_SECONDS="0.000018
+"CELL_"11"_RESULT_PASS="True
+"CELL_"11"_MESSAGE_COUNT="0
+"CELL_"11"_RESULT_HEAD="Association
+"CELL_"11"_RESULT_LEAF_COUNT="7
+"CELL_"11"_RESULT_SHORT=""Short[<|\"PageElectricCharges\" -> \"EXACT\", \"TwoDerivativeRotationModeNormalization\" -> \"EXACT\", \"NoGenericOneOverXTail\" -> True, \"EqualChargeJ4Falloff\" -> \"SUPPORTED\", \"GenericWaldJ4\" -> \"NOT COMPUTED\", \"GenericFixedPhysicalAngularMomentum\" -> \"NOT CLAIMED\"|>, 12]"
+"CELL_"11"_END"
+"RESULT_FAILURE_COUNT="0
+"RESULT_FAILURE_INDICES="InputForm[{}]
+"MESSAGE_CELL_COUNT="0
+"MESSAGE_CELL_INDICES="InputForm[{}]
+"MESSAGE_TOTAL_COUNT="0
+"CELL_SECONDS="InputForm[{0.000597, 0.000079, 0.000579, 0.000099, 0.000129, 0.000271, 0.000063, 0.000147, 0.000307, 0.000089, 0.000018}]
+"CELL_SECONDS_TOTAL="0.002378
+"DECLARED_PASS_VALUE="InputForm[True]
+"CELL_EVALUATION_PASS="True
+"END_UTC=""2026-07-20T06:25:49"
+"TOTAL_WALL_SECONDS="1.360491`6.585240666650877
+"FRESH_KERNEL_FINAL_PASS="True
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_END"

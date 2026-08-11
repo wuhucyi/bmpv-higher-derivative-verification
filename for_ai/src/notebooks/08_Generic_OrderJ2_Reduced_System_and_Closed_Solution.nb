@@ -1,0 +1,84 @@
+Notebook[
+ {Cell["Generic unequal-charge O(j^2) reduced system and closed solution", 
+   "Title"], Cell["Version-3 human notation guide (documentation only; no \
+Input cell is changed). In the compact solution and verifier notebooks: \
+x=r^2; q1,q2,q3 are the harmonic parameters mu1,mu2,mu3, not normalized \
+conserved charges; jrot is the rotation parameter j; U1,U2,U3 are the \
+electric corrections delta u_I; B1,B2,B3 are the gauge-covariant fibre \
+corrections; Om is delta omega; Ft, Gr, and Sq are the temporal warp, radial \
+warp, and squashing corrections; P and S are delta p and delta s, where \
+X1=exp(2p/3-s), X2=exp(2p/3+s), and X3=exp(-4p/3). Physical quantities are \
+Q_I=Pi mu_I/(4 G5) and J1=J2=Pi j/(4 G5). See the report section \
+'Human-readable notation and result at a glance' for the full dictionary.", 
+   "Text"], Cell["Scope: first order in lambda3, in the areal gauge delta \
+h_r=0, at fixed Page charges and in the selected no-1/x asymptotic \
+rotation-parameter gauge; generic Wald angular momentum remains open. This \
+notebook is self-contained and uses x=r^2. It records the reduced-system \
+structure, all eight O(j^2) fields, Page integration, and the exact \
+validation ledger.", "Text"], Cell["Definitions", "Section"], 
+  Cell[BoxData["ClearAll[\"Global`*\"];\nH1=x+q1; H2=x+q2; H3=x+q3;\nDelta=H1 \
+H2+H1 H3+H2 H3;\ne2=q1 q2+q1 q3+q2 q3; e3=q1 q2 q3;"], "Input"], 
+  Cell["Reduction before integration", "Section"], 
+  Cell["The three electric equations are integrated as fixed-Page first \
+integrals and the radial equation is solved algebraically for Gr2. The \
+remaining second-order block initially contains {P2,S2,Ft2,K2}; its principal \
+rank is four. The squashing equation decouples as K2''=2 K2/x^2-2 K2'/x. \
+Asymptotic flatness removes the x mode and horizon regularity removes the \
+1/x^2 mode, hence K2=0. The physical core is therefore a three-field rational \
+system for P2, S2 and Ft2. Direct unrestricted DSolve timed out; exact \
+rational collocation and symbolic charge reconstruction succeeded.", "Text"], 
+  Cell[BoxData["reductionLedger=<|\n  \
+\"ElectricPageEquationsIntegrated\"->True,\n  \
+\"RadialConstraintSolvedForGr2\"->True,\n  \
+\"SecondDerivativePrincipalRank\"->4,\n  \
+\"SquashingEquation\"->HoldForm[K2''[x]==2 K2[x]/x^2-2 K2'[x]/x],\n  \
+\"PhysicalSquashingSolution\"->0,\n  \
+\"RemainingDifferentialFields\"->{P2,S2,Ft2}\n|>; reductionLedger"], 
+   "Input"], Cell["Closed O(j^2) fields", "Section"], 
+  Cell[BoxData["P2=-4 (3 x^2+(5 (q1+q2)-4 q3) x+7 q1 q2-2 (q1+q2) q3)/(H1 H2 \
+H3^2 Delta);\nS2=-24 (q2-q1)/(H1 H2 H3 Delta);\nK2=0;\nFt2=-8 (9 x^3+8 \
+(q1+q2+q3) x^2+7 e2 x+6 e3)/(x H1 H2 H3^2 Delta);\nGr2=48 (q3 e2+2 (q1 q2+3 \
+q3 (q1+q2)+2 q3^2) x+3 (2 (q1+q2)+5 q3) x^2+12 x^3)/(x H3^2 \
+Delta^2);\nU12=-16 (3 e3+(4 q1 q2+4 q1 q3+q2 q3) x+(5 q1+2 q2+2 q3) x^2+3 \
+x^3)/(H1^2 H2 H3^2 Delta);\nU22=-16 (3 e3+(4 q1 q2+q1 q3+4 q2 q3) x+(2 q1+5 \
+q2+2 q3) x^2+3 x^3)/(H1 H2^2 H3^2 Delta);\nU32=4 (-12 e3+(q1 q2-11 q3 \
+(q1+q2)) x+2 (q1+q2-5 q3) x^2+3 x^3)/(H1 H2 H3^3 \
+Delta);\norderJ2Solution=<|\"U12\"->U12,\"U22\"->U22,\"U32\"->U32,\"P2\"->P2,\
+\"S2\"->S2,\"Ft2\"->Ft2,\"Gr2\"->Gr2,\"K2\"->K2|>;\nKeys[orderJ2Solution]"], 
+   "Input"], Cell["Page integration and exact proof ledger", "Section"], 
+  Cell["The U12, U22 and U32 expressions are the integration of the three \
+fixed-charge Page rules, with constants chosen so every correction vanishes \
+at infinity. They were substituted with q1,q2,q3 symbolic into all reduced \
+equations and the independent Gr2 algebraic rule. The zero association below \
+is the authoritative recorded output of that full archival-EOM substitution. \
+Replaying PossibleZeroQ on this association checks package integrity, but is \
+not an independent re-derivation of the EOM. A from-EOM reproduction begins \
+in notebooks 01 and 02.", "Text"], Cell[BoxData["recordedReducedResiduals=<|\
+\"u1\"->0,\"u2\"->0,\"u3\"->0,\"p\"->0,\"s\"->0,\"f\"->0,\"hr\"->0,\"squashin\
+g\"->0,\"Gr2Rule\"->0|>;\nrecordedResidualReplayPass=And@@(PossibleZeroQ /@ \
+Values[recordedReducedResiduals]);\nasymptoticPasses=Map[TrueQ[Limit[#,x->Inf\
+inity]==0]&,orderJ2Solution];\ne1=q1+q2+q3; \
+deltaIdentityPass=TrueQ[Expand[Delta-(e2+2 e1 x+3 x^2)]===0];\nkGeneral=cPlus \
+x+cMinus/x^2; kOdePass=TrueQ[FullSimplify[D[kGeneral,{x,2}]-(2 kGeneral/x^2-2 \
+D[kGeneral,x]/x)]===0];\n<|\"RecordedResidualReplayPass\"->recordedResidualRe\
+playPass,\"AsymptoticPasses\"->asymptoticPasses,\"AllFieldsVanishAtInfinity\"\
+->And@@Values[asymptoticPasses],\"DeltaIdentityPass\"->deltaIdentityPass,\"Ge\
+neralK2SolutionPassesODE\"->kOdePass,\"PhysicalK2ExactlyZero\"->TrueQ[K2===0]\
+|>"], "Input"], Cell["Equal-charge regression", "Section"], 
+  Cell[BoxData["equalChargeJ2=FullSimplify[orderJ2Solution/.{q1->q,q2->q,q3->\
+q}];\nexpectedEqualCharge=<|\n \"U12\"->-16/(q+x)^4,\n \
+\"U22\"->-16/(q+x)^4,\n \"U32\"->4 (x-4 q)/(q+x)^5,\n \"P2\"->-4/(q+x)^4,\n \
+\"S2\"->0,\n \"Ft2\"->-8 (3 x+2 q)/(x (q+x)^4),\n \"Gr2\"->16 (q+4 x)/(x \
+(q+x)^4),\n \
+\"K2\"->0|>;\nequalChargePasses=MapThread[TrueQ[FullSimplify[#1==#2]]&,{Value\
+s[equalChargeJ2],Values[expectedEqualCharge]}];\n<|\"ExpectedEqualChargeField\
+s\"->expectedEqualCharge,\"FieldwisePasses\"->AssociationThread[Keys[equalCha\
+rgeJ2],equalChargePasses],\"AllEightEqualChargeLimitsPass\"->And@@equalCharge\
+Passes|>"], "Input"], Cell["Interpretation", "Section"], 
+  Cell["The generic O(j^2) solution is rational in x and the charges. Delta \
+is the only new symmetric denominator beyond the harmonic factors H_I. The \
+apparent denominators seen in an intermediate specialized normal form cancel \
+from the physical solution. This notebook establishes the even correction \
+through its highest nonzero rotation power.", "Text"]}, 
+ StyleDefinitions -> "Default.nb", WindowTitle -> 
+  "08_Generic_OrderJ2_Reduced_System_and_Closed_Solution"]

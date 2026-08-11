@@ -1,0 +1,230 @@
+Notebook[{Cell["Rotating third-vector obstruction and tied-profile rank certificate", 
+   "Title"], Cell["Exact full-chain residuals and a no-go test for constant \
+sector reweighting", "Subtitle"], Cell["Purpose and boundary", "Section"], 
+  Cell["This notebook combines the exact rotating three-form residual with \
+the exact polynomial rank certificates.  It proves that the tested constant \
+reweighting ansatz cannot preserve the static anchor and close the rotating \
+chain once every repeated Eq. (3.31) primitive profile is tied consistently.  \
+It does not prove where the missing tensor structure first enters, and it \
+does not localize the mismatch uniquely to raw hGeom.", "Text"], 
+  Cell["Physical interpretation", "Section"], Cell["Allowing twelve raw \
+occurrences to vary independently gives a twelve-dimensional solution space, \
+but that freedom is nonphysical: one primitive profile cannot carry different \
+coefficients in the metric, scalar, and vector descendants.  Enforcing the \
+four profile inheritance relations makes the exact system inconsistent.  The \
+predual-scalar rows are an intentionally wrong-stage negative control; the \
+physical scalar repair belongs to the second postdual map and leaves the third-vector \
+obstruction unchanged.", "Text"], Cell["Convention bridge", "Section"], 
+  Cell["The flat-index symbol convention is epsilonLower[0,1,2,3,4]=+1, epsilonUpper[0,1,2,3,4]=-1 and the physical potential is A3=+Hzero^(-1) Theta. The curved tensor is the five-vielbein transform of that symbol. Because the notebook chart reverses the physical orientation, its curved lower component is epsilonLower[t,r,theta,phi,psi]=-Sqrt[-g]. The final +C wedge (d h+F wedge G) multiplier therefore requires h=-Exp[2 Phi] star5 F3+(alphaPrime/8) J. Relative to the archived component implementation, both the curved-lower-tensor sign and the Hodge-duality sign reverse, leaving the actual J contraction and the embedded rational residuals unchanged. Notebook 23 supplies the direct ten-component recalculation; the static guard below records the same convention locally.", "Text"], Cell["Self-contained exact calculation", 
+   "Section"], Cell[BoxData["(* Self-contained rotating C3 obstruction and \
+exact-rank certificate.\n   All rational residuals and coefficient matrices \
+are embedded below.\n   No cache, script, notebook, or fitted target \
+potential is imported. *)\n\nClearAll[\"Global`*\"];\n$HistoryLength = \
+0;\nframeEpsilonLowerOrdered = 1; frameEpsilonUpperOrdered = -1;\ncoordinateLowerEpsilonSign = -1; positiveThirdPotentialSign = 1;\nstaticStarF3Component = -qzero Sin[theta]/4;\nstaticHorizontalHComponent = qzero Sin[theta]/4;\nconventionLedger = <|\n  \"FrameEpsilonConvention\" -> TrueQ[{frameEpsilonLowerOrdered,frameEpsilonUpperOrdered} === {1,-1}],\n  \"OrientationReversingChart\" -> TrueQ[coordinateLowerEpsilonSign == -1],\n  \"PositiveEq41ThirdPotential\" -> TrueQ[positiveThirdPotentialSign == 1],\n  \"FinalActionMinusDualityStatic\" -> TrueQ[FullSimplify[staticHorizontalHComponent + staticStarF3Component == 0]]|>;\ntripleOrder = {{1,2,3},{1,2,4},{1,2,5},{1,3,4},{1,3,5},\n  \
+{1,4,5},{2,3,4},{2,3,5},{2,4,5},{3,4,5}};\nfullChainResidualAtR2 = {0, 0, \
+-38054/47544651, 61340/30255687,\n  0, 0, 0, 0, 0, \
+-22478/30255687};\nfullChainClosureResidualAtR2 = \
+46775306/5752902771;\nnonzeroResidualTriples = Pick[tripleOrder,\n  \
+Not[PossibleZeroQ[#]] & /@ fullChainResidualAtR2];\nresidualLedger = <|\n  \
+\"FullChainClosureObstructionNonzero\" ->\n    \
+Not[PossibleZeroQ[fullChainClosureResidualAtR2]],\n  \
+\"OnlyExpectedResidualTriples\" ->\n    nonzeroResidualTriples === \
+{{1,2,5},{1,3,4},{3,4,5}}|>;\nstageAnnotations = <|\n  \
+\"StaticTorsionFreeHAnchor\" -> \"PASS in the independently rerun inverse-h \
+regression\",\n  \"RotatingTorsionFreeHAnchor\" -> \"FAIL in the \
+independently rerun inverse-h regression\",\n  \"ScalarStage\" -> \"the \
+corrected scalar term is postdual and leaves the predual h input \
+unchanged\"|>;\n\n(* Exact matrices from the polynomially canonicalized joint \
+system.\n   Each pair is {coefficient matrix, right-hand side}.  Variable \
+order is\n   stated below and follows the action/map sectors, fine sectors, \
+then raw\n   Eq. (3.31) profile sectors. *)\nrankData = {{{{0, -154350, 0, \
+-385875, -231525, 0, 0, 0, 0, 0, 308700, -308700, 231525, 231525, -154350, 0, \
+0, 0, 0, 154350, -154350, 0, 0, 154350, 154350, 0}, {0, -208740, 0, -411600, \
+-313110, 0, 0, 0, 0, 0, 252840, -252840, 246960, 246960, -230790, 0, 0, 0, 0, \
+164640, -126420, 0, 0, 164640, 126420, 0}, {0, -114674, 0, -161210, -167286, \
+0, 0, 0, 0, 0, 75978, -75978, 96726, 96726, -135044, 0, 0, 0, 0, 64484, \
+-36960, 0, 0, 64484, 36960, 0}, {0, -32760, 0, -27440, -44100, 0, 0, 0, 0, 0, \
+9828, -9828, 16464, 16464, -38612, 0, 0, 0, 0, 10976, -4620, 0, 0, 10976, \
+4620, 0}, {0, -5138, 0, -1715, -5733, 0, 0, 0, 0, 0, 462, -462, 1029, 1029, \
+-5390, 0, 0, 0, 0, 686, -210, 0, 0, 686, 210, 0}, {0, -420, 0, 0, -294, 0, 0, \
+0, 0, 0, 0, 0, 0, 0, -294, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, -14, 0, 0, \
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {-4586400, \
+-2293200, 0, 0, 0, 0, 0, -2293200, 0, 4586400, 0, 0, 0, 0, 2315250, -4630500, \
+-44100, -4630500, 88200, -2315250, 4630500, -88200, 4674600, 0, 0, 0}, \
+{-239400, -7847910, 0, 432915, -7080045, 3472560, 0, -7372470, -3163860, \
+10963680, 5021940, 3058860, 1175685, -1434195, 4696650, -11598300, 3474660, \
+-3131100, 34440, -3704400, 4696650, -70560, 8123640, -992250, -1565550, \
+36120}, {4829396, -7153424, 61740, 723128, -8176964, 4611702, 61740, \
+-6832671, -4591122, 8909580, 6344188, 3745012, 1872392, -2320824, 4026330, \
+-10614660, 4653656, 447300, -30480, -2438730, 1496460, -9904, 5961004, \
+-1587600, -1943760, 40384}, {3715284, -2944558, 31556, 491729, -3700787, \
+2533484, 31556, -2839658, -2687680, 3236916, 3320058, 1908346, 1228181, \
+-1541307, 1890322, -4935644, 2542792, 982860, -23728, -845152, -30, 6096, \
+2392852, -1045170, -982830, 17632}, {1254424, -598400, 2296, 174524, -772316, \
+735272, 2296, -532836, -817552, 408088, 917628, 515308, 424456, -537672, \
+524790, -1297100, 729820, 364740, -6232, -162582, -105300, 2472, 567280, \
+-362208, -259440, 3760}, {222064, -49472, -1144, 34153, -51359, 118660, \
+-1144, -12200, -136800, -73832, 140764, 77396, 81487, -103929, 86142, \
+-195636, 116228, 62940, -728, -16464, -25170, 336, 79408, -69678, -37770, \
+392}, {20148, 1164, -228, 3500, 7104, 10082, -228, 11915, -11966, -31572, \
+11336, 6112, 8240, -10560, 7742, -15820, 9744, 5340, -32, -686, -2460, 16, \
+6076, -7056, -2880, 16}, {740, 310, -12, 147, 1375, 352, -12, 1848, -428, \
+-3948, 374, 198, 343, -441, 294, -532, 336, 180, 0, 0, -90, 0, 196, -294, \
+-90, 0}, {0, -12, 0, 0, 64, 0, 0, 88, 0, -176, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, \
+0, 0, 0, 0, 0, 0}, {0, -2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, \
+0, 0, 0, 0, 0, 0, 0}}, {154350, 76440, -26446, -22512, -4270, -168, 14, \
+2293200, -652050, -3010258, -1897246, -517600, -59020, 982, 890, 76, 2}}, \
+{{{0, -154350, 0, -385875, -231525, 0, 0, 0, 0, 0, 308700, -308700, 231525, \
+231525, 154350, 0, 0, 0}, {0, -208740, 0, -411600, -313110, 0, 0, 0, 0, 0, \
+252840, -252840, 246960, 246960, 98490, 0, 0, 0}, {0, -114674, 0, -161210, \
+-167286, 0, 0, 0, 0, 0, 75978, -75978, 96726, 96726, -6076, 0, 0, 0}, {0, \
+-32760, 0, -27440, -44100, 0, 0, 0, 0, 0, 9828, -9828, 16464, 16464, -16660, \
+0, 0, 0}, {0, -5138, 0, -1715, -5733, 0, 0, 0, 0, 0, 462, -462, 1029, 1029, \
+-4018, 0, 0, 0}, {0, -420, 0, 0, -294, 0, 0, 0, 0, 0, 0, 0, 0, 0, -294, 0, 0, \
+0}, {0, -14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {-4586400, \
+-2293200, 0, 0, 0, 0, 0, -2293200, 0, 4586400, 0, 0, 0, 0, 0, 0, 0, 0}, \
+{-239400, -7847910, 0, 432915, -7080045, 3472560, 0, -7372470, -3163860, \
+10963680, 5021940, 3058860, 1175685, -1434195, 0, 0, 0, 0}, {4829396, \
+-7153424, 61740, 723128, -8176964, 4611702, 61740, -6832671, -4591122, \
+8909580, 6344188, 3745012, 1872392, -2320824, 0, 0, 0, 0}, {3715284, \
+-2944558, 31556, 491729, -3700787, 2533484, 31556, -2839658, -2687680, \
+3236916, 3320058, 1908346, 1228181, -1541307, 0, 0, 0, 0}, {1254424, -598400, \
+2296, 174524, -772316, 735272, 2296, -532836, -817552, 408088, 917628, \
+515308, 424456, -537672, 0, 0, 0, 0}, {222064, -49472, -1144, 34153, -51359, \
+118660, -1144, -12200, -136800, -73832, 140764, 77396, 81487, -103929, 0, 0, \
+0, 0}, {20148, 1164, -228, 3500, 7104, 10082, -228, 11915, -11966, -31572, \
+11336, 6112, 8240, -10560, 0, 0, 0, 0}, {740, 310, -12, 147, 1375, 352, -12, \
+1848, -428, -3948, 374, 198, 343, -441, 0, 0, 0, 0}, {0, -12, 0, 0, 64, 0, 0, \
+88, 0, -176, 0, 0, 0, 0, 0, 0, 0, 0}, {0, -2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, \
+0, 0, 0, 0, 0, 0}}, {154350, 76440, -26446, -22512, -4270, -168, 14, 2293200, \
+-652050, -3010258, -1897246, -517600, -59020, 982, 890, 76, 2}}, {{{0, \
+-154350, 0, -385875, -231525, 0, 0, 0, 0, 0, 308700, -308700, 231525, \
+231525}, {0, -208740, 0, -411600, -313110, 0, 0, 0, 0, 0, 252840, -252840, \
+246960, 246960}, {0, -114674, 0, -161210, -167286, 0, 0, 0, 0, 0, 75978, \
+-75978, 96726, 96726}, {0, -32760, 0, -27440, -44100, 0, 0, 0, 0, 0, 9828, \
+-9828, 16464, 16464}, {0, -5138, 0, -1715, -5733, 0, 0, 0, 0, 0, 462, -462, \
+1029, 1029}, {0, -420, 0, 0, -294, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, -14, 0, 0, \
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {-4586400, -2293200, 0, 0, 0, 0, 0, -2293200, \
+0, 4586400, 0, 0, 0, 0}, {-239400, -7847910, 0, 432915, -7080045, 3472560, 0, \
+-7372470, -3163860, 10963680, 5021940, 3058860, 1175685, -1434195}, {4829396, \
+-7153424, 61740, 723128, -8176964, 4611702, 61740, -6832671, -4591122, \
+8909580, 6344188, 3745012, 1872392, -2320824}, {3715284, -2944558, 31556, \
+491729, -3700787, 2533484, 31556, -2839658, -2687680, 3236916, 3320058, \
+1908346, 1228181, -1541307}, {1254424, -598400, 2296, 174524, -772316, \
+735272, 2296, -532836, -817552, 408088, 917628, 515308, 424456, -537672}, \
+{222064, -49472, -1144, 34153, -51359, 118660, -1144, -12200, -136800, \
+-73832, 140764, 77396, 81487, -103929}, {20148, 1164, -228, 3500, 7104, \
+10082, -228, 11915, -11966, -31572, 11336, 6112, 8240, -10560}, {740, 310, \
+-12, 147, 1375, 352, -12, 1848, -428, -3948, 374, 198, 343, -441}, {0, -12, \
+0, 0, 64, 0, 0, 88, 0, -176, 0, 0, 0, 0}, {0, -2, 0, 0, 0, 0, 0, 0, 0, 0, 0, \
+0, 0, 0}}, {0, -22050, -20370, -5852, -252, 126, 14, 2293200, -652050, \
+-3010258, -1897246, -517600, -59020, 982, 890, 76, 2}}, {{{0, -154350, 0, \
+-385875, -231525, 0, 0, 0, 0, 0, 308700, -308700, 231525, 231525, -154350}, \
+{0, -208740, 0, -411600, -313110, 0, 0, 0, 0, 0, 252840, -252840, 246960, \
+246960, -126420}, {0, -114674, 0, -161210, -167286, 0, 0, 0, 0, 0, 75978, \
+-75978, 96726, 96726, -37646}, {0, -32760, 0, -27440, -44100, 0, 0, 0, 0, 0, \
+9828, -9828, 16464, 16464, -4816}, {0, -5138, 0, -1715, -5733, 0, 0, 0, 0, 0, \
+462, -462, 1029, 1029, -224}, {0, -420, 0, 0, -294, 0, 0, 0, 0, 0, 0, 0, 0, \
+0, 0}, {0, -14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {-4586400, -2293200, \
+0, 0, 0, 0, 0, -2293200, 0, 4586400, 0, 0, 0, 0, 0}, {-239400, -7847910, 0, \
+432915, -7080045, 3472560, 0, -7372470, -3163860, 10963680, 5021940, 3058860, \
+1175685, -1434195, 1529430}, {4829396, -7153424, 61740, 723128, -8176964, \
+4611702, 61740, -6832671, -4591122, 8909580, 6344188, 3745012, 1872392, \
+-2320824, 1882796}, {3715284, -2944558, 31556, 491729, -3700787, 2533484, \
+31556, -2839658, -2687680, 3236916, 3320058, 1908346, 1228181, -1541307, \
+957848}, {1254424, -598400, 2296, 174524, -772316, 735272, 2296, -532836, \
+-817552, 408088, 917628, 515308, 424456, -537672, 256996}, {222064, -49472, \
+-1144, 34153, -51359, 118660, -1144, -12200, -136800, -73832, 140764, 77396, \
+81487, -103929, 38258}, {20148, 1164, -228, 3500, 7104, 10082, -228, 11915, \
+-11966, -31572, 11336, 6112, 8240, -10560, 2992}, {740, 310, -12, 147, 1375, \
+352, -12, 1848, -428, -3948, 374, 198, 343, -441, 96}, {0, -12, 0, 0, 64, 0, \
+0, 88, 0, -176, 0, 0, 0, 0, 0}, {0, -2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, \
+0}}, {0, -22050, -20370, -5852, -252, 126, 14, 2293200, -652050, -3010258, \
+-1897246, -517600, -59020, 982, 890, 76, 2}}, {{{0, -154350, 0, -385875, \
+-231525, 0, 0, 0, 0, 0, 308700, -308700, 231525, 231525}, {0, -208740, 0, \
+-411600, -313110, 0, 0, 0, 0, 0, 252840, -252840, 246960, 246960}, {0, \
+-114674, 0, -161210, -167286, 0, 0, 0, 0, 0, 75978, -75978, 96726, 96726}, \
+{0, -32760, 0, -27440, -44100, 0, 0, 0, 0, 0, 9828, -9828, 16464, 16464}, {0, \
+-5138, 0, -1715, -5733, 0, 0, 0, 0, 0, 462, -462, 1029, 1029}, {0, -420, 0, \
+0, -294, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, -14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, \
+0, 0}, {-4586400, -2293200, 0, 0, 0, 0, 0, -2293200, 0, 4586400, 0, 0, 0, 0}, \
+{-239400, -7847910, 0, 432915, -7080045, 3472560, 0, -7372470, -3163860, \
+10963680, 5021940, 3058860, 1175685, -1434195}, {4829396, -7153424, 61740, \
+723128, -8176964, 4611702, 61740, -6832671, -4591122, 8909580, 6344188, \
+3745012, 1872392, -2320824}, {3715284, -2944558, 31556, 491729, -3700787, \
+2533484, 31556, -2839658, -2687680, 3236916, 3320058, 1908346, 1228181, \
+-1541307}, {1254424, -598400, 2296, 174524, -772316, 735272, 2296, -532836, \
+-817552, 408088, 917628, 515308, 424456, -537672}, {222064, -49472, -1144, \
+34153, -51359, 118660, -1144, -12200, -136800, -73832, 140764, 77396, 81487, \
+-103929}, {20148, 1164, -228, 3500, 7104, 10082, -228, 11915, -11966, -31572, \
+11336, 6112, 8240, -10560}, {740, 310, -12, 147, 1375, 352, -12, 1848, -428, \
+-3948, 374, 198, 343, -441}, {0, -12, 0, 0, 64, 0, 0, 88, 0, -176, 0, 0, 0, \
+0}, {0, -2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}}, {154350, 104370, 17276, \
+-1036, -28, 126, 14, 2293200, -2181480, -4893054, -2855094, -774596, -97278, \
+-2010, 794, 76, 2}}};\n{untiedData, tiedData, physicalData, \
+wrongStageFreeData,\n  wrongStageFixedData} = rankData;\nbaseVariables = \
+{cKK,cLower,cQSource,cQuartic,cRh2,cQuadratic,cLinear,\n  \
+cHDB,cHBVector,cHAVector,cGDelta,cVarphiDelta,cGTorsion,cVarphiTorsion};\nraw\
+Variables = {cRawHh,cRawHz,cRawA1W,cRawA1TStatic,cRawA1TRotation,\n  \
+cRawGZ0,cRawGZpStatic,cRawGZpRotation,cRawGW,cRawVarphiZ0,\n  \
+cRawVarphiTStatic,cRawVarphiTRotation};\nprofileVariables = \
+{cZ0Profile,cWProfile,cTStaticProfile,cTRotationProfile};\nprofileTies = \
+<|\"z0\" -> {\"Hh\",\"GZ0\",\"VarphiZ0\"},\n  \"w1\" -> \
+{\"Hz\",\"A1W\",\"GW\"},\n  \"Tstatic\" -> \
+{\"A1TStatic\",\"GZpStatic\",\"VarphiTStatic\"},\n  \"Trotation\" -> \
+{\"A1TRotation\",\"GZpRotation\",\"VarphiTRotation\"}|>;\nprofileTieLedger = \
+<|\n  \"FourPrimitiveProfiles\" -> Length[profileTies] == 4,\n  \
+\"ThreeDescendantsPerProfile\" -> SameQ[Length /@ Values[profileTies], \
+{3,3,3,3}],\n  \"TwelveDistinctRawDescendants\" -> \
+DuplicateFreeQ[Flatten[Values[profileTies]]] &&\n    \
+Length[Flatten[Values[profileTies]]] == 12|>;\ncertificate[data_, \
+variableCount_] := Module[{matrix = data[[1]], rhs = data[[2]],\n    rank, \
+augmentedRank}, rank = MatrixRank[matrix];\n  augmentedRank = \
+MatrixRank[MapThread[Append, {matrix, rhs}]];\n  <|\"EquationCount\" -> \
+Length[matrix], \"VariableCount\" -> variableCount,\n    \"CoefficientRank\" \
+-> rank, \"AugmentedRank\" -> augmentedRank,\n    \"Consistent\" -> (rank == \
+augmentedRank),\n    \"SolutionDimension\" -> If[rank == augmentedRank, \
+variableCount-rank,\n      \"INCONSISTENT\"]|>];\ncertificates = <|\n  \
+\"UntiedRawPlusMap\" -> certificate[untiedData, 26],\n  \"Eq331TiedProfiles\" \
+-> certificate[tiedData, 18],\n  \"Eq331PhysicalProfiles\" -> \
+certificate[physicalData, 14],\n  \"WrongStageFreePredualScalar\" -> \
+certificate[wrongStageFreeData, 15],\n  \"WrongStageFixedPredualScalar\" -> \
+certificate[wrongStageFixedData, 14]|>;\nrankLedger = <|\n  \
+\"UntiedDiagnosticRank14EqualsAugmented14\" ->\n    \
+Lookup[certificates[\"UntiedRawPlusMap\"], \
+{\"CoefficientRank\",\"AugmentedRank\"}] === {14,14},\n  \
+\"UntiedDiagnosticDimension12\" -> \
+certificates[\"UntiedRawPlusMap\"][\"SolutionDimension\"] == 12,\n  \
+\"TiedProfileInconsistencyRank12To13\" ->\n    \
+Lookup[certificates[\"Eq331TiedProfiles\"], \
+{\"CoefficientRank\",\"AugmentedRank\"}] === {12,13},\n  \
+\"PhysicalProfileInconsistencyRank11To12\" ->\n    \
+Lookup[certificates[\"Eq331PhysicalProfiles\"], \
+{\"CoefficientRank\",\"AugmentedRank\"}] === {11,12},\n  \
+\"WrongStageFreeScalarStillInconsistent\" ->\n    \
+Lookup[certificates[\"WrongStageFreePredualScalar\"], \
+{\"CoefficientRank\",\"AugmentedRank\"}] === {12,13},\n  \
+\"WrongStageFixedScalarStillInconsistent\" ->\n    \
+Lookup[certificates[\"WrongStageFixedPredualScalar\"], \
+{\"CoefficientRank\",\"AugmentedRank\"}] === \
+{11,12}|>;\n\nrawReconstructionAnnotations = <|\"RawMetricLeading\" -> \
+\"PASS\",\n  \"RawMetricCorrection\" -> \"PASS\", \"RotatingRawClosureSum\" \
+-> \"PASS\",\n  \"StaticRawFieldSum\" -> \"PASS\"|>;\ninterpretation = \
+\"untied raw fitting is nonphysical because repeated appearances of each Eq. \
+(3.31) primitive profile must inherit one common \
+coefficient\";\nlocalizationBoundary = \"the predual rotating chain lacks at \
+least one rotation-dependent tensor structure; the present data do not \
+localize it uniquely to raw hGeom\";\nledger = Join[conventionLedger, residualLedger, \
+profileTieLedger, rankLedger];\nfinalPass = And @@ \
+Values[ledger];\nPrint[\"FULL_CHAIN_RESIDUAL_AT_R2 = \", \
+InputForm[fullChainResidualAtR2]];\nPrint[\"FULL_CHAIN_CLOSURE_RESIDUAL_AT_R2 \
+= \", fullChainClosureResidualAtR2];\nPrint[\"NONZERO_RESIDUAL_TRIPLES = \", \
+InputForm[nonzeroResidualTriples]];\nPrint[\"RANK_CERTIFICATES = \", \
+InputForm[certificates]];\nPrint[\"STAGE_ANNOTATIONS = \", \
+InputForm[stageAnnotations]];\nPrint[\"RAW_RECONSTRUCTION_ANNOTATIONS = \", \
+InputForm[rawReconstructionAnnotations]];\nPrint[\"INTERPRETATION = \", \
+interpretation];\nPrint[\"LOCALIZATION_BOUNDARY = \", \
+localizationBoundary];\nPrint[\"LEDGER = \", \
+InputForm[ledger]];\nPrint[\"FINAL_PASS = \", finalPass];"], "Input"], 
+  Cell["Expected result", "Section"], Cell["FINAL_PASS must be True, including all four orientation, positive-A3 and minus-duality guards.  The tied and physical systems must have coefficient/augmented ranks 12/13 and 11/12 respectively, and the localization statement must explicitly remain nonunique.", "Text"]}, WindowSize -> {1400, 900}, 
+ StyleDefinitions -> "Default.nb"]

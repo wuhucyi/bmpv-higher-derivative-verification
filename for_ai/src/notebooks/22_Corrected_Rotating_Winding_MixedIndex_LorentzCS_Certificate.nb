@@ -1,0 +1,223 @@
+Notebook[{Cell["Corrected rotating winding-vector and mixed-index \
+Lorentz--Chern--Simons certificate", "Title"], 
+  Cell["A self-contained exact-in-rotation check at first order in \
+alphaPrime", "Subtitle"], Cell["Scope and corrected convention", "Section"], 
+  Cell["This notebook replaces the earlier winding certificate. It rebuilds \
+the six-dimensional coframe and physical torsionful connection, the \
+five-dimensional leading fields, the corrected Kaluza--Klein winding shift, \
+and the canonical winding potential without importing cached expressions or a \
+desired third STU gauge potential. The source convention is H_STU=-H_2606. \
+With the final +C wedge (d h+F wedge G) multiplier sign and the positive \
+Eq. (4.1) third potential, its horizontal field obeys \
+h_STU=-Exp[2 Phi] star5 F3. Consequently \
+tildeOmegaPlus(STU)=omega+h_STU/2=OmegaMinus(2606). Lorentz--Chern--Simons \
+traces use the mixed matrix connection omega^a_b; a connection with both \
+Lorentz indices raised is never inserted directly into an ordinary matrix \
+trace.", "Text"], Cell["Result", "Section"], Cell["The canonical winding \
+field strength remains closed and SU(2)-invariant, and a unique invariant \
+zero-tail potential is reconstructed and checked by differentiation. Both the \
+horizontal source decomposition and the torsionful mixed-index Lorentz \
+connection are implemented with their source-correct signs. The old compact \
+rotating formula proportional to (2 Trot/Hminus) Theta0 does not survive, \
+while its static limit remains unchanged. All notebook comments and machine \
+checks are in English.", "Text"], Cell["Complete machine calculation", 
+   "Section"], Cell[BoxData["ClearAll[\"Global`*\"];\n$HistoryLength = \
+0;\n$Assumptions = r > 0 && qplus > 0 && qminus > 0 && qzero > 0 && \
+Element[a, Reals];\n\ncoords = {t, r, theta, phi, psi, z};\nn6 = \
+Length[coords]; n5 = 5;\nhplus = 1 + qplus/r^2;\nhminus = 1 + \
+qminus/r^2;\nhzero = 1 + qzero/r^2;\nk = 1/Sqrt[hplus hminus];\ns = \
+Sqrt[hzero];\nexpSigma = Sqrt[hplus/hminus];\nw0 = a/(2 r^2);\nTheta0 = {1, \
+0, 0, w0 Cos[theta], w0, 0};\nAkk = -Theta0/hplus;\nBalg0 = \
+-Theta0/hminus;\n\n(* Six-dimensional orthonormal coframe. *)\ncoframe = \
+ConstantArray[0, {n6, n6}];\ncoframe[[1]] = k Theta0;\ncoframe[[2]] = {0, s, \
+0, 0, 0, 0};\ncoframe[[3]] = {0, 0, s r/2, 0, 0, 0};\ncoframe[[4]] = {0, 0, \
+0, s r Sin[theta]/2, 0, 0};\ncoframe[[5]] = {0, 0, 0, s r Cos[theta]/2, s \
+r/2, 0};\ncoframe[[6]] = expSigma (Akk + {0, 0, 0, 0, 0, 1});\neta6 = \
+DiagonalMatrix[{-1, 1, 1, 1, 1, 1}];\ng6 = \
+Simplify[Transpose[coframe].eta6.coframe];\ng6inv = \
+Simplify[Inverse[g6]];\ninverseFrame = \
+Simplify[Inverse[coframe]];\n\nchristoffel6 = Table[1/2 Sum[g6inv[[lambda, \
+rho]] (\n   D[g6[[rho, nu]], coords[[mu]]] + D[g6[[rho, mu]], coords[[nu]]] - \
+D[g6[[mu, nu]], coords[[rho]]]),\n   {rho, n6}], {lambda, n6}, {mu, n6}, {nu, \
+n6}];\nomegaMixed = Table[Sum[inverseFrame[[nu, b]] (\n   \
+Sum[christoffel6[[lambda, mu, nu]] coframe[[aa, lambda]], {lambda, n6}] - \
+D[coframe[[aa, nu]], coords[[mu]]]),\n   {nu, n6}], {mu, n6}, {aa, n6}, {b, \
+n6}];\nomegaUp = Table[eta6[[b, b]] omegaMixed[[mu, aa, b]], {mu, n6}, {aa, \
+n6}, {b, n6}];\nspinResidual = Table[Together[PowerExpand[\n   omegaUp[[mu, \
+aa, b]] + omegaUp[[mu, b, aa]]]],\n   {mu, n6}, {aa, n6}, {b, \
+n6}];\nspinAntisymmetryPass = And @@ (PossibleZeroQ /@ \
+Flatten[spinResidual]);\n\ndOne6[v_] := Table[D[v[[nu]], coords[[mu]]] - \
+D[v[[mu]], coords[[nu]]], {mu, n6}, {nu, n6}];\nF6 = \
+Simplify[dOne6[Akk]];\nG6 = Simplify[dOne6[Balg0]];\n\n(* Leading \
+six-dimensional NS three-form: G wedge dz plus magnetic Hzero flux. *)\nH6 = \
+Table[\n   If[rho == 6, G6[[mu, nu]], 0] + If[mu == 6, G6[[nu, rho]], 0] + \
+If[nu == 6, G6[[rho, mu]], 0]\n   + If[Sort[{mu, nu, rho}] === {3, 4, 5}, \
+Signature[{mu, nu, rho}] Signature[{3, 4, 5}] D[hzero, r] r^3 Sin[theta]/8, \
+0],\n   {mu, n6}, {nu, n6}, {rho, n6}];\nhMixed = Table[Sum[H6[[mu, nu, rho]] \
+(eta6[[aa, aa]] inverseFrame[[nu, aa]]) inverseFrame[[rho, b]],\n   {nu, n6}, \
+{rho, n6}], {mu, n6}, {aa, n6}, {b, n6}];\nOmegaMinus = Simplify[omegaMixed - \
+hMixed/2];\n\nomegaZ = OmegaMinus[[6]];\ncsTensor = Table[If[mu == nu, 0, \
+Together[PowerExpand[Tr[\n    omegaZ.(D[OmegaMinus[[nu]], coords[[mu]]] - \
+D[OmegaMinus[[mu]], coords[[nu]]])\n    + OmegaMinus[[mu]].D[omegaZ, \
+coords[[nu]]] - OmegaMinus[[nu]].D[omegaZ, coords[[mu]]]\n    + 2 \
+omegaZ.(OmegaMinus[[mu]].OmegaMinus[[nu]] - \
+OmegaMinus[[nu]].OmegaMinus[[mu]])]]]],\n  {mu, n6}, {nu, n6}];\n\ncsRpsi = \
+csTensor[[2, 5]];\ncsRphi = csTensor[[2, 4]];\ncsThetaPhi = csTensor[[3, \
+4]];\ncsTr = csTensor[[1, 2]];\n\ncsExpected = {\n  8 a qzero r/((qzero + \
+r^2)^2 (qminus + r^2)^2),\n  -8 a (qminus r + 2 r^3) Cos[theta]/((qzero + \
+r^2)^2 (qminus + r^2)^2),\n  -4 a (-qzero r^2 + r^4) Sin[theta]/((qzero + \
+r^2)^3 (qminus + r^2)),\n  0\n};\ncsComponentPass = And @@ (PossibleZeroQ /@ \
+Together[PowerExpand[{csRpsi, csRphi, csThetaPhi, csTr} - \
+csExpected]]);\n\ncurvatureTensor = Table[\n  D[OmegaMinus[[nu]], \
+coords[[mu]]] - D[OmegaMinus[[mu]], coords[[nu]]]\n  + \
+OmegaMinus[[mu]].OmegaMinus[[nu]] - OmegaMinus[[nu]].OmegaMinus[[mu]],\n  \
+{mu, n6}, {nu, n6}];\npontryaginZrThetaPhi = Together[PowerExpand[2 Tr[\n  \
+curvatureTensor[[6, 2]].curvatureTensor[[3, 4]]\n  - curvatureTensor[[6, \
+3]].curvatureTensor[[2, 4]]\n  + curvatureTensor[[6, 4]].curvatureTensor[[2, \
+3]]]]];\npontryaginExpected = 16 a qzero r^3 (qzero + 3 qminus + 4 r^2) \
+Sin[theta]/\n  ((qzero + r^2)^4 (qminus + r^2)^2);\npontryaginPass = \
+PossibleZeroQ[Together[pontryaginZrThetaPhi - \
+pontryaginExpected]];\ndCsZrThetaPhi = Together[PowerExpand[-D[csThetaPhi, r] \
++ D[csRphi, theta]]];\ntransgressionPass = \
+PossibleZeroQ[Together[pontryaginZrThetaPhi - dCsZrThetaPhi]];\n\n(* \
+Reconstruct the five-dimensional corrected KK shift rather than inserting it. \
+*)\ncoords5 = Take[coords, n5];\ncoframe5 = coframe[[1 ;; n5, 1 ;; \
+n5]];\neta5 = DiagonalMatrix[{-1, 1, 1, 1, 1}];\ng5 = \
+Simplify[Transpose[coframe5].eta5.coframe5];\ng5inv = \
+Simplify[Inverse[g5]];\ninverseFrame5 = \
+Simplify[Inverse[coframe5]];\nchristoffel5 = Table[1/2 Sum[g5inv[[lambda, \
+rho]] (\n   D[g5[[rho, nu]], coords5[[mu]]] + D[g5[[rho, mu]], coords5[[nu]]] \
+- D[g5[[mu, nu]], coords5[[rho]]]),\n   {rho, n5}], {lambda, n5}, {mu, n5}, \
+{nu, n5}];\nomegaMixed5 = Table[Sum[inverseFrame5[[nu, b]] (\n   \
+Sum[christoffel5[[lambda, mu, nu]] coframe5[[aa, lambda]], {lambda, n5}] - \
+D[coframe5[[aa, nu]], coords5[[mu]]]),\n   {nu, n5}], {mu, n5}, {aa, n5}, {b, \
+n5}];\nomegaUp5 = Table[eta5[[b, b]] omegaMixed5[[mu, aa, b]], {mu, n5}, {aa, \
+n5}, {b, n5}];\n\ntheta5 = Take[Theta0, n5];\ndOne5[v_] := Table[D[v[[nu]], \
+coords5[[mu]]] - D[v[[mu]], coords5[[nu]]], {mu, n5}, {nu, n5}];\nAvec5 = \
+theta5/hplus;\nBvec5 = -theta5/hminus;\nF5 = Simplify[dOne5[Avec5]];\nG5 = \
+Simplify[dOne5[Bvec5]];\nsigma = 1/2 Log[hplus/hminus];\nFplus = \
+Simplify[Exp[sigma] F5 + Exp[-sigma] G5];\nFminus = Simplify[Exp[sigma] F5 - \
+Exp[-sigma] G5];\n\n(* The convention bridge gives H_STU=-H_2606.  In the \
+mapped five-dimensional variables this is the {-1,-1,-1} sign choice of \
+the independent sign audit.  The tensor hMagnetic5 below is \
+M_het=star4_het dHzero; hMapped5=-M_het+rotation=-Exp[2 Phi] star5 F3 \
+for the final multiplier sign. *)\nomegaVector5 = {0, 0, 0, w0 Cos[theta], \
+w0};\ndOmega0 = Simplify[dOne5[omegaVector5]];\nwedge21[q_, v_] := \
+Table[q[[mu, nu]] v[[rho]] + q[[nu, rho]] v[[mu]] + q[[rho, mu]] v[[nu]],\n   \
+{mu, n5}, {nu, n5}, {rho, n5}];\nhMagnetic5 = Table[If[Sort[{mu, nu, rho}] \
+=== {3, 4, 5},\n   Signature[{mu, nu, rho}] Signature[{3, 4, 5}] D[hzero, r] \
+r^3 Sin[theta]/8, 0],\n   {mu, n5}, {nu, n5}, {rho, n5}];\nhMapped5 = \
+Simplify[-hMagnetic5 + k^2 wedge21[dOmega0, theta5]];\nhUpAB = \
+Table[Sum[hMapped5[[mu, nu, rho]] (eta5[[aa, aa]] inverseFrame5[[nu, aa]]) \
+(eta5[[b, b]] inverseFrame5[[rho, b]]),\n   {nu, n5}, {rho, n5}], {mu, n5}, \
+{aa, n5}, {b, n5}];\nOmegaPlus5 = Simplify[omegaUp5 + hUpAB/2];\nFminusAB = \
+Table[Sum[inverseFrame5[[mu, aa]] inverseFrame5[[nu, b]] Fminus[[mu, nu]],\n  \
+ {mu, n5}, {nu, n5}], {aa, n5}, {b, n5}];\nfirstShiftTerm = Table[1/2 \
+Sum[OmegaPlus5[[mu, aa, b]] FminusAB[[aa, b]], {aa, n5}, {b, n5}], {mu, \
+n5}];\ndSigmaUp = Table[Sum[g5inv[[mu, nu]] D[sigma, coords5[[nu]]], {nu, \
+n5}], {mu, n5}];\nsecondShiftTerm = Table[Sum[Fplus[[mu, nu]] dSigmaUp[[nu]], \
+{nu, n5}], {mu, n5}];\nDeltaBkk = FullSimplify[-Exp[sigma] (firstShiftTerm + \
+secondShiftTerm)/4];\n\n\n\n(* The expressions below supersede the earlier \
+minus-sign calculation. *)\nshiftExpectedCorrect = {\n  2 r^2 (-2 a^2 + \
+qminus qplus (qzero + r^2))/\n    ((qminus + r^2)^2 (qplus + r^2) (qzero + \
+r^2)^2),\n  0, 0,\n  -a (2 a^2 - qminus qplus qzero + (qminus + qplus) r^4 + \
+r^6)\n    Cos[theta]/((qminus + r^2)^2 (qplus + r^2) (qzero + r^2)^2),\n  a \
+(-2 a^2 + 2 qminus qplus qzero + qminus (qplus + qzero) r^2 +\n     qzero r^2 \
+(qplus + r^2))/\n    ((qminus + r^2)^2 (qplus + r^2) (qzero + r^2)^2)\n  \
+};\ncorrectedKkShiftPass = And @@ (PossibleZeroQ /@\n  \
+Flatten[FullSimplify[DeltaBkk - shiftExpectedCorrect]]);\n\n(* The CS \
+connection is matrix valued: omega^a{}_b.  OmegaPlus5 has both\n   Lorentz \
+indices raised because it was constructed for the KK shift.  Lower\n   the \
+second index before any ordinary matrix trace. *)\nhMixedMatrix5 = \
+Table[eta5[[b, b]] hUpAB[[mu, aa, b]],\n  {mu, n5}, {aa, n5}, {b, \
+n5}];\nomegaPlusMatrix5 = FullSimplify[omegaMixed5 + \
+hMixedMatrix5/2];\nmixedIndexBridgePass = And @@ (PossibleZeroQ /@ \
+Flatten[FullSimplify[\n   omegaPlusMatrix5 - Table[eta5[[b, b]] \
+OmegaPlus5[[mu, aa, b]],\n     {mu, n5}, {aa, n5}, {b, \
+n5}]]]);\ncs3Matrix[om_, i_, j_, kk_] := Together[PowerExpand[Tr[\n   \
+om[[i]].(D[om[[kk]], coords5[[j]]] - D[om[[j]], coords5[[kk]]]) +\n   \
+om[[j]].(D[om[[i]], coords5[[kk]]] - D[om[[kk]], coords5[[i]]]) +\n   \
+om[[kk]].(D[om[[j]], coords5[[i]]] - D[om[[i]], coords5[[j]]]) +\n   2 \
+om[[i]].(om[[j]].om[[kk]] - om[[kk]].om[[j]])]]];\ncs5MixedSample = \
+FullSimplify[cs3Matrix[omegaPlusMatrix5, 1, 2, 5]];\ncsTraceFinitePass = \
+FreeQ[cs5MixedSample, Indeterminate | ComplexInfinity];\n\n(* Physical \
+vertical H and canonical winding field strength. *)\nw1 = a qzero/(r^2 (r^2 + \
+qzero)^2);\nHz1 = ConstantArray[0, {n5, n5}];\nradialFiber = -D[1/hminus, r] \
+w1 + (1/hminus) (2 w1/r);\nthetaPhi = (1/hminus) (-r D[w1, r]/2);\nHz1[[2, \
+5]] = radialFiber; Hz1[[5, 2]] = -radialFiber;\nHz1[[2, 4]] = radialFiber \
+Cos[theta]; Hz1[[4, 2]] = -Hz1[[2, 4]];\nHz1[[3, 4]] = thetaPhi Sin[theta]; \
+Hz1[[4, 3]] = -Hz1[[3, 4]];\nverticalTriples = Subsets[Range[n5], {2}];\ncsZ \
+= Table[csTensor[[mu, nu]], {mu, n5}, {nu, n5}];\nverticalPreviouslyDisplayed \
+= {{2, 5}, {2, 4}, {3, 4}, {1, 2}};\nverticalOtherSix = \
+Complement[verticalTriples, \
+verticalPreviouslyDisplayed];\nverticalOtherSixZeroPass = And @@ \
+(PossibleZeroQ /@ Table[\n  csZ[[Sequence @@ tri]], {tri, \
+verticalOtherSix}]);\nverticalAllTenAntisymmetryPass = And @@ (PossibleZeroQ \
+/@ Flatten@Table[\n  csZ[[mu, nu]] + csZ[[nu, mu]], {mu, n5}, {nu, \
+n5}]);\nGalg1 = FullSimplify[Hz1 - csZ/4];\nGcan1 = FullSimplify[Galg1 - \
+dOne5[DeltaBkk]];\n\nclosureTensor = Table[FullSimplify[\n   D[Gcan1[[nu, \
+rho]], coords5[[mu]]] +\n   D[Gcan1[[rho, mu]], coords5[[nu]]] +\n   \
+D[Gcan1[[mu, nu]], coords5[[rho]]]],\n  {mu, n5}, {nu, n5}, {rho, \
+n5}];\nclosurePass = And @@ (PossibleZeroQ /@ \
+Flatten[closureTensor]);\nGalgOppositeVerticalSign = FullSimplify[Hz1 + \
+csZ/4];\nGcanOppositeVerticalSign = FullSimplify[\n  GalgOppositeVerticalSign \
+- dOne5[DeltaBkk]];\noppositeClosureTensor = Table[FullSimplify[\n   \
+D[GcanOppositeVerticalSign[[nu, rho]], coords5[[mu]]] +\n   \
+D[GcanOppositeVerticalSign[[rho, mu]], coords5[[nu]]] +\n   \
+D[GcanOppositeVerticalSign[[mu, nu]], coords5[[rho]]]],\n  {mu, n5}, {nu, \
+n5}, {rho, n5}];\noppositeVerticalSignClosurePass = And @@\n  (PossibleZeroQ \
+/@ Flatten[oppositeClosureTensor]);\nverticalBridgeSignSelected = \
+TrueQ[closurePass] &&\n  \
+TrueQ[!oppositeVerticalSignClosurePass];\nsu2InvariancePass = \
+PossibleZeroQ[FullSimplify[\n  Gcan1[[2, 4]] - Cos[theta] Gcan1[[2, \
+5]]]];\n\n(* Unique zero-tail invariant antiderivative, reconstructed from \
+Gcan1 and\n   checked by differentiation.  It is not imported from any A3 \
+solution. *)\ndenPotential = (qminus + r^2)^2 (qplus + r^2) (qzero + \
+r^2)^2;\nfiberNumerator = -a (-2 a^2 + 2 qminus qplus qzero +\n   qminus \
+(qplus + qzero) r^2 + qzero r^2 (qplus + r^2));\nB1candidate = {\n  -2 r^2 \
+(-2 a^2 + qminus qplus (qzero + r^2))/denPotential,\n  0, 0, fiberNumerator \
+Cos[theta]/denPotential,\n  fiberNumerator/denPotential\n  };\npotentialPass \
+= And @@ (PossibleZeroQ /@ Flatten[FullSimplify[\n  Gcan1 - \
+dOne5[B1candidate]]]);\noldTrot = -(qplus qminus - 2 a^2/(r^2 + qzero))/\n  \
+((r^2 + qplus) (r^2 + qminus) (r^2 + qzero));\noldCompactCandidate = (2 \
+oldTrot/hminus) theta5;\noldCompactSurvives = And @@ (PossibleZeroQ /@ \
+Flatten[FullSimplify[\n  B1candidate - oldCompactCandidate]]);\nstaticPass = \
+And @@ (PossibleZeroQ /@ Flatten[FullSimplify[\n  (B1candidate /. a -> 0) -\n \
+  {-2 qminus qplus r^2/((qminus + r^2)^2 (qplus + r^2) (qzero + r^2)),\n    \
+0, 0, 0, 0}]]);\nzeroTailPass = Block[{$Assumptions = qplus > 0 && qminus > 0 \
+&& qzero > 0 &&\n     Element[a, Reals]}, And @@ (PossibleZeroQ /@ \
+Flatten@Table[\n    {Limit[B1candidate[[i]], r -> Infinity],\n     Limit[r^2 \
+B1candidate[[i]], r -> Infinity]}, {i, n5}])];\n\nledger = <|\n  \
+\"HeteroticSourceMagneticComponent\" -> TrueQ[FullSimplify[\n    \
+hMagnetic5[[3,4,5]] == -qzero Sin[theta]/4]],\n  \
+\"PositiveEq41ThirdPotential\" -> TrueQ[FullSimplify[\n    \
+(theta5/hzero /. a -> 0) == {1/hzero,0,0,0,0}]],\n  \
+\"FinalActionMinusDualityStatic\" -> And @@ (PossibleZeroQ /@ Flatten[\n    \
+FullSimplify[(hMapped5 /. a -> 0) + hMagnetic5]]),\n  \
+\"SpinConnectionAntisymmetry\" -> spinAntisymmetryPass,\n  \
+\"SixDimensionalLorentzCSComponents\" -> csComponentPass,\n  \
+\"AllTenVerticalLorentzCSComponents\" ->\n    (Length[verticalTriples] == 10 \
+&& verticalOtherSixZeroPass &&\n      verticalAllTenAntisymmetryPass),\n  \
+\"PontryaginComponent\" -> pontryaginPass,\n  \
+\"DirectSixDimensionalTransgression\" -> transgressionPass,\n  \
+\"OmegaPlusImplementationConvention\" -> PossibleZeroQ[\n    OmegaPlus5[[1, \
+1, 2]] - (omegaUp5 + hUpAB/2)[[1, 1, 2]]],\n  \"HorizontalHSourceConvention\" \
+-> And @@ (PossibleZeroQ /@ Flatten[\n    FullSimplify[hMapped5 - \
+(-hMagnetic5 + k^2 wedge21[dOmega0, theta5])]]),\n  \
+\"MixedIndexTraceImplementationConvention\" -> (mixedIndexBridgePass && \
+csTraceFinitePass),\n  \"CorrectedKKShift\" -> correctedKkShiftPass,\n  \
+\"VerticalBridgeSignSelectedByBianchiClosure\" -> \
+verticalBridgeSignSelected,\n  \"CanonicalFieldStrengthClosed\" -> \
+closurePass,\n  \"CanonicalFieldStrengthSU2Invariant\" -> \
+su2InvariancePass,\n  \"UniqueZeroTailPotentialGeneratesFieldStrength\" -> \
+potentialPass,\n  \"StaticLimit\" -> staticPass,\n  \
+\"NoConstantOrInverseSquareTail\" -> zeroTailPass,\n  \
+\"OldCompactFormRejected\" -> TrueQ[!oldCompactSurvives]\n  |>;\nfinalPass = \
+And @@ Values[ledger];\n\nPrint[\"CORRECTED_DELTA_B_KK = \", \
+InputForm[DeltaBkk]];\nPrint[\"CORRECTED_B1 = \", \
+InputForm[B1candidate]];\nPrint[\"OLD_COMPACT_FORM_SURVIVES = \", \
+oldCompactSurvives];\nPrint[\"OPPOSITE_VERTICAL_SIGN_CLOSED = \", \
+oppositeVerticalSignClosurePass];\nPrint[\"MIXED_INDEX_CS_SAMPLE_125 = \", \
+InputForm[cs5MixedSample]];\nPrint[\"LEDGER = \", \
+InputForm[ledger]];\nPrint[\"FINAL_PASS = \", finalPass];"], "Input"]}, 
+ WindowSize -> {1400, 900}, StyleDefinitions -> "Default.nb"]

@@ -1,0 +1,298 @@
+Notebook[{Cell["Field-map convention and static-anchor certificate", 
+   "Title"], Cell["A self-contained independent certificate for the rotating \
+horizontal bridge, raw Q tensor, static field-redefinition direction, and \
+signature/curvature conventions", "Subtitle"], Cell["Purpose and scope", 
+   "Section"], Cell["This notebook reconstructs four convention-sensitive \
+results without importing an MX cache, another notebook, or a proposed target \
+potential. It establishes the leading and first-order horizontal NS \
+three-form bridge, computes all ten independent components of the corrected \
+raw Q tensor from its defining covariant derivative, proves the plus \
+alphaPrime/8 direction of both static field redefinitions, and checks the \
+mostly-minus heterotic to mostly-plus STU connection and curvature bridge. \
+Every executable comment is in English.", "Text"], 
+  Cell["Convention ledger", "Section"], Cell["The source fibre and three-form \
+conventions are z_STU=-z_old and H_STU=-H_old. Consequently \
+h_STU^(0)=-M_het+(Hplus Hminus)^(-1)dOmega wedge Theta. With the final \
++C wedge (d h+F wedge G) Lagrange-multiplier term this is \
+h_STU^(0)=-Exp[2 Phi] star5 F3 for the positive Eq. (4.1) potential. Also, \
+OmegaPlus_STU=-omegaMinus_heterotic. The curvature changes sign but its \
+quadratic invariants do not, so alphaPrime is not sign-flipped. The published \
+static profiles are reached by Phi_after=Phi_before+(alphaPrime/8)DeltaPhi \
+for both Delta1 and Delta2.", "Text"], Cell["Scalar-map supersession", 
+   "Section"], Cell["This notebook fixes the direction and overall factor of \
+the two predual torsion-removal redefinitions; it does not certify the later \
+postdual final scalar by itself. Notebook 26 supersedes any broader reading. \
+It proves that the displayed second postdual scalar map needs an additional \
++(1/8) Exp[-8 varphi/3] Fminus^2 term inside Delta2, changing the Fminus^2 \
+coefficient from -3/8 to -1/4 before multiplication by alphaPrime/8. The \
+metric, sigma, static torsion-free three-form, and lower-two-form results in \
+this notebook are unaffected.", "Text"], Cell["Machine-verifiable calculation", 
+   "Section"], Cell[BoxData["(* Self-contained convention and static-anchor \
+certificate.\n   This calculation imports no cache, no earlier notebook, and \
+no proposed\n   target potential.  Every comparison is reconstructed from the \
+displayed\n   leading fields and the stated field-redefinition formulas. \
+*)\n\nClearAll[\"Global`*\"];\n$HistoryLength = 0;\n$Assumptions = r > 0 && 0 \
+< theta < Pi && qplus > 0 &&\n  qminus > 0 && qzero > 0 && Element[a, \
+Reals];\n\n(* \
+---------------------------------------------------------------------- *)\n(* \
+1. Leading and first-order horizontal H bridge                         *)\n(* \
+---------------------------------------------------------------------- \
+*)\n\ncoords5 = {t, r, theta, phi, psi};\nn5 = Length[coords5];\nhp = 1 + \
+qplus/r^2;\nhm = 1 + qminus/r^2;\nh0 = 1 + qzero/r^2;\nw0 = a/(2 \
+r^2);\n\ndOne[v_] := Table[\n  D[v[[j]], coords5[[i]]] - D[v[[i]], \
+coords5[[j]]],\n  {i, n5}, {j, n5}];\nwedge11[u_, v_] := Table[u[[i]] v[[j]] \
+- u[[j]] v[[i]],\n  {i, n5}, {j, n5}];\nwedge21[q_, v_] := Table[\n  q[[i, \
+j]] v[[k]] + q[[j, k]] v[[i]] + q[[k, i]] v[[j]],\n  {i, n5}, {j, n5}, {k, \
+n5}];\nSetAttributes[{setAnti2, setAnti3}, HoldFirst];\nsetAnti2[x_, {i_, \
+j_}, value_] :=\n  (x[[i, j]] = value; x[[j, i]] = -value;);\nsetAnti3[x_, \
+tri_, value_] := Do[\n  x[[Sequence @@ p]] = Signature[p] value, {p, \
+Permutations[tri]}];\nzeroTensorQ[x_] := And @@ (TrueQ[FullSimplify[#] == 0] \
+& /@ Flatten[x]);\n\nthetaOne[ww_] := {1, 0, 0, ww Cos[theta], \
+ww};\ndeltaThetaOne[dww_] := {0, 0, 0, dww Cos[theta], dww};\ntheta0 = \
+thetaOne[w0];\nomega0 = {0, 0, 0, w0 Cos[theta], w0};\naSTU0 = \
+theta0/hp;\nbOld0 = -theta0/hm;\ngOld0 = FullSimplify[dOne[bOld0]];\ndOmega0 \
+= FullSimplify[dOne[omega0]];\nkSquared = 1/(hp hm);\n\n(* The magnetic base \
+term is M_het=star4_het dHzero from the source paper. *)\nmMagnetic0 = ConstantArray[0, {n5, \
+n5, n5}];\nDo[mMagnetic0[[Sequence @@ p]] =\n   Signature[p] D[h0, r] r^3 \
+Sin[theta]/8,\n  {p, Permutations[{3, 4, 5}]}];\n\n(* With z_STU=-z_old and \
+H_STU=-H_old, the horizontal field is\n     h_STU^(0)=-M_het-G_old wedge A_STU\n  \
+            =-M_het+(Hplus Hminus)^(-1) dOmega wedge Theta\n  \
+            =-Exp[2 Phi] star5 F3. \
+*)\nrotationIdentityResidual = FullSimplify[\n  wedge21[gOld0, aSTU0] + \
+kSquared wedge21[dOmega0, theta0]];\nhCorrect0 = FullSimplify[-mMagnetic0 - \
+wedge21[gOld0, aSTU0]];\nhCorrectExpanded0 = FullSimplify[\n  -mMagnetic0 + \
+kSquared wedge21[dOmega0, theta0]];\nhObsolete0 = FullSimplify[\n  \
+-mMagnetic0 - kSquared wedge21[dOmega0, theta0]];\n\n(* Reconstruct the \
+complete six-dimensional three-form in the new fibre\n   basis.  This \
+independently checks the horizontal/vertical split. *)\nn6 = 6;\ndzOld = {0, \
+0, 0, 0, 0, 1};\na6 = Append[aSTU0, 0];\netaOld = dzOld - a6;\netaSTU = \
+-etaOld;\ngOld6 = ConstantArray[0, {n6, n6}];\nDo[gOld6[[i, j]] = gOld0[[i, \
+j]], {i, n5}, {j, n5}];\nmMagnetic6 = ConstantArray[0, {n6, n6, \
+n6}];\nDo[mMagnetic6[[i, j, k]] = mMagnetic0[[i, j, k]],\n  {i, n5}, {j, n5}, \
+{k, n5}];\nhCorrect6 = ConstantArray[0, {n6, n6, n6}];\nDo[hCorrect6[[i, j, \
+k]] = hCorrect0[[i, j, k]],\n  {i, n5}, {j, n5}, {k, n5}];\nwedge216[q_, v_] \
+:= Table[\n  q[[i, j]] v[[k]] + q[[j, k]] v[[i]] + q[[k, i]] v[[j]],\n  {i, \
+n6}, {j, n6}, {k, n6}];\nhOld6 = FullSimplify[mMagnetic6 + wedge216[gOld6, \
+dzOld]];\nhSTU6 = FullSimplify[-hOld6];\nhSTUReconstructed6 = FullSimplify[\n \
+ hCorrect6 + wedge216[gOld6, etaSTU]];\n\nhorizontalLeadingLedger = <|\n  \
+\"HeteroticSourceMagneticComponent\" -> TrueQ[FullSimplify[\n    \
+mMagnetic0[[3,4,5]] == -qzero Sin[theta]/4]],\n  \
+\"PositiveEq41ThirdPotential\" -> TrueQ[FullSimplify[\n    \
+(theta0/h0 /. a -> 0) == {1/h0,0,0,0,0}]],\n  \
+\"FinalActionMinusDualityStatic\" -> zeroTensorQ[\n    \
+(hCorrect0 /. a -> 0) + mMagnetic0],\n  \
+\"LeadingGOldWedgeAIdentity\" -> zeroTensorQ[rotationIdentityResidual],\n  \
+\"LeadingHorizontalExpression\" ->\n    zeroTensorQ[hCorrect0 - \
+hCorrectExpanded0],\n  \"ObsoleteLeadingRotationSignRejected\" ->\n    \
+Not[zeroTensorQ[hCorrect0 - hObsolete0]],\n  \
+\"SixDimensionalHorizontalReconstruction\" ->\n    zeroTensorQ[hSTU6 - \
+hSTUReconstructed6]\n|>;\n\n(* The exact source formulas in arXiv:2606.31987 \
+are now expanded to first\n   order in alphaPrime.  ep is only a formal \
+bookkeeping parameter. *)\nzZeroCorrection = qzero^2/(r^2 (r^2 + \
+qzero)^2);\nzPlusCorrection = -2 (qplus qminus - 2 a^2/(r^2 + qzero))/\n  \
+(r^2 (r^2 + qzero) (r^2 + qminus));\nwCorrection = a qzero/(r^2 (r^2 + \
+qzero)^2);\n\nstarDOmega[ww_] := Module[{s = ConstantArray[0, {n5, n5}]},\n  \
+setAnti2[s, {2, 5}, 2 ww/r];\n  setAnti2[s, {2, 4}, 2 ww Cos[theta]/r];\n  \
+setAnti2[s, {3, 4}, -r D[ww, r] Sin[theta]/2];\n  s];\nkOld[ww_] := \
+FullSimplify[\n  -wedge11[Table[D[1/hm, coords5[[i]]], {i, n5}], \
+thetaOne[ww]] +\n  starDOmega[ww]/hm];\nmagnetic[zz_] := Module[{m = \
+ConstantArray[0, {n5, n5, n5}]},\n  setAnti3[m, {3, 4, 5}, r^3 D[zz, r] \
+Sin[theta]/8];\n  m];\n\nwFull = w0 + ep wCorrection;\nzPlusFull = hp + ep \
+zPlusCorrection;\nzZeroFull = h0 + ep zZeroCorrection;\naFull = \
+thetaOne[wFull]/zPlusFull;\nhDirectFull = -magnetic[zZeroFull] - \
+wedge21[kOld[wFull], aFull];\nhDirect1 = FullSimplify[\n  \
+Coefficient[Normal@Series[hDirectFull, {ep, 0, 1}], ep]];\na1 = \
+FullSimplify[Coefficient[Normal@Series[aFull, {ep, 0, 1}], ep]];\nk1 = \
+FullSimplify[\n  Coefficient[Normal@Series[kOld[wFull], {ep, 0, 1}], \
+ep]];\nhLedger1 = FullSimplify[\n  -magnetic[zZeroCorrection] - wedge21[k1, \
+aSTU0] -\n  wedge21[gOld0, a1]];\na1Expected = FullSimplify[\n  \
+(deltaThetaOne[wCorrection] - (zPlusCorrection/hp) \
+theta0)/hp];\n\nhorizontalFirstOrderLedger = <|\n  \
+\"FirstOrderLeadingVerticalEqualsDOldWinding\" ->\n    zeroTensorQ[kOld[w0] - \
+gOld0],\n  \"FirstOrderMomentumVectorExpansion\" -> zeroTensorQ[a1 - \
+a1Expected],\n  \"FirstOrderHorizontalSourceLedger\" -> zeroTensorQ[hDirect1 \
+- hLedger1]\n|>;\n\n(* \
+---------------------------------------------------------------------- *)\n(* \
+2. All ten independent components of the corrected raw Q tensor       *)\n(* \
+---------------------------------------------------------------------- \
+*)\n\n(* The leading mostly-plus five-dimensional string-frame metric is \
+built\n   directly from ds5^2=-Theta^2/(Hplus Hminus)+Hzero dsR4^2. *)\ng5 = \
+ConstantArray[0, {n5, n5}];\ng5[[1, 1]] = -1/(hp hm);\ng5[[1, 4]] = g5[[4, \
+1]] = -w0 Cos[theta]/(hp hm);\ng5[[1, 5]] = g5[[5, 1]] = -w0/(hp hm);\ng5[[2, \
+2]] = h0;\ng5[[3, 3]] = h0 r^2/4;\ng5[[4, 4]] = h0 r^2/4 - w0^2 \
+Cos[theta]^2/(hp hm);\ng5[[5, 5]] = h0 r^2/4 - w0^2/(hp hm);\ng5[[4, 5]] = \
+g5[[5, 4]] =\n  h0 r^2 Cos[theta]/4 - w0^2 Cos[theta]/(hp hm);\ng5Inverse = \
+FullSimplify[Inverse[g5]];\nchristoffel5 = Table[FullSimplify[1/2 Sum[\n    \
+g5Inverse[[rho, sig]] (D[g5[[sig, nu]], coords5[[mu]]] +\n      D[g5[[sig, \
+mu]], coords5[[nu]]] -\n      D[g5[[mu, nu]], coords5[[sig]]]), {sig, \
+n5}]],\n  {rho, n5}, {mu, n5}, {nu, n5}];\n\nfMomentum = \
+FullSimplify[dOne[aSTU0]];\nfWinding = FullSimplify[dOne[bOld0]];\nfPlus = \
+FullSimplify[\n  Sqrt[hp/hm] fMomentum + Sqrt[hm/hp] fWinding];\nfOneUp[mu_, \
+lam_] := Sum[\n  fPlus[[mu, k]] g5Inverse[[k, lam]], {k, \
+n5}];\nhTwoOneUp[mu_, nu_, beta_] := Sum[\n  hCorrect0[[mu, nu, k]] \
+g5Inverse[[k, beta]], {k, n5}];\nnablaPrime[nu_, rho_, lam_] :=\n  \
+D[fPlus[[rho, lam]], coords5[[nu]]] -\n  Sum[christoffel5[[s, nu, rho]] \
+fPlus[[s, lam]] +\n    christoffel5[[s, nu, lam]] fPlus[[rho, s]], {s, n5}] \
++\n  1/2 Sum[hTwoOneUp[nu, lam, beta] fPlus[[rho, beta]],\n    {beta, \
+n5}];\n\n(* The normalized three-index bracket turns the prefactor 3 into one \
+half\n   of the signed six-permutation sum. *)\nqComponent[tri_List] := \
+Factor[Cancel[Together[FullSimplify[PowerExpand[\n  1/2 Total[(Signature[#] \
+Sum[\n      fOneUp[#[[1]], lam] nablaPrime[#[[2]], #[[3]], lam],\n      {lam, \
+n5}]) & /@ Permutations[tri]],\n  Assumptions -> \
+$Assumptions]]]]];\n\ntriples10 = Subsets[Range[n5], {3}];\nqValues = \
+Association@Table[tri -> qComponent[tri], {tri, triples10}];\nqDenominator = \
+(r^2 + qminus)^3 (r^2 + qplus)^3 (r^2 + qzero);\nqExpected[tri_List] := \
+Switch[tri,\n  {1, 2, 4}, -2 a (qminus - qplus)^2 r^5 \
+Cos[theta]/qDenominator,\n  {1, 2, 5}, -2 a (qminus - qplus)^2 \
+r^5/qDenominator,\n  {1, 3, 4}, -a (qminus - qplus)^2 r^6 \
+Sin[theta]/qDenominator,\n  {3, 4, 5}, -a^2 (qminus - qplus)^2 r^4 \
+Sin[theta]/\n    (2 qDenominator),\n  _, 0];\nqExpectedValues = \
+Association@Table[tri -> qExpected[tri],\n  {tri, triples10}];\nqResiduals = \
+Association@Table[tri -> FullSimplify[\n    qValues[tri] - \
+qExpectedValues[tri]], {tri, triples10}];\nqNonzero = Select[qValues, \
+Not[PossibleZeroQ[#]] &];\nqZeroTriples = Select[triples10, \
+PossibleZeroQ[qExpected[#]] &];\n\nqLedger = <|\n  \"RawQAllTenEvaluated\" -> \
+Length[qValues] == 10,\n  \"RawQExpectedComponents\" -> And @@\n    \
+(TrueQ[FullSimplify[#] == 0] & /@ Values[qResiduals]),\n  \
+\"RawQOtherSixComponentsZero\" -> And @@\n    (PossibleZeroQ[qValues[#]] & /@ \
+qZeroTriples),\n  \"RawQSU2InvariantRelation\" -> TrueQ[FullSimplify[\n    \
+qValues[{1, 2, 4}] - Cos[theta] qValues[{1, 2, 5}]] == 0]\n|>;\n\n(* \
+---------------------------------------------------------------------- *)\n(* \
+3. Static Delta1 and Delta2 direction and the factor alphaPrime/8      *)\n(* \
+---------------------------------------------------------------------- \
+*)\n\n$Assumptions = $Assumptions && H1 > 0 && H2 > 0 && H3 > 0;\npvec = \
+Array[pv, 4];\nmvec = Array[mv, 4];\nzvec = Array[zv, 4];\ndot4[u_, v_] := \
+Sum[u[[i]] v[[i]], {i, 4}];\np2 = dot4[pvec, pvec];\nm2 = dot4[mvec, \
+mvec];\nz2 = dot4[zvec, zvec];\npm = dot4[pvec, mvec];\n\nnStatic = \
+5;\ntIndex = 1;\nspatial = Range[2, 5];\ngStatic0 = DiagonalMatrix[\n  \
+Join[{-1/(H1 H2)}, ConstantArray[H3, 4]]];\ngStaticInverse0 = \
+Simplify[Inverse[gStatic0]];\nSetAttributes[setAnti2Static, \
+HoldFirst];\nsetAnti2Static[x_, i_, j_, value_] :=\n  (x[[i, j]] = value; \
+x[[j, i]] = -value;);\nfPlusStatic = ConstantArray[0, {nStatic, \
+nStatic}];\nfMinusStatic = ConstantArray[0, {nStatic, nStatic}];\nDo[\n  \
+setAnti2Static[fPlusStatic, tIndex, spatial[[i]],\n    (pvec[[i]] - \
+mvec[[i]])/Sqrt[H1 H2]];\n  setAnti2Static[fMinusStatic, tIndex, \
+spatial[[i]],\n    (pvec[[i]] + mvec[[i]])/Sqrt[H1 H2]],\n  {i, \
+4}];\n\ndSigmaStatic = Join[{0}, (pvec - mvec)/2];\ndSigmaUpStatic = \
+Simplify[gStaticInverse0.dSigmaStatic];\nhStatic0 = ConstantArray[0, \
+{nStatic, nStatic, nStatic}];\nDo[hStatic0[[spatial[[i]], spatial[[j]], \
+spatial[[k]]]] =\n   Sum[Signature[{i, j, k, l}] H3 zvec[[l]], {l, 4}],\n  \
+{i, 4}, {j, 4}, {k, 4}];\n\nfSecondRaisedStatic[f_, mu_, nu_] := Sum[\n  \
+f[[mu, lam]] gStaticInverse0[[lam, rho]] f[[nu, rho]],\n  {lam, nStatic}, \
+{rho, nStatic}];\nfSquareStatic[f_] := Sum[\n  f[[mu, nu]] \
+gStaticInverse0[[mu, rho]]\n    gStaticInverse0[[nu, sig]] f[[rho, sig]],\n  \
+{mu, nStatic}, {nu, nStatic}, {rho, nStatic}, {sig, \
+nStatic}];\nhOneDownTwoUpStatic[mu_, nu_, rho_] := Sum[\n  \
+gStaticInverse0[[nu, aa]] gStaticInverse0[[rho, bb]]\n    hStatic0[[mu, aa, \
+bb]], {aa, nStatic}, {bb, nStatic}];\nhTwoDownStatic[mu_, nu_] := Sum[\n  \
+hStatic0[[mu, rho, sig]] hOneDownTwoUpStatic[nu, rho, sig],\n  {rho, \
+nStatic}, {sig, nStatic}];\nhSquareStatic = Sum[\n  hStatic0[[mu, nu, rho]] \
+gStaticInverse0[[mu, aa]]\n    gStaticInverse0[[nu, bb]] \
+gStaticInverse0[[rho, cc]]\n    hStatic0[[aa, bb, cc]],\n  {mu, nStatic}, \
+{nu, nStatic}, {rho, nStatic},\n  {aa, nStatic}, {bb, nStatic}, {cc, \
+nStatic}];\n\ndelta1Metric = Table[Simplify[\n  \
+fSecondRaisedStatic[fMinusStatic, mu, nu] +\n  \
+fSecondRaisedStatic[fPlusStatic, mu, nu] +\n  4 dSigmaStatic[[mu]] \
+dSigmaStatic[[nu]]],\n  {mu, nStatic}, {nu, nStatic}];\ndelta1Varphi = \
+Simplify[\n  (fSquareStatic[fMinusStatic] + fSquareStatic[fPlusStatic])/4 +\n \
+ dSigmaStatic.gStaticInverse0.dSigmaStatic];\ncommonStatic = \
+Table[Simplify[\n  4 Sum[fPlusStatic[[mu, nu]] dSigmaUpStatic[[nu]],\n      \
+{nu, nStatic}] +\n  Sum[hOneDownTwoUpStatic[mu, nu, rho] fMinusStatic[[nu, \
+rho]],\n      {nu, nStatic}, {rho, nStatic}]], {mu, nStatic}];\ndelta1A = \
+Simplify[commonStatic/(2 Sqrt[H1/H2])];\ndelta1B = Simplify[-Sqrt[H1/H2] \
+commonStatic/2];\nbStatic0 = Join[{-1/H2}, ConstantArray[0, \
+4]];\ndelta1LowerTwoForm = Table[Simplify[\n  (bStatic0[[nu]] delta1A[[mu]] \
+-\n    bStatic0[[mu]] delta1A[[nu]])/2],\n  {mu, nStatic}, {nu, \
+nStatic}];\n\ntRaw = -pm/(4 H3);\ngRaw1 = ConstantArray[0, {nStatic, \
+nStatic}];\ngRaw1[[tIndex, tIndex]] = Simplify[2 tRaw/(H1 \
+H2)];\nDo[gRaw1[[spatial[[i]], spatial[[j]]]] =\n  KroneckerDelta[i, j] z2/4, \
+{i, 4}, {j, 4}];\nvarphiRaw1 = Simplify[-tRaw/2 + z2/(8 H3)];\naRaw1 = \
+Join[{Simplify[-2 tRaw/H1]}, ConstantArray[0, 4]];\nbRaw1 = Join[{Simplify[2 \
+tRaw/H2]}, ConstantArray[0, 4]];\n\ngAfterDelta1 = Simplify[gRaw1 + \
+delta1Metric/8];\nvarphiAfterDelta1 = Simplify[varphiRaw1 + \
+delta1Varphi/8];\naAfterDelta1 = Simplify[aRaw1 + delta1A/8];\nbAfterDelta1 = \
+Simplify[bRaw1 + delta1B/8];\n\ngTargetDelta1 = ConstantArray[0, {nStatic, \
+nStatic}];\ngTargetDelta1[[tIndex, tIndex]] =\n  (p2 + m2 - 2 pm)/(4 H1 H2 \
+H3);\nDo[gTargetDelta1[[spatial[[i]], spatial[[j]]]] =\n  KroneckerDelta[i, \
+j] z2/4 -\n  (pvec[[i]] + mvec[[i]]) (pvec[[j]] + mvec[[j]])/8,\n  {i, 4}, \
+{j, 4}];\nvarphiTargetDelta1 = (-3 p2 - 3 m2 + 2 pm + 4 z2)/(32 \
+H3);\naTargetDelta1 = Join[\n  {(p2 + m2 + 2 pm)/(8 H1 H3)}, ConstantArray[0, \
+4]];\nbTargetDelta1 = Join[\n  {-(p2 + m2 + 2 pm)/(8 H2 H3)}, \
+ConstantArray[0, 4]];\n\ngAfterDelta2 = Simplify[gAfterDelta1 +\n  \
+Table[hTwoDownStatic[mu, nu],\n    {mu, nStatic}, {nu, \
+nStatic}]/8];\nvarphiAfterDelta2 = Simplify[varphiAfterDelta1 + \
+hSquareStatic/32];\ngTargetDelta2 = ConstantArray[0, {nStatic, \
+nStatic}];\ngTargetDelta2[[tIndex, tIndex]] = gTargetDelta1[[tIndex, \
+tIndex]];\nDo[gTargetDelta2[[spatial[[i]], spatial[[j]]]] =\n  \
+KroneckerDelta[i, j] z2/2 -\n  (pvec[[i]] + mvec[[i]]) (pvec[[j]] + \
+mvec[[j]])/8 -\n  zvec[[i]] zvec[[j]]/4, {i, 4}, {j, 4}];\nvarphiTargetDelta2 \
+=\n  (-3 p2 - 3 m2 + 2 pm + 10 z2)/(32 H3);\n\nfieldRedefinitionLedger = <|\n \
+ \"Delta1MetricUsesPlusAlphaPrimeOverEight\" ->\n    zeroTensorQ[gAfterDelta1 \
+- gTargetDelta1],\n  \"Delta1VarphiUsesPlusAlphaPrimeOverEight\" ->\n    \
+TrueQ[Simplify[varphiAfterDelta1 - varphiTargetDelta1] == 0],\n  \
+\"Delta1MomentumVectorUsesPlusAlphaPrimeOverEight\" ->\n    \
+zeroTensorQ[aAfterDelta1 - aTargetDelta1],\n  \
+\"Delta1WindingVectorUsesPlusAlphaPrimeOverEight\" ->\n    \
+zeroTensorQ[bAfterDelta1 - bTargetDelta1],\n  \
+\"Delta1LowerTwoFormStaticShiftVanishes\" ->\n    \
+zeroTensorQ[delta1LowerTwoForm],\n  \
+\"Delta2MetricUsesPlusAlphaPrimeOverEight\" ->\n    zeroTensorQ[gAfterDelta2 \
+- gTargetDelta2],\n  \"Delta2VarphiUsesPlusAlphaPrimeOverEight\" ->\n    \
+TrueQ[Simplify[varphiAfterDelta2 - varphiTargetDelta2] == 0],\n  \
+\"Delta2LeavesStaticVectorsUnchanged\" ->\n    zeroTensorQ[aAfterDelta1 - \
+aTargetDelta1] &&\n    zeroTensorQ[bAfterDelta1 - bTargetDelta1],\n  \
+\"StaticThreeFormUnchangedByDelta1\" -> \
+zeroTensorQ[delta1LowerTwoForm]\n|>;\n\n(* \
+---------------------------------------------------------------------- *)\n(* \
+4. Signature, curvature, and unchanged-alphaPrime bridge               *)\n(* \
+---------------------------------------------------------------------- \
+*)\n\n(* A lower three-form and the metric both reverse sign between the \
+source\n   mostly-minus convention and the STU mostly-plus convention.  \
+Raising one\n   index therefore leaves the mixed torsion matrix unchanged. \
+*)\nomegaHet = Array[omegaHetComponent, {2, 2}];\nhMixedHet = \
+Array[hMixedHetComponent, {2, 2}];\nomegaSTU = -omegaHet;\nhMixedSTU = \
+hMixedHet;\nomegaMinusHet = omegaHet - hMixedHet/2;\nomegaPlusSTU = omegaSTU \
++ hMixedSTU/2;\nconnectionBridgePass = zeroTensorQ[omegaPlusSTU + \
+omegaMinusHet];\n\n(* The two Cartan curvature conventions are opposite.  \
+Substituting the\n   connection bridge gives \
+R_STU(OmegaPlus)=-R_het(omegaMinus). *)\ndOmegaMinusHet = \
+Array[dOmegaMinusHetComponent, {2, 2}];\nrHet = dOmegaMinusHet - \
+omegaMinusHet.omegaMinusHet;\nrSTU = -dOmegaMinusHet + \
+omegaMinusHet.omegaMinusHet;\ncurvatureBridgePass = zeroTensorQ[rSTU + \
+rHet];\ncurvatureSquarePass = TrueQ[Expand[\n  Tr[rSTU.rSTU] - Tr[rHet.rHet]] \
+== 0];\n\n(* The static profiles provide a physical, component-level check \
+that the\n   metric-sign bridge does not reverse alphaPrime. \
+*)\nzPlusStaticCorrection = -2 qplus qminus/\n  (r^2 (r^2 + qzero) (r^2 + \
+qminus));\ndLog[f_] := D[Log[f], r];\ntBH = -dLog[hp] dLog[hm]/(4 h0);\nsZero \
+= dLog[h0]^2;\ngtt2606Relative = \
+Simplify[-zPlusStaticCorrection/hp];\ngttBHRelative = Simplify[-2 \
+tBH];\ngSpatial2606Relative = \
+Simplify[zZeroCorrection/h0];\ngSpatialBHRelative = Simplify[sZero/(4 \
+h0)];\nphi2606 = Simplify[\n  zZeroCorrection/(2 h0) - \
+zPlusStaticCorrection/(4 hp)];\nphiBH = Simplify[-tBH/2 + sZero/(8 \
+h0)];\naTime2606 = Simplify[-zPlusStaticCorrection/hp^2];\naTimeBH = \
+Simplify[-2 tBH/hp];\n\nsignatureAlphaLedger = <|\n  \
+\"SignatureTorsionConnectionBridge\" -> connectionBridgePass,\n  \
+\"SignatureCurvatureBridge\" -> curvatureBridgePass,\n  \
+\"CurvatureQuadraticInvariantUnchanged\" -> curvatureSquarePass,\n  \
+\"StaticGttKeepsAlphaPrimeSign\" ->\n    TrueQ[FullSimplify[gtt2606Relative - \
+gttBHRelative] == 0],\n  \"StaticSpatialMetricKeepsAlphaPrimeSign\" ->\n    \
+TrueQ[FullSimplify[gSpatial2606Relative - gSpatialBHRelative] == 0],\n  \
+\"StaticDilatonKeepsAlphaPrimeSign\" ->\n    TrueQ[FullSimplify[phi2606 - \
+phiBH] == 0],\n  \"StaticMomentumPotentialKeepsAlphaPrimeSign\" ->\n    \
+TrueQ[FullSimplify[aTime2606 - aTimeBH] == 0],\n  \"StaticZplusIdentity\" \
+->\n    TrueQ[FullSimplify[zPlusStaticCorrection/hp - 2 tBH] == 0],\n  \
+\"StaticZzeroIdentity\" -> TrueQ[FullSimplify[\n    zZeroCorrection/h0 - \
+sZero/(4 h0)] == 0]\n|>;\n\nledger = Join[horizontalLeadingLedger, \
+horizontalFirstOrderLedger,\n  qLedger, fieldRedefinitionLedger, \
+signatureAlphaLedger];\nfinalPass = And @@ \
+Values[ledger];\n\nPrint[\"CONSOLIDATED_LEDGER = \", \
+InputForm[ledger]];\nPrint[\"LEADING_HORIZONTAL_FIELD = -M_het + (Hplus \
+Hminus)^(-1) dOmega wedge Theta\"];\nPrint[\"FIRST_ORDER_HORIZONTAL_FIELD = \
+-M1-K1 wedge A0-G0 wedge A1\"];\nPrint[\"CORRECTED_Q_NONZERO = \", \
+InputForm[qNonzero]];\nPrint[\"FIELD_REDEFINITION_DIRECTION = Phi_after = \
+Phi_before + alphaPrime DeltaPhi/8\"];\nPrint[\"TORSION_CONNECTION_BRIDGE = \
+OmegaPlus_STU = -omegaMinus_heterotic\"];\nPrint[\"ALPHAPRIME_SIGN_UNCHANGED \
+= \", And @@ Values[signatureAlphaLedger]];\nPrint[\"FINAL_PASS = \", \
+finalPass];"], "Input"]}, WindowSize -> {1400, 900}, 
+ StyleDefinitions -> "Default.nb"]

@@ -1,0 +1,123 @@
+Notebook[{Cell["Exact rotation closure and source-degree audit", "Title"], 
+  Cell["Version-3 human notation guide (documentation only; no Input cell is \
+changed). In the compact solution and verifier notebooks: x=r^2; q1,q2,q3 are \
+the harmonic parameters mu1,mu2,mu3, not normalized conserved charges; jrot \
+is the rotation parameter j; U1,U2,U3 are the electric corrections delta u_I; \
+B1,B2,B3 are the gauge-covariant fibre corrections; Om is delta omega; Ft, \
+Gr, and Sq are the temporal warp, radial warp, and squashing corrections; P \
+and S are delta p and delta s, where X1=exp(2p/3-s), X2=exp(2p/3+s), and \
+X3=exp(-4p/3). Physical quantities are Q_I=Pi mu_I/(4 G5) and J1=J2=Pi j/(4 \
+G5). See the report section 'Human-readable notation and result at a glance' \
+for the full dictionary.", "Text"], Cell["PACKAGE-V1 SUPERSESSION NOTICE: \
+Historical OPEN, NOT COMPUTED, or NOT CLAIMED values retained later in this \
+notebook describe the evidence available when this notebook was first sealed; \
+they are not the current package-v1 claim ledger. Current package-v1 \
+certificates supersede them as follows: GenericStatic -> notebook 13; \
+GenericWaldAndPhysicalNormalization -> notebook 14; HorizonRegularity -> \
+notebook 15; CassaniHeteroticEq331 -> notebook 16; PageRadialIdentity -> \
+notebook 17. Only the corrected ten-dimensional-to-five-dimensional \
+field-by-field map remains open/conditional.", "Text"], 
+  Cell["Purpose: document why the finite rotation polynomial is exhaustive at \
+first order in lambda3. This concise notebook replays the archived closure \
+ledger; notebook 12 is the self-contained true from-EOM verifier that \
+recomputes every residual and classifies the two coefficient members \
+separately.", "Text"], Cell["1. Finite correction ansatz", "Section"], 
+  Cell[BoxData["ClearAll[\"Global`*\"]; evenCorrection=f0[x]+jrot^2 f2[x]; \
+oddCorrection=jrot g1[x]+jrot^3 g3[x]; \
+rotationAnsatz=<|\"Even\"->evenCorrection,\"Odd\"->oddCorrection,\"HighestEve\
+nFieldPower\"->2,\"HighestOddFieldPower\"->3|>; rotationAnsatz"], "Input"], 
+  Cell["2. Compression scale and recorded coefficient closure", "Section"], 
+  Cell["The count tables are provenance records from coefficient extraction. \
+The zero arrays and evidence classes replay the archived full-substitution \
+ledger and are not a from-EOM calculation. For the latter, evaluate notebook \
+12, which contains the literal equations, full sources, and separate \
+homogeneous/source coefficient members.", "Text"], 
+  Cell[BoxData["metricJ2CompressionCounts=<|\"f\"-><|\"OriginalTerms\"->25042\
+,\"SelectedJ2Terms\"->7671,\"CompactNumeratorMonomials\"->511|>,\"gr\"-><|\"O\
+riginalTerms\"->13230,\"SelectedJ2Terms\"->3518,\"CompactNumeratorMonomials\"\
+->343|>,\"hr\"-><|\"OriginalTerms\"->31027,\"SelectedJ2Terms\"->10978,\"Compa\
+ctNumeratorMonomials\"->512|>,\"squ\"-><|\"OriginalTerms\"->29782,\"SelectedJ\
+2Terms\"->10783,\"CompactNumeratorMonomials\"->512|>|>; \
+j3EquationCounts=<|\"v1\"->{16428,29247},\"v2\"->{16428,29247},\"v3\"->{20352\
+,36183},\"omega\"->{9268,16201}|>; \
+recordedClosureResiduals=<|\"j4Even\"->ConstantArray[0,9],\"j5Odd\"->Constant\
+Array[0,4],\"j6Even\"->ConstantArray[0,9],\"j7Odd\"->ConstantArray[0,4],\"j8E\
+ven\"->ConstantArray[0,9]|>; \
+recordedClosureClasses=<|\"j4Even\"-><|\"u1\"->\"NONTRIVIAL_CANCELLATION\",\"\
+u2\"->\"NONTRIVIAL_CANCELLATION\",\"u3\"->\"NONTRIVIAL_CANCELLATION\",\"p\"->\
+\"NONTRIVIAL_CANCELLATION\",\"s\"->\"ABSENCE_ZERO_ZERO\",\"f\"->\"NONTRIVIAL_\
+CANCELLATION\",\"gr\"->\"ABSENCE_ZERO_ZERO\",\"hr\"->\"ABSENCE_ZERO_ZERO\",\"\
+squ\"->\"ABSENCE_ZERO_ZERO\"|>,\"j5Odd\"->AssociationThread[{\"v1\",\"v2\",\"\
+v3\",\"omega\"}->ConstantArray[\"ABSENCE_ZERO_ZERO\",4]],\"j6Even\"->Associat\
+ionThread[{\"u1\",\"u2\",\"u3\",\"p\",\"s\",\"f\",\"gr\",\"hr\",\"squ\"}->Con\
+stantArray[\"ABSENCE_ZERO_ZERO\",9]],\"j7Odd\"->AssociationThread[{\"v1\",\"v\
+2\",\"v3\",\"omega\"}->ConstantArray[\"ABSENCE_ZERO_ZERO\",4]],\"j8Even\"->As\
+sociationThread[{\"u1\",\"u2\",\"u3\",\"p\",\"s\",\"f\",\"gr\",\"hr\",\"squ\"\
+}->ConstantArray[\"ABSENCE_ZERO_ZERO\",9]]|>; \
+recordedClassCounts=Counts[Flatten[Values/@Values[recordedClosureClasses]]]; \
+recordedClassPass=TrueQ[Keys@Select[recordedClosureClasses[\"j4Even\"],#===\"\
+NONTRIVIAL_CANCELLATION\"&]==={\"u1\",\"u2\",\"u3\",\"p\",\"f\"}&&Lookup[reco\
+rdedClassCounts,\"NONTRIVIAL_CANCELLATION\",0]===5&&Lookup[recordedClassCount\
+s,\"ABSENCE_ZERO_ZERO\",0]===30]; \
+closureReplayPass=And@@Flatten[Map[TrueQ[#===0]&,Values[recordedClosureResidu\
+als],{2}]]; \
+countAuditPass=And@@Map[Function[a,a[\"OriginalTerms\"]>a[\"SelectedJ2Terms\"\
+]>a[\"CompactNumeratorMonomials\"]],Values[metricJ2CompressionCounts]]; \
+<|\"MetricJ2CompressionCounts\"->metricJ2CompressionCounts,\"J3EquationAndSou\
+rceLeafCounts\"->j3EquationCounts,\"RecordedClosurePerOrderCounts\"->Map[Leng\
+th,recordedClosureResiduals],\"RecordedEvidenceClasses\"->recordedClosureClas\
+ses,\"RecordedClassCounts\"->recordedClassCounts,\"RecordedClassPass\"->recor\
+dedClassPass,\"CountOrderingPass\"->countAuditPass,\"RecordedClosureReplayPas\
+s\"->closureReplayPass|>"], "Input"], 
+  Cell["3. Three different rotation-degree statements", "Section"], 
+  Cell["The raw two-derivative homogeneous operators have degree at most two \
+in even equations and at most one in odd equations. After the finite closed \
+solution is inserted, their homogeneous contributions can reach degree four \
+and three, respectively. The complete four-derivative sources have the \
+equation-by-equation degrees below: omega reaches seven, while hr and \
+squashing reach eight. These distinctions replace the earlier shorthand that \
+grouped only small source sectors.", "Text"], 
+  Cell[BoxData["rawHomogeneousOperatorDegrees=<|\"u1\"->2,\"u2\"->2,\"u3\"->2\
+,\"v1\"->1,\"v2\"->1,\"v3\"->1,\"p\"->2,\"s\"->2,\"f\"->2,\"gr\"->2,\"hr\"->2\
+,\"squ\"->2,\"omega\"->1|>; \
+fullSourceDegrees=<|\"u1\"->4,\"u2\"->4,\"u3\"->4,\"v1\"->3,\"v2\"->3,\"v3\"-\
+>3,\"p\"->4,\"s\"->2,\"f\"->6,\"gr\"->6,\"hr\"->8,\"squ\"->8,\"omega\"->7|>; \
+postSolutionHomogeneousBounds=<|\"EvenMaximum\"->4,\"OddMaximum\"->3|>; \
+expectedClosureCounts=<|\"j4Even\"->9,\"j5Odd\"->4,\"j6Even\"->9,\"j7Odd\"->4\
+,\"j8Even\"->9|>; recordedClosureCounts=Map[Length,recordedClosureResiduals]; \
+degreeAuditPass=TrueQ[Max[Values@KeyTake[rawHomogeneousOperatorDegrees,{\"u1\
+\",\"u2\",\"u3\",\"p\",\"s\",\"f\",\"gr\",\"hr\",\"squ\"}]]===2&&Max[Values@K\
+eyTake[rawHomogeneousOperatorDegrees,{\"v1\",\"v2\",\"v3\",\"omega\"}]]===1&&\
+Max[Values[fullSourceDegrees]]===8&&fullSourceDegrees[\"omega\"]===7&&postSol\
+utionHomogeneousBounds===<|\"EvenMaximum\"->4,\"OddMaximum\"->3|>&&recordedCl\
+osureCounts===expectedClosureCounts]; \
+exactInRotationReplayPass=TrueQ[closureReplayPass&&recordedClassPass&&degreeA\
+uditPass]; \
+<|\"RawHomogeneousOperatorDegrees\"->rawHomogeneousOperatorDegrees,\"FullSour\
+ceDegrees\"->fullSourceDegrees,\"PostSolutionHomogeneousBounds\"->postSolutio\
+nHomogeneousBounds,\"ClosureCounts\"->recordedClosureCounts,\"RecordedClassCo\
+unts\"->recordedClassCounts,\"DegreeAuditPass\"->degreeAuditPass,\"ExactInRot\
+ationRecordedLedgerPass\"->exactInRotationReplayPass|>"], "Input"], 
+  Cell["4. Evidence boundary", "Section"], Cell["Notebook 10 is a compact \
+ledger and degree audit. Notebook 12 performs the decisive computation: exact \
+O(j), O(j^2), and O(j^3) substitutions, five nontrivial j^4 \
+homogeneous/source cancellations in u1, u2, u3, p, and f, and 30 canonical \
+zero/zero absence checks (the other four j^4 equations and all j^5-j^8 \
+records). All 35 residual coefficients vanish. The generic static metric \
+sector is supported by exact-rational samples rather than an arbitrary-charge \
+symbolic theorem. Generic higher-derivative Wald angular momentum, the \
+rotating heterotic field map, and invariant horizon regularity remain open.", 
+   "Text"], Cell[BoxData["<|\"ConciseLedgerPass\"->exactInRotationReplayPass,\
+\"RecordedNontrivialCancellationCount\"->Lookup[recordedClassCounts,\"NONTRIV\
+IAL_CANCELLATION\",0],\"RecordedAbsenceZeroZeroCount\"->Lookup[recordedClassC\
+ounts,\"ABSENCE_ZERO_ZERO\",0],\"TrueFromEOMVerifier\"->\"12_True_FromEOM_Exa\
+ctInJ_Verifier.nb\",\"GenericStaticMetricSymbolicProof\"->\"NOT \
+CLAIMED\",\"GenericWaldJ4\"->\"NOT \
+COMPUTED\",\"HeteroticFieldMap\"->\"OPEN\",\"InvariantHorizonRegularity\"->\"\
+OPEN\"|>"], "Input"], Cell["Conclusion: the rotation-dependent correction is \
+exact in jrot at first order in lambda3, as proved by notebook 12. No claim \
+is made about O(lambda3^2). The identification lambda3=alpha'/8 is a \
+normalization inherited from the static embedding until the rotating \
+five-to-ten-dimensional field map is completed.", "Text"]}, 
+ StyleDefinitions -> "Default.nb", WindowTitle -> 
+  "10_Exact_Rotation_Closure_and_Source_Degree_Audit"]

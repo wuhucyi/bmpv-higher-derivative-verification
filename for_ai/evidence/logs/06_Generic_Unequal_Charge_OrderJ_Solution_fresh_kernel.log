@@ -1,0 +1,71 @@
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_BEGIN"
+"FILE_BASENAME=""06_Generic_Unequal_Charge_OrderJ_Solution.nb"
+"FILE_ABSOLUTE_PATH=""[LOCAL_HOME]/Documents/Codex/2026-07-12/https-www-overleaf-com-project-65577187a96876076df0bcd6/work/package_v4_staging/notebooks/06_Generic_Unequal_Charge_OrderJ_Solution.nb"
+"KERNEL=""14.1.0 for Mac OS X ARM (64-bit) (July 16, 2024)"
+"START_UTC=""2026-07-20T06:25:45"
+"BYTES="17339
+"SHA256=""a4e7ae7a2b6df5cdfa4ae474da5b5f9c976cec23e7c2ed67793ecbf91eed42f0"
+"PARSE_PASS="True
+"INPUT_CELL_COUNT="6
+"PASS_EXPRESSION=""True"
+"CELL_"1"_BEGIN"
+"CELL_"1"_SECONDS="0.003508
+"CELL_"1"_RESULT_PASS="True
+"CELL_"1"_MESSAGE_COUNT="0
+"CELL_"1"_RESULT_HEAD="Association
+"CELL_"1"_RESULT_LEAF_COUNT="570
+"CELL_"1"_RESULT_SHORT=""Short[<|\"Status\" -> \"EXACT_GENERIC_SOLUTION\", \"Solution\" -> <|\"Gauge\" -> \"dhr=0; fixed Page charges; fixed angular first-integral constant\", \"OrderInRotation\" -> 1, \"b11\" -> (-2*(36*q1*q2*q3 + 14*q1*q2*x + 29*q1*q3*x + 29*q2*q3*x + 7*q1*x^2 + 7*q2*x^2 + 22*q3*x^2))/(3*(q1 + x)^2*(q2 + x)*(q3 + x)^2), \"b21\" -> (-2*(36*q1*q2*q3 + 14*q1*q2*x + 29*q1*q3*x + 29*q2*q3*x + 7*q1*x^2 + 7*q2*x^2 + 22*q3*x^2))/(3*(q1 + x)*(q2 + x)^2*(q3 + x)^2), \"b31\" -> (-2*(27*q1*q2*q3 + 8*q1*q2*x + 23*q1*q3*x + 23*q2*q3*x + 4*q1*x^2 + 4*q2*x^2 + 19*q3*x^2))/(3*(q1 + x)*(q2 + x)*(q3 + x)^3), \"om1\" -> (4*(12*q1^2*q2^2*q3^2 + 22*q1^2*q2^2*q3*x + 40*q1^2*q2*q3^2*x + 40*q1*q2^2*q3^2*x + 6*q1^2*q2^2*x^2 + 63*q1^2*q2*q3*x^2 + 63*q1*q2^2*q3*x^2 + 27*q1^2*q3^2*x^2 + 102*q1*q2*q3^2*x^2 + 27*q2^2*q3^2*x^2 + 15*q1^2*q2*x^3 + 15*q1*q2^2*x^3 + 39*q1^2*q3*x^3 + 144*q1*q2*q3*x^3 + 39*q2^2*q3*x^3 + 60*q1*q3^2*x^3 + 60*q2*q3^2*x^3 + 8*q1^2*x^4 + 26*q1*q2*x^4 + 8*q2^2*x^4 + 77*q1*q3*x^4 + 77*q2*q3*x^4 + 32*q3^2*x^4 + 9*q1*x^5 + 9*q2*x^5 + 36*q3*x^5))/(3*x^2*(q1 + x)*(q2 + x)*(q3 + x)^2*(q1*q2 + q1*q3 + q2*q3 + 2*q1*x + 2*q2*x + 2*q3*x + 3*x^2)), \"cJ1\" -> 0|>, \"EquationPasses\" -> <|\"v1\" -> True, \"v2\" -> True, \"v3\" -> True, \"omega\" -> True|>, \"AllFourEquationsPass\" -> True, \"SampleQ234Pass\" -> True, \"EqualChargePass\" -> True, \"NoOneOverXRotationTail\" -> True, \"HorizonData\" -> {-24/(q1*q3), -24/(q2*q3), -18/q3^2, (16*q1*q2)/(q1*q2 + q1*q3 + q2*q3)}, \"InfinityX3Data\" -> {(-14*q1 - 14*q2 - 44*q3)/3, (-14*q1 - 14*q2 - 44*q3)/3, (-8*q1 - 8*q2 - 38*q3)/3, (36*q1 + 36*q2 + 144*q3)/9}, \"Residuals\" -> <|\"v1\" -> 0, \"v2\" -> 0, \"v3\" -> 0, \"omega\" -> 0|>|>, 12]"
+"CELL_"1"_END"
+"CELL_"2"_BEGIN"
+"CELL_"2"_SECONDS="0.000049
+"CELL_"2"_RESULT_PASS="True
+"CELL_"2"_MESSAGE_COUNT="0
+"CELL_"2"_RESULT_HEAD="Association
+"CELL_"2"_RESULT_LEAF_COUNT="459
+"CELL_"2"_RESULT_SHORT=""Short[<|\"Gauge\" -> \"dhr=0; fixed Page charges; fixed angular first-integral constant\", \"OrderInRotation\" -> 1, \"b11\" -> (-2*(36*q1*q2*q3 + 14*q1*q2*x + 29*q1*q3*x + 29*q2*q3*x + 7*q1*x^2 + 7*q2*x^2 + 22*q3*x^2))/(3*(q1 + x)^2*(q2 + x)*(q3 + x)^2), \"b21\" -> (-2*(36*q1*q2*q3 + 14*q1*q2*x + 29*q1*q3*x + 29*q2*q3*x + 7*q1*x^2 + 7*q2*x^2 + 22*q3*x^2))/(3*(q1 + x)*(q2 + x)^2*(q3 + x)^2), \"b31\" -> (-2*(27*q1*q2*q3 + 8*q1*q2*x + 23*q1*q3*x + 23*q2*q3*x + 4*q1*x^2 + 4*q2*x^2 + 19*q3*x^2))/(3*(q1 + x)*(q2 + x)*(q3 + x)^3), \"om1\" -> (4*(12*q1^2*q2^2*q3^2 + 22*q1^2*q2^2*q3*x + 40*q1^2*q2*q3^2*x + 40*q1*q2^2*q3^2*x + 6*q1^2*q2^2*x^2 + 63*q1^2*q2*q3*x^2 + 63*q1*q2^2*q3*x^2 + 27*q1^2*q3^2*x^2 + 102*q1*q2*q3^2*x^2 + 27*q2^2*q3^2*x^2 + 15*q1^2*q2*x^3 + 15*q1*q2^2*x^3 + 39*q1^2*q3*x^3 + 144*q1*q2*q3*x^3 + 39*q2^2*q3*x^3 + 60*q1*q3^2*x^3 + 60*q2*q3^2*x^3 + 8*q1^2*x^4 + 26*q1*q2*x^4 + 8*q2^2*x^4 + 77*q1*q3*x^4 + 77*q2*q3*x^4 + 32*q3^2*x^4 + 9*q1*x^5 + 9*q2*x^5 + 36*q3*x^5))/(3*x^2*(q1 + x)*(q2 + x)*(q3 + x)^2*(q1*q2 + q1*q3 + q2*q3 + 2*q1*x + 2*q2*x + 2*q3*x + 3*x^2)), \"cJ1\" -> 0|>, 12]"
+"CELL_"2"_END"
+"CELL_"3"_BEGIN"
+"CELL_"3"_SECONDS="0.000584
+"CELL_"3"_RESULT_PASS="True
+"CELL_"3"_MESSAGE_COUNT="0
+"CELL_"3"_RESULT_HEAD="Association
+"CELL_"3"_RESULT_LEAF_COUNT="24
+"CELL_"3"_RESULT_SHORT=""Short[<|\"EvenEquationPasses\" -> <|\"u1\" -> True, \"u2\" -> True, \"u3\" -> True, \"p\" -> True, \"s\" -> True, \"f\" -> True, \"gr\" -> True, \"hr\" -> True, \"squ\" -> True|>, \"AllNineEvenEquationsPass\" -> True, \"AllFourOddEquationsPass\" -> True, \"AllThirteenOrderJEquationsPass\" -> True, \"Residuals\" -> <|\"u1\" -> 0, \"u2\" -> 0, \"u3\" -> 0, \"p\" -> 0, \"s\" -> 0, \"f\" -> 0, \"gr\" -> 0, \"hr\" -> 0, \"squ\" -> 0|>|>, 12]"
+"CELL_"3"_END"
+"CELL_"4"_BEGIN"
+"CELL_"4"_SECONDS="0.00022
+"CELL_"4"_RESULT_PASS="True
+"CELL_"4"_MESSAGE_COUNT="0
+"CELL_"4"_RESULT_HEAD="Association
+"CELL_"4"_RESULT_LEAF_COUNT="6
+"CELL_"4"_RESULT_SHORT=""Short[<|\"Status\" -> \"EXACT_GENERIC_SOLUTION\", \"FourOddEquationsPass\" -> True, \"NineEvenParityEquationsPass\" -> True, \"AllThirteenOrderJEquationsPass\" -> True, \"NoOneOverXRotationTail\" -> True|>, 12]"
+"CELL_"4"_END"
+"CELL_"5"_BEGIN"
+"CELL_"5"_SECONDS="0.00038
+"CELL_"5"_RESULT_PASS="True
+"CELL_"5"_MESSAGE_COUNT="0
+"CELL_"5"_RESULT_HEAD="Symbol
+"CELL_"5"_RESULT_LEAF_COUNT="1
+"CELL_"5"_RESULT_SHORT=""Short[True, 12]"
+"CELL_"5"_END"
+"CELL_"6"_BEGIN"
+"CELL_"6"_SECONDS="0.000208
+"CELL_"6"_RESULT_PASS="True
+"CELL_"6"_MESSAGE_COUNT="0
+"CELL_"6"_RESULT_HEAD="Association
+"CELL_"6"_RESULT_LEAF_COUNT="98
+"CELL_"6"_RESULT_SHORT=""Short[<|\"HorizonData\" -> {-24/(q1*q3), -24/(q2*q3), -18/q3^2, (16*q1*q2)/(q1*q2 + q1*q3 + q2*q3)}, \"InfinityX3Data\" -> {(-14*q1 - 14*q2 - 44*q3)/3, (-14*q1 - 14*q2 - 44*q3)/3, (-8*q1 - 8*q2 - 38*q3)/3, (36*q1 + 36*q2 + 144*q3)/9}, \"NoOneOverXRotationTail\" -> True, \"EqualChargeRegressionPass\" -> True|>, 12]"
+"CELL_"6"_END"
+"RESULT_FAILURE_COUNT="0
+"RESULT_FAILURE_INDICES="InputForm[{}]
+"MESSAGE_CELL_COUNT="0
+"MESSAGE_CELL_INDICES="InputForm[{}]
+"MESSAGE_TOTAL_COUNT="0
+"CELL_SECONDS="InputForm[{0.003508, 0.000049, 0.000584, 0.00022, 0.00038, 0.000208}]
+"CELL_SECONDS_TOTAL="0.004948999999999999
+"DECLARED_PASS_VALUE="InputForm[True]
+"CELL_EVALUATION_PASS="True
+"END_UTC=""2026-07-20T06:25:46"
+"TOTAL_WALL_SECONDS="1.373855`6.589485892141696
+"FRESH_KERNEL_FINAL_PASS="True
+"FRESH_KERNEL_SEQUENTIAL_EVALUATION_END"

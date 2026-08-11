@@ -1,0 +1,8 @@
+*.pdf binary
+*.nb binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+
+# Large notebooks are intentionally excluded from ordinary Git. Do not add an
+# LFS rule until the authors choose an LFS host and retention policy.

@@ -1,0 +1,173 @@
+schema_version: 1
+status: evidenced_retrospective_trace
+root: T01
+node_types: [question, decision, experiment, pivot, dead_end]
+notes:
+  - "No timestamp is supplied where one was not reliably recorded."
+  - "This trace records observable decisions and outcomes, not hidden chain-of-thought."
+
+nodes:
+  - id: T01
+    type: question
+    title: "Can the generic unequal-charge BMPV correction be solved at first order and exact in rotation?"
+    parent: null
+    provenance_sources: ["../../for_humans/RESEARCH_JOURNEY.md#1-defining-the-problem"]
+    claim_refs: [BMPV-EOM-001]
+    experiment_refs: [EXP-EOM-001]
+    notebook_refs: [NB01, NB02]
+    summary: "The static STU method and rotating BMPV background were combined into one scoped problem."
+
+  - id: T02
+    type: decision
+    title: "Make the thirteen linearized equations and sources explicit before solving"
+    parent: T01
+    provenance_sources: ["../../for_humans/RESEARCH_JOURNEY.md#2-making-the-equations-explicit"]
+    claim_refs: [BMPV-EOM-001]
+    experiment_refs: [EXP-EOM-001]
+    notebook_refs: [NB00, NB01, NB02]
+    choice: "Separate compact homogeneous operators from explicit background sources."
+    alternatives: ["Begin from guessed corrected fields", "Treat saved output as the equation source"]
+    summary: "The equation archive became the fixed object against which candidates would be tested."
+
+  - id: T03
+    type: experiment
+    title: "Equal-charge rotating benchmark"
+    parent: T02
+    provenance_sources: ["../../for_humans/RESEARCH_JOURNEY.md#3-establishing-benchmarks-and-the-static-seed"]
+    claim_refs: [BMPV-EQUAL-001]
+    experiment_refs: [EXP-EQUAL-001]
+    notebook_refs: [NB04, NB05]
+    summary: "A symmetric rotating solution was constructed and substituted into all thirteen equations."
+
+  - id: T04
+    type: pivot
+    title: "Move from equal charge to generic static and rotation-parity blocks"
+    parent: T03
+    provenance_sources: ["../../for_humans/RESEARCH_JOURNEY.md#4-solving-the-slow-rotation-hierarchy"]
+    claim_refs: [BMPV-STATIC-001, BMPV-GENERIC-J1-001, BMPV-GENERIC-J2-001, BMPV-GENERIC-J3-001]
+    experiment_refs: [EXP-STATIC-001, EXP-GENERIC-J1-001, EXP-GENERIC-J2-001, EXP-GENERIC-J3-001]
+    notebook_refs: [NB13, NB06, NB08, NB09]
+    from: "Equal-charge benchmark"
+    to: "Generic unequal charges separated into static, odd, and even rotation sectors"
+    reason: "The symmetric benchmark could not establish arbitrary-charge identities."
+    summary: "The generic hierarchy was solved sector by sector."
+
+  - id: T05
+    type: dead_end
+    title: "Bounded direct integration and underfit rational ansatz at quadratic order"
+    parent: T04
+    provenance_sources: ["../../for_humans/RESEARCH_JOURNEY.md#4-solving-the-slow-rotation-hierarchy"]
+    claim_refs: [BMPV-GENERIC-J2-001]
+    experiment_refs: [EXP-GENERIC-J2-001]
+    notebook_refs: [NB08]
+    hypothesis: "Direct integration or an ansatz restricted to obvious harmonic poles would expose the generic closed solution."
+    failure_mode: "The normal form was unhelpful, restricted pole ansatze failed, and too few collocation points produced a spurious null mode."
+    lesson: "Use exact rational reconstruction for discovery, then require unused-point and generic symbolic substitution tests."
+    superseded_by: T06
+    summary: "These failures rejected discovery ansatze, not the existence of a rational solution."
+
+  - id: T06
+    type: pivot
+    title: "Exact rational reconstruction followed by arbitrary-charge proof"
+    parent: T05
+    provenance_sources: ["../../for_humans/RESEARCH_JOURNEY.md#4-solving-the-slow-rotation-hierarchy"]
+    claim_refs: [BMPV-GENERIC-J2-001, BMPV-GENERIC-J3-001]
+    experiment_refs: [EXP-GENERIC-J2-001, EXP-GENERIC-J3-001]
+    notebook_refs: [NB08, NB09]
+    from: "Direct integration and underfit collocation"
+    to: "Overdetermined exact reconstruction with final symbolic substitution"
+    reason: "Exact samples revealed structure but could not be accepted without a generic proof."
+    summary: "The reconstructed quadratic and cubic formulas passed arbitrary-charge equations."
+
+  - id: T07
+    type: decision
+    title: "Test finite source-degree closure instead of reporting a truncated series"
+    parent: T06
+    provenance_sources: ["../../for_humans/RESEARCH_JOURNEY.md#5-from-a-slow-rotation-series-to-exact-rotation-dependence"]
+    claim_refs: [BMPV-EXACT-J-001]
+    experiment_refs: [EXP-EXACT-J-001]
+    notebook_refs: [NB10, NB11, NB12]
+    choice: "Derive the maximum source degree and test every residual coefficient in the literal EOM."
+    alternatives: ["Report only through cubic order", "Infer exactness from the simple candidate form"]
+    summary: "The slow-rotation hierarchy was promoted to an exact-in-rotation first-order result only after closure."
+
+  - id: T08
+    type: decision
+    title: "Normalize at fixed physical charges and audit entropy independently"
+    parent: T07
+    also_depends_on: [T10]
+    provenance_sources: ["../../for_humans/RESEARCH_JOURNEY.md#6-physical-and-convention-audits"]
+    claim_refs: [BMPV-CHARGE-001, BMPV-HORIZON-001, BMPV-ENTROPY-001]
+    experiment_refs: [EXP-CHARGE-001, EXP-HORIZON-001, EXP-ENTROPY-001]
+    notebook_refs: [NB07, NB14, NB15, NB17, NB18, NB20, NB21]
+    choice: "Use Page charges and equal physical angular momenta, then compare entropy only after the ensemble dictionary is explicit."
+    alternatives: ["Compare at fixed harmonic parameters", "Trust one entropy route"]
+    summary: "Independent reconstruction separated physical disagreement from variable mismatch."
+
+  - id: T09
+    type: pivot
+    title: "Distinguish the areal proof coordinate from the paper radius"
+    parent: T07
+    provenance_sources: ["../../for_humans/RESEARCH_JOURNEY.md#3-establishing-benchmarks-and-the-static-seed"]
+    claim_refs: [BMPV-COORD-001]
+    experiment_refs: [EXP-COORD-001]
+    notebook_refs: [NB28]
+    from: "Areal/Schwarzschild-like solver gauge"
+    to: "Exact static map to the harmonic/isotropic-like paper gauge"
+    reason: "A human review identified that the machine and paper solutions used different radial coordinates."
+    summary: "The map was proved without overstating uniqueness at rotation."
+
+  - id: T10
+    type: decision
+    title: "Enforce flat-symbol and curved-tensor conventions and re-audit v1"
+    parent: T02
+    provenance_sources: ["../../for_humans/RESEARCH_JOURNEY.md#6-physical-and-convention-audits"]
+    claim_refs: [BMPV-EPSILON-001, BMPV-V1-SIGN-001]
+    experiment_refs: [EXP-EPSILON-001, EXP-V1-SIGN-001]
+    notebook_refs: [NB00A, NB29]
+    choice: "Audit determinant factors and chart orientation before changing any certified sign."
+    alternatives: ["Identify the flat symbol directly with the curved tensor", "Flip all parity-odd results from prose ambiguity alone"]
+    summary: "The early prose was corrected; the executable implementation did not require a global sign reversal."
+
+  - id: T11
+    type: dead_end
+    title: "Historical three-form-first third-vector endpoint"
+    parent: T07
+    provenance_sources: ["../../for_humans/RESEARCH_JOURNEY.md#8-the-third-vector-obstruction-and-the-rejected-route"]
+    claim_refs: [MAP-C3-THREEFORM-ROUTE-001]
+    experiment_refs: [EXP-MAP-C3-THREEFORM-ROUTE-001]
+    notebook_refs: [NB27]
+    hypothesis: "The assembled corrected three-form could be dualized directly into the physical final third vector."
+    failure_mode: "A generic-rotation nonclosure and rank obstruction survived."
+    lesson: "Anchor the calculation in the raw potential and prove duality and closure before target matching."
+    superseded_by: T12
+    summary: "The nonclosed endpoint is preserved as a negative control."
+
+  - id: T12
+    type: pivot
+    title: "Raw-potential-first duality and exact solution-space target map"
+    parent: T11
+    also_depends_on: [T07]
+    provenance_sources: ["../../for_humans/RESEARCH_JOURNEY.md#8-the-third-vector-obstruction-and-the-rejected-route"]
+    claim_refs: [MAP-SCALAR-001, MAP-RAW-DUAL-001, MAP-C3-SOLUTION-001]
+    experiment_refs: [EXP-MAP-SCALAR-001, EXP-MAP-RAW-DUAL-001, EXP-MAP-C3-SOLUTION-001]
+    notebook_refs: [NB30, NB31]
+    from: "Nonclosed three-form-first endpoint"
+    to: "Arbitrary-profile raw duality followed by a scoped target-matched shift and pullback"
+    reason: "Closure supplied an independent guard and separated source identities from target matching."
+    summary: "The generic rotating scalar and third-vector solution-space identities were established."
+
+  - id: T13
+    type: dead_end
+    title: "Unique displayed-source derivation of the third-vector shift"
+    parent: T12
+    also_depends_on: [T12]
+    provenance_sources: ["../../for_humans/RESEARCH_JOURNEY.md#9-testing-a-source-side-derivation"]
+    claim_refs: [MAP-SOURCE-NOGO-001, MAP-OFFSHELL-001]
+    experiment_refs: [EXP-MAP-SOURCE-NOGO-001, EXP-MAP-OFFSHELL-001]
+    notebook_refs: [NB32]
+    hypothesis: "Displayed Appendix-B currents and tested source directions uniquely determine the target shift coefficients."
+    failure_mode: "The exact constraints leave a two-parameter ambiguity."
+    lesson: "Claim displayed-source insufficiency and keep a universal off-shell map explicitly not established."
+    superseded_by: null
+    summary: "This is a scoped nonuniqueness result, not a universal no-go theorem."
