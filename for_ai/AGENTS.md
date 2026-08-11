@@ -1,6 +1,6 @@
 # Agent operating instructions
 
-Read [`PAPER.md`](PAPER.md) first. Treat this repository as a linked research
+Read [`README.md`](README.md) first. Treat this repository as a linked research
 artifact, not as a narrative paper or a collection of trustworthy PASS labels.
 
 1. Load conventions from [`logic/concepts.md`](logic/concepts.md) before

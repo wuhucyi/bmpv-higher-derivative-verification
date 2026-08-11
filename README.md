@@ -13,7 +13,7 @@ current article source or the historical source paper.
 | Audience | Start here | Contents |
 |---|---|---|
 | Human readers | [`for_humans/README.md`](for_humans/README.md) | The retrospective prompt, chronological research journey, solving-process PDF, and final verification report. |
-| AI agents and automated auditors | [`for_ai/PAPER.md`](for_ai/PAPER.md) | An ARA-inspired claim, experiment, source, trace, and evidence graph. |
+| AI agents and automated auditors | [`for_ai/README.md`](for_ai/README.md) | Machine-oriented navigation through the claim, experiment, source, trace, and evidence graph. |
 
 The main five-dimensional result is generic in the three unequal charges,
 first order in the four-derivative coupling, and exact in the single

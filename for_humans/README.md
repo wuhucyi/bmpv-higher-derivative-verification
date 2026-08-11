@@ -17,7 +17,7 @@ the files in this order:
 For an adversarial verification protocol, see
 [`INDEPENDENT_AUDIT_PROMPT.md`](INDEPENDENT_AUDIT_PROMPT.md). Executable
 notebooks and exact machine evidence are intentionally kept only in the
-[`for_ai/`](../for_ai/PAPER.md) block, so there is one canonical copy of every
+[`for_ai/`](../for_ai/README.md) block, so there is one canonical copy of every
 calculation artifact.
 
 The two PDFs are retained as stable review documents. Their TeX sources,
