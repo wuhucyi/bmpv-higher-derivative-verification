@@ -24,4 +24,5 @@
 10. NB00 contains resource-bounded derivation stages. NB12 is the decisive
     literal from-EOM exact-in-rotation verifier.
 11. Reproduction requires a compatible licensed Wolfram kernel. NB01 and NB02
-    are large archive-only objects whose immutable hashes are recorded here.
+    are stored losslessly as `.nb.gz`; restore them only after checking the
+    recorded compressed and uncompressed hashes.

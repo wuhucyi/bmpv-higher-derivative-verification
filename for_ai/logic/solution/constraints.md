@@ -13,4 +13,5 @@
 - Do not promote solution-space identities to universal off-shell field
   redefinitions.
 - Treat NB27 as a rejected route and MAP-OFFSHELL-001 as not established.
-- Treat the two archive-only notebooks as immutable hash-addressed inputs.
+- Treat the two compressed notebooks as immutable hash-addressed inputs and
+  verify their identities again after lossless restoration.

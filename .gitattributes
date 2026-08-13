@@ -1,8 +1,9 @@
 *.pdf binary
 *.nb binary
+*.nb.gz binary
 *.png binary
 *.jpg binary
 *.jpeg binary
 
-# Large notebooks are intentionally excluded from ordinary Git. Do not add an
-# LFS rule until the authors choose an LFS host and retention policy.
+# NB01 and NB02 are stored as deterministic lossless gzip objects below the
+# ordinary GitHub per-file limit; Git LFS is not required.

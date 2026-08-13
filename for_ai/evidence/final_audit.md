@@ -21,9 +21,9 @@ is preserved here:
 ## Two-audience migration self-audit
 
 The compact migration was performed without modifying the two retained PDFs,
-the 32 repository notebooks, or the 34 canonical logs:
+the 32 directly stored notebooks, or the 34 canonical logs:
 
-- 32/32 notebooks are Git-blob identical to the pre-migration `src/notebooks`
+- 32/32 direct notebooks are Git-blob identical to the pre-migration `src/notebooks`
   objects;
 - 34/34 canonical logs are Git-blob identical to the pre-migration validation
   records;
@@ -69,9 +69,8 @@ the checksum path set, notebook/log/PDF blob identity, English/privacy scan,
 root allowlist, forbidden-extension scan, and all claim, experiment, source,
 trace, and evidence references.
 
-## Terminal local verdict
+## Terminal migration verdict
 
-**PASS.** No unresolved migration-audit finding remains. This verdict applies
-to the compact local tree. Repository visibility and exact remote path/blob
-identity are checked again after atomic publication; visibility must remain
-private.
+**PASS.** No unresolved migration-audit finding remained in the compact
+two-audience migration. Subsequent repository revisions carry their own
+checksum validation and independent audit records in Git history.

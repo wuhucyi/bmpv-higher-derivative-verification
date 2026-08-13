@@ -12,11 +12,12 @@ contain the reported values recorded here.
 3. Resolve every `NB*` identifier through [`../src/index.md`](../src/index.md).
 4. Resolve the exact assigned log in [`logs/`](logs/).
 5. Verify the notebook hash against [`checksums.sha256`](checksums.sha256).
-6. Treat archive-only NB01/NB02 as usable only after matching the immutable
-   metadata in [`external_archive.yaml`](external_archive.yaml).
+6. Restore compressed NB01/NB02 only after matching the compressed and
+   uncompressed identities in
+   [`notebook_archives.yaml`](notebook_archives.yaml).
 
 There are exactly 34 canonical logs: one for each NB ID, including the two
-archive-only notebooks. The stale pre-sanitization NB00 log is not part of this
+compressed notebooks. The stale pre-sanitization NB00 log is not part of this
 artifact. Each canonical log records the kernel, notebook identity, literal
 terminal predicate, and sequential-evaluation end marker.
 

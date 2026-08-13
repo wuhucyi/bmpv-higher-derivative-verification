@@ -11,9 +11,11 @@ observations:
       BMPV solution space and pass a new symbolic audit.
     related_claims: [MAP-OFFSHELL-001, MAP-SOURCE-NOGO-001]
   - id: OBS-ARCHIVE-001
-    status: release_blocked
-    statement: "The full sealed-v5 archive still needs immutable DOI metadata."
-    promotion_requirement: "All-author approval, license decision, clean archive hash, DOI, and public URL."
+    status: resolved
+    statement: >-
+      NB01 and NB02 are included as deterministic lossless gzip objects with
+      compressed and restored identities checked by the repository validator.
+    promotion_requirement: "None; retain both identity checks when updating either notebook."
   - id: OBS-ARA-001
     status: descriptive_only
     statement: >-

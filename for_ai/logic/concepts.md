@@ -68,4 +68,7 @@ separate in claims, experiments, and summaries.
 Inherited notebook symbols such as `x`, `Ft`, `Gr`, `Sq`, `Om`, `U1`, and `B1`
 are implementation aliases for `r^2`, temporal/radial/squashing metric
 corrections, the rotation-form correction, and gauge-potential corrections.
-Human notation in the PDFs is canonical.
+Human notation in the PDFs is canonical. The structured mapping to the current
+manuscript is [`notation_crosswalk.yaml`](notation_crosswalk.yaml); its human
+explanation is
+[`../../for_humans/NOTATION_CROSSWALK.md`](../../for_humans/NOTATION_CROSSWALK.md).

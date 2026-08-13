@@ -1,0 +1,102 @@
+schema_version: 1
+role: manifest
+manuscript_snapshot:
+  file: main.tex
+  included_in_repository: false
+  sha256: 6f6b5a7ad6d3b3d364f3eec297315422beaac575388b8e142f29579e44b977de
+  human_guide: ../../for_humans/NOTATION_CROSSWALK.md
+
+parameters:
+  - {manuscript: q_I, report: mu_I, notebook: [q1, q2, q3], type: harmonic_parameter}
+  - {manuscript: not_introduced_separately, report: Q_I_phys, notebook: page_charge_constant, type: physical_charge}
+  - {manuscript: a, report: j, notebook: jrot, type: rotation_parameter}
+  - {manuscript: G_N, report: G_5, notebook: null, type: five_dimensional_newton_constant}
+  - {manuscript: lambda_3, report: lambda_3, notebook: overall_first_order_coefficient, type: active_coupling}
+
+normalizations:
+  physical_charge: "Q_I_phys = pi q_I/(4 G_5)"
+  angular_momenta: "J_1 = J_2 = pi a/(4 G_5)"
+  heterotic_sector: "lambda_3 = alphaPrime/8"
+
+coordinates:
+  crosswalk_aliases:
+    r_P: report_rho_paper_like_coordinate
+    r_A: report_r_areal_solver_coordinate
+  manuscript_final:
+    symbol: r
+    role: transformed_radius_with_retained_glyph
+    gauge: delta_varphi_2_zero
+    status: manuscript_asserted_coordinate_author_confirmation_required
+  solver: {symbol: r_A, role: areal_schwarzschild_like_radius, gauge: delta_mathcal_H_A_zero}
+  certified_static_map: "r_P = r_A + lambda_3 xi(r_A)"
+  finite_rotation_use: chosen_rotation_independent_paper_matched_pullback_not_unique_isotropic_gauge
+  certificate: NB28
+  notebook_rational_variable:
+    relation: "x = r_A^2"
+    scope: compact_radial_eom_and_solution_notebooks
+
+fields:
+  - manuscript: [f, g, h, k]
+    report: [mathcal_F, mathcal_G, mathcal_H, mathcal_K]
+    notebook_corrections:
+      explicit_eom: [df, dgr, dhr, dsqu]
+      compact_solution: [Ft, Gr, K]
+      historical_explanatory_alias_for_squashing: Sq
+      areal_gauge_angular_area_correction: zero
+  - {manuscript: u_I, report: u_I, notebook_correction: [U1, U2, U3]}
+  - {manuscript: v_I, report: v_I, notebook_correction: reconstructed}
+  - {manuscript: null, report: beta_I, notebook: [B1, B2, B3]}
+  - manuscript: omega
+    report: omega
+    notebook_corrections:
+      explicit_eom: domega
+      compact_solution: Om
+  - {manuscript: varphi_1, report: varphi_1, notebook_correction: P}
+  - {manuscript: varphi_2, report: varphi_2, notebook_correction: S}
+
+definitions:
+  beta_I: "delta v_I - omega_0 delta u_I - H_I^(-1) delta omega"
+  P: "-sqrt(6) delta varphi_1/4"
+  S: "delta varphi_2/sqrt(2)"
+
+collisions:
+  - glyph: mathcal_H
+    manuscript: harmonic_product_H1_H2_H3
+    report: angular_metric_exponent
+  - glyph: f
+    manuscript: logarithmic_temporal_exponent
+    report: background_shorthand_H_product_to_minus_one_third
+  - glyph: omega
+    meanings: [rotation_one_form, hopf_fibre_scalar_coefficient]
+  - glyph: varepsilon_mu_nu
+    manuscript: wald_binormal
+    distinct_from: [levi_civita_tensor, alternating_density]
+
+specializations:
+  equal_charge_single_sector:
+    charge_condition: q_1_equals_q_2_equals_q_3
+    active_couplings: [lambda_3]
+    equivalent_to_minimal_supergravity: false
+  minimal_supergravity:
+    charge_condition: q_1_equals_q_2_equals_q_3
+    active_couplings: [lambda_1, lambda_2, lambda_3]
+    coupling_relation: "lambda_1 = lambda_2 = lambda_3 = lambda/3"
+    construction: permuted_linear_superposition
+
+orientation:
+  flat_lower_01234: 1
+  flat_upper_01234: -1
+  coordinate_order: [t, r, theta, phi, psi]
+  curved_lower_coordinate_component: "-sqrt(-g)"
+  curved_upper_coordinate_component: "+1/sqrt(-g)"
+  certificates: [NB00A, NB29]
+
+manuscript_review_flags:
+  - leading_scalar_power
+  - mixed_arr_epsilon_index_count
+  - action_epsilon_object_type
+  - wald_normal_name_collision
+  - entropy_index_summation
+  - radial_derivative_shorthand
+  - retained_radial_symbol_after_coordinate_change
+  - wald_curvature_variation_field_strength_indices

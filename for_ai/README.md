@@ -13,8 +13,8 @@ formal third-party ARA certification.
 
 | Layer | Entry | Purpose |
 |---|---|---|
-| Logic | [`logic/problem.md`](logic/problem.md) | Scope, concepts, claims, verification procedures, and limitations. |
-| Source | [`src/index.md`](src/index.md) | The 32 repository notebooks and two hash-addressed archive objects. |
+| Logic | [`logic/problem.md`](logic/problem.md) | Scope, concepts, notation crosswalk, claims, verification procedures, and limitations. |
+| Source | [`src/index.md`](src/index.md) | All 34 notebooks: 32 direct `.nb` files and two losslessly compressed `.nb.gz` files. |
 | Trace | [`trace/exploration_tree.yaml`](trace/exploration_tree.yaml) | Evidenced decisions, pivots, experiments, and unsuccessful routes. |
 | Evidence | [`evidence/README.md`](evidence/README.md) | Exact fresh-kernel records, result ledger, audit, and checksums. |
 
@@ -23,6 +23,11 @@ then follow [`logic/claims.md`](logic/claims.md) and
 [`logic/experiments.md`](logic/experiments.md). A claim is supported only when
 its experiment, notebook, and evidence references all resolve. Numerical
 samples may falsify a generic identity but do not certify one.
+
+The structured manuscript-report-notebook notation map is
+[`logic/notation_crosswalk.yaml`](logic/notation_crosswalk.yaml); explanatory
+context and ambiguity warnings are in
+[`../for_humans/NOTATION_CROSSWALK.md`](../for_humans/NOTATION_CROSSWALK.md).
 
 ## Verified scope
 

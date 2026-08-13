@@ -2,6 +2,7 @@
 # frozen_string_literal: true
 
 require "digest"
+require "zlib"
 require "open3"
 require "pathname"
 require "set"
@@ -27,7 +28,7 @@ def load_yaml(path)
 end
 
 allowed_root = Set.new(%w[
-  .git .gitattributes .github .gitignore CITATION.cff LICENSE_STATUS.md
+  .git .gitattributes .github .gitignore CITATION.cff RIGHTS_AND_REUSE.md
   README.md for_ai for_humans
 ])
 root_entries = Dir.children(ROOT).to_set
@@ -36,7 +37,7 @@ record(errors, root_entries == allowed_root,
 
 human_expected = Set.new(%w[
   FINAL_REPORT.pdf INDEPENDENT_AUDIT_PROMPT.md PROMPT.md README.md
-  RESEARCH_JOURNEY.md SOLVING_PROCESS.pdf
+  RESEARCH_JOURNEY.md SOLVING_PROCESS.pdf NOTATION_CROSSWALK.md
 ])
 human_actual = Dir.children(File.join(ROOT, "for_humans")).to_set
 record(errors, human_actual == human_expected,
@@ -157,12 +158,14 @@ end
 nb_ids = source_rows.keys.to_set
 record(errors, nb_ids.length == 34, "expected 34 NB IDs, found #{nb_ids.length}")
 record(errors, source_rows.values.count { |r| r["availability"] == "repository" } == 32,
-       "expected 32 repository notebooks")
-record(errors, source_rows.values.count { |r| r["availability"] == "archive_only" } == 2,
-       "expected two archive-only notebooks")
-record(errors, source_rows.fetch("NB01", {})["availability"] == "archive_only" &&
-               source_rows.fetch("NB02", {})["availability"] == "archive_only",
-       "only NB01 and NB02 may be archive-only")
+       "expected 32 direct repository notebooks")
+record(errors, source_rows.values.count { |r| r["availability"] == "repository_compressed" } == 2,
+       "expected two compressed repository notebooks")
+record(errors, source_rows.fetch("NB01", {})["availability"] == "repository_compressed" &&
+               source_rows.fetch("NB02", {})["availability"] == "repository_compressed",
+       "only NB01 and NB02 may be repository-compressed")
+record(errors, source_rows.values.all? { |r| %w[repository repository_compressed].include?(r["availability"]) },
+       "every notebook must be stored directly or as a repository-compressed object")
 
 experiment_blocks.each do |id, block|
   verified = block[/\*\*Verifies:\*\* ([^\n]+)/, 1]&.scan(/(?:BMPV|MAP)-[A-Z0-9-]+-\d{3}/)&.uniq || []
@@ -183,6 +186,15 @@ expected_notebooks = source_rows.values.select { |r| r["availability"] == "repos
 record(errors, actual_notebooks == expected_notebooks,
        "repository notebook basename set differs from source index")
 
+compressed_dir = File.join(notebook_dir, "compressed")
+actual_compressed = Dir.glob(File.join(compressed_dir, "*.nb.gz"))
+                       .map { |p| "compressed/#{File.basename(p)}" }.to_set
+expected_compressed = source_rows.values
+                                 .select { |r| r["availability"] == "repository_compressed" }
+                                 .map { |r| r["file"] }.to_set
+record(errors, actual_compressed == expected_compressed,
+       "compressed repository notebook set differs from source index")
+
 log_dir = File.join(ROOT, "for_ai/evidence/logs")
 actual_logs = Dir.glob(File.join(log_dir, "*.log")).map { |p| File.basename(p) }.to_set
 expected_logs = source_rows.values.map { |r| r["log"] }.to_set
@@ -193,7 +205,9 @@ source_rows.each do |id, row|
   log_path = File.join(log_dir, row["log"])
   next unless File.file?(log_path)
   log = File.binread(log_path).force_encoding("UTF-8").scrub
-  record(errors, log.include?(row["file"]), "#{id} log does not name its notebook")
+  logged_notebook = row["availability"] == "repository_compressed" ?
+                    File.basename(row["file"], ".gz") : row["file"]
+  record(errors, log.include?(logged_notebook), "#{id} log does not name its notebook")
   record(errors, log.include?("FRESH_KERNEL_FINAL_PASS=\"True"), "#{id} lacks terminal pass")
   record(errors, log.include?("FRESH_KERNEL_SEQUENTIAL_EVALUATION_END"), "#{id} lacks terminal end marker")
   next unless row["availability"] == "repository"
@@ -208,15 +222,75 @@ source_rows.each do |id, row|
   record(errors, bytes == logged_bytes, "#{id} notebook bytes differ from canonical log")
 end
 
-external = load_yaml(File.join(ROOT, "for_ai/evidence/external_archive.yaml"))
-external_rows = external.fetch("archive_only_notebooks").to_h { |row| [row.fetch("id"), row] }
-record(errors, external_rows.keys.to_set == Set.new(%w[NB01 NB02]), "external archive IDs differ")
-{
-  "NB01" => [626_490_817, "6cd59e0afb36b55d5f7ea13e66e15a1b97cda0b4a12b98983edd98d5d2947679"],
-  "NB02" => [52_605_901, "b89b1dc65e4ef8d06136df6dcd7053557bee3a17177a7ef3c65584f7bb80f928"]
-}.each do |id, (bytes, sha)|
-  row = external_rows.fetch(id, {})
-  record(errors, row["bytes"] == bytes && row["sha256"] == sha, "#{id} archive metadata differs")
+archives = load_yaml(File.join(ROOT, "for_ai/evidence/notebook_archives.yaml"))
+archive_rows = archives.fetch("compressed_notebooks").to_h { |row| [row.fetch("id"), row] }
+record(errors, archive_rows.keys.to_set == Set.new(%w[NB01 NB02]), "compressed notebook IDs differ")
+expected_archive_identity = {
+  "NB01" => {
+    "original_bytes" => 626_490_817,
+    "original_sha256" => "6cd59e0afb36b55d5f7ea13e66e15a1b97cda0b4a12b98983edd98d5d2947679",
+    "compressed_bytes" => 16_048_690,
+    "compressed_sha256" => "e0b7c344cfa53666b1a25c818f8651849ad303a3814526a5bc6ddc9618009ef1"
+  },
+  "NB02" => {
+    "original_bytes" => 52_605_901,
+    "original_sha256" => "b89b1dc65e4ef8d06136df6dcd7053557bee3a17177a7ef3c65584f7bb80f928",
+    "compressed_bytes" => 1_440_317,
+    "compressed_sha256" => "ca3bd8af6bad7ab5492d65947b08c0938cb76adea1f36c098abfa6e40ab13847"
+  }
+}
+archive_rows.each do |id, row|
+  expected = expected_archive_identity.fetch(id, {})
+  expected.each do |field, value|
+    record(errors, row[field] == value, "#{id} #{field} metadata differs")
+  end
+  indexed = source_rows.fetch(id, {})["file"]
+  expected_repository_file = "for_ai/src/notebooks/#{indexed}"
+  record(errors, row["repository_file"] == expected_repository_file,
+         "#{id} repository path differs from source index")
+  path = File.join(ROOT, row.fetch("repository_file"))
+  next unless File.file?(path)
+
+  record(errors, File.size(path) == row["compressed_bytes"], "#{id} compressed byte count differs")
+  record(errors, Digest::SHA256.file(path).hexdigest == row["compressed_sha256"],
+         "#{id} compressed SHA-256 differs")
+  restored_digest = Digest::SHA256.new
+  restored_bytes = 0
+  restored_tail = +"".b
+  restored_privacy_patterns = {
+    "encoded prohibited-script prose" => /\\:(?:0(?:4[0-9a-f]|5[0-2a-f]|59|5[0-9a-f]|6[0-9a-f]|7[0-9a-f]|8[0-9a-f]|9[0-7a-f]|e[0-9a-f]|f[0-9a-f])|3(?:0[4-9a-f]|[1-9a-f][0-9a-f])|4(?:[e-f][0-9a-f])|9(?:[0-7a-f][0-9a-f])|a(?:c[0-9a-f]|d[0-7a-f])|d(?:7[0-9a-f]))/i,
+    "absolute home path" => %r{/(?:Users|home)/[^\s\"]+},
+    "private Overleaf project URL" => %r{overleaf\.com/project/},
+    "possible GitHub token" => /(?:github_pat_|ghp_)[A-Za-z0-9_]{20,}/
+  }
+  restored_privacy = restored_privacy_patterns.transform_values { false }
+  restored_non_ascii = false
+  begin
+    Zlib::GzipReader.open(path) do |gz|
+      record(errors, gz.mtime.to_i.zero? && gz.orig_name.to_s.empty?,
+             "#{id} gzip header is not deterministic and metadata-free")
+      while (chunk = gz.read(1024 * 1024)) && !chunk.empty?
+        restored_digest.update(chunk)
+        restored_bytes += chunk.bytesize
+        window_bytes = restored_tail + chunk
+        restored_non_ascii ||= window_bytes.match?(/[\x80-\xff]/n)
+        restored_privacy_patterns.each do |finding, pattern|
+          restored_privacy[finding] ||= window_bytes.match?(pattern)
+        end
+        restored_tail = window_bytes.byteslice(-1024, 1024) || window_bytes
+      end
+    end
+    record(errors, restored_bytes == row["original_bytes"], "#{id} restored byte count differs")
+    record(errors, restored_digest.hexdigest == row["original_sha256"],
+           "#{id} restored SHA-256 differs")
+    restored_privacy.each do |finding, present|
+      record(errors, !present, "#{id} restored notebook contains #{finding}")
+    end
+    record(errors, !restored_non_ascii,
+           "#{id} restored notebook contains non-ASCII bytes requiring language review")
+  rescue Zlib::GzipFile::Error, Zlib::Error, EOFError => e
+    errors << "#{id} gzip restoration failed: #{e.message}"
+  end
 end
 
 trace = load_yaml(File.join(ROOT, "for_ai/trace/exploration_tree.yaml"))
@@ -250,6 +324,26 @@ end
 summary = load_yaml(File.join(ROOT, "for_ai/evidence/results/verification_summary.yaml"))
 summary_counts = summary.fetch("claim_status_counts").reject { |k, _| k == "note" }
 record(errors, summary_counts == expected_status, "verification summary claim counts differ")
+summary_integrity = summary.fetch("integrity")
+record(errors, summary_integrity["repository_notebooks"] == 34 &&
+               summary_integrity["direct_notebooks"] == 32 &&
+               summary_integrity["compressed_notebooks"] == 2,
+       "verification summary notebook inventory differs")
+
+crosswalk_path = File.join(ROOT, "for_ai/logic/notation_crosswalk.yaml")
+crosswalk = load_yaml(crosswalk_path)
+record(errors, crosswalk["role"] == "manifest", "notation crosswalk role differs")
+record(errors, crosswalk.dig("manuscript_snapshot", "sha256") ==
+               "6f6b5a7ad6d3b3d364f3eec297315422beaac575388b8e142f29579e44b977de",
+       "notation crosswalk manuscript snapshot differs")
+record(errors, crosswalk.dig("coordinates", "certificate") == "NB28" &&
+               crosswalk.dig("coordinates", "finite_rotation_use") ==
+               "chosen_rotation_independent_paper_matched_pullback_not_unique_isotropic_gauge" &&
+               crosswalk.dig("coordinates", "manuscript_final", "status") ==
+               "manuscript_asserted_coordinate_author_confirmation_required",
+       "notation crosswalk coordinate certificate differs")
+record(errors, crosswalk.dig("orientation", "certificates") == %w[NB00A NB29],
+       "notation crosswalk orientation certificates differ")
 
 pdf_expectations = {
   "for_humans/FINAL_REPORT.pdf" => [35, /version\s+5/i],
@@ -300,7 +394,7 @@ end
 
 if errors.empty?
   puts "ARA_INSPIRED_LEVEL1_PASS"
-  puts "claims=22 experiments=22 notebooks=32 archive_only=2 logs=34 trace_nodes=#{nodes.length}"
+  puts "claims=22 experiments=22 notebooks=34 direct=32 compressed=2 logs=34 trace_nodes=#{nodes.length}"
   exit 0
 end
 

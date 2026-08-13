@@ -1,8 +1,5 @@
 # BMPV higher-derivative verification
 
-> **Private author-review draft. Do not distribute, cite, archive publicly, or
-> create a public release.**
-
 This repository is a compact research supplement for the first-order
 four-derivative correction to the generic three-charge BMPV black hole. It is
 organized for two audiences and deliberately does not contain either the
@@ -12,7 +9,7 @@ current article source or the historical source paper.
 
 | Audience | Start here | Contents |
 |---|---|---|
-| Human readers | [`for_humans/README.md`](for_humans/README.md) | The retrospective prompt, chronological research journey, solving-process PDF, and final verification report. |
+| Human readers | [`for_humans/README.md`](for_humans/README.md) | The notation crosswalk, retrospective prompt, chronological research journey, solving-process PDF, and final verification report. |
 | AI agents and automated auditors | [`for_ai/README.md`](for_ai/README.md) | Machine-oriented navigation through the claim, experiment, source, trace, and evidence graph. |
 
 The main five-dimensional result is generic in the three unequal charges,
@@ -29,25 +26,24 @@ supported by preserved artifacts.
 
 ## Artifact boundary
 
-This GitHub view contains 32 executable Mathematica notebooks. The two very
-large equation archives, NB01 and NB02, remain outside ordinary Git and are
-identified by immutable size and SHA-256 records in
-[`for_ai/evidence/external_archive.yaml`](for_ai/evidence/external_archive.yaml).
-Their DOI and download URL remain unset until the authors approve a public
-archive.
+This repository contains all 34 Mathematica notebooks. NB01 and NB02 are
+stored as losslessly compressed `.nb.gz` files because their uncompressed
+forms are unusually large. Their compressed and uncompressed sizes and
+SHA-256 values are recorded in
+[`for_ai/evidence/notebook_archives.yaml`](for_ai/evidence/notebook_archives.yaml).
+All other notebooks are stored directly as `.nb` files.
 
 The `for_ai/` directory is inspired by the four-layer Agent-Native Research
 Artifact proposal: logic, executable source, exploration trace, and exact
 evidence. It is an adaptation for symbolic high-energy theory and is not
 presented as a formal third-party ARA certification.
 
-## Current status
+## Verification boundary
 
-- Repository visibility must remain private until the authors approve the
-  arXiv and artifact release.
-- Publication metadata, DOI, repository URL, and licenses are unresolved.
 - No claim of priority or of a first AI-assisted theory paper is made here.
 - No existing PASS label is evidence by itself; the linked calculation is.
+- Reuse and redistribution are governed by
+  [`RIGHTS_AND_REUSE.md`](RIGHTS_AND_REUSE.md).
 
 Run the lightweight structural and cross-reference audit with:
 

@@ -1,0 +1,23 @@
+schema_version: 1
+compression: gzip
+compression_command: "gzip -9 -n -c INPUT.nb > OUTPUT.nb.gz"
+restoration_command: "gzip -dc INPUT.nb.gz > OUTPUT.nb"
+deterministic_header: true
+
+compressed_notebooks:
+  - id: NB01
+    original_file: 01_Explicit_13_EOM_with_Sources.nb
+    repository_file: for_ai/src/notebooks/compressed/01_Explicit_13_EOM_with_Sources.nb.gz
+    original_bytes: 626490817
+    original_sha256: 6cd59e0afb36b55d5f7ea13e66e15a1b97cda0b4a12b98983edd98d5d2947679
+    compressed_bytes: 16048690
+    compressed_sha256: e0b7c344cfa53666b1a25c818f8651849ad303a3814526a5bc6ddc9618009ef1
+    repository_log: logs/01_fresh_kernel_full_eval.log
+  - id: NB02
+    original_file: 02_Page_and_Radial_Constraint_Reduction.nb
+    repository_file: for_ai/src/notebooks/compressed/02_Page_and_Radial_Constraint_Reduction.nb.gz
+    original_bytes: 52605901
+    original_sha256: b89b1dc65e4ef8d06136df6dcd7053557bee3a17177a7ef3c65584f7bb80f928
+    compressed_bytes: 1440317
+    compressed_sha256: ca3bd8af6bad7ab5492d65947b08c0938cb76adea1f36c098abfa6e40ab13847
+    repository_log: logs/02_fresh_kernel_full_eval.log

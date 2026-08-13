@@ -33,9 +33,13 @@
 *.tar
 *.tar.gz
 *.tgz
+*.gz
 *.zip
 *.7z
 *.part
+
+# Two deterministic notebook archives are part of the verification artifact.
+!for_ai/src/notebooks/compressed/*.nb.gz
 
 # Secrets and machine-local configuration
 .env

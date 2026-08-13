@@ -5,8 +5,9 @@ rotation_scope: "stationary equal-angular-momentum BMPV ansatz"
 charge_scope: "three arbitrary unequal positive charges"
 
 integrity:
-  repository_notebooks: 32
-  archive_only_notebooks: 2
+  repository_notebooks: 34
+  direct_notebooks: 32
+  compressed_notebooks: 2
   assigned_logs: 34
   canonical_logs_with_terminal_pass: 34
 

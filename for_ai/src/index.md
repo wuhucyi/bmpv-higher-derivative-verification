@@ -3,8 +3,10 @@
 ## Resolution rules
 
 - `repository` notebooks resolve under [`notebooks/`](notebooks/).
-- `archive_only` notebooks resolve through
-  [`../evidence/external_archive.yaml`](../evidence/external_archive.yaml).
+- `repository_compressed` notebooks resolve under
+  [`notebooks/compressed/`](notebooks/compressed/) and must match both the
+  compressed and restored identities in
+  [`../evidence/notebook_archives.yaml`](../evidence/notebook_archives.yaml).
 - Every log resolves under [`../evidence/logs/`](../evidence/logs/).
 - Evaluate each notebook in a fresh Wolfram kernel. The assigned log must end
   with `FRESH_KERNEL_FINAL_PASS=True`, followed by
@@ -17,8 +19,8 @@
 |---|---|---|---|---|---|---|
 | NB00A | repository | `00A_Levi_Civita_Tensor_and_Action_Density_Convention.nb` | `00A_Levi_Civita_Tensor_and_Action_Density_Convention_fresh_kernel.log` | V3 | orientation and mixed-CS convention guard | EXP-EPSILON-001 |
 | NB00 | repository | `00_Ansatz_Action_and_EOM_Derivation.nb` | `00_english_metadata_sanitization_fresh_kernel.log` | V1 | action/ansatz derivation scaffold with resource-bounded stages | EXP-EOM-001 |
-| NB01 | archive_only | `01_Explicit_13_EOM_with_Sources.nb` | `01_fresh_kernel_full_eval.log` | V1 | literal archive of thirteen linearized equations and sources | EXP-EOM-001 |
-| NB02 | archive_only | `02_Page_and_Radial_Constraint_Reduction.nb` | `02_fresh_kernel_full_eval.log` | V1 | Page first integrals and radial constraint | EXP-EOM-001 |
+| NB01 | repository_compressed | `compressed/01_Explicit_13_EOM_with_Sources.nb.gz` | `01_fresh_kernel_full_eval.log` | V1 | literal archive of thirteen linearized equations and sources | EXP-EOM-001 |
+| NB02 | repository_compressed | `compressed/02_Page_and_Radial_Constraint_Reduction.nb.gz` | `02_fresh_kernel_full_eval.log` | V1 | Page first integrals and radial constraint | EXP-EOM-001 |
 | NB03 | repository | `03_Source_Sectors_and_F4_Interpretation.nb` | `03_Source_Sectors_and_F4_Interpretation_fresh_kernel.log` | V2 | source sectors and curvature-free vector invariants | EXP-F4-SEPARATE-001, EXP-F4-ENTROPY-001 |
 | NB04 | repository | `04_Equal_Charge_Exact_Solution.nb` | `04_Equal_Charge_Exact_Solution_fresh_kernel.log` | V2 | equal-charge closed solution | EXP-EQUAL-001 |
 | NB05 | repository | `05_Equal_Charge_13of13_Validation.nb` | `05_Equal_Charge_13of13_Validation_fresh_kernel.log` | V3 | direct equal-charge substitution | EXP-EQUAL-001 |

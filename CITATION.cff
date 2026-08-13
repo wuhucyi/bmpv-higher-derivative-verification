@@ -1,10 +1,9 @@
 cff-version: 1.2.0
 message: >-
-  Private review draft. Do not cite until the authors replace the publication
-  placeholders and approve a public release.
+  If you use this verification artifact, please cite this repository.
 title: "Verification artifact for the four-derivative BMPV solution"
 type: dataset
-version: "0.2-private-review"
+version: "1.0"
 authors:
   - family-names: Cai
     given-names: Yide
@@ -27,5 +26,4 @@ keywords:
   - STU model
   - symbolic verification
   - AI-assisted research
-# Before public release, add the final repository URL, DOI, release date,
-# artifact version, manuscript identifier, and approved license information.
+repository-code: "https://github.com/wuhucyi/bmpv-higher-derivative-verification"

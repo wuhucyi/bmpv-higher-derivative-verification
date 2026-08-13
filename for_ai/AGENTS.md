@@ -15,8 +15,10 @@ artifact, not as a narrative paper or a collection of trustworthy PASS labels.
 6. NB12 is the decisive from-EOM exact-in-rotation verifier. NB21 is the
    independent entropy reconstruction. NB27 is a rejected route. NB32 proves
    source insufficiency, not a universal no-go theorem.
-7. NB01 and NB02 are archive-only. Verify their byte counts and SHA-256 values
-   before using them; do not substitute a similarly named local file.
+7. NB01 and NB02 are stored as `.nb.gz`. Verify both compressed and
+   uncompressed byte counts and SHA-256 values in
+   `evidence/notebook_archives.yaml` before using them; do not substitute a
+   similarly named local file.
 8. Do not expose private correspondence, absolute local paths, credentials,
    hidden model reasoning, or unsupported reconstructed model settings.
 
