@@ -1,9 +1,9 @@
-# BMPV higher-derivative verification
+# Supplementary materials for the four-derivative BMPV solution
 
-This repository is a compact research supplement for the first-order
-four-derivative correction to the generic three-charge BMPV black hole. It is
-organized for two audiences and deliberately does not contain either the
-current article source or the historical source paper.
+This repository contains the supplementary calculation and verification
+materials for the first-order four-derivative correction to the generic
+three-charge BMPV black hole. It provides complementary reading paths for
+human researchers and AI-assisted or automated verification.
 
 ## Choose an entry point
 
@@ -19,12 +19,11 @@ Candidate expressions became claims only after exact Mathematica substitution
 and fresh-kernel checks. Human researchers supplied the theory, conventions,
 physical interpretation, corrections, and final responsibility.
 
-There was no single magic prompt. The published prompt is explicitly a
-retrospective task specification, while the research journey records the
-actual sequence of decisions, failures, pivots, and audits that can be
-supported by preserved artifacts.
+The published prompt is a retrospective task specification. The research
+journey records the sequence of decisions, failures, pivots, and audits
+supported by the preserved artifacts.
 
-## Artifact boundary
+## Included materials
 
 This repository contains all 34 Mathematica notebooks. NB01 and NB02 are
 stored as losslessly compressed `.nb.gz` files because their uncompressed
@@ -33,17 +32,15 @@ SHA-256 values are recorded in
 [`for_ai/evidence/notebook_archives.yaml`](for_ai/evidence/notebook_archives.yaml).
 All other notebooks are stored directly as `.nb` files.
 
-The `for_ai/` directory is inspired by the four-layer Agent-Native Research
-Artifact proposal: logic, executable source, exploration trace, and exact
-evidence. It is an adaptation for symbolic high-energy theory and is not
-presented as a formal third-party ARA certification.
+The `for_ai/` directory uses an Agent-Native Research Artifact-inspired
+four-layer organization: logic, executable source, exploration trace, and
+exact evidence, adapted for symbolic high-energy theory.
 
-## Verification boundary
+## Verification
 
-- No claim of priority or of a first AI-assisted theory paper is made here.
-- No existing PASS label is evidence by itself; the linked calculation is.
-- Reuse and redistribution are governed by
-  [`RIGHTS_AND_REUSE.md`](RIGHTS_AND_REUSE.md).
+Each claim links to its verification procedure and exact evidence; a recorded
+PASS label is not a substitute for the linked calculation. Reuse and
+redistribution are governed by [`RIGHTS_AND_REUSE.md`](RIGHTS_AND_REUSE.md).
 
 Run the lightweight structural and cross-reference audit with:
 
@@ -51,5 +48,6 @@ Run the lightweight structural and cross-reference audit with:
 ruby for_ai/validate_level1.rb
 ```
 
-Full notebook execution requires a compatible licensed Wolfram kernel and is
-not part of public continuous integration.
+Continuous integration runs this structural audit. Reproducing the full
+notebook calculations additionally requires a compatible licensed Wolfram
+kernel.

@@ -1,7 +1,7 @@
 # Related work and imported boundaries
 
-This artifact does not redistribute source papers. References are imported by
-identifier and by the narrow role they play in the calculation.
+The following references identify the external results and conventions used
+in the calculation.
 
 - The two-derivative BMPV and Gutowski--Reall/STU solutions provide the
   stationary backgrounds and gauge-field conventions.

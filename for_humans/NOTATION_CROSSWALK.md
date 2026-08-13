@@ -10,8 +10,8 @@ executable checks.
 The manuscript snapshot used here is `main.tex` from the authors' Overleaf
 download with SHA-256
 `6f6b5a7ad6d3b3d364f3eec297315422beaac575388b8e142f29579e44b977de`.
-The file is not copied into this supplementary repository. If the manuscript
-changes, this crosswalk must be reviewed rather than assumed current.
+This crosswalk is tied to that manuscript snapshot and should be reviewed
+after manuscript revisions.
 
 ## Parameters and physical quantities
 

@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: >-
   If you use this verification artifact, please cite this repository.
-title: "Verification artifact for the four-derivative BMPV solution"
+title: "Supplementary verification materials for the four-derivative BMPV solution"
 type: dataset
 version: "1.0"
 authors:
@@ -16,10 +16,10 @@ authors:
   - family-names: Saskowski
     given-names: Robert J.
 abstract: >-
-  Two-audience research artifact containing a chronological human account,
-  final verification report, machine-readable claims and experiments,
-  Mathematica verification notebooks, exploration history, and exact evidence
-  for the first-order four-derivative BMPV solution.
+  Supplementary materials containing a chronological human account, final
+  verification report, machine-readable claims and experiments, Mathematica
+  verification notebooks, exploration history, and exact evidence for the
+  first-order four-derivative BMPV solution.
 keywords:
   - BMPV black hole
   - higher-derivative supergravity

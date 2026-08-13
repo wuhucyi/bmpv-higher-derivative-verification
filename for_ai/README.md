@@ -1,13 +1,11 @@
 # AI verification guide
 
-This directory is the machine-oriented part of the supplementary materials.
-It provides a navigable claim, calculation, trace, and evidence structure for
-AI agents and automated auditors. It is not the research article, a summary of
-the article, or a source of publication metadata.
+This directory provides the machine-readable part of the supplementary
+materials: a navigable claim, calculation, trace, and evidence structure for
+AI agents and automated auditors.
 
-The organization is inspired by the four-layer Agent-Native Research Artifact
-proposal and adapted for symbolic high-energy-theory calculations. It is not a
-formal third-party ARA certification.
+The organization adapts the four-layer Agent-Native Research Artifact proposal
+to symbolic high-energy-theory calculations.
 
 ## Entry points
 

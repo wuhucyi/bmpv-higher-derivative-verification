@@ -1,7 +1,7 @@
 # Human reading path
 
-This directory contains the compact, chronological view of the project. Read
-the files in this order:
+This directory provides a chronological reading path through the supplementary
+materials. Read the files in this order:
 
 1. [`NOTATION_CROSSWALK.md`](NOTATION_CROSSWALK.md) - the dictionary between
    the current manuscript, the verification report, and notebook symbols,
@@ -19,10 +19,5 @@ the files in this order:
 
 For an adversarial verification protocol, see
 [`INDEPENDENT_AUDIT_PROMPT.md`](INDEPENDENT_AUDIT_PROMPT.md). Executable
-notebooks and exact machine evidence are intentionally kept only in the
-[`for_ai/`](../for_ai/README.md) block, so there is one canonical copy of every
-calculation artifact.
-
-The two PDFs are retained as stable review documents. Their TeX sources,
-publication manuscript, historical paper, and compilation products are not
-part of this compact GitHub view.
+notebooks and exact machine evidence are available in
+[`for_ai/`](../for_ai/README.md).
