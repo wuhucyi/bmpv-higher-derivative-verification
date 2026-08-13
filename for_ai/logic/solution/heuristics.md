@@ -31,7 +31,7 @@ itself.
 - **Sensitivity:** success at equal charge does not imply the generic result.
 - **Bounds:** benchmark and regression test only.
 - **Code:** NB04 and NB05.
-- **Source:** the inherited STU/BMPV methodology.
+- **Source:** the STU/BMPV equation-solving strategy.
 
 ## Raw-potential-first dualization
 

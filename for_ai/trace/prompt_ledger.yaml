@@ -14,7 +14,7 @@ prompts:
     verbatim_historical: false
 
 milestone_summaries:
-  - {id: M01, summary: "Recover the scientific problem from the static STU method and rotating background.", trace_nodes: [T01]}
+  - {id: M01, summary: "Formulate the scientific problem from the STU theory and rotating background.", trace_nodes: [T01]}
   - {id: M02, summary: "Build explicit equations and sources before solving.", trace_nodes: [T02]}
   - {id: M03, summary: "Make the computational evidence human-readable and indexed.", trace_nodes: [T03]}
   - {id: M04, summary: "Establish the static, equal-charge, and slow-rotation sectors.", trace_nodes: [T03, T04, T05, T06]}
@@ -27,7 +27,7 @@ milestone_summaries:
   - {id: M11, summary: "Run independent audits and seal the scoped result.", trace_nodes: [T08, T10, T13]}
 
 human_intervention_summaries:
-  - {id: H01, summary: "Supplied the action, background, and historical notebook inheritance."}
+  - {id: H01, summary: "Supplied the action, background, and verification requirements."}
   - {id: H02, summary: "Required explicit EOM and sources before solution work."}
   - {id: H03, summary: "Required arbitrary unequal charges rather than only equal-charge tests."}
   - {id: H04, summary: "Suggested testing a complete rotation dependence."}

@@ -1,6 +1,6 @@
 # Audit record
 
-## Inherited scientific audit
+## Scientific audit history
 
 The version-5 scientific package was not accepted on its first release-audit
 round. That round identified an incorrect description of the displayed source
@@ -20,23 +20,29 @@ is preserved here:
 
 ## Two-audience migration self-audit
 
-The compact migration was performed without modifying the two retained PDFs,
-the 32 directly stored notebooks, or the 34 canonical logs:
+The compact migration was initially performed without modifying the two
+retained PDFs, the 32 directly stored notebooks, or the 34 canonical logs:
 
-- 32/32 direct notebooks are Git-blob identical to the pre-migration `src/notebooks`
-  objects;
-- 34/34 canonical logs are Git-blob identical to the pre-migration validation
-  records;
-- both PDFs are Git-blob identical to the version-5 report and solving-process
-  objects;
-- the final report contains 35 nonempty A4 pages and has SHA-256
-  `2cc20b45fb41244f50ee76507406fdae50be8adc135f81397c5bd15f7e1169fc`;
-- the solving-process document contains 18 nonempty A4 pages and has SHA-256
-  `1b9c2856bfb0857816f798eebe0e48fd7aa1a9c98817ac958371fe5a558c4c68`.
+- the 32 directly stored notebooks were Git-blob identical to the
+  pre-migration `src/notebooks` objects;
+- the 34 canonical logs were Git-blob identical to the pre-migration
+  validation records;
+- the retained PDFs were Git-blob identical to the version-5 report and
+  solving-process objects;
+- the final report contains 35 nonempty A4 pages;
+- the solving-process document contains 18 nonempty A4 pages.
 
-All 53 pages were rendered after migration. Contact-sheet inspection and
-full-resolution spot checks found no clipping, overlap, missing glyphs, or
-unreadable page. Every page has extractable text.
+A later presentation-only revision removed language implying that an external
+STU notebook collection is a required input, identified the supplementary
+document author as GPT 5.6 Sol, and left the scientific formulas and claim
+scope unchanged. The three notebooks whose explanatory text was clarified
+were rerun from fresh Mathematica 14.1 kernels; their exact PASS verdicts and
+current hashes are recorded in the canonical logs. Current artifact identities
+are bound by `checksums.sha256`.
+
+All 53 pages were rendered after the presentation revision. Contact-sheet
+inspection and full-resolution spot checks found no clipping, overlap, missing
+glyphs, or unreadable page. Every page has extractable text.
 
 The new cross-reference layer contains 22 preserved scientific claims, 22
 verification recipes, 34 NB identifiers, 34 assigned logs, and 13 evidenced

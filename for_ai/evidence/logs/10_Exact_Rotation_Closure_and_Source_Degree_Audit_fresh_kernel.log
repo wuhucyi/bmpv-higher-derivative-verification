@@ -1,15 +1,15 @@
 "FRESH_KERNEL_SEQUENTIAL_EVALUATION_BEGIN"
 "FILE_BASENAME=""10_Exact_Rotation_Closure_and_Source_Degree_Audit.nb"
-"FILE_ABSOLUTE_PATH=""[LOCAL_HOME]/Documents/Codex/2026-07-12/https-www-overleaf-com-project-65577187a96876076df0bcd6/work/package_v4_staging/notebooks/10_Exact_Rotation_Closure_and_Source_Degree_Audit.nb"
+"FILE_ABSOLUTE_PATH=""[PACKAGE_ROOT]/notebooks/10_Exact_Rotation_Closure_and_Source_Degree_Audit.nb"
 "KERNEL=""14.1.0 for Mac OS X ARM (64-bit) (July 16, 2024)"
-"START_UTC=""2026-07-20T06:25:55"
-"BYTES="8847
-"SHA256=""768e7ac76c9898144b4ca315e7a943294b0dc54e3cd23fbbb18eadf51d28f239"
+"START_UTC=""2026-08-13T06:04:42"
+"BYTES="8855
+"SHA256=""2587f4d3a31b97147933d5237177cf6bcb8fd28863190eacc498c04cb7589036"
 "PARSE_PASS="True
 "INPUT_CELL_COUNT="4
 "PASS_EXPRESSION=""True"
 "CELL_"1"_BEGIN"
-"CELL_"1"_SECONDS="0.009188
+"CELL_"1"_SECONDS="0.003626
 "CELL_"1"_RESULT_PASS="True
 "CELL_"1"_MESSAGE_COUNT="0
 "CELL_"1"_RESULT_HEAD="Association
@@ -17,7 +17,7 @@
 "CELL_"1"_RESULT_SHORT=""Short[<|\"Even\" -> f0[x] + jrot^2*f2[x], \"Odd\" -> jrot*g1[x] + jrot^3*g3[x], \"HighestEvenFieldPower\" -> 2, \"HighestOddFieldPower\" -> 3|>, 12]"
 "CELL_"1"_END"
 "CELL_"2"_BEGIN"
-"CELL_"2"_SECONDS="0.000415
+"CELL_"2"_SECONDS="0.000266
 "CELL_"2"_RESULT_PASS="True
 "CELL_"2"_MESSAGE_COUNT="0
 "CELL_"2"_RESULT_HEAD="Association
@@ -25,7 +25,7 @@
 "CELL_"2"_RESULT_SHORT=""Short[<|\"MetricJ2CompressionCounts\" -> <|\"f\" -> <|\"OriginalTerms\" -> 25042, \"SelectedJ2Terms\" -> 7671, \"CompactNumeratorMonomials\" -> 511|>, \"gr\" -> <|\"OriginalTerms\" -> 13230, \"SelectedJ2Terms\" -> 3518, \"CompactNumeratorMonomials\" -> 343|>, \"hr\" -> <|\"OriginalTerms\" -> 31027, \"SelectedJ2Terms\" -> 10978, \"CompactNumeratorMonomials\" -> 512|>, \"squ\" -> <|\"OriginalTerms\" -> 29782, \"SelectedJ2Terms\" -> 10783, \"CompactNumeratorMonomials\" -> 512|>|>, \"J3EquationAndSourceLeafCounts\" -> <|\"v1\" -> {16428, 29247}, \"v2\" -> {16428, 29247}, \"v3\" -> {20352, 36183}, \"omega\" -> {9268, 16201}|>, \"RecordedClosurePerOrderCounts\" -> <|\"j4Even\" -> 9, \"j5Odd\" -> 4, \"j6Even\" -> 9, \"j7Odd\" -> 4, \"j8Even\" -> 9|>, \"RecordedEvidenceClasses\" -> <|\"j4Even\" -> <|\"u1\" -> \"NONTRIVIAL_CANCELLATION\", \"u2\" -> \"NONTRIVIAL_CANCELLATION\", \"u3\" -> \"NONTRIVIAL_CANCELLATION\", \"p\" -> \"NONTRIVIAL_CANCELLATION\", \"s\" -> \"ABSENCE_ZERO_ZERO\", \"f\" -> \"NONTRIVIAL_CANCELLATION\", \"gr\" -> \"ABSENCE_ZERO_ZERO\", \"hr\" -> \"ABSENCE_ZERO_ZERO\", \"squ\" -> \"ABSENCE_ZERO_ZERO\"|>, \"j5Odd\" -> <|\"v1\" -> \"ABSENCE_ZERO_ZERO\", \"v2\" -> \"ABSENCE_ZERO_ZERO\", \"v3\" -> \"ABSENCE_ZERO_ZERO\", \"omega\" -> \"ABSENCE_ZERO_ZERO\"|>, \"j6Even\" -> <|\"u1\" -> \"ABSENCE_ZERO_ZERO\", \"u2\" -> \"ABSENCE_ZERO_ZERO\", \"u3\" -> \"ABSENCE_ZERO_ZERO\", \"p\" -> \"ABSENCE_ZERO_ZERO\", \"s\" -> \"ABSENCE_ZERO_ZERO\", \"f\" -> \"ABSENCE_ZERO_ZERO\", \"gr\" -> \"ABSENCE_ZERO_ZERO\", \"hr\" -> \"ABSENCE_ZERO_ZERO\", \"squ\" -> \"ABSENCE_ZERO_ZERO\"|>, \"j7Odd\" -> <|\"v1\" -> \"ABSENCE_ZERO_ZERO\", \"v2\" -> \"ABSENCE_ZERO_ZERO\", \"v3\" -> \"ABSENCE_ZERO_ZERO\", \"omega\" -> \"ABSENCE_ZERO_ZERO\"|>, \"j8Even\" -> <|\"u1\" -> \"ABSENCE_ZERO_ZERO\", \"u2\" -> \"ABSENCE_ZERO_ZERO\", \"u3\" -> \"ABSENCE_ZERO_ZERO\", \"p\" -> \"ABSENCE_ZERO_ZERO\", \"s\" -> \"ABSENCE_ZERO_ZERO\", \"f\" -> \"ABSENCE_ZERO_ZERO\", \"gr\" -> \"ABSENCE_ZERO_ZERO\", \"hr\" -> \"ABSENCE_ZERO_ZERO\", \"squ\" -> \"ABSENCE_ZERO_ZERO\"|>|>, \"RecordedClassCounts\" -> <|\"NONTRIVIAL_CANCELLATION\" -> 5, \"ABSENCE_ZERO_ZERO\" -> 30|>, \"RecordedClassPass\" -> True, \"CountOrderingPass\" -> True, \"RecordedClosureReplayPass\" -> True|>, 12]"
 "CELL_"2"_END"
 "CELL_"3"_BEGIN"
-"CELL_"3"_SECONDS="0.000148
+"CELL_"3"_SECONDS="0.000126
 "CELL_"3"_RESULT_PASS="True
 "CELL_"3"_MESSAGE_COUNT="0
 "CELL_"3"_RESULT_HEAD="Association
@@ -33,7 +33,7 @@
 "CELL_"3"_RESULT_SHORT=""Short[<|\"RawHomogeneousOperatorDegrees\" -> <|\"u1\" -> 2, \"u2\" -> 2, \"u3\" -> 2, \"v1\" -> 1, \"v2\" -> 1, \"v3\" -> 1, \"p\" -> 2, \"s\" -> 2, \"f\" -> 2, \"gr\" -> 2, \"hr\" -> 2, \"squ\" -> 2, \"omega\" -> 1|>, \"FullSourceDegrees\" -> <|\"u1\" -> 4, \"u2\" -> 4, \"u3\" -> 4, \"v1\" -> 3, \"v2\" -> 3, \"v3\" -> 3, \"p\" -> 4, \"s\" -> 2, \"f\" -> 6, \"gr\" -> 6, \"hr\" -> 8, \"squ\" -> 8, \"omega\" -> 7|>, \"PostSolutionHomogeneousBounds\" -> <|\"EvenMaximum\" -> 4, \"OddMaximum\" -> 3|>, \"ClosureCounts\" -> <|\"j4Even\" -> 9, \"j5Odd\" -> 4, \"j6Even\" -> 9, \"j7Odd\" -> 4, \"j8Even\" -> 9|>, \"RecordedClassCounts\" -> <|\"NONTRIVIAL_CANCELLATION\" -> 5, \"ABSENCE_ZERO_ZERO\" -> 30|>, \"DegreeAuditPass\" -> True, \"ExactInRotationRecordedLedgerPass\" -> True|>, 12]"
 "CELL_"3"_END"
 "CELL_"4"_BEGIN"
-"CELL_"4"_SECONDS="0.000021
+"CELL_"4"_SECONDS="0.000027
 "CELL_"4"_RESULT_PASS="True
 "CELL_"4"_MESSAGE_COUNT="0
 "CELL_"4"_RESULT_HEAD="Association
@@ -45,11 +45,11 @@
 "MESSAGE_CELL_COUNT="0
 "MESSAGE_CELL_INDICES="InputForm[{}]
 "MESSAGE_TOTAL_COUNT="0
-"CELL_SECONDS="InputForm[{0.009188, 0.000415, 0.000148, 0.000021}]
-"CELL_SECONDS_TOTAL="0.009772000000000001
+"CELL_SECONDS="InputForm[{0.003626, 0.000266, 0.000126, 0.000027}]
+"CELL_SECONDS_TOTAL="0.004045
 "DECLARED_PASS_VALUE="InputForm[True]
 "CELL_EVALUATION_PASS="True
-"END_UTC=""2026-07-20T06:25:57"
-"TOTAL_WALL_SECONDS="1.327332`6.574524558209841
+"END_UTC=""2026-08-13T06:04:43"
+"TOTAL_WALL_SECONDS="0.877615`6.394849030990566
 "FRESH_KERNEL_FINAL_PASS="True
 "FRESH_KERNEL_SEQUENTIAL_EVALUATION_END"

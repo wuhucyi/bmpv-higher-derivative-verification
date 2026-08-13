@@ -65,7 +65,7 @@ separate in claims, experiments, and summaries.
 
 ## Notebook aliases
 
-Inherited notebook symbols such as `x`, `Ft`, `Gr`, `Sq`, `Om`, `U1`, and `B1`
+Internal notebook symbols such as `x`, `Ft`, `Gr`, `Sq`, `Om`, `U1`, and `B1`
 are implementation aliases for `r^2`, temporal/radial/squashing metric
 corrections, the rotation-form correction, and gauge-potential corrections.
 Human notation in the PDFs is canonical. The structured mapping to the current

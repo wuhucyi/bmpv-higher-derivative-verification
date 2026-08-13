@@ -117,7 +117,7 @@ COMPUTED\",\"HeteroticFieldMap\"->\"OPEN\",\"InvariantHorizonRegularity\"->\"\
 OPEN\"|>"], "Input"], Cell["Conclusion: the rotation-dependent correction is \
 exact in jrot at first order in lambda3, as proved by notebook 12. No claim \
 is made about O(lambda3^2). The identification lambda3=alpha'/8 is a \
-normalization inherited from the static embedding until the rotating \
+normalization adopted from the published static embedding until the rotating \
 five-to-ten-dimensional field map is completed.", "Text"]}, 
  StyleDefinitions -> "Default.nb", WindowTitle -> 
   "10_Exact_Rotation_Closure_and_Source_Degree_Audit"]

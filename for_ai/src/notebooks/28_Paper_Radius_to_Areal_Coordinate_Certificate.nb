@@ -40,7 +40,7 @@ with deltaHPaper controlling the angular sphere size.  The gauge-field \
 convention is the positive STU convention A^1=A, A^2=-B, A^3=C, so all \
 leading electric potentials are +1/HI.  The scalar functions are the \
 canonical report variables varphi1 and varphi2.  Only at the literal \
-seed-comparison boundary are they converted to the old notebook coordinates \
+seed-comparison boundary are they converted to the compact verification coordinates \
 P=-Sqrt[6] deltaVarphi1/4 and S=deltaVarphi2/Sqrt[2]."}], "Text"], 
   Cell[BoxData["H1Paper[r_]:=1+q1/r^2; H2Paper[r_]:=1+q2/r^2; \
 H3Paper[r_]:=1+q3/r^2;\nHProductPaper[r_]:=H1Paper[r] H2Paper[r] \

@@ -8,8 +8,8 @@
 ```text
 You are assisting with a symbolic calculation in five-dimensional
 supergravity.  Work only from the supplied action, two-derivative rotating
-STU/BMPV solution, convention ledger, references, and historical static
-notebooks.  Treat every imported formula as convention-dependent until it is
+STU/BMPV solution, convention ledger, references, and published static
+calculation.  Treat every imported formula as convention-dependent until it is
 checked.
 
 OBJECTIVE
@@ -98,7 +98,7 @@ on-solution verification.
 ## Inputs required for a blind run
 
 Provide the action, background solution, references, convention ledger and
-pre-existing static methodology.  Withhold the corrected rotating fields,
-decisive notebooks, expected residual values and audit reports.  Record a hash
-of the candidate result before unblinding it against the released evidence.
-
+the published static calculation as regression data.  Withhold the corrected
+rotating fields, decisive notebooks, expected residual values and audit
+reports.  Record a hash of the candidate result before unblinding it against
+the released evidence.

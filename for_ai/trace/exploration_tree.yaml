@@ -15,7 +15,7 @@ nodes:
     claim_refs: [BMPV-EOM-001]
     experiment_refs: [EXP-EOM-001]
     notebook_refs: [NB01, NB02]
-    summary: "The static STU method and rotating BMPV background were combined into one scoped problem."
+    summary: "The STU theory and rotating BMPV background were combined into one scoped problem."
 
   - id: T02
     type: decision

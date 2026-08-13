@@ -66,7 +66,7 @@ manuscript; this crosswalk does not infer that identification.
 | `varphi_1,varphi_2` | `varphi_1,varphi_2` | `P`, `S` for their corrections | `P=-sqrt(6) delta varphi_1/4`; `S=delta varphi_2/sqrt(2)`. |
 
 The explicit-EOM archive uses `df,dgr,dhr,dsqu,domega`. Compact solution and
-verification notebooks use `Ft,Gr,K,Om`; some inherited explanatory cells use
+verification notebooks use `Ft,Gr,K,Om`; some explanatory cells use
 `Sq` for squashing. In the areal solver gauge the angular-area correction
 corresponding to `dhr` is set to zero, so no universal `Hr` alias exists.
 
