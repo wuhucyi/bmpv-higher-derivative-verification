@@ -186,9 +186,8 @@ expected_notebooks = source_rows.values.select { |r| r["availability"] == "repos
 record(errors, actual_notebooks == expected_notebooks,
        "repository notebook basename set differs from source index")
 
-compressed_dir = File.join(notebook_dir, "compressed")
-actual_compressed = Dir.glob(File.join(compressed_dir, "*.nb.gz"))
-                       .map { |p| "compressed/#{File.basename(p)}" }.to_set
+actual_compressed = Dir.glob(File.join(notebook_dir, "*.nb.gz"))
+                       .map { |p| File.basename(p) }.to_set
 expected_compressed = source_rows.values
                                  .select { |r| r["availability"] == "repository_compressed" }
                                  .map { |r| r["file"] }.to_set

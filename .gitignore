@@ -39,7 +39,7 @@
 *.part
 
 # Two deterministic notebook archives are part of the verification artifact.
-!for_ai/src/notebooks/compressed/*.nb.gz
+!for_ai/src/notebooks/*.nb.gz
 
 # Secrets and machine-local configuration
 .env
