@@ -115,30 +115,3 @@ while keeping only `lambda_3` active. It therefore allows
 minimal-supergravity truncation in the manuscript additionally sets
 `lambda_1=lambda_2=lambda_3=lambda/3` and superposes the three permuted
 sectors. These two specializations must not be identified term by term.
-
-## Manuscript points requiring author confirmation
-
-The crosswalk does not silently repair the following source-text issues:
-
-1. The leading solution currently prints `X^I=mathcal H/H_I`; the scalar
-   constraint and later formulas require `X^I=mathcal H^(1/3)/H_I`.
-2. The displayed mixed `A^I R R` term shows an epsilon with four written
-   indices while also contracting `A_lambda`; the intended five-dimensional
-   term requires the fifth index to be explicit.
-3. The manuscript does not explicitly say whether its action epsilon is a
-   curved tensor or an alternating density.
-4. The Wald prose first calls the two normals `u,w`, while the display uses
-   `u,v` and later reserves `w` for dimensionless spin.
-5. Expressions such as `lambda_I/q_I` in the entropy section appear to rely on
-   an index sum, but the crosswalk does not impose summation semantics that the
-   manuscript has not stated.
-6. `partial log H_I` should be read as the derivative with respect to the
-   retained manuscript radial coordinate; the paper should define this
-   shorthand and its coordinate explicitly.
-7. In the displayed derivative of the Lagrangian with respect to
-   `R_(mu nu rho sigma)`, the second field-strength factor appears to repeat
-   `mu nu`; its free indices should be checked against the intended
-   `rho sigma` pair.
-
-These are manuscript-editing notes, not failures of the archived notebook
-certificates.
